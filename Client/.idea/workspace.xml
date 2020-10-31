@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11c974d3-130a-440c-9a2c-3b0ac5152188" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/Server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Server/target/classes/main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/main/java/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -54,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="968" />
     <option name="y" value="398" />
     <option name="width" value="2413" />
@@ -99,6 +89,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../OS-VMM-1" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -122,15 +115,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604114992243</updated>
-      <workItem from="1604114996916" duration="267000" />
+      <workItem from="1604114996916" duration="616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267000" />
+    <option name="totallyTimeSpent" value="616000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="968" y="398" width="2413" height="1604" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
