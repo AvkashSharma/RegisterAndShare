@@ -13,18 +13,16 @@ public class ClientHandler implements Runnable {
         this.packetReceived = packetReceived;
         this.clientSocket = clientSocket;
     }
-
         public void run() {
 
-                // System.out.println("SERVER: received "+new String(packetReceived.getData()));
+                    // Received data from the client
+                    receivedData = new String(packetReceived.getData());
 
-                // Received data from the client
-                  receivedData = new String(packetReceived.getData());
+                    // Print data sent by the client
+                    System.out.println("Received: " + receivedData);
 
-                // Print data sent by the client
-                System.out.println("Received: " + receivedData);
+                    serverResponse.sendResponse(packetReceived,clientSocket);
 
-                serverResponse.sendResponse(packetReceived,clientSocket);
 
         }
     }

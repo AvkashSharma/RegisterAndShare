@@ -10,7 +10,6 @@ public class serverResponse {
         // Received data from the client
         String receivedData = new String(packet.getData());
 
-
         byte[] sendingDataBuffer = receivedData.toUpperCase().getBytes();
 
         // Obtain Client's IP address and the port

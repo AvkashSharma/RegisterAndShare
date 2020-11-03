@@ -21,6 +21,9 @@ public class Client {
              No need to bind to a specific port */
             DatagramSocket datagramSocket = new DatagramSocket();
 
+            // Time client waits for a response before timing out
+            // datagramSocket.setSoTimeout(5000);
+
             Scanner scanner = new Scanner(System.in);
             String echoString;
 
