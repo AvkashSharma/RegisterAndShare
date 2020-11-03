@@ -5,10 +5,11 @@ import java.net.InetAddress;
 
 public class serverResponse {
 
-    public static void sendResponse(DatagramPacket packet, DatagramSocket serverSocket){
+    public static void sendResponse(DatagramPacket packet, DatagramSocket clientSocket){
 
         // Received data from the client
         String receivedData = new String(packet.getData());
+
 
         byte[] sendingDataBuffer = receivedData.toUpperCase().getBytes();
 
@@ -21,7 +22,7 @@ public class serverResponse {
 
         try{
             // Send the created packet to the client
-             serverSocket.send(outputPacket);
+             clientSocket.send(outputPacket);
         }
         catch (IOException e){
             e.printStackTrace();

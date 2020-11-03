@@ -4,24 +4,27 @@ import java.net.*;
 public class ClientHandler implements Runnable {
 
     private DatagramPacket packetReceived;
-    private DatagramSocket serverSocket;
+    private DatagramSocket clientSocket;
+    private String receivedData;
 
 
-    public ClientHandler(DatagramPacket packetReceived, DatagramSocket serverSocket)
+    public ClientHandler(DatagramPacket packetReceived, DatagramSocket clientSocket)
     {
         this.packetReceived = packetReceived;
-        this.serverSocket = serverSocket;
+        this.clientSocket = clientSocket;
     }
 
-    public void run() {
+        public void run() {
 
-        // Received data from the client
-         String receivedData = new String(packetReceived.getData());
+                // System.out.println("SERVER: received "+new String(packetReceived.getData()));
 
-        // Print data sent by the client
-        System.out.println("Sent by the client: " + receivedData);
+                // Received data from the client
+                  receivedData = new String(packetReceived.getData());
 
-        serverResponse.sendResponse(packetReceived,serverSocket);
+                // Print data sent by the client
+                System.out.println("Received: " + receivedData);
+
+                serverResponse.sendResponse(packetReceived,clientSocket);
 
         }
     }
