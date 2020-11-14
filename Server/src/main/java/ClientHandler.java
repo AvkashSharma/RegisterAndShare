@@ -22,8 +22,6 @@ public class ClientHandler implements Runnable {
                     System.out.println("Received: " + receivedData);
 
                     serverResponse.sendResponse(packetReceived,clientSocket);
-
-
         }
     }
 
