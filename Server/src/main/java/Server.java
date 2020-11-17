@@ -3,17 +3,29 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Scanner;
 
 public class Server {
 
     // Server UDP socket runs at this port
-    public final static int SERVICE_PORT=50001;
+    // public final static int SERVICE_PORT=50001;
+    public static int SERVICE_PORT = 0;
+    public static boolean SERVING = true; //if serving respond else ignore
 
     public static void main(String[] args) {
-
-        System.out.println("Server Started...");
-
         try {
+            InetAddress address = InetAddress.getLocalHost();
+            System.out.println(address);
+
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter port to run server(50000): ");
+            // todo - validate that its a valid port
+            SERVICE_PORT = scanner.nextInt();
+            scanner.close();
+            System.out.println("Server Started on port "+SERVICE_PORT+"...");
+
+
             DatagramSocket serverSocket = new DatagramSocket(SERVICE_PORT);
             while (true) {
 
