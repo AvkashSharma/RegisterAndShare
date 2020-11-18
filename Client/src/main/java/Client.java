@@ -3,6 +3,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import javax.print.event.PrintEvent;
@@ -10,60 +11,47 @@ import javax.sound.sampled.SourceDataLine;
 
 public class Client {
 
-    /* The server port to which
-    the client socket is going to connect */
+    /*
+     * The server port to which the client socket is going to connect
+     */
     // public final static int SERVICE_PORT = 50001;
+
+    // we can store this as INET ADDRESS later on
+    public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_1_IP = "192.168.167.1";
     public static int SERVER_1_PORT = 50000;
 
+    public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_2_IP = "192.168.167.1";
     public static int SERVER_2_PORT = 60000;
 
+    public static String ACTIVE_HOSTNAME = "KJ-ZENBOOK";
     public static String ACTIVE_IP = "192.168.167.1";
-    public static int ACTIVE_SERVER = 50000;
+    public static int ACTIVE_PORT = 50000;
 
     public static void main(String[] args) {
         try {
             Scanner scanner = new Scanner(System.in);
-            
-            System.out.print("Enter server 1 port: ");
-            // todo - validate that its a valid port
-            SERVER_1_PORT = scanner.nextInt();
 
-            System.out.print("Enter server 2 port: ");
-            // todo - validate that its a valid port
-            SERVER_2_PORT = scanner.nextInt();
+            //get all address of servers
+            getServerAddress(scanner);
+            //verify which server is active
+            InetAddress ACTIVE_SERVER = checkActiveServer();
 
-
-            // logic to check which server is active
-            checkActiveServer();
-
-            // Get the IP address of the server
-            InetAddress address = InetAddress.getLocalHost();
-
-            address.isReachable(5);
-            
-            System.out.println(address);
-            InetAddress address1 = InetAddress.getName(address);
-            System.out.println();
-
-            /* Instantiate client socket.
-             No need to bind to a specific port */
             DatagramSocket datagramSocket = new DatagramSocket();
 
             // Time client waits for a response before timing out
             // datagramSocket.setSoTimeout(5000);
 
-            
             String echoString;
-
+            
             do {
-                System.out.println("Enter string to be echoed: " );
-                echoString = scanner.nextLine();
+                System.out.println("Enter string to be echoed: ");
+                echoString = scanner.next();
 
                 byte[] outgoingBuffer = echoString.getBytes();
 
-                DatagramPacket packet = new DatagramPacket(outgoingBuffer,outgoingBuffer.length, address, ACTIVE_SERVER);
+                DatagramPacket packet = new DatagramPacket(outgoingBuffer, outgoingBuffer.length, ACTIVE_SERVER,ACTIVE_PORT);
                 datagramSocket.send(packet);
 
                 byte[] incomingBuffer = new byte[50];
@@ -71,22 +59,53 @@ public class Client {
                 datagramSocket.receive(packet);
                 System.out.println("Text received is: " + new String(incomingBuffer, 0, packet.getLength()));
 
-            } while(!echoString.equals("exit"));
+            } while (!echoString.equals("exit"));
             scanner.close();
 
-        } catch(SocketTimeoutException e) {
+        } catch (SocketTimeoutException e) {
             System.out.println("The socket timed out");
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Client error: " + e.getMessage());
         }
     }
 
+    public static void getServerAddress(Scanner s) {
+        System.out.print("Enter server 1 HostName: ");
+        SERVER_1_HOSTNAME = s.next();
+        System.out.print("Enter server 1 Ip Address: ");
+        SERVER_1_IP = s.next();
+        System.out.print("Enter server 1 port: ");
+        // todo - validate that its a valid port
+        SERVER_1_PORT = s.nextInt();
 
-    public static void checkActiveServer(){
-        ACTIVE_SERVER = SERVER_1_PORT;
+        System.out.print("Enter server 2 HostName: ");
+        SERVER_2_HOSTNAME = s.next();
+        System.out.print("Enter server 2 Ip Address: ");
+        SERVER_2_IP = s.next();
+        System.out.print("Enter server 2 port: ");
+        // todo - validate that its a valid port
+        SERVER_2_PORT = s.nextInt();
+
+    }
+
+    public static InetAddress checkActiveServer() {
+        ACTIVE_PORT = SERVER_1_PORT;
         ACTIVE_IP = SERVER_1_IP;
+        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+        InetAddress ACTIVE_SERVER;
+        try {
+            ACTIVE_SERVER = InetAddress.getByName(ACTIVE_HOSTNAME+"/"+ACTIVE_IP.toString());
+            return ACTIVE_SERVER;
 
-        System.out.println("Connected to server with port "+ACTIVE_SERVER);
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+        
+        // ACTIVE_SERVER = InetAddress.getHostAddress(ACTIVE_HOSTNAME);
+
+        // System.out.println("Connected to server with port "+ACTIVE_PORT);
     }
 
 }
