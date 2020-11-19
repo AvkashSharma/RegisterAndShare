@@ -2,7 +2,7 @@ package Requests.Registration;
 import java.io.Serializable;
 import java.net.InetSocketAddress;
 
-import Requests.Message;
+import Requests.Request;
 import Requests.RequestType;
 
 
@@ -14,7 +14,7 @@ Register Request
 - Socket #
 */
 
-public class RegisterMessage extends Message implements Serializable{
+public class RegisterMessage extends Request implements Serializable{
 
     InetSocketAddress clientSocketAddress;
     String clientName;
