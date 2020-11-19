@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 
-import Requests.Sender;
 import Requests.Registration.RegisterMessage;
 
 public class ClientHandler implements Runnable {

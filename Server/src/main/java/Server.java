@@ -3,7 +3,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.List;
 import java.util.Scanner;
+
+import db.Database;
 
 public class Server {
 
@@ -17,6 +20,17 @@ public class Server {
             InetAddress address = InetAddress.getLocalHost();
             System.out.println(address);
 
+            Database db = new Database();
+            // db.getUsers();
+            // System.out.println(db.userExist("karthi"));
+            // System.out.println(db.addUser("karthi1", "192.245.23.1", 2345));
+            // System.out.println(db.removeUser("karthi1"));
+            // System.out.println(db.updateUser("karthi1312", "192.245.23.1", 1234));
+            // System.out.println(db.subjectExist("sports"));
+            List<String> subjects = db.getSubjects();
+            for (String string : subjects) {
+                System.out.println(string);
+            }
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter port to run server(50000): ");
@@ -24,6 +38,7 @@ public class Server {
             SERVICE_PORT = scanner.nextInt();
             scanner.close();
             System.out.println("Server Started on port "+SERVICE_PORT+"...");
+
 
 
             DatagramSocket serverSocket = new DatagramSocket(SERVICE_PORT);
