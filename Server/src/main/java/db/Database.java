@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Database {
     
@@ -24,6 +25,12 @@ public class Database {
         }
     }
 
+    public void addUser(String username, ){
+
+    }
+    public boolean userExist(){
+        return true;
+    }
     public void getUsers(){
         try{
             String sqlSelectAllPersons = "SELECT * FROM users";
@@ -44,5 +51,42 @@ public class Database {
             // handle the exception
         }
     }
+
+    public void removeUser(){
+
+    }
+
+    public void updateUser(){
+
+    }
+
+    public void addFavoriteSubject(String username, String Subject){
+
+    }
+    public void addFavoriteSubjects(String username, List<String> favoriteSubjects){
+
+    }
+
+    public void favoriteSubjectExist(String username, String subject){
+
+    }
+
+    public void getFavorites(String username){
+        
+    }
+
+    //user adds a message to the subject if they are subscribed to it
+    public void addMessage(String username, String subject, String text){
+
+    }
+
+    public void getUsersOfSubject(String subject){
+
+    }
+
+    public void changeServerAddress(String serverID){
+
+    }
+
     
 }
