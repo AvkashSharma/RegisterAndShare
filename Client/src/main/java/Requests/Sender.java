@@ -1,13 +1,17 @@
 package Requests;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import Requests.Registration.RegisterMessage;
 
 //used to send meesages
 public class Sender {
@@ -26,11 +30,18 @@ public class Sender {
             datagramSocket.send(sendPacket);
             System.out.println("Message sent from client");
 
+
+
             // Wait for server response
             DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
             datagramSocket.receive(incomingPacket);
-            String response = new String(incomingPacket.getData());
-            System.out.println("Response from server:" + response);
+            
+            byte[] dataBuffer = incomingPacket.getData();
+            ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
+            ObjectInputStream is = new ObjectInputStream(byteStream);
+            RegisterMessage o = (RegisterMessage)is.readObject();
+            System.out.println(o);
+
             // Thread.sleep(2000);
 
             datagramSocket.close();
@@ -38,6 +49,8 @@ public class Sender {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
