@@ -5,6 +5,8 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.Scanner;
 
+import db.Database;
+
 public class Server {
 
     // Server UDP socket runs at this port
@@ -17,6 +19,8 @@ public class Server {
             InetAddress address = InetAddress.getLocalHost();
             System.out.println(address);
 
+            Database db = new Database();
+            db.getUsers();
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter port to run server(50000): ");
@@ -24,6 +28,7 @@ public class Server {
             SERVICE_PORT = scanner.nextInt();
             scanner.close();
             System.out.println("Server Started on port "+SERVICE_PORT+"...");
+
 
 
             DatagramSocket serverSocket = new DatagramSocket(SERVICE_PORT);
