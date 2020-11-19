@@ -14,12 +14,12 @@ Register Request
 - Socket #
 */
 
-public class RegisterMessage extends Request implements Serializable{
+public class RegisterRequest extends Request implements Serializable{
 
     InetSocketAddress clientSocketAddress;
     String clientName;
 
-    public RegisterMessage(String clientName, InetSocketAddress clientSocketAddress) {
+    public RegisterRequest(String clientName, InetSocketAddress clientSocketAddress) {
         super(RequestType.REGISTER);
         this.clientName = clientName;
         this.clientSocketAddress = clientSocketAddress;

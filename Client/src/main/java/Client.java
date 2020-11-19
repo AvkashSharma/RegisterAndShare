@@ -14,10 +14,10 @@ import java.util.Scanner;
 import javax.print.event.PrintEvent;
 import javax.sound.sampled.SourceDataLine;
 
-import Requests.Message;
+import Requests.Request;
 import Requests.RequestType;
 import Requests.Sender;
-import Requests.Registration.RegisterMessage;
+import Requests.Registration.RegisterRequest;
 
 public class Client {
 
@@ -57,7 +57,7 @@ public class Client {
             do {
             System.out.println("Enter username: ");
             cmdInput = scanner.next();
-            RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+            RegisterRequest testMessage = new RegisterRequest(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
             testMessage.print();
             Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);

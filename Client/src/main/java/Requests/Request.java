@@ -9,7 +9,7 @@ public class Request implements Serializable {
     protected RequestType requestType;
     protected int rid;
 
-    public Message(RequestType requestType) {
+    public Request(RequestType requestType) {
         this.requestType = requestType;
         this.rid = 0;
     }

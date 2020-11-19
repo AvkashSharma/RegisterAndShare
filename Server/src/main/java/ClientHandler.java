@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 
-import Requests.Registration.RegisterMessage;
+import Requests.Registration.RegisterRequest;
 
 public class ClientHandler implements Runnable {
 
@@ -28,10 +28,10 @@ public class ClientHandler implements Runnable {
                         ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
                         ObjectInputStream is = new ObjectInputStream(byteStream);
                         System.out.println(is);
-                        RegisterMessage o = (RegisterMessage)is.readObject();
+                        RegisterRequest o = (RegisterRequest)is.readObject();
                         System.out.println(o);
 
-                        RegisterMessage respondMessage = new RegisterMessage("Object from server "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+                        RegisterRequest respondMessage = new RegisterRequest("Object from server "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(), 1234));
                         serverResponse.sendResponse(respondMessage, packetReceived,clientSocket);
 
                         is.close();
