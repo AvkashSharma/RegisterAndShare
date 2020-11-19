@@ -1,6 +1,10 @@
-package Requests;
-
+package Requests.Registration;
+import java.io.Serializable;
 import java.net.InetSocketAddress;
+
+import Requests.Message;
+import Requests.RequestType;
+
 
 /*
 Register Request
@@ -10,7 +14,7 @@ Register Request
 - Socket #
 */
 
-public class RegisterMessage extends Message {
+public class RegisterMessage extends Message implements Serializable{
 
     InetSocketAddress clientSocketAddress;
     String clientName;
@@ -25,8 +29,13 @@ public class RegisterMessage extends Message {
         return clientName;
     }
 
+    @Override
     public String toString() {
         return RequestType.REGISTER + " " + clientName + " " + clientSocketAddress;
+    }
+
+    public void print(){
+        System.out.println(this.toString());
     }
 
     // TEST CODE
@@ -36,7 +45,5 @@ public class RegisterMessage extends Message {
     //     System.out.println(rm.clientSocketAddress.getPort());
 
     // }
-
-
 
 }

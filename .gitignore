@@ -6,4 +6,5 @@ Client/target
 Server/.idea
 Server/.vscode
 Server/bin
-Server/taget
+Server/target
+*.class
