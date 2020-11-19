@@ -20,7 +20,11 @@ public class Server {
             System.out.println(address);
 
             Database db = new Database();
-            db.getUsers();
+            // db.getUsers();
+            // System.out.println(db.userExist("karthi"));
+            // System.out.println(db.addUser("karthi1", "192.245.23.1", 2345));
+            // System.out.println(db.removeUser("karthi1"));
+            System.out.println(db.updateUser("karthi1312", "192.245.23.1", 1234));
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter port to run server(50000): ");
