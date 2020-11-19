@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
@@ -79,6 +80,7 @@ public class Database {
         }
     }
 
+    // delete user from database
     public boolean removeUser(String username) {
         try {
             PreparedStatement ps = conn
@@ -92,6 +94,7 @@ public class Database {
         return false;
     }
 
+    // update user information
     public boolean updateUser(String username, String ip, int socket) {
         try {
             if (userExist(username)) {
@@ -107,29 +110,114 @@ public class Database {
         return false;
     }
 
-    public void addFavoriteSubject(String username, String Subject) {
+    // check if subject exists
+    public boolean subjectExist(String subject) {
+        try {
+            PreparedStatement ps = conn
+                    .prepareStatement(String.format("SELECT * FROM subjects WHERE subject='%s'", subject));
+            ResultSet rs = ps.executeQuery();
+            if (rs != null) {
+                rs.last(); // moves cursor to the last row
+                int size = rs.getRow();
+                if (size != 0)
+                    return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 
+    // get all available subjects
+    public List<String> getSubjects() {
+        try {
+            List<String> subjects = new ArrayList<String>();
+
+            PreparedStatement ps = conn.prepareStatement("SELECT subject FROM subjects");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                subjects.add(rs.getString("subject"));
+            }
+            return subjects;
+        } catch (SQLException e) {
+            System.out.println("Connection error");
+        }
+        return null;
+    }
+
+    // subscribe user to a subject
+    public boolean addFavoriteSubject(String username, String subject) {
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    String.format("INSERT subscriptions(subject, username) VALUES('%s', '%s')", subject, username));
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
     }
 
     public void addFavoriteSubjects(String username, List<String> favoriteSubjects) {
-
+        for (String subject : favoriteSubjects) {
+            addFavoriteSubject(username, subject);
+        }
     }
 
     public void favoriteSubjectExist(String username, String subject) {
 
     }
 
-    public void getFavorites(String username) {
+    // get list of all subscriptions for specified users
+    public List<String> getFavoriteSubjects(String username) {
+        try {
+            List<String> subjects = new ArrayList<String>();
 
+            PreparedStatement ps = conn
+                    .prepareStatement(String.format("SELECT * FROM subscriptions where username = '%s'", username));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                subjects.add(rs.getString("subject"));
+            }
+            return subjects;
+        } catch (SQLException e) {
+            System.out.println("Connection error");
+        }
+        return null;
+    }
+
+    // get List of all users subscribed to a subject
+    public List<User> getSubjectUsers(String subject) {
+        try {
+            List<User> users = new ArrayList<User>();
+
+            PreparedStatement ps = conn.prepareStatement(String.format(
+                    "SELECT users.* FROM subscriptions LEFT join users on subscriptions.username = users.username where subject = '%s'",
+                    subject));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                users.add(new User(rs.getString("username"), rs.getString("ip"), rs.getInt("socket")));
+            }
+            return users;
+        } catch (SQLException e) {
+            System.out.println("Connection error");
+        }
+        return null;
     }
 
     // user adds a message to the subject if they are subscribed to it
-    public void addMessage(String username, String subject, String text) {
+    public boolean addMessage(String username, String subject, String message) {
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    String.format("INSERT messages(subject, username, message) values ('%s','%s','%s')", subject, username, message));
+            ps.execute();
+            return true;
 
-    }
-
-    public void getUsersOfSubject(String subject) {
-
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
     }
 
     public void changeServerAddress(String serverID) {

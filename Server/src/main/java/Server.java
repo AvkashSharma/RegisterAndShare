@@ -3,6 +3,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.List;
 import java.util.Scanner;
 
 import db.Database;
@@ -24,7 +25,12 @@ public class Server {
             // System.out.println(db.userExist("karthi"));
             // System.out.println(db.addUser("karthi1", "192.245.23.1", 2345));
             // System.out.println(db.removeUser("karthi1"));
-            System.out.println(db.updateUser("karthi1312", "192.245.23.1", 1234));
+            // System.out.println(db.updateUser("karthi1312", "192.245.23.1", 1234));
+            // System.out.println(db.subjectExist("sports"));
+            List<String> subjects = db.getSubjects();
+            for (String string : subjects) {
+                System.out.println(string);
+            }
 
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter port to run server(50000): ");
