@@ -37,9 +37,10 @@ public class Server {
 
                 // Receive data from the client and store in inputPacket
                 serverSocket.receive(packetReceived);
+                System.out.println("Receiveed packet");
 
                 // Need to pass received data
-                ClientHandler clientHandler  = new ClientHandler(packetReceived,serverSocket);
+                ClientHandler clientHandler  = new ClientHandler(packetReceived, serverSocket);
 
                 // Create a new Thread
                 Thread threadClientHandler = new Thread(clientHandler);
