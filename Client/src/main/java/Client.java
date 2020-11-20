@@ -34,30 +34,23 @@ public class Client {
     public static String SERVER_2_IP = "192.168.167.1";
     public static int SERVER_2_PORT = 60000;
 
-    //public static String ACTIVE_HOSTNAME = "KJ-ZENBOOK";
-    //public static String ACTIVE_IP = "192.168.167.1";
-    //public static int ACTIVE_PORT = 50000;
-
-    public static String ACTIVE_HOSTNAME;
-    public static String ACTIVE_IP;
-    public static int ACTIVE_PORT;
+    public static String ACTIVE_HOSTNAME = "KJ-ZENBOOK";
+    public static String ACTIVE_IP = "192.168.167.1";
+    public static int ACTIVE_PORT = 50000;
 
 
-
-    private int bufferSize;
-    private static DatagramSocket datagramSocket; 
     private InetAddress activeServerIP; 
     private int activeServerPort;
+    private static DatagramSocket clientSocket; 
     
 
     public Client(){
-        this.bufferSize = 1024;
         InetSocketAddress activeServer = checkActiveServer();
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
-        
+
         try {
-            datagramSocket = new DatagramSocket();
+            clientSocket = new DatagramSocket();
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -66,9 +59,10 @@ public class Client {
 
     // Use this to return active server ip and port
     public InetSocketAddress checkActiveServer(){
-        ACTIVE_PORT = SERVER_1_PORT;
-        ACTIVE_IP = SERVER_1_IP;
-        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+        //ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+        //ACTIVE_PORT = SERVER_1_PORT;
+        //ACTIVE_IP = SERVER_1_IP;
+
         InetAddress ACTIVE_SERVER;
         try {
                 ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
@@ -80,39 +74,31 @@ public class Client {
     }
 
     public String toString(){
-        return bufferSize + " " + activeServerIP + " " + activeServerPort; 
+        return  activeServerIP + " " + activeServerPort; 
     }
 
     public static void main(String[] args) {
-        
+
+        // get all address of servers
+        // getServerAddress(scanner);
+        // verify which server is active
+        // InetAddress ACTIVE_SERVER = checkActiveServer();
+    
         Client client  = new Client();
 
         System.out.println(client);
 
         client.start();
     }
-
-
-
-
-
-
-
-
+    
     public void start(){
 
         // Add a thread to listen to server messages
 
-
         try {
             Scanner scanner = new Scanner(System.in);
 
-            // get all address of servers
-            // getServerAddress(scanner);
-            // verify which server is active
-            InetAddress ACTIVE_SERVER = checkActiveServer();
-
-            DatagramSocket datagramSocket = new DatagramSocket();
+            // DatagramSocket clientSocket = new DatagramSocket();
 
             // Time client waits for a response before timing out
             // datagramSocket.setSoTimeout(5000);
@@ -121,23 +107,13 @@ public class Client {
             do {
             System.out.println("Enter username: ");
             cmdInput = scanner.next();
-            RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+
+            RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), clientSocket.getLocalPort()));
 
             testMessage.print();
-            Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
-            // System.out.println(testMessage.getClientName());
-            // byte[] outgoingBuffer = echoString.getBytes();
-
-            // DatagramPacket packet = new DatagramPacket(outgoingBuffer,
-            // outgoingBuffer.length, ACTIVE_SERVER,
-            // ACTIVE_PORT);
-            // datagramSocket.send(packet);
-
-            // byte[] incomingBuffer = new byte[50];
-            // packet = new DatagramPacket(incomingBuffer, incomingBuffer.length);
-            // datagramSocket.receive(packet);
-            // System.out.println("Text received is: " + new String(incomingBuffer, 0,
-            // packet.getLength()));
+            //Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
+            Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
+            System.out.println(testMessage.getClientName());
 
             } while (!cmdInput.equals("exit"));
             scanner.close();
@@ -151,31 +127,31 @@ public class Client {
 
 
 
-    // public static void getServerAddress(Scanner s) {
-    //     System.out.print("Enter server 1 HostName: ");
-    //     SERVER_1_HOSTNAME = s.next();
-    //     System.out.print("Enter server 1 Ip Address: ");
-    //     SERVER_1_IP = s.next();
-    //     System.out.print("Enter server 1 port: ");
-    //     // todo - validate that its a valid port
-    //     SERVER_1_PORT = s.nextInt();
-    //     // Ports should be between 49152 - 65535
-    //     if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535){
-    //         throw new IllegalArgumentException("Port out of range");
-    //     }
+    public static void getServerAddress(Scanner s) {
+        System.out.print("Enter server 1 HostName: ");
+        SERVER_1_HOSTNAME = s.next();
+        System.out.print("Enter server 1 Ip Address: ");
+        SERVER_1_IP = s.next();
+        System.out.print("Enter server 1 port: ");
+        // todo - validate that its a valid port
+        SERVER_1_PORT = s.nextInt();
+        // Ports should be between 49152 - 65535
+        if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535){
+            throw new IllegalArgumentException("Port out of range");
+        }
 
-    //     System.out.print("Enter server 2 HostName: ");
-    //     SERVER_2_HOSTNAME = s.next();
-    //     System.out.print("Enter server 2 Ip Address: ");
-    //     SERVER_2_IP = s.next();
-    //     System.out.print("Enter server 2 port: ");
-    //     // todo - validate that its a valid port
-    //     SERVER_2_PORT = s.nextInt();
-    //     // Ports should be between 49152 - 65535
-    //     if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535){
-    //         throw new IllegalArgumentException("Port out of range");
-    //     }
-    // }
+        System.out.print("Enter server 2 HostName: ");
+        SERVER_2_HOSTNAME = s.next();
+        System.out.print("Enter server 2 Ip Address: ");
+        SERVER_2_IP = s.next();
+        System.out.print("Enter server 2 port: ");
+        // todo - validate that its a valid port
+        SERVER_2_PORT = s.nextInt();
+        // Ports should be between 49152 - 65535
+        if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535){
+            throw new IllegalArgumentException("Port out of range");
+        }
+    }
 
     // public static InetAddress checkActiveServer() {
     //     ACTIVE_PORT = SERVER_1_PORT;

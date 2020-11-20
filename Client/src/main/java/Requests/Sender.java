@@ -16,9 +16,9 @@ import Requests.Registration.RegisterMessage;
 //used to send meesages
 public class Sender {
 
-    public static void sendTo(Object object, InetAddress address, int port) throws IOException {
+    public static void sendTo(Object object, InetAddress address, int port, DatagramSocket datagramSocket) throws IOException {
         try {
-            DatagramSocket datagramSocket = new DatagramSocket();
+            // DatagramSocket datagramSocket = new DatagramSocket();
             byte[] incomingData = new byte[1024];
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ObjectOutputStream os = new ObjectOutputStream(outputStream);
