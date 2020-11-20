@@ -2,6 +2,14 @@ package Requests.Publish;
 import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
+
+/*
+  - Request # 
+  - Unique name
+  -  Subject
+  - Text
+  */
+
 public class MessageConfirmation extends Request implements Serializable {
     
     String clientName;
@@ -26,7 +34,7 @@ public class MessageConfirmation extends Request implements Serializable {
     }
 @Override
     public String toString() {
-        return RequestType.MESSAGE + " "+ clientName + " " + Subject+ " "+ Text;
+        return RequestType.MESSAGE + " "+ getClientName() + " " + getSubject()+ " "+ getText();
     }
 
     public void print(){

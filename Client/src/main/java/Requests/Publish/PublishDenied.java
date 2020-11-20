@@ -2,6 +2,10 @@ package Requests.Publish;
 import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
+/*
+  - Request # 
+  - Reason
+  */
 public class PublishDenied extends Request implements Serializable {
     
     String Reason;
@@ -20,7 +24,7 @@ public class PublishDenied extends Request implements Serializable {
     }
 @Override
     public String toString() {
-        return RequestType.PUBLISH_DENIED + " "+ this.getRid() + " " + Reason;
+        return RequestType.PUBLISH_DENIED + " "+ this.getRid() + " " + getReason();
     }
 
     public void print(){

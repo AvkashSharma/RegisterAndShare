@@ -4,7 +4,10 @@ import Requests.Request;
 import Requests.RequestType;
 
 
-
+/*
+- Request #
+- Unique Name
+*/
 
 public class DeRegisterRequest extends Request implements Serializable {
    
@@ -16,10 +19,13 @@ public class DeRegisterRequest extends Request implements Serializable {
       
 
     }
+    public String getClientName(){
+        return clientName;
+    }
     
     @Override
     public String toString(){
-        return RequestType.DE_REGISTER+ " " + this.getRid()+" "+clientName ;
+        return RequestType.DE_REGISTER+ " " + this.getRid()+" "+getClientName() ;
     }
 
     public void print(){

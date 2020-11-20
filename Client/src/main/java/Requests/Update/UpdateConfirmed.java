@@ -4,7 +4,12 @@ import Requests.Request;
 import Requests.RequestType;
 import java.net.InetSocketAddress;
 
-
+/*
+- Request #
+- Unique Name
+- Ip Address
+- Socket #
+*/
 
 public class UpdateConfirmed extends Request implements Serializable {
      InetSocketAddress clientSocketAddress;
@@ -16,10 +21,17 @@ public class UpdateConfirmed extends Request implements Serializable {
       this.clientSocketAddress = clientSocketAddress;
 
     }
+     public String getClientName() {
+        return clientName;
+    }
+    
+    public InetSocketAddress getClientSocketAddress(){
+        return clientSocketAddress;
+    }
     
     @Override
     public String toString(){
-        return RequestType.UPDATE_CONFIRMED+ " " + this.getRid()+" "+ clientName+" "+clientSocketAddress ;
+        return RequestType.UPDATE_CONFIRMED+ " " + this.getRid()+" "+ getClientSocketAddress()+" "+getClientSocketAddress() ;
     }
 
     public void print(){

@@ -3,7 +3,11 @@ import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
 
-
+/*
+  - Request # 
+  - Unique name
+  - List of Subjects
+  */
 
 public class SubjectsRequest extends Request implements Serializable{
 
@@ -20,10 +24,14 @@ public class SubjectsRequest extends Request implements Serializable{
     public String getClientName() {
         return clientName;
     }
+     public String[] getListOfSubjects() {
+        return listOfSubjects;
+    }
+
 
     @Override
     public String toString() {
-        return RequestType.SUBJECTS + " " + this.getRid()+" "+ clientName + " " +listOfSubjects ;
+        return RequestType.SUBJECTS + " " + this.getRid()+" "+ getClientName() + " " +getListOfSubjects();
     }
 
     public void print(){

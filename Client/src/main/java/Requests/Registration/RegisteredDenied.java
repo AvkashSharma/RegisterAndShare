@@ -2,26 +2,30 @@ package Requests.Registration;
 import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
-import java.net.InetSocketAddress;
 
+
+/*
+Register Request
+- Request #
+- Reason
+*/
 public class RegisteredDenied extends Request implements Serializable {
-    InetSocketAddress clientSocketAddress;
-    String clientName;
+   
+    
     String reason;
 
-    public RegisteredDenied(String clientName, InetSocketAddress clientSocketAddress, String reason){
+    public RegisteredDenied(String reason){
       super(RequestType.REGISTERED_DENIED);
-      this.clientName = clientName;
-      this.clientSocketAddress = clientSocketAddress;
+      
       this.reason=reason;
 
     }
-    public String getClientName() {
-        return clientName;
+    public String getReason() {
+        return reason;
     }
     @Override
     public String toString(){
-        return RequestType.REGISTERED_DENIED+ " "  + this.getRid()+" "+reason ;
+        return RequestType.REGISTERED_DENIED+ " "  + this.getRid()+" "+getReason() ;
     }
 
     public void print(){

@@ -3,6 +3,12 @@ import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
 import java.net.InetSocketAddress;
+/*
+  - Request # 
+  - Ip
+  - Socket #
+
+  */
 
 public class ChangeServer extends Request implements Serializable {
     
@@ -22,7 +28,7 @@ public class ChangeServer extends Request implements Serializable {
     }
 @Override
     public String toString() {
-        return RequestType.CHANGE_SERVER + " "+ clientSocketAddress + " " ;
+        return RequestType.CHANGE_SERVER + " "+ getClientSocketAddress()+ " " ;
     }
 
     public void print(){
