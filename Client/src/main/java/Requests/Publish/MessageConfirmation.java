@@ -2,12 +2,12 @@ package Requests.Publish;
 import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
-public class MessageRequest extends Request implements Serializable {
+public class MessageConfirmation extends Request implements Serializable {
     
     String clientName;
     String Subject;
     String Text;
-    public MessageRequest(String clientName,String Subject,String Text){
+    public MessageConfirmation(String clientName,String Subject,String Text){
 
         super(RequestType.MESSAGE);
         this.clientName=clientName;
