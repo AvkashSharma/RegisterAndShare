@@ -1,4 +1,4 @@
-package Requests.Registration;
+package Requests.Update;
 import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
@@ -6,12 +6,12 @@ import java.net.InetSocketAddress;
 
 
 
-public class Registered extends Request implements Serializable {
+public class UpdateConfirmed extends Request implements Serializable {
      InetSocketAddress clientSocketAddress;
     String clientName;
 
-    public Registered(String clientName, InetSocketAddress clientSocketAddress){
-      super(RequestType.REGISTERED);
+    public UpdateConfirmed(String clientName, InetSocketAddress clientSocketAddress){
+      super(RequestType.UPDATE_CONFIRMED);
       this.clientName = clientName;
       this.clientSocketAddress = clientSocketAddress;
 
@@ -19,7 +19,7 @@ public class Registered extends Request implements Serializable {
     
     @Override
     public String toString(){
-        return RequestType.REGISTERED+ " " + this.getRid() ;
+        return RequestType.UPDATE_CONFIRMED+ " " + this.getRid()+" "+ clientName+" "+clientSocketAddress ;
     }
 
     public void print(){

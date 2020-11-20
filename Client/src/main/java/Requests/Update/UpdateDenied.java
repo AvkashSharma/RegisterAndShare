@@ -1,16 +1,16 @@
-package Requests.Registration;
+package Requests.Update;
 import java.io.Serializable;
 import Requests.Request;
 import Requests.RequestType;
 import java.net.InetSocketAddress;
 
-public class RegisteredDenied extends Request implements Serializable {
+public class UpdateDenied extends Request implements Serializable {
     InetSocketAddress clientSocketAddress;
     String clientName;
     String reason;
 
-    public RegisteredDenied(String clientName, InetSocketAddress clientSocketAddress, String reason){
-      super(RequestType.REGISTERED_DENIED);
+    public UpdateDenied(String clientName, InetSocketAddress clientSocketAddress, String reason){
+      super(RequestType.UPDATE_DENIED);
       this.clientName = clientName;
       this.clientSocketAddress = clientSocketAddress;
       this.reason=reason;
@@ -21,7 +21,7 @@ public class RegisteredDenied extends Request implements Serializable {
     }
     @Override
     public String toString(){
-        return RequestType.REGISTERED_DENIED+ " "  + this.getRid()+" "+reason ;
+        return RequestType.UPDATE_DENIED+ " "  + this.getRid()+" "+reason ;
     }
 
     public void print(){

@@ -4,16 +4,16 @@ import Requests.Request;
 import Requests.RequestType;
 import java.net.InetSocketAddress;
 
-public class RegisteredDenied extends Request implements Serializable {
-    InetSocketAddress clientSocketAddress;
-    String clientName;
-    String reason;
 
-    public RegisteredDenied(String clientName, InetSocketAddress clientSocketAddress, String reason){
-      super(RequestType.REGISTERED_DENIED);
+
+public class Registered extends Request implements Serializable {
+     InetSocketAddress clientSocketAddress;
+    String clientName;
+
+    public Registered(String clientName, InetSocketAddress clientSocketAddress){
+      super(RequestType.REGISTERED);
       this.clientName = clientName;
       this.clientSocketAddress = clientSocketAddress;
-      this.reason=reason;
 
     }
     public String getClientName() {
@@ -21,12 +21,12 @@ public class RegisteredDenied extends Request implements Serializable {
     }
     @Override
     public String toString(){
-        return RequestType.REGISTERED_DENIED+ " "  + this.getRid()+" "+reason ;
+        return RequestType.REGISTERED+ " "+ this.getRid()+" " + clientName +" "+clientSocketAddress;
     }
 
     public void print(){
         System.out.println(this.toString());
     }
 
-}
 
+}

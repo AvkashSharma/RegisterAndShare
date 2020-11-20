@@ -31,7 +31,7 @@ public class RegisterRequest extends Request implements Serializable{
 
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + clientName + " " + clientSocketAddress;
+        return RequestType.REGISTER + " " + this.getRid()+" "+ clientName + " " + clientSocketAddress;
     }
 
     public void print(){
