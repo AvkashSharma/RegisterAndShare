@@ -28,10 +28,14 @@ public class RegisterRequest extends Request implements Serializable{
     public String getClientName() {
         return clientName;
     }
+    
+    public InetSocketAddress getClientSocketAddress(){
+      return clientSocketAddress;
+    }
 
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + clientName + " " + clientSocketAddress;
+        return RequestType.REGISTER + " " + this.getRid()+" "+ getClientName() + " " + getClientSocketAddress();
     }
 
     public void print(){
