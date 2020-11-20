@@ -34,8 +34,8 @@ public class Client {
     public static String SERVER_2_IP = "192.168.167.1";
     public static int SERVER_2_PORT = 60000;
 
-    public static String ACTIVE_HOSTNAME = "KJ-ZENBOOK";
-    public static String ACTIVE_IP = "192.168.167.1";
+    public static String ACTIVE_HOSTNAME = "Avkash-MacBook-Pro.local";
+    public static String ACTIVE_IP = "127.0.0.1";
     public static int ACTIVE_PORT = 50000;
 
 
@@ -52,7 +52,8 @@ public class Client {
         try {
             clientSocket = new DatagramSocket();
         } catch (SocketException e) {
-            e.printStackTrace();
+            System.out.println("Socket Exception" + e.getMessage());
+            
         }
     }
 
@@ -108,12 +109,17 @@ public class Client {
             System.out.println("Enter username: ");
             cmdInput = scanner.next();
 
+            if(cmdInput.equals("exit")) break;
+
             RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), clientSocket.getLocalPort()));
 
             testMessage.print();
+            //System.out.println(activeServerIP.toString()+ " " + activeServerPort);
             //Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
             Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
             System.out.println(testMessage.getClientName());
+
+            
 
             } while (!cmdInput.equals("exit"));
             scanner.close();
