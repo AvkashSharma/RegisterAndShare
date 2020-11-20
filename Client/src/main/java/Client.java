@@ -7,6 +7,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -21,10 +24,6 @@ import Requests.Registration.RegisterMessage;
 
 public class Client {
 
-    /*
-     * The server port to which the client socket is going to connect
-     */
-    // public final static int SERVICE_PORT = 50001;
 
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
@@ -35,11 +34,76 @@ public class Client {
     public static String SERVER_2_IP = "192.168.167.1";
     public static int SERVER_2_PORT = 60000;
 
-    public static String ACTIVE_HOSTNAME = "KJ-ZENBOOK";
-    public static String ACTIVE_IP = "192.168.167.1";
-    public static int ACTIVE_PORT = 50000;
+    //public static String ACTIVE_HOSTNAME = "KJ-ZENBOOK";
+    //public static String ACTIVE_IP = "192.168.167.1";
+    //public static int ACTIVE_PORT = 50000;
+
+    public static String ACTIVE_HOSTNAME;
+    public static String ACTIVE_IP;
+    public static int ACTIVE_PORT;
+
+
+
+    private int bufferSize;
+    private static DatagramSocket datagramSocket; 
+    private InetAddress activeServerIP; 
+    private int activeServerPort;
+    
+
+    public Client(){
+        this.bufferSize = 1024;
+        InetSocketAddress activeServer = checkActiveServer();
+        this.activeServerIP = activeServer.getAddress();
+        this.activeServerPort = activeServer.getPort();
+        
+        try {
+            datagramSocket = new DatagramSocket();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // Use this to return active server ip and port
+    public InetSocketAddress checkActiveServer(){
+        ACTIVE_PORT = SERVER_1_PORT;
+        ACTIVE_IP = SERVER_1_IP;
+        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+        InetAddress ACTIVE_SERVER;
+        try {
+                ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
+                return new InetSocketAddress(ACTIVE_SERVER, ACTIVE_PORT);
+        } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                    return null;
+        } 
+    }
+
+    public String toString(){
+        return bufferSize + " " + activeServerIP + " " + activeServerPort; 
+    }
 
     public static void main(String[] args) {
+        
+        Client client  = new Client();
+
+        System.out.println(client);
+
+        client.start();
+    }
+
+
+
+
+
+
+
+
+    public void start(){
+
+        // Add a thread to listen to server messages
+
+
         try {
             Scanner scanner = new Scanner(System.in);
 
@@ -85,44 +149,54 @@ public class Client {
         }
     }
 
-    public static void getServerAddress(Scanner s) {
-        System.out.print("Enter server 1 HostName: ");
-        SERVER_1_HOSTNAME = s.next();
-        System.out.print("Enter server 1 Ip Address: ");
-        SERVER_1_IP = s.next();
-        System.out.print("Enter server 1 port: ");
-        // todo - validate that its a valid port
-        SERVER_1_PORT = s.nextInt();
 
-        System.out.print("Enter server 2 HostName: ");
-        SERVER_2_HOSTNAME = s.next();
-        System.out.print("Enter server 2 Ip Address: ");
-        SERVER_2_IP = s.next();
-        System.out.print("Enter server 2 port: ");
-        // todo - validate that its a valid port
-        SERVER_2_PORT = s.nextInt();
-    }
 
-    public static InetAddress checkActiveServer() {
-        ACTIVE_PORT = SERVER_1_PORT;
-        ACTIVE_IP = SERVER_1_IP;
-        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
-        InetAddress ACTIVE_SERVER;
-        try {
-            ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
-            return ACTIVE_SERVER;
+    // public static void getServerAddress(Scanner s) {
+    //     System.out.print("Enter server 1 HostName: ");
+    //     SERVER_1_HOSTNAME = s.next();
+    //     System.out.print("Enter server 1 Ip Address: ");
+    //     SERVER_1_IP = s.next();
+    //     System.out.print("Enter server 1 port: ");
+    //     // todo - validate that its a valid port
+    //     SERVER_1_PORT = s.nextInt();
+    //     // Ports should be between 49152 - 65535
+    //     if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535){
+    //         throw new IllegalArgumentException("Port out of range");
+    //     }
 
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            return null;
-        }
+    //     System.out.print("Enter server 2 HostName: ");
+    //     SERVER_2_HOSTNAME = s.next();
+    //     System.out.print("Enter server 2 Ip Address: ");
+    //     SERVER_2_IP = s.next();
+    //     System.out.print("Enter server 2 port: ");
+    //     // todo - validate that its a valid port
+    //     SERVER_2_PORT = s.nextInt();
+    //     // Ports should be between 49152 - 65535
+    //     if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535){
+    //         throw new IllegalArgumentException("Port out of range");
+    //     }
+    // }
 
-        // ACTIVE_SERVER = InetAddress.getHostAddress(ACTIVE_HOSTNAME);
+    // public static InetAddress checkActiveServer() {
+    //     ACTIVE_PORT = SERVER_1_PORT;
+    //     ACTIVE_IP = SERVER_1_IP;
+    //     ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+    //     InetAddress ACTIVE_SERVER;
+    //     try {
+    //         ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
+    //         return ACTIVE_SERVER;
 
-        // System.out.println("Connected to server with port "+ACTIVE_PORT);
-    }
+    //     } catch (UnknownHostException e) {
+    //         e.printStackTrace();
+    //         return null;
+    //     }
 
-    public static void UserExist() {
+    //     // ACTIVE_SERVER = InetAddress.getHostAddress(ACTIVE_HOSTNAME);
 
-    }
+    //     // System.out.println("Connected to server with port "+ACTIVE_PORT);
+    // }
+
+    // public static void UserExist() {
+
+    // }
 }
