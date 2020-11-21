@@ -3,82 +3,72 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.List;
+import java.net.SocketTimeoutException;
 import java.util.Scanner;
 
-import db.Database;
+public class Server implements Runnable {
 
-public class Server {
+    private final int bufferSize;
+    private DatagramSocket socket; 
+    private int port;
+    private volatile boolean isShutDown = false;  
 
-    // Server UDP socket runs at this port
-    // public final static int SERVICE_PORT=50001;
-    public static int SERVICE_PORT = 0;
-    public static boolean SERVING = true; //if serving respond else ignore
+    public Server(int port, int bufferSize){
+        this.bufferSize = bufferSize;
+        this.port = port; 
+    }
 
-    public static void main(String[] args) {
+    public Server(int port){
+        this(port,1024); 
+    }
+
+    public void run() {
+        System.out.println("----------------Server Listening on port " + port + "----------------");
+        byte [] buffer = new byte[bufferSize]; 
+
         try {
-            InetAddress address = InetAddress.getLocalHost();
-            System.out.println(address);
+            socket = new DatagramSocket(port);
+            while(true){
 
-            Database db = new Database();
-            // db.getUsers();
-            // System.out.println(db.userExist("karthi"));
-            // System.out.println(db.addUser("karthi1", "192.245.23.1", 2345));
-            // System.out.println(db.removeUser("karthi1"));
-            // System.out.println(db.updateUser("karthi1312", "192.245.23.1", 1234));
-            // System.out.println(db.subjectExist("sports"));
-            List<String> subjects = db.getSubjects();
-            for (String string : subjects) {
-                System.out.println(string);
-            }
+                DatagramPacket incoming  = new DatagramPacket(buffer, buffer.length);
+                
+                try {
+                    socket.receive(incoming);
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter port to run server(50000): ");
-            // todo - validate that its a valid port
-            SERVICE_PORT = scanner.nextInt();
-            scanner.close();
-            System.out.println("Server Started on port "+SERVICE_PORT+"...");
+                    // Need to pass received data
+                    ClientHandler clientHandler = new ClientHandler(incoming, socket);
 
+                    // Create a new Thread
+                    Thread threadClientHandler = new Thread(clientHandler);
 
+                    // Start the thread
+                    threadClientHandler.start();
+                } catch(SocketTimeoutException ex){
+                    System.out.println("SocketTimeoutException: " + ex.getMessage());
 
-            DatagramSocket serverSocket = new DatagramSocket(SERVICE_PORT);
-            while (true) {
-
-                byte[] dataBuffer = new byte[1024];
-
-                /* Instantiate a UDP packet to store the
-                client data using the buffer for receiving data*/
-                DatagramPacket packetReceived = new DatagramPacket(dataBuffer, dataBuffer.length);
-
-                // Receive data from the client and store in inputPacket
-                serverSocket.receive(packetReceived);
-                System.out.println("Receiveed packet");
-
-                // Need to pass received data
-                ClientHandler clientHandler  = new ClientHandler(packetReceived, serverSocket);
-
-                // Create a new Thread
-                Thread threadClientHandler = new Thread(clientHandler);
-
-
-//                try {
-//                    Thread.sleep(15000);
-//
-//                } catch(InterruptedException e) {
-//                    System.out.println("Thread interrupted");
-//
-//                }
-
-                // Start the thread
-                threadClientHandler.start();
-
-            }
-        } catch (SocketException e) {
-            System.out.println("SocketException: " + e.getMessage());
-        }
-        catch(IOException e)
-        {
-            System.out.println("IOException: " + e.getMessage());
+                } catch(IOException ex){
+                    System.out.println("IOException " + ex.getMessage());
+                }            
+            } // end while
+        } catch (SocketException ex){
+            System.out.println("SocketException: " + ex.getMessage());
         }
     }
+
+    public void shutDown(){
+        this.isShutDown = true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Port Number for server");
+
+        int portNumber = sc.nextInt();  
+        
+        Server server = new Server(portNumber);
+        Thread serverThread = new Thread(server);
+        serverThread.start();
+        sc.close();
+    }
 }
+

@@ -37,7 +37,7 @@ public class Client {
 
     public static String ACTIVE_HOSTNAME = "Avkash-MacBook-Pro.local";
     public static String ACTIVE_IP = "127.0.0.1";
-    public static int ACTIVE_PORT = 50000;
+    public static int ACTIVE_PORT = 50001;
 
 
     private InetAddress activeServerIP; 
