@@ -6,7 +6,6 @@ import Requests.RequestType;
 
 /*
   - Request # 
-  - Unique name
   - Ip address
   - Socket
   */

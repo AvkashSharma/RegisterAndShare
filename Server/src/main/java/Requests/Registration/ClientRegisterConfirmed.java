@@ -7,18 +7,20 @@ import Requests.RequestType;
 /*
 Register Request
 - Request #
+
 */
 
-public class Registered extends Request implements Serializable {
+public class ClientRegisterConfirmed extends Request implements Serializable {
     
-
-    public Registered(){
-      super(RequestType.REGISTERED);
+ 
+    public ClientRegisterConfirmed(){
+      super(RequestType.CLIENT_REGISTER_CONFIRMED);
+     
     }
     
     @Override
     public String toString(){
-        return RequestType.REGISTERED+ " " + this.getRid() ;
+        return RequestType.CLIENT_REGISTER_CONFIRMED+ " " + this.getRid()+ " " ;
     }
 
     public void print(){

@@ -25,7 +25,7 @@ public class DeRegisterServerToServer extends Request implements Serializable {
     
     @Override
     public String toString(){
-        return RequestType.DE_REGISTER+ " "+getClientName() ;
+        return RequestType.DE_REGISTER_SERVER_TO_SERVER+ " "+getClientName() ;
     }
 
     public void print(){
