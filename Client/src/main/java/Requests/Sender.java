@@ -11,7 +11,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import Requests.Registration.RegisterMessage;
+import Requests.Registration.RegisterRequest;
 
 //used to send meesages
 public class Sender {

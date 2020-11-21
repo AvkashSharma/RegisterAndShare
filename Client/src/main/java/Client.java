@@ -17,18 +17,20 @@ import java.util.Scanner;
 import javax.print.event.PrintEvent;
 import javax.sound.sampled.SourceDataLine;
 
+import Requests.Request;
 import Requests.ClientReceiver;
 import Requests.Message;
 import Requests.RequestType;
 import Requests.Sender;
-import Requests.Registration.RegisterMessage;
+import Requests.Registration.RegisterRequest;
+import Requests.Registration.ClientRegisterDenied;
 
 public class Client {
 
 
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
-    public static String SERVER_1_IP = "192.168.167.1";
+    public static String SERVER_1_IP = "192.168.0.80";
     public static int SERVER_1_PORT = 1234;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
@@ -112,16 +114,28 @@ public class Client {
 
             String cmdInput = "";
             do {
-                System.out.println("Enter username: ");
-                cmdInput = scanner.next();
-            
-                RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), clientSocket.getLocalPort()));
+            System.out.println("Enter username: ");
+            cmdInput = scanner.next();
+            RegisterRequest testMessage = new RegisterRequest(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
-                testMessage.print();
-                //System.out.println(activeServerIP.toString()+ " " + activeServerPort);
-                //Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
-                Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
-                System.out.println(testMessage.getClientName());
+     ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
+            testMessage.print();
+            Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
+            // Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
+            // System.out.println(testMessage.getClientName());
+            // byte[] outgoingBuffer = echoString.getBytes();
+
+            // DatagramPacket packet = new DatagramPacket(outgoingBuffer,
+            // outgoingBuffer.length, ACTIVE_SERVER,
+            // ACTIVE_PORT);
+            // datagramSocket.send(packet);
+
+            // byte[] incomingBuffer = new byte[50];
+            // packet = new DatagramPacket(incomingBuffer, incomingBuffer.length);
+            // datagramSocket.receive(packet);
+            // System.out.println("Text received is: " + new String(incomingBuffer, 0,
+            // packet.getLength()));
+
             } while (!cmdInput.equals("exit"));
             scanner.close();
 
