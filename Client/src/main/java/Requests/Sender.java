@@ -31,27 +31,27 @@ public class Sender {
             System.out.println("Message sent from client");
 
 
-
             // Wait for server response
-            DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
-            datagramSocket.receive(incomingPacket);
+            // DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
+            // datagramSocket.receive(incomingPacket);
             
-            byte[] dataBuffer = incomingPacket.getData();
-            ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
-            ObjectInputStream is = new ObjectInputStream(byteStream);
-            RegisterMessage o = (RegisterMessage)is.readObject();
-            System.out.println(o);
+            // byte[] dataBuffer = incomingPacket.getData();
+            // ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
+            // ObjectInputStream is = new ObjectInputStream(byteStream);
+            // RegisterMessage o = (RegisterMessage)is.readObject();
+            // System.out.println(o);
 
             // Thread.sleep(2000);
 
-            datagramSocket.close();
+            // datagramSocket.close();
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        } 
+        // catch (ClassNotFoundException e) {
+        //     e.printStackTrace();
+        // }
     }
 }

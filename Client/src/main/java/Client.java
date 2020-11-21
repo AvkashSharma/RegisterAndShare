@@ -17,6 +17,7 @@ import java.util.Scanner;
 import javax.print.event.PrintEvent;
 import javax.sound.sampled.SourceDataLine;
 
+import Requests.ClientReceiver;
 import Requests.Message;
 import Requests.RequestType;
 import Requests.Sender;
@@ -96,6 +97,11 @@ public class Client {
 
         // Add a thread to listen to server messages
 
+         // Thread to receive messages from the server. 
+        ClientReceiver receiver = new ClientReceiver(clientSocket);
+        Thread receiverThread = new Thread(receiver);
+        receiverThread.start();
+
         try {
             Scanner scanner = new Scanner(System.in);
 
@@ -106,21 +112,16 @@ public class Client {
 
             String cmdInput = "";
             do {
-            System.out.println("Enter username: ");
-            cmdInput = scanner.next();
-
-            if(cmdInput.equals("exit")) break;
-
-            RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), clientSocket.getLocalPort()));
-
-            testMessage.print();
-            //System.out.println(activeServerIP.toString()+ " " + activeServerPort);
-            //Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
-            Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
-            System.out.println(testMessage.getClientName());
-
+                System.out.println("Enter username: ");
+                cmdInput = scanner.next();
             
+                RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), clientSocket.getLocalPort()));
 
+                testMessage.print();
+                //System.out.println(activeServerIP.toString()+ " " + activeServerPort);
+                //Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
+                Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
+                System.out.println(testMessage.getClientName());
             } while (!cmdInput.equals("exit"));
             scanner.close();
 
@@ -181,4 +182,7 @@ public class Client {
     // public static void UserExist() {
 
     // }
+
+
+    
 }
