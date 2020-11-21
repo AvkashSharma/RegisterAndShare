@@ -19,7 +19,6 @@ import javax.sound.sampled.SourceDataLine;
 
 import Requests.Request;
 import Requests.ClientReceiver;
-import Requests.Message;
 import Requests.RequestType;
 import Requests.Sender;
 import Requests.Registration.RegisterRequest;
@@ -118,10 +117,10 @@ public class Client {
             cmdInput = scanner.next();
             RegisterRequest testMessage = new RegisterRequest(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
-     ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
+            // ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
             testMessage.print();
-            Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
-            // Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
+            // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
+            Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
             // System.out.println(testMessage.getClientName());
             // byte[] outgoingBuffer = echoString.getBytes();
 
@@ -138,7 +137,6 @@ public class Client {
 
             } while (!cmdInput.equals("exit"));
             scanner.close();
-
         } catch (SocketTimeoutException e) {
             System.out.println("The socket timed out");
         } catch (IOException e) {
