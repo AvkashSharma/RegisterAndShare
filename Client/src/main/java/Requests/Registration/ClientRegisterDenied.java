@@ -9,13 +9,13 @@ Register Request
 - Request #
 - Reason
 */
-public class RegisteredDenied extends Request implements Serializable {
+public class ClientRegisterDenied extends Request implements Serializable {
    
     
     String reason;
 
-    public RegisteredDenied(String reason){
-      super(RequestType.REGISTERED_DENIED);
+    public ClientRegisterDenied(String reason){
+      super(RequestType.CLIENT_REGISTER_DENIED);
       
       this.reason=reason;
 
@@ -25,7 +25,7 @@ public class RegisteredDenied extends Request implements Serializable {
     }
     @Override
     public String toString(){
-        return RequestType.REGISTERED_DENIED+ " "  + this.getRid()+" "+getReason() ;
+        return RequestType.CLIENT_REGISTER_DENIED+ " "  + this.getRid()+" "+getReason() ;
     }
 
     public void print(){

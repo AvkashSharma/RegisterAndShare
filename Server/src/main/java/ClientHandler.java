@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.net.*;
 
 import Requests.Registration.RegisterRequest;
+import Requests.Registration.ClientRegisterDenied;
 
 public class ClientHandler implements Runnable {
 
@@ -28,11 +29,20 @@ public class ClientHandler implements Runnable {
                         ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
                         ObjectInputStream is = new ObjectInputStream(byteStream);
                         System.out.println(is);
-                        RegisterRequest o = (RegisterRequest)is.readObject();
-                        System.out.println(o);
+                        Object o=(Object)is.readObject();
+                        // RegisterRequest o = (RegisterRequest)is.readObject();
+                        System.out.println(o.toString());
+                        if(o instanceof RegisterRequest )
+                         {
+                             System.out.println("register request");
+                        System.out.println(o.toString());
+                        }
+                        else if(o instanceof ClientRegisterDenied){
+                            System.out.println("register denied");
+                        }
 
-                        RegisterRequest respondMessage = new RegisterRequest("Object from server "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(), 1234));
-                        serverResponse.sendResponse(respondMessage, packetReceived,clientSocket);
+                        // RegisterRequest respondMessage = new RegisterRequest("Object from server "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+                        serverResponse.sendResponse(o, packetReceived,clientSocket);
 
                         is.close();
                         
