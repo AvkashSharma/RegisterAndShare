@@ -5,7 +5,11 @@ import java.io.ObjectInputStream;
 import java.net.*;
 
 import Requests.Registration.RegisterRequest;
+import Requests.Update.ChangeServer;
+import Requests.Update.SubjectsRequest;
 import Requests.Update.UpdateRequest;
+import Requests.Update.UpdateServer;
+import Requests.Publish.PublishRequest;
 import Requests.Registration.ClientRegisterDenied;
 import Requests.Registration.DeRegisterRequest;
 
@@ -87,14 +91,37 @@ public class ClientHandler implements Runnable {
 
             }
             else if(request instanceof UpdateRequest){
-                System.out.println("Update Request Received");
+                System.out.println(" User Update Request Received");
 
                 // Upon reception of this message the current server can accept the update and reply to the user using the message
                 // Check if name exists
                     // if not send UpdateDenied
                     // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
             }
-            
+            else if (request instanceof SubjectsRequest){
+                System.out.println("Update Subjects ");
+                // current server can accept the update or reject it because of errors in the name or in the list of subjects.
+                // check for errors in the name or in the list of subjects 
+                // in the case of accept request send SubjectsUpdated to the user and to the other server
+                // in the case of denial send SubjectsRejected to the user
+            }
+            else if (request instanceof PublishRequest){
+                System.out.println("Publish Request Received");
+                // check name of the user , subject and if the subject is in the list of subjects of interest for the user.
+                // if yes, send MessageConfirmation to all users who have this subject in their list of interest 
+                // in case of errors, send PublishDenied to the original user
+            }
+            else if (request instanceof ChangeServer){
+                System.out.println("Received change server Request");
+                // Server needs to inform all the registered users about Change server Request
+            }
+            else if (request instanceof UpdateServer){
+                // when a server is not serving it can change its IP address and socket#, but informs only the current(serving) server with the following message
+                System.out.println("Received Update Server Request");
+            }
+            else {
+                System.out.println("No such request present to handle the case");
+            }
 
 
         }
