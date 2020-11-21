@@ -11,7 +11,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import Requests.Registration.RegisterMessage;
+import Requests.Registration.RegisterRequest;
 
 //used to send meesages
 public class Sender {
@@ -39,7 +39,7 @@ public class Sender {
             byte[] dataBuffer = incomingPacket.getData();
             ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
             ObjectInputStream is = new ObjectInputStream(byteStream);
-            RegisterMessage o = (RegisterMessage)is.readObject();
+            RegisterRequest o = (RegisterRequest)is.readObject();
             System.out.println(o);
 
             // Thread.sleep(2000);

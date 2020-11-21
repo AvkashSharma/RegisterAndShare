@@ -14,10 +14,11 @@ import java.util.Scanner;
 import javax.print.event.PrintEvent;
 import javax.sound.sampled.SourceDataLine;
 
-import Requests.Message;
+import Requests.Request;
 import Requests.RequestType;
 import Requests.Sender;
-import Requests.Registration.RegisterMessage;
+import Requests.Registration.RegisterRequest;
+import Requests.Registration.ClientRegisterDenied;
 
 public class Client {
 
@@ -28,7 +29,7 @@ public class Client {
 
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
-    public static String SERVER_1_IP = "192.168.167.1";
+    public static String SERVER_1_IP = "192.168.0.80";
     public static int SERVER_1_PORT = 1234;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
@@ -57,10 +58,12 @@ public class Client {
             do {
             System.out.println("Enter username: ");
             cmdInput = scanner.next();
-            RegisterMessage testMessage = new RegisterMessage(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+            RegisterRequest testMessage = new RegisterRequest(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
+     ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
             testMessage.print();
-            Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
+            Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
+            // Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
             // System.out.println(testMessage.getClientName());
             // byte[] outgoingBuffer = echoString.getBytes();
 

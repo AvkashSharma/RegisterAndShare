@@ -2,7 +2,7 @@ package Requests.Registration;
 import java.io.Serializable;
 import java.net.InetSocketAddress;
 
-import Requests.Message;
+import Requests.Request;
 import Requests.RequestType;
 
 
@@ -14,12 +14,12 @@ Register Request
 - Socket #
 */
 
-public class RegisterMessage extends Message implements Serializable{
+public class RegisterRequest extends Request implements Serializable{
 
     InetSocketAddress clientSocketAddress;
     String clientName;
 
-    public RegisterMessage(String clientName, InetSocketAddress clientSocketAddress) {
+    public RegisterRequest(String clientName, InetSocketAddress clientSocketAddress) {
         super(RequestType.REGISTER);
         this.clientName = clientName;
         this.clientSocketAddress = clientSocketAddress;
@@ -28,10 +28,14 @@ public class RegisterMessage extends Message implements Serializable{
     public String getClientName() {
         return clientName;
     }
+    
+    public InetSocketAddress getClientSocketAddress(){
+      return clientSocketAddress;
+    }
 
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + clientName + " " + clientSocketAddress;
+        return RequestType.REGISTER + " " + this.getRid()+" "+ getClientName() + " " + getClientSocketAddress();
     }
 
     public void print(){
