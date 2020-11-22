@@ -28,6 +28,8 @@ import requests.Registration.RegisterRequest;
 public class Client {
 
 
+    public final Scanner scanner = new Scanner(System.in);
+
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_1_IP = "192.168.0.80";
@@ -49,6 +51,9 @@ public class Client {
     
 
     public Client(){
+        // Scanner s = new Scanner(System.in);
+        getServerAddress(scanner);
+        // s.close();
         InetSocketAddress activeServer = checkActiveServer();
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
@@ -64,9 +69,9 @@ public class Client {
 
     // Use this to return active server ip and port
     public InetSocketAddress checkActiveServer(){
-        //ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
-        //ACTIVE_PORT = SERVER_1_PORT;
-        //ACTIVE_IP = SERVER_1_IP;
+        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+        ACTIVE_PORT = SERVER_1_PORT;
+        ACTIVE_IP = SERVER_1_IP;
 
         InetAddress ACTIVE_SERVER;
         try {
@@ -106,7 +111,7 @@ public class Client {
         receiverThread.start();
 
         try {
-            Scanner scanner = new Scanner(System.in);
+            // Scanner scanner = new Scanner(System.in);
 
             // DatagramSocket clientSocket = new DatagramSocket();
 
@@ -161,6 +166,7 @@ public class Client {
             throw new IllegalArgumentException("Port out of range");
         }
 
+        
         System.out.print("Enter server 2 HostName: ");
         SERVER_2_HOSTNAME = s.next();
         System.out.print("Enter server 2 Ip Address: ");
@@ -168,35 +174,19 @@ public class Client {
         System.out.print("Enter server 2 port: ");
         // todo - validate that its a valid port
         SERVER_2_PORT = s.nextInt();
+
         // Ports should be between 49152 - 65535
         if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535){
             throw new IllegalArgumentException("Port out of range");
         }
     }
 
-    // public static InetAddress checkActiveServer() {
-    //     ACTIVE_PORT = SERVER_1_PORT;
-    //     ACTIVE_IP = SERVER_1_IP;
-    //     ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
-    //     InetAddress ACTIVE_SERVER;
-    //     try {
-    //         ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
-    //         return ACTIVE_SERVER;
-
-    //     } catch (UnknownHostException e) {
-    //         e.printStackTrace();
-    //         return null;
-    //     }
-
-    //     // ACTIVE_SERVER = InetAddress.getHostAddress(ACTIVE_HOSTNAME);
-
-    //     // System.out.println("Connected to server with port "+ACTIVE_PORT);
-    // }
-
     // public static void UserExist() {
 
     // }
 
+    public static void UI(){
 
+    }
     
 }
