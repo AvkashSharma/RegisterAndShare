@@ -1,8 +1,8 @@
-package Requests.Update;
+package requests.Update;
 import java.io.Serializable;
 import java.net.InetSocketAddress;
-import Requests.Request;
-import Requests.RequestType;
+import requests.Request;
+import requests.RequestType;
 
 /*
   - Request # 

@@ -1,8 +1,14 @@
-package Requests.Registration;
+package requests.Registration;
+
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import Requests.Request;
-import Requests.RequestType;
+import java.net.UnknownHostException;
+
+import javax.sound.sampled.SourceDataLine;
+
+import requests.Request;
+import requests.RequestType;
 
 
 /*
@@ -18,8 +24,8 @@ public class RegisterRequest extends Request implements Serializable{
     InetSocketAddress clientSocketAddress;
     String clientName;
 
-    public RegisterRequest(String clientName, InetSocketAddress clientSocketAddress) {
-        super(RequestType.REGISTER);
+    public RegisterRequest(int rqNumber, String clientName, InetSocketAddress clientSocketAddress) {
+        super(RequestType.REGISTER,rqNumber);
         this.clientName = clientName;
         this.clientSocketAddress = clientSocketAddress;
     }
@@ -29,7 +35,7 @@ public class RegisterRequest extends Request implements Serializable{
     }
     
     public InetSocketAddress getClientSocketAddress(){
-      return clientSocketAddress;
+        return clientSocketAddress;
     }
 
     @Override
@@ -41,11 +47,17 @@ public class RegisterRequest extends Request implements Serializable{
         System.out.println(this.toString());
     }
 
+
     // TEST CODE
     // public static void main(String[] args) throws UnknownHostException {
-    //     RegisterMessage rm = new RegisterMessage("rrr", new InetSocketAddress(InetAddress.getLocalHost(), 6000));
+    //     RegisterRequest rm = new RegisterRequest("rrr", new InetSocketAddress(InetAddress.getLocalHost(), 6000));
 
     //     System.out.println(rm.clientSocketAddress.getPort());
+    //     System.out.println("request ID " + rm.getRid());
+
+    //     rm.setRid(1);
+    //     System.out.println("request ID " + rm.getRid());
+    //     System.out.println(rm.rid);
 
     // }
 

@@ -4,26 +4,34 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.Scanner;
-
+import handlers.*
+;
 public class Server implements Runnable {
 
     private final int bufferSize;
-    private DatagramSocket socket; 
+    private DatagramSocket socket;
     private int port;
-    private volatile boolean isShutDown = false;  
+    private volatile boolean isShutDown = false;
 
-    public Server(int port, int bufferSize){
+    public Server(int port, int bufferSize) {
         this.bufferSize = bufferSize;
-        this.port = port; 
+        this.port = port;
     }
 
-    public Server(int port){
-        this(port,1024); 
+    public Server(int port) {
+        this(port, 1024);
     }
 
     public void run() {
-        System.out.println("----------------Server Listening on port " + port + "----------------");
+        try {
+            System.out.println("----------------Server Listening on " + InetAddress.getLocalHost().toString() +":"+ port
+                    + "----------------");
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         byte [] buffer = new byte[bufferSize]; 
 
         try {
@@ -36,13 +44,13 @@ public class Server implements Runnable {
                     socket.receive(incoming);
 
                     // Need to pass received data
-                    ClientHandler clientHandler = new ClientHandler(incoming, socket);
+                    ClientReceiver clientReceiver = new ClientReceiver(incoming, socket);
 
                     // Create a new Thread
-                    Thread threadClientHandler = new Thread(clientHandler);
+                    Thread threadClientReceiver = new Thread(clientReceiver);
 
                     // Start the thread
-                    threadClientHandler.start();
+                    threadClientReceiver.start();
                 } catch(SocketTimeoutException ex){
                     System.out.println("SocketTimeoutException: " + ex.getMessage());
 
