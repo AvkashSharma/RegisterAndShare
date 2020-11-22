@@ -32,9 +32,9 @@ public class Client {
     public final Scanner scanner = new Scanner(System.in);
 
     // we can store this as INET ADDRESS later on
-    public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
-    public static String SERVER_1_IP = "192.168.167.1";
-    public static int SERVER_1_PORT = 1234;
+    public static String SERVER_1_HOSTNAME = "Avkash-MacBook-Pro.local";
+    public static String SERVER_1_IP = "127.0.0.1";
+    public static int SERVER_1_PORT = 50001;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_2_IP = "192.168.167.1";
