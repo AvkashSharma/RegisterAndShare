@@ -18,8 +18,8 @@ public class PublishRequest extends Request implements Serializable{
     String  Subject;
     String Text;
 
-    public PublishRequest(String clientName, String Subject, String Text) {
-        super(RequestType.PUBLISH);
+    public PublishRequest(int reqNumber, String clientName, String Subject, String Text) {
+        super(RequestType.PUBLISH, reqNumber);
         this.clientName = clientName;
         this.Subject=Subject;  
         this.Text= Text;

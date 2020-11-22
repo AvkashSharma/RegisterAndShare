@@ -23,9 +23,14 @@ import handlers.*;
 import requests.*;
 import requests.Request;
 import requests.RequestType;
+import requests.Publish.PublishDenied;
+import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterRequest;
 import requests.Registration.RegisterRequest;
+import requests.Update.SubjectsRequest;
+import requests.Update.SubjectsUpdated;
+import requests.Update.UpdateRequest;
 
 public class Client {
 
@@ -55,6 +60,7 @@ public class Client {
         InetSocketAddress activeServer = checkActiveServer();
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
+        this.clientName = getClientName();
 
         try {
             clientSocket = new DatagramSocket();
@@ -166,6 +172,7 @@ public class Client {
         ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
+}
 
         registrationUI();
     }
@@ -207,6 +214,7 @@ public class Client {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
     }
 
     public void deregister(){

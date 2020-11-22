@@ -3,15 +3,22 @@ import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
-
 /*
 - Request #
 - Unique Name
 */
 
 public class DeRegisterRequest extends Request implements Serializable {
+<<<<<<< HEAD
 
     String clientName;
+=======
+    String clientName;
+
+    public DeRegisterRequest(int rqNumber, String clientName){
+        super(RequestType.DE_REGISTER, rqNumber);
+        this.clientName = clientName;
+>>>>>>> sendRequests
 
     public DeRegisterRequest(int rid, String clientName) {
         super(RequestType.DE_REGISTER);

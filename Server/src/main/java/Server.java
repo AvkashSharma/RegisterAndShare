@@ -32,11 +32,12 @@ public class Server implements Runnable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        byte [] buffer = new byte[bufferSize]; 
+        
 
         try {
             socket = new DatagramSocket(port);
             while(true){
+                byte [] buffer = new byte[bufferSize]; 
 
                 DatagramPacket incoming  = new DatagramPacket(buffer, buffer.length);
                 
