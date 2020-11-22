@@ -1,0 +1,10 @@
+.idea/misc.xml
+Client/.idea
+Client/.vscode
+Client/bin
+Client/target
+Server/.idea
+Server/.vscode
+Server/bin
+Server/target
+*.class
