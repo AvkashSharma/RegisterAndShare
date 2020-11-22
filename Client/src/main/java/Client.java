@@ -13,6 +13,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.print.event.PrintEvent;
@@ -47,7 +48,7 @@ public class Client {
     private int activeServerPort;
     private static DatagramSocket clientSocket;
 
-    public boolean isRegister = false;
+    public AtomicBoolean isRegister = new AtomicBoolean(false);
 
     public Client() {
         InetSocketAddress activeServer = checkActiveServer();
@@ -58,7 +59,6 @@ public class Client {
             clientSocket = new DatagramSocket();
         } catch (SocketException e) {
             System.out.println("Socket Exception" + e.getMessage());
-
         }
     }
 
@@ -106,7 +106,13 @@ public class Client {
     // Use this to return active server ip and port
     public InetSocketAddress checkActiveServer() {
         while (true) {
-            // getServerAddress(scanner);
+
+            //
+            //
+            //COMMENT to skip entering IP address
+            //
+            //
+            // getServerAddress(scanner);//<---------------------------------------------------------TO SKIP ENTERING IP
             try {
                 boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
                 boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
@@ -160,52 +166,13 @@ public class Client {
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
 
-        try {
-            // DatagramSocket clientSocket = new DatagramSocket();
-
-            // Time client waits for a response before timing out
-            // datagramSocket.setSoTimeout(5000);
-            ui();
-            String cmdInput = "";
-            do {
-                System.out.print("Enter username: ");
-                cmdInput = scanner.next();
-
-                RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput,
-                        new InetSocketAddress(activeServerIP, ACTIVE_PORT));
-
-                // ClientRegisterDenied clientRegisterDenied = new
-                // ClientRegisterDenied("hello");
-                testMessage.print();
-                // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
-                Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
-                // System.out.println(testMessage.getClientName());
-                // byte[] outgoingBuffer = echoString.getBytes();
-
-                // DatagramPacket packet = new DatagramPacket(outgoingBuffer,
-                // outgoingBuffer.length, ACTIVE_SERVER,
-                // ACTIVE_PORT);
-                // datagramSocket.send(packet);
-
-                // byte[] incomingBuffer = new byte[50];
-                // packet = new DatagramPacket(incomingBuffer, incomingBuffer.length);
-                // datagramSocket.receive(packet);
-                // System.out.println("Text received is: " + new String(incomingBuffer, 0,
-                // packet.getLength()));
-
-            } while (!cmdInput.equals("exit"));
-            scanner.close();
-        } catch (SocketTimeoutException e) {
-            System.out.println("The socket timed out");
-        } catch (IOException e) {
-            System.out.println("Client error: " + e.getMessage());
-        }
+        registrationUI();
     }
 
-    public void ui() {
+    public void registrationUI() {
         String val = "";
         while (!val.equals("exit")) {
-            if(!isRegister)
+            if (!isRegister.get())
                 System.out.println("1-Register");
             else
                 System.out.println("2-Deregister");
@@ -214,33 +181,39 @@ public class Client {
             System.out.print("Choice: ");
             val = scanner.next();
 
-            switch(val){
+            switch (val) {
                 case "1":
-                    System.out.println("Register User");
-                    //do register stuff
+                    register();
                     break;
                 case "2":
                     System.out.println("Deregister User");
-                    //do register stuff
+                    // do register stuff
                     break;
                 default:
                     System.out.println("Not a valid option");
             }
-           
+
+        }
+    }
+
+    public void register() {
+        System.out.println("Registering User");
+        System.out.println("Enter Username: ");
+        String username = "";
+        username = scanner.next();
+        RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), username,
+                new InetSocketAddress(activeServerIP, ACTIVE_PORT));
+        try {
+            Sender.sendTo(registerMessage, activeServerIP, activeServerPort, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
 
-        // get all address of servers
-        // getServerAddress(scanner);
-        // verify which server is active
-        // InetAddress ACTIVE_SERVER = checkActiveServer();
-
         Client client = new Client();
-
-        System.out.println(client);
-
         client.start();
     }
 }

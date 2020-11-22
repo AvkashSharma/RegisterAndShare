@@ -42,6 +42,7 @@ public class RegisterRequest extends Request implements Serializable{
         System.out.println(this.toString());
     }
 
+
     // TEST CODE
     // public static void main(String[] args) throws UnknownHostException {
     //     RegisterMessage rm = new RegisterMessage("rrr", new InetSocketAddress(InetAddress.getLocalHost(), 6000));
