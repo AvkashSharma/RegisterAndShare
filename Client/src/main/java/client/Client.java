@@ -1,3 +1,5 @@
+package client;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -49,10 +51,9 @@ public class Client {
     private int activeServerPort;
     private static DatagramSocket clientSocket;
 
-    public static AtomicBoolean isRegister = new AtomicBoolean(false);
-
     public Client() {
         InetSocketAddress activeServer = checkActiveServer();
+        System.out.println("-----------------------------------------");
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
 
@@ -75,7 +76,6 @@ public class Client {
             return false;
         }
     }
-
     // UI to enter Server IP address
     public static void getServerAddress(Scanner s) {
         // System.out.print("Enter server 1 HostName: ");
@@ -173,15 +173,21 @@ public class Client {
     public void registrationUI() {
         String val = "";
         while (!val.equals("exit")) {
-            // if (!isRegister.get())
+            System.out.println("------------------------------------------");
+            System.out.println("Enter 'exit' to exit application, Press 'Enter' to refresh");
+            if (!ClientData.isRegistered.get())
                 System.out.println("1-Register");
-            // else
+            else{
+                System.out.println("Logged in as "+ClientData.username.get());
                 System.out.println("2-Deregister");
-
-            System.out.println("Enter 'exit' to exit application");
+            }
+            
             System.out.print("Choice: ");
-            val = scanner.next();
+            val = scanner.nextLine();
 
+            if(val.isEmpty()){
+                val ="-1";
+            }
             switch (val) {
                 case "1":
                     register();
@@ -189,6 +195,8 @@ public class Client {
                 case "2":
                     deregister();
                     break;
+                case "-1":
+                    continue;
                 default:
                     System.out.println("Not a valid option");
             }
@@ -196,13 +204,14 @@ public class Client {
     }
 
     public void register() {
-        System.out.println("Enter Username: ");
+        System.out.print("\tEnter Username to register: ");
         String username = "";
         username = scanner.next();
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), username,
                 new InetSocketAddress(activeServerIP, ACTIVE_PORT));
         try {
             Sender.sendTo(registerMessage, activeServerIP, activeServerPort, clientSocket);
+            ClientData.username.set(username);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -210,9 +219,13 @@ public class Client {
     }
 
     public void deregister(){
-        String username = "";
-        username = scanner.next();
-        DeRegisterRequest deregisterMessage = new DeRegisterRequest(requestCounter.incrementAndGet(), username);
+        System.out.print("\tDo you want to deregister "+ClientData.username.get()+"(y/n): ");
+        String response = "";
+        response = scanner.next();
+        if(response.equals("n")){
+            return;
+        }        
+        DeRegisterRequest deregisterMessage = new DeRegisterRequest(requestCounter.incrementAndGet(), ClientData.username.get());
         try {
             Sender.sendTo(deregisterMessage, activeServerIP, activeServerPort, clientSocket);
         } catch (IOException e) {
@@ -221,9 +234,9 @@ public class Client {
         }
     }
 
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
 
-        Client client = new Client();
-        client.start();
-    }
+    //     Client client = new Client();
+    //     client.start();
+    // }
 }
