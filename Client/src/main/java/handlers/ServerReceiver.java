@@ -6,8 +6,8 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
-import requests.Registration.*;
-import Client;
+import requests.Registration.ClientRegisterConfirmed;
+import requests.Registration.ClientRegisterDenied;
 
 public class ServerReceiver implements Runnable {
 
@@ -52,7 +52,6 @@ public class ServerReceiver implements Runnable {
       // Handle Successful Register Request - Don't think we need it
       if(request instanceof ClientRegisterConfirmed){
         System.out.println(request.toString());
-        Client.isRegister;
       }
 
       // Upon reception of REGISTER-DENIED, the user will give up for a little while before retrying again depending on the reason. 
@@ -60,7 +59,7 @@ public class ServerReceiver implements Runnable {
         System.out.println(request.toString());
       }
       else {
-        System.out.println("False");
+        System.out.println(request.toString());
       }
     }
 }

@@ -15,6 +15,7 @@ import requests.Update.UpdateServer;
 import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
+import requests.Registration.DeRegisterConfirmed;
 import requests.Registration.DeRegisterRequest;
 
 public class ClientReceiver implements Runnable {
@@ -83,8 +84,7 @@ public class ClientReceiver implements Runnable {
             // else ServerRegisterDenied
 
         } else if (request instanceof DeRegisterRequest) {
-
-            System.out.println("Received DeRegisterRequest");
+            deregister((DeRegisterRequest) request);
 
             // If name is already registered, the current server will remove the name and
             // all the information related to this user.
@@ -130,7 +130,6 @@ public class ClientReceiver implements Runnable {
     }
 
     public void register(RegisterRequest request) {
-        System.out.println("RegisterRequest");
         try {
             String username = request.getClientName();
             boolean dbResponse = false;
@@ -150,6 +149,27 @@ public class ClientReceiver implements Runnable {
             } else {
                 ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    
+    public void deregister(DeRegisterRequest request) {
+        try {
+            String username = request.getClientName();
+            boolean dbResponse = false;
+            Database db = new Database();
+            if (db.userExist(username)) {
+                dbResponse = db.removeUser(username);
+                if (!dbResponse) {
+                    DeRegisterConfirmed confirmation = new DeRegisterConfirmed();
+                    ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+                    return;
+                }
             }
 
         } catch (IOException e) {

@@ -24,6 +24,7 @@ import requests.*;
 import requests.Request;
 import requests.RequestType;
 import requests.Registration.ClientRegisterDenied;
+import requests.Registration.DeRegisterRequest;
 import requests.Registration.RegisterRequest;
 
 public class Client {
@@ -172,9 +173,9 @@ public class Client {
     public void registrationUI() {
         String val = "";
         while (!val.equals("exit")) {
-            if (!isRegister.get())
+            // if (!isRegister.get())
                 System.out.println("1-Register");
-            else
+            // else
                 System.out.println("2-Deregister");
 
             System.out.println("Enter 'exit' to exit application");
@@ -186,18 +187,15 @@ public class Client {
                     register();
                     break;
                 case "2":
-                    System.out.println("Deregister User");
-                    // do register stuff
+                    deregister();
                     break;
                 default:
                     System.out.println("Not a valid option");
             }
-
         }
     }
 
     public void register() {
-        System.out.println("Registering User");
         System.out.println("Enter Username: ");
         String username = "";
         username = scanner.next();
@@ -205,6 +203,18 @@ public class Client {
                 new InetSocketAddress(activeServerIP, ACTIVE_PORT));
         try {
             Sender.sendTo(registerMessage, activeServerIP, activeServerPort, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void deregister(){
+        String username = "";
+        username = scanner.next();
+        DeRegisterRequest deregisterMessage = new DeRegisterRequest(requestCounter.incrementAndGet(), username);
+        try {
+            Sender.sendTo(deregisterMessage, activeServerIP, activeServerPort, clientSocket);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
