@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 
+import db.Database;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
@@ -39,7 +40,6 @@ public class ClientReceiver implements Runnable {
             System.out.println(is);
             Object o = (Object) is.readObject();
 
-
             System.out.println(o.toString());
             if (o instanceof RegisterRequest) {
                 System.out.println("register request");
@@ -51,7 +51,7 @@ public class ClientReceiver implements Runnable {
             // RegisterRequest respondMessage = new RegisterRequest("Object from server
             // "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(),
             // 1234));
-            
+
             // ClientSender.sendResponse(o, packetReceived, clientSocket);
             requestHandler(o);
 
@@ -68,7 +68,7 @@ public class ClientReceiver implements Runnable {
     public synchronized void requestHandler(Object request) {
 
         if (request instanceof RegisterRequest) {
-            register(request);
+            register((RegisterRequest) request);
             // Upon reception of this message the current server, can accept or refuse the
             // registration.
             // Registration can be denied if the provided Name is already in use
@@ -128,11 +128,30 @@ public class ClientReceiver implements Runnable {
             System.out.println("No such request present to handle the case");
         }
     }
-    public void register(Object request){
+
+    public void register(RegisterRequest request) {
         System.out.println("RegisterRequest");
         try {
-            ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(1);
-            ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+            String username = request.getClientName();
+            boolean dbResponse = false;
+            Database db = new Database();
+            if (!db.userExist(username)) {
+                dbResponse = db.addUser(username, request.getClientSocketAddress().getAddress().toString(),
+                        request.getClientSocketAddress().getPort());
+                if (dbResponse) {
+                    ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(request.getRid());
+                    ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+                    return;
+                }
+                else{
+                    ClientRegisterDenied denied = new ClientRegisterDenied("Problem with database", request.getRid());
+                    ClientSender.sendResponse(denied, packetReceived, clientSocket);
+                }
+            } else {
+                ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
+                ClientSender.sendResponse(denied, packetReceived, clientSocket);
+            }
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -53,12 +53,11 @@ public class ServerReceiver implements Runnable {
       // Handle Successful Register Request - Don't think we need it
       if(request instanceof ClientRegisterConfirmed){
         System.out.println(request.toString());
-        System.out.println("Client Registered successful");
       }
 
       // Upon reception of REGISTER-DENIED, the user will give up for a little while before retrying again depending on the reason. 
       else if (request instanceof ClientRegisterDenied){
-        System.out.println("Client Registration denied");
+        System.out.println(request.toString());
       }
       else {
         System.out.println("False");
