@@ -7,6 +7,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 import requests.Registration.*;
+import Client;
 
 public class ServerReceiver implements Runnable {
 
@@ -28,8 +29,6 @@ public class ServerReceiver implements Runnable {
             byte[] dataBuffer = incomingPacket.getData();
             ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
             ObjectInputStream is = new ObjectInputStream(byteStream);
-            // RegisterRequest o = (RegisterRequest)is.readObject();
-            // System.out.println("Received " + o.requestType.toString());
 
             // Create an object of RequestHandler
             RequestHandler handler = new RequestHandler();
@@ -53,6 +52,7 @@ public class ServerReceiver implements Runnable {
       // Handle Successful Register Request - Don't think we need it
       if(request instanceof ClientRegisterConfirmed){
         System.out.println(request.toString());
+        Client.isRegister;
       }
 
       // Upon reception of REGISTER-DENIED, the user will give up for a little while before retrying again depending on the reason. 

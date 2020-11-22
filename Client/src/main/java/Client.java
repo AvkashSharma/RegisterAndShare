@@ -48,7 +48,7 @@ public class Client {
     private int activeServerPort;
     private static DatagramSocket clientSocket;
 
-    public AtomicBoolean isRegister = new AtomicBoolean(false);
+    public static AtomicBoolean isRegister = new AtomicBoolean(false);
 
     public Client() {
         InetSocketAddress activeServer = checkActiveServer();
