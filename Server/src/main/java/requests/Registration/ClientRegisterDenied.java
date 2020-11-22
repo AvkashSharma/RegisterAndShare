@@ -14,9 +14,9 @@ public class ClientRegisterDenied extends Request implements Serializable {
     
     String reason;
 
-    public ClientRegisterDenied(String reason){
+    public ClientRegisterDenied(String reason, int rid){
       super(RequestType.CLIENT_REGISTER_DENIED);
-      
+      this.rid = rid;
       this.reason=reason;
 
     }

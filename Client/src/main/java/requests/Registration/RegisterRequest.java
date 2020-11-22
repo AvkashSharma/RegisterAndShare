@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 
 import javax.sound.sampled.SourceDataLine;
 
+import handlers.Sender;
 import requests.Request;
 import requests.RequestType;
 
@@ -46,19 +47,5 @@ public class RegisterRequest extends Request implements Serializable{
     public void print(){
         System.out.println(this.toString());
     }
-
-
-    // TEST CODE
-    // public static void main(String[] args) throws UnknownHostException {
-    //     RegisterRequest rm = new RegisterRequest("rrr", new InetSocketAddress(InetAddress.getLocalHost(), 6000));
-
-    //     System.out.println(rm.clientSocketAddress.getPort());
-    //     System.out.println("request ID " + rm.getRid());
-
-    //     rm.setRid(1);
-    //     System.out.println("request ID " + rm.getRid());
-    //     System.out.println(rm.rid);
-
-    // }
 
 }

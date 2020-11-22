@@ -12,11 +12,14 @@ Register Request
 
 public class ClientRegisterConfirmed extends Request implements Serializable {
     
- 
     public ClientRegisterConfirmed(){
       super(RequestType.CLIENT_REGISTER_CONFIRMED);
-     
     }
+
+    public ClientRegisterConfirmed(int rid){
+        super(RequestType.CLIENT_REGISTER_CONFIRMED);
+        this.rid = rid;
+      }
     
     @Override
     public String toString(){
@@ -26,6 +29,5 @@ public class ClientRegisterConfirmed extends Request implements Serializable {
     public void print(){
         System.out.println(this.toString());
     }
-
 
 }
