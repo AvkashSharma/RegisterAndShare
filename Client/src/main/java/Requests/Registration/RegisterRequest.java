@@ -1,14 +1,10 @@
-package requests.Registration;
+package Requests.Registration;
 
 import java.io.Serializable;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 
-import javax.sound.sampled.SourceDataLine;
-
-import requests.Request;
-import requests.RequestType;
+import Requests.Request;
+import Requests.RequestType;
 
 
 /*

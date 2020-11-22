@@ -1,9 +1,9 @@
-package requests.Registration;
+package Requests.Registration;
 import java.io.Serializable;
 import java.net.InetSocketAddress;
 
-import requests.Request;
-import requests.RequestType;
+import Requests.Request;
+import Requests.RequestType;
 
 
 /*

@@ -5,8 +5,8 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
-import requests.Registration.ClientRegisterDenied;
-import requests.Registration.RegisterRequest;
+import Requests.Registration.ClientRegisterDenied;
+import Requests.Registration.RegisterRequest;
 
 public class ServerReceiver implements Runnable {
 

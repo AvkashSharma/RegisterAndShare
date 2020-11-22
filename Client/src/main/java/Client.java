@@ -1,29 +1,16 @@
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.print.event.PrintEvent;
-import javax.sound.sampled.SourceDataLine;
-
-import handlers.*;
-import requests.*;
-import requests.Request;
-import requests.RequestType;
-import requests.Registration.ClientRegisterDenied;
-import requests.Registration.RegisterRequest;
+import Requests.Registration.RegisterRequest;
+import handlers.Sender;
+import handlers.ServerReceiver;
 
 public class Client {
 

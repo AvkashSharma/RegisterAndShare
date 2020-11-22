@@ -1,7 +1,8 @@
-package requests.Publish;
+package Requests.Publish;
 import java.io.Serializable;
-import requests.Request;
-import requests.RequestType;
+
+import Requests.Request;
+import Requests.RequestType;
 
 /*
   - Request # 

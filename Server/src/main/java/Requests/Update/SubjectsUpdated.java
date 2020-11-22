@@ -1,7 +1,7 @@
-package requests.Update;
+package Requests.Update;
 import java.io.Serializable;
-import requests.Request;
-import requests.RequestType;
+import Requests.Request;
+import Requests.RequestType;
 
 /*
   - Request # 
