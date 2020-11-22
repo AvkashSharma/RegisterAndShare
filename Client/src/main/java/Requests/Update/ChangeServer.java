@@ -1,5 +1,7 @@
 package Requests.Update;
 import java.io.Serializable;
+import Requests.Request;
+import Requests.RequestType;
 import java.net.InetSocketAddress;
 /*
   - Request # 
@@ -7,9 +9,6 @@ import java.net.InetSocketAddress;
   - Socket #
 
   */
-
-import Requests.Request;
-import Requests.RequestType;
 
 public class ChangeServer extends Request implements Serializable {
     

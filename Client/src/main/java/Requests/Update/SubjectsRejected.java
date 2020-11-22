@@ -1,6 +1,5 @@
 package Requests.Update;
 import java.io.Serializable;
-
 import Requests.Request;
 import Requests.RequestType;
 

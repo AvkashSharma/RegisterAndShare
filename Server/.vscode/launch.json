@@ -6,13 +6,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - Server1",
-      "request": "launch",
-      "mainClass": "Server1",
-      "projectName": "RSS"
-    },
-    {
-      "type": "java",
       "name": "CodeLens (Launch) - Server",
       "request": "launch",
       "mainClass": "Server",
