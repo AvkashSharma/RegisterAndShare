@@ -31,7 +31,7 @@ public class Client {
 
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
-    public static String SERVER_1_IP = "192.168.0.80";
+    public static String SERVER_1_IP = "192.168.167.1";
     public static int SERVER_1_PORT = 1234;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
@@ -46,6 +46,8 @@ public class Client {
     private InetAddress activeServerIP;
     private int activeServerPort;
     private static DatagramSocket clientSocket;
+
+    public boolean isRegister = false;
 
     public Client() {
         InetSocketAddress activeServer = checkActiveServer();
@@ -65,7 +67,7 @@ public class Client {
         InetAddress add = InetAddress.getByName(ipAddress);
         System.out.println("Sending Ping Request to " + ipAddress);
         if (add.isReachable(port)) {
-            System.out.println("Host " + ipAddress +":" + port+ " is reachable");
+            System.out.println("Host " + ipAddress + ":" + port + " is reachable");
             return true;
         } else {
             System.out.println("Sorry ! We can't reach to this host - " + ipAddress + ":" + port);
@@ -73,11 +75,38 @@ public class Client {
         }
     }
 
+    // UI to enter Server IP address
+    public static void getServerAddress(Scanner s) {
+        // System.out.print("Enter server 1 HostName: ");
+        // SERVER_1_HOSTNAME = s.next();
+        System.out.print("Enter server 1 \n\t\tIp Address: ");
+        SERVER_1_IP = s.next();
+        System.out.print("\t\tPort: ");
+        // todo - validate that its a valid port
+        SERVER_1_PORT = s.nextInt();
+        // Ports should be between 49152 - 65535
+        if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535) {
+            throw new IllegalArgumentException("Port out of range");
+        }
+
+        // System.out.print("Enter server 2 HostName: ");
+        // SERVER_2_HOSTNAME = s.next();
+        System.out.print("Enter server 2 \n\t\tIp Address: ");
+        SERVER_2_IP = s.next();
+        System.out.print("\t\tPort: ");
+        // todo - validate that its a valid port
+        SERVER_2_PORT = s.nextInt();
+
+        // Ports should be between 49152 - 65535
+        if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535) {
+            throw new IllegalArgumentException("Port out of range");
+        }
+    }
+
     // Use this to return active server ip and port
     public InetSocketAddress checkActiveServer() {
-
         while (true) {
-            getServerAddress(scanner);
+            // getServerAddress(scanner);
             try {
                 boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
                 boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
@@ -132,19 +161,18 @@ public class Client {
         receiverThread.start();
 
         try {
-            // Scanner scanner = new Scanner(System.in);
-
             // DatagramSocket clientSocket = new DatagramSocket();
 
             // Time client waits for a response before timing out
             // datagramSocket.setSoTimeout(5000);
-
+            ui();
             String cmdInput = "";
             do {
-                System.out.println("Enter username: ");
+                System.out.print("Enter username: ");
                 cmdInput = scanner.next();
+
                 RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput,
-                        new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+                        new InetSocketAddress(activeServerIP, ACTIVE_PORT));
 
                 // ClientRegisterDenied clientRegisterDenied = new
                 // ClientRegisterDenied("hello");
@@ -174,36 +202,32 @@ public class Client {
         }
     }
 
-    // UI to enter Server IP address
-    public static void getServerAddress(Scanner s) {
-        // System.out.print("Enter server 1 HostName: ");
-        // SERVER_1_HOSTNAME = s.next();
-        System.out.print("Enter server 1 \n\t\tIp Address: ");
-        SERVER_1_IP = s.next();
-        System.out.print("\t\tPort: ");
-        // todo - validate that its a valid port
-        SERVER_1_PORT = s.nextInt();
-        // Ports should be between 49152 - 65535
-        if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535) {
-            throw new IllegalArgumentException("Port out of range");
+    public void ui() {
+        String val = "";
+        while (!val.equals("exit")) {
+            if(!isRegister)
+                System.out.println("1-Register");
+            else
+                System.out.println("2-Deregister");
+
+            System.out.println("Enter 'exit' to exit application");
+            System.out.print("Choice: ");
+            val = scanner.next();
+
+            switch(val){
+                case "1":
+                    System.out.println("Register User");
+                    //do register stuff
+                    break;
+                case "2":
+                    System.out.println("Deregister User");
+                    //do register stuff
+                    break;
+                default:
+                    System.out.println("Not a valid option");
+            }
+           
         }
-
-        // System.out.print("Enter server 2 HostName: ");
-        // SERVER_2_HOSTNAME = s.next();
-        System.out.print("Enter server 2 \n\t\tIp Address: ");
-        SERVER_2_IP = s.next();
-        System.out.print("\t\tPort: ");
-        // todo - validate that its a valid port
-        SERVER_2_PORT = s.nextInt();
-
-        // Ports should be between 49152 - 65535
-        if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535) {
-            throw new IllegalArgumentException("Port out of range");
-        }
-    }
-
-    public static void UI() {
-
     }
 
     public static void main(String[] args) {
