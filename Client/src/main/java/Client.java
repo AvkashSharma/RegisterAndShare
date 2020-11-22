@@ -60,7 +60,6 @@ public class Client {
         InetSocketAddress activeServer = checkActiveServer();
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
-        this.clientName = getClientName();
 
         try {
             clientSocket = new DatagramSocket();
@@ -172,8 +171,6 @@ public class Client {
         ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
-}
-
         registrationUI();
     }
 
@@ -228,6 +225,37 @@ public class Client {
             e.printStackTrace();
         }
     }
+
+    public void publishRequest(){
+        try {
+            String[] list = {"Operating System", " Networking"};
+            SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(),clientName, list); 
+
+            PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), clientName, "Computer", "Engineering");
+            
+            Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUser(){
+        try {
+            UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), clientName, "127.0.0.1", "50002");
+            
+                Sender.sendTo(uRequest, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+}
 
     public static void main(String[] args) {
 
