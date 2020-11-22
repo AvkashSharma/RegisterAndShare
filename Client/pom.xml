@@ -8,9 +8,10 @@
     <artifactId>RSS-Client</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <java.version>11</java.version>
-    </properties>
+    <properties> 
+        <maven.compiler.source>11</maven.compiler.source> 
+        <maven.compiler.target>11</maven.compiler.target> 
+     </properties>
 
 
 

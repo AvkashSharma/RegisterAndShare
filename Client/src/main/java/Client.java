@@ -106,16 +106,10 @@ public class Client {
 
         System.out.println(client);
         client.registerUser();
-
-        try {
-            client.start();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        client.start();
     }
     
-    public void start() throws InterruptedException {
+    public void start() {
 
         // Add a thread to listen to server messages
 
@@ -123,90 +117,7 @@ public class Client {
         ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
-
-
-        PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), clientName, "Computer", "Engineering");
-
-
-
-        // String[] list = {"Operating System", " Networking"};
-        // SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(),clientName, list); 
-
-
-        // UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), clientName, "127.0.0.1", "50002");
-
-        // Thread.sleep(500);
-            try {
-                Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket);
-            } catch (IOException e) {
-                  // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        // DeRegisterRequest deregister = new DeRegisterRequest(requestCounter.incrementAndGet(),clientName);
-            
-        //     try {
-        //         Sender.sendTo(deregister, activeServerIP, activeServerPort, clientSocket);
-        //     } catch (IOException e) {
-        //          // TODO Auto-generated catch block
-        //         e.printStackTrace();
-        //     }
-
-        // try {
-           // Scanner scanner = new Scanner(System.in);
-
-            // DatagramSocket clientSocket = new DatagramSocket();
-
-            // Time client waits for a response before timing out
-            // datagramSocket.setSoTimeout(5000);
-
-            // String cmdInput = "";
-            // do {
-            // System.out.println("Enter Request to be sent");
-            // if (scanner.hasNext()){
-            //     cmdInput = scanner.next();
-            // }
-            
-            // System.out.println(cmdInput);
-
-            //DeRegisterRequest deregister = new DeRegisterRequest(clientName);
-            
-            // try {
-            //     Sender.sendTo(deregister, activeServerIP, activeServerPort, clientSocket);
-            // } catch (IOException e) {
-            //     // TODO Auto-generated catch block
-            //     e.printStackTrace();
-            // }
-
-            // RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
-
-            // ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
-            // testMessage.print();
-            // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
-            // Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
-            // System.out.println(testMessage.getClientName());
-            // byte[] outgoingBuffer = echoString.getBytes();
-
-            // DatagramPacket packet = new DatagramPacket(outgoingBuffer,
-            // outgoingBuffer.length, ACTIVE_SERVER,
-            // ACTIVE_PORT);
-            // datagramSocket.send(packet);
-
-            // byte[] incomingBuffer = new byte[50];
-            // packet = new DatagramPacket(incomingBuffer, incomingBuffer.length);
-            // datagramSocket.receive(packet);
-            // System.out.println("Text received is: " + new String(incomingBuffer, 0,
-            // packet.getLength()));
-
-        //    } while (!cmdInput.equals("exit"));
-        // } 
-         // catch (SocketTimeoutException e) {
-        //     System.out.println("The socket timed out");
-        // } 
-        // catch (IOException e) {
-        //     System.out.println("Client error: " + e.getMessage());
-        // }
-    }
+}
 
 
     public String getClientName(){
@@ -263,12 +174,40 @@ public class Client {
         }
     }
 
-    // public static void UserExist() {
 
-    // }
+    public void publishRequest(){
+        try {
+            String[] list = {"Operating System", " Networking"};
+            SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(),clientName, list); 
 
-    public static void UI(){
+            PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), clientName, "Computer", "Engineering");
+            
+            Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
+
+    public void updateUser(){
+        try {
+            UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), clientName, "127.0.0.1", "50002");
+            
+                Sender.sendTo(uRequest, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    
     
 }
