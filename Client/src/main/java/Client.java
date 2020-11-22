@@ -27,7 +27,6 @@ import requests.Registration.RegisterRequest;
 
 public class Client {
 
-
     public final Scanner scanner = new Scanner(System.in);
 
     // we can store this as INET ADDRESS later on
@@ -43,17 +42,12 @@ public class Client {
     public static String ACTIVE_IP = "127.0.0.1";
     public static int ACTIVE_PORT = 50001;
 
-
-    private AtomicInteger requestCounter = new AtomicInteger(0); 
-    private InetAddress activeServerIP; 
+    private AtomicInteger requestCounter = new AtomicInteger(0);
+    private InetAddress activeServerIP;
     private int activeServerPort;
-    private static DatagramSocket clientSocket; 
-    
+    private static DatagramSocket clientSocket;
 
-    public Client(){
-        // Scanner s = new Scanner(System.in);
-        getServerAddress(scanner);
-        // s.close();
+    public Client() {
         InetSocketAddress activeServer = checkActiveServer();
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
@@ -62,50 +56,77 @@ public class Client {
             clientSocket = new DatagramSocket();
         } catch (SocketException e) {
             System.out.println("Socket Exception" + e.getMessage());
-            
+
         }
     }
 
+    // Sends ping request to a provided IP address
+    public static boolean sendPingRequest(String ipAddress, int port) throws UnknownHostException, IOException {
+        InetAddress add = InetAddress.getByName(ipAddress);
+        System.out.println("Sending Ping Request to " + ipAddress);
+        if (add.isReachable(port)) {
+            System.out.println("Host " + ipAddress +":" + port+ " is reachable");
+            return true;
+        } else {
+            System.out.println("Sorry ! We can't reach to this host - " + ipAddress + ":" + port);
+            return false;
+        }
+    }
 
     // Use this to return active server ip and port
-    public InetSocketAddress checkActiveServer(){
-        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
-        ACTIVE_PORT = SERVER_1_PORT;
-        ACTIVE_IP = SERVER_1_IP;
+    public InetSocketAddress checkActiveServer() {
 
-        InetAddress ACTIVE_SERVER;
+        while (true) {
+            getServerAddress(scanner);
+            try {
+                boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
+                boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
+
+                if (server1Active) {
+                    ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+                    ACTIVE_PORT = SERVER_1_PORT;
+                    ACTIVE_IP = SERVER_1_IP;
+                    break;
+                } else if (server2Active) {
+                    ACTIVE_HOSTNAME = SERVER_2_HOSTNAME;
+                    ACTIVE_PORT = SERVER_2_PORT;
+                    ACTIVE_IP = SERVER_2_IP;
+                    break;
+                } else {
+                    System.out.println("Server 1 and Server 2 are unreachable. Please enter valid Server Address");
+                }
+
+            } catch (UnknownHostException e1) {
+                // TODO Auto-generated catch block
+                // e1.printStackTrace();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                // e1.printStackTrace();
+            }
+        }
+
         try {
-                ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
-                return new InetSocketAddress(ACTIVE_SERVER, ACTIVE_PORT);
+            InetAddress ACTIVE_SERVER;
+            ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
+            return new InetSocketAddress(ACTIVE_SERVER, ACTIVE_PORT);
         } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                    return null;
-        } 
+            // TODO Auto-generated catch block
+            // e.printStackTrace();
+        }
+
+        return null;
+
     }
 
-    public String toString(){
-        return  activeServerIP + " " + activeServerPort; 
+    public String toString() {
+        return activeServerIP + " " + activeServerPort;
     }
 
-    public static void main(String[] args) {
-
-        // get all address of servers
-        // getServerAddress(scanner);
-        // verify which server is active
-        // InetAddress ACTIVE_SERVER = checkActiveServer();
-    
-        Client client  = new Client();
-
-        System.out.println(client);
-
-        client.start();
-    }
-    
-    public void start(){
+    public void start() {
 
         // Add a thread to listen to server messages
 
-         // Thread to receive messages from the server. 
+        // Thread to receive messages from the server.
         ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
@@ -120,27 +141,29 @@ public class Client {
 
             String cmdInput = "";
             do {
-            System.out.println("Enter username: ");
-            cmdInput = scanner.next();
-            RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+                System.out.println("Enter username: ");
+                cmdInput = scanner.next();
+                RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput,
+                        new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
-            // ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
-            testMessage.print();
-            // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
-            Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
-            // System.out.println(testMessage.getClientName());
-            // byte[] outgoingBuffer = echoString.getBytes();
+                // ClientRegisterDenied clientRegisterDenied = new
+                // ClientRegisterDenied("hello");
+                testMessage.print();
+                // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
+                Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
+                // System.out.println(testMessage.getClientName());
+                // byte[] outgoingBuffer = echoString.getBytes();
 
-            // DatagramPacket packet = new DatagramPacket(outgoingBuffer,
-            // outgoingBuffer.length, ACTIVE_SERVER,
-            // ACTIVE_PORT);
-            // datagramSocket.send(packet);
+                // DatagramPacket packet = new DatagramPacket(outgoingBuffer,
+                // outgoingBuffer.length, ACTIVE_SERVER,
+                // ACTIVE_PORT);
+                // datagramSocket.send(packet);
 
-            // byte[] incomingBuffer = new byte[50];
-            // packet = new DatagramPacket(incomingBuffer, incomingBuffer.length);
-            // datagramSocket.receive(packet);
-            // System.out.println("Text received is: " + new String(incomingBuffer, 0,
-            // packet.getLength()));
+                // byte[] incomingBuffer = new byte[50];
+                // packet = new DatagramPacket(incomingBuffer, incomingBuffer.length);
+                // datagramSocket.receive(packet);
+                // System.out.println("Text received is: " + new String(incomingBuffer, 0,
+                // packet.getLength()));
 
             } while (!cmdInput.equals("exit"));
             scanner.close();
@@ -151,42 +174,49 @@ public class Client {
         }
     }
 
-
-
+    // UI to enter Server IP address
     public static void getServerAddress(Scanner s) {
-        System.out.print("Enter server 1 HostName: ");
-        SERVER_1_HOSTNAME = s.next();
-        System.out.print("Enter server 1 Ip Address: ");
+        // System.out.print("Enter server 1 HostName: ");
+        // SERVER_1_HOSTNAME = s.next();
+        System.out.print("Enter server 1 \n\t\tIp Address: ");
         SERVER_1_IP = s.next();
-        System.out.print("Enter server 1 port: ");
+        System.out.print("\t\tPort: ");
         // todo - validate that its a valid port
         SERVER_1_PORT = s.nextInt();
         // Ports should be between 49152 - 65535
-        if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535){
+        if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535) {
             throw new IllegalArgumentException("Port out of range");
         }
 
-        
-        System.out.print("Enter server 2 HostName: ");
-        SERVER_2_HOSTNAME = s.next();
-        System.out.print("Enter server 2 Ip Address: ");
+        // System.out.print("Enter server 2 HostName: ");
+        // SERVER_2_HOSTNAME = s.next();
+        System.out.print("Enter server 2 \n\t\tIp Address: ");
         SERVER_2_IP = s.next();
-        System.out.print("Enter server 2 port: ");
+        System.out.print("\t\tPort: ");
         // todo - validate that its a valid port
         SERVER_2_PORT = s.nextInt();
 
         // Ports should be between 49152 - 65535
-        if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535){
+        if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535) {
             throw new IllegalArgumentException("Port out of range");
         }
     }
 
-    // public static void UserExist() {
-
-    // }
-
-    public static void UI(){
+    public static void UI() {
 
     }
-    
+
+    public static void main(String[] args) {
+
+        // get all address of servers
+        // getServerAddress(scanner);
+        // verify which server is active
+        // InetAddress ACTIVE_SERVER = checkActiveServer();
+
+        Client client = new Client();
+
+        System.out.println(client);
+
+        client.start();
+    }
 }
