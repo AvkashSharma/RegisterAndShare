@@ -3,8 +3,10 @@ Client/.idea
 Client/.vscode
 Client/bin
 Client/target
+Client/target/classes
 Server/.idea
 Server/.vscode
 Server/bin
 Server/target
+Server/target/classes
 *.class
