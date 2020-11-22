@@ -18,12 +18,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.print.event.PrintEvent;
 import javax.sound.sampled.SourceDataLine;
 
-import Requests.Request;
-import Requests.ClientReceiver;
-import Requests.RequestType;
-import Requests.Sender;
-import Requests.Registration.RegisterRequest;
-import Requests.Registration.ClientRegisterDenied;
+import handlers.*;
+import requests.*;
+import requests.Request;
+import requests.RequestType;
+import requests.Registration.ClientRegisterDenied;
+import requests.Registration.RegisterRequest;
 
 public class Client {
 
@@ -101,7 +101,7 @@ public class Client {
         // Add a thread to listen to server messages
 
          // Thread to receive messages from the server. 
-        ClientReceiver receiver = new ClientReceiver(clientSocket);
+        ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
 

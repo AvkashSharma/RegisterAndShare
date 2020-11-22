@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import db.Database;
+import handlers.*;
 
 public class Server1 {
 
@@ -55,10 +56,10 @@ public class Server1 {
                 System.out.println("Receiveed packet");
 
                 // Need to pass received data
-                ClientHandler clientHandler  = new ClientHandler(packetReceived, serverSocket);
+                ClientReceiver clientReceiver  = new ClientReceiver(packetReceived, serverSocket);
 
                 // Create a new Thread
-                Thread threadClientHandler = new Thread(clientHandler);
+                Thread threadClientReceiver = new Thread(clientReceiver);
 
 
 //                try {
@@ -70,7 +71,7 @@ public class Server1 {
 //                }
 
                 // Start the thread
-                threadClientHandler.start();
+                threadClientReceiver.start();
 
             }
         } catch (SocketException e) {

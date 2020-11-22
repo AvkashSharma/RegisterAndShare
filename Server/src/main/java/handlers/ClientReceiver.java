@@ -1,19 +1,21 @@
+package handlers;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 
-import Requests.Registration.RegisterRequest;
-import Requests.Update.ChangeServer;
-import Requests.Update.SubjectsRequest;
-import Requests.Update.UpdateRequest;
-import Requests.Update.UpdateServer;
-import Requests.Publish.PublishRequest;
-import Requests.Registration.ClientRegisterDenied;
-import Requests.Registration.DeRegisterRequest;
+import requests.Registration.RegisterRequest;
+import requests.Update.ChangeServer;
+import requests.Update.SubjectsRequest;
+import requests.Update.UpdateRequest;
+import requests.Update.UpdateServer;
+import requests.Publish.PublishRequest;
+import requests.Registration.ClientRegisterDenied;
+import requests.Registration.DeRegisterRequest;
 
-public class ClientHandler implements Runnable {
+public class ClientReceiver implements Runnable {
 
     private DatagramPacket packetReceived;
     private DatagramSocket clientSocket;
@@ -21,7 +23,7 @@ public class ClientHandler implements Runnable {
     byte[] dataBuffer;
 
 
-    public ClientHandler(DatagramPacket packetReceived, DatagramSocket clientSocket)
+    public ClientReceiver(DatagramPacket packetReceived, DatagramSocket clientSocket)
     {
         this.packetReceived = packetReceived;
         this.clientSocket = clientSocket;
@@ -48,7 +50,7 @@ public class ClientHandler implements Runnable {
                         }
 
                         // RegisterRequest respondMessage = new RegisterRequest("Object from server "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(), 1234));
-                        serverResponse.sendResponse(o, packetReceived,clientSocket);
+                        ClientSender.sendResponse(o, packetReceived,clientSocket);
 
                         is.close();
                         

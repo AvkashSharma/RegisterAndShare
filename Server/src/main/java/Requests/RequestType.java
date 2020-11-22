@@ -1,4 +1,4 @@
-package Requests;
+package requests;
 
 /* This enum contains all the message request types*/
 

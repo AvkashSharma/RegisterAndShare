@@ -1,18 +1,18 @@
-package Requests;
+package handlers;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
-import Requests.Registration.ClientRegisterDenied;
-import Requests.Registration.RegisterRequest;
+import requests.Registration.ClientRegisterDenied;
+import requests.Registration.RegisterRequest;
 
-public class ClientReceiver implements Runnable {
+public class ServerReceiver implements Runnable {
 
   private DatagramSocket clientSocket; 
 
-  public ClientReceiver(DatagramSocket clientSocket){
+  public ServerReceiver(DatagramSocket clientSocket){
     this.clientSocket = clientSocket;
   }
 
