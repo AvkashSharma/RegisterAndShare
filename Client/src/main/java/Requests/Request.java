@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+
 public class Request implements Serializable {
 
     protected RequestType requestType;
@@ -11,7 +12,11 @@ public class Request implements Serializable {
 
     public Request(RequestType requestType) {
         this.requestType = requestType;
-        this.rid = 0;
+    }
+    
+    public Request(RequestType requestType, int reqNumber) {
+        this.requestType = requestType;
+        this.rid = reqNumber;
     }
 
     public RequestType getRequestType() {

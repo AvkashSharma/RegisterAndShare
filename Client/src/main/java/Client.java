@@ -1,29 +1,16 @@
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.print.event.PrintEvent;
-import javax.sound.sampled.SourceDataLine;
-
-import Requests.Request;
-import Requests.ClientReceiver;
-import Requests.Message;
-import Requests.RequestType;
-import Requests.Sender;
 import Requests.Registration.RegisterRequest;
-import Requests.Registration.ClientRegisterDenied;
+import handlers.Sender;
+import handlers.ServerReceiver;
 
 public class Client {
 
@@ -42,6 +29,7 @@ public class Client {
     public static int ACTIVE_PORT = 50001;
 
 
+    private AtomicInteger requestCounter = new AtomicInteger(0); 
     private InetAddress activeServerIP; 
     private int activeServerPort;
     private static DatagramSocket clientSocket; 
@@ -100,7 +88,7 @@ public class Client {
         // Add a thread to listen to server messages
 
          // Thread to receive messages from the server. 
-        ClientReceiver receiver = new ClientReceiver(clientSocket);
+        ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
 
@@ -116,12 +104,12 @@ public class Client {
             do {
             System.out.println("Enter username: ");
             cmdInput = scanner.next();
-            RegisterRequest testMessage = new RegisterRequest(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+            RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
-     ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
+            // ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
             testMessage.print();
-            Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
-            // Sender.sendTo(testMessage, ACTIVE_SERVER, ACTIVE_PORT);
+            // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
+            Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
             // System.out.println(testMessage.getClientName());
             // byte[] outgoingBuffer = echoString.getBytes();
 
@@ -138,7 +126,6 @@ public class Client {
 
             } while (!cmdInput.equals("exit"));
             scanner.close();
-
         } catch (SocketTimeoutException e) {
             System.out.println("The socket timed out");
         } catch (IOException e) {

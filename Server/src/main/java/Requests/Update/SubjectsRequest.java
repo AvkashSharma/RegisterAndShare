@@ -24,7 +24,7 @@ public class SubjectsRequest extends Request implements Serializable{
     public String getClientName() {
         return clientName;
     }
-     public String[] getListOfSubjects() {
+    public String[] getListOfSubjects() {
         return listOfSubjects;
     }
 
