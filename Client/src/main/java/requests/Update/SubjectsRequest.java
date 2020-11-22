@@ -5,9 +5,9 @@ import requests.Request;
 import requests.RequestType;
 
 /*
-  - Request # 
-  - Unique name
-  - List of Subjects
+- Request # 
+- Unique name
+- List of Subjects
   */
 
 public class SubjectsRequest extends Request implements Serializable{
@@ -16,8 +16,8 @@ public class SubjectsRequest extends Request implements Serializable{
     String clientName;
     String [] listOfSubjects;
 
-    public SubjectsRequest(String clientName, String[] listOfSubjects) {
-        super(RequestType.SUBJECTS);
+    public SubjectsRequest(int reqNumber, String clientName, String[] listOfSubjects) {
+        super(RequestType.SUBJECTS, reqNumber);
         this.clientName = clientName;
         this.listOfSubjects=listOfSubjects;
     }
@@ -25,7 +25,8 @@ public class SubjectsRequest extends Request implements Serializable{
     public String getClientName() {
         return clientName;
     }
-     public String[] getListOfSubjects() {
+
+    public String[] getListOfSubjects() {
         return listOfSubjects;
     }
 

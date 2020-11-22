@@ -11,14 +11,12 @@ import requests.RequestType;
 */
 
 public class DeRegisterRequest extends Request implements Serializable {
-   
+
     String clientName;
 
-    public DeRegisterRequest(String clientName){
-      super(RequestType.DE_REGISTER);
-      this.clientName = clientName;
-      
-
+    public DeRegisterRequest(int rqNumber, String clientName){
+        super(RequestType.DE_REGISTER, rqNumber);
+        this.clientName = clientName;
     }
     public String getClientName(){
         return clientName;

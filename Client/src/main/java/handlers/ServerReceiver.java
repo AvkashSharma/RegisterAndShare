@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
-import requests.Registration.ClientRegisterDenied;
 import requests.Registration.RegisterRequest;
 
 public class ServerReceiver implements Runnable {
@@ -28,21 +27,22 @@ public class ServerReceiver implements Runnable {
             byte[] dataBuffer = incomingPacket.getData();
             ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
             ObjectInputStream is = new ObjectInputStream(byteStream);
-            RegisterRequest o = (RegisterRequest)is.readObject();
+            //RegisterRequest o = (RegisterRequest)is.readObject();
             // System.out.println("Received " + o.requestType.toString());
 
             // Create an object of RequestHandler
-            RequestHandler handler = new RequestHandler();
+            // RequestHandler handler = new RequestHandler();
             // call handleRequest
-            handler.handleRequest(o);
+            // handler.handleRequest(o);
           }
 
       } catch (IOException e) {
           System.out.println("Receiver IOException " + e.getMessage());
-      } catch (ClassNotFoundException e) {
+      } 
+      // catch (ClassNotFoundException e) {
         
-        e.printStackTrace();
-      }
+      //   e.printStackTrace();
+      // }
   }
 
 }
@@ -62,11 +62,11 @@ public class ServerReceiver implements Runnable {
       }
 
       // Upon reception of REGISTER-DENIED, the user will give up for a little while before retrying again depending on the reason. 
-      if (request instanceof ClientRegisterDenied){
-        System.out.println("True");
-      }
-      else {
-        System.out.println("False");
-      }
+      // if (request instanceof ClientRegisterDenied){
+      //   System.out.println("True");
+      // }
+      // else {
+      //   System.out.println("False");
+      // }
     }
 }

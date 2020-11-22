@@ -36,18 +36,19 @@ public class ClientReceiver implements Runnable {
 
                         ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
                         ObjectInputStream is = new ObjectInputStream(byteStream);
-                        System.out.println(is);
+                        //System.out.println(is);
                         Object o=(Object)is.readObject();
                         // RegisterRequest o = (RegisterRequest)is.readObject();
-                        System.out.println(o.toString());
-                        if(o instanceof RegisterRequest )
-                        {
-                            System.out.println("register request");
-                        System.out.println(o.toString());
-                        }
-                        else if(o instanceof ClientRegisterDenied){
-                            System.out.println("register denied");
-                        }
+                        //System.out.println(o.toString());
+                        // if(o instanceof RegisterRequest )
+                        // {
+                        //     System.out.println("register request");
+                        // System.out.println(o.toString());
+                        // }
+                        // else if(o instanceof ClientRegisterDenied){
+                        //     System.out.println("register denied");
+                        // }
+                        RequestHandler(o);
 
                         // RegisterRequest respondMessage = new RegisterRequest("Object from server "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(), 1234));
                         ClientSender.sendResponse(o, packetReceived,clientSocket);
@@ -63,10 +64,10 @@ public class ClientReceiver implements Runnable {
         }
 
 
-        public void requestHandler(Object request){
+        public synchronized void RequestHandler(Object request){
 
             if (request instanceof RegisterRequest){
-                System.out.println("RegisterRequest");
+                System.out.println(request.toString());
 
                 // Upon reception of this message the current server, can accept or refuse the registration. 
                 // Registration can be denied if the provided Name is already in use
@@ -83,7 +84,9 @@ public class ClientReceiver implements Runnable {
             }
             else if(request instanceof DeRegisterRequest){
 
-                System.out.println("Received DeRegisterRequest");
+                // System.out.println("Received DeRegisterRequest");
+
+                System.out.println(request.toString());
 
                 // If name is already registered, the current server will remove the name and all the information related to this user.
 
@@ -93,7 +96,7 @@ public class ClientReceiver implements Runnable {
 
             }
             else if(request instanceof UpdateRequest){
-                System.out.println(" User Update Request Received");
+                System.out.println(request.toString());
 
                 // Upon reception of this message the current server can accept the update and reply to the user using the message
                 // Check if name exists
@@ -101,14 +104,14 @@ public class ClientReceiver implements Runnable {
                     // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
             }
             else if (request instanceof SubjectsRequest){
-                System.out.println("Update Subjects ");
+                System.out.println(request.toString());
                 // current server can accept the update or reject it because of errors in the name or in the list of subjects.
                 // check for errors in the name or in the list of subjects 
                 // in the case of accept request send SubjectsUpdated to the user and to the other server
                 // in the case of denial send SubjectsRejected to the user
             }
             else if (request instanceof PublishRequest){
-                System.out.println("Publish Request Received");
+                System.out.println(request.toString());
                 // check name of the user , subject and if the subject is in the list of subjects of interest for the user.
                 // if yes, send MessageConfirmation to all users who have this subject in their list of interest 
                 // in case of errors, send PublishDenied to the original user

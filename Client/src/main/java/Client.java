@@ -22,11 +22,16 @@ import handlers.*;
 import requests.*;
 import requests.Request;
 import requests.RequestType;
+import requests.Publish.PublishDenied;
+import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterDenied;
+import requests.Registration.DeRegisterRequest;
 import requests.Registration.RegisterRequest;
+import requests.Update.SubjectsRequest;
+import requests.Update.SubjectsUpdated;
+import requests.Update.UpdateRequest;
 
 public class Client {
-
 
     public final Scanner scanner = new Scanner(System.in);
 
@@ -43,48 +48,51 @@ public class Client {
     public static String ACTIVE_IP = "127.0.0.1";
     public static int ACTIVE_PORT = 50001;
 
+    public static String AVKASH_HOSTNAME = "Avkash-MacBook-Pro.local";
+    public static String AVKASH_IP = "127.0.0.1";
+    public static int AVKASH_PORT = 50001;
 
-    private AtomicInteger requestCounter = new AtomicInteger(0); 
-    private InetAddress activeServerIP; 
+    private AtomicInteger requestCounter = new AtomicInteger(0);
+    private InetAddress activeServerIP;
     private int activeServerPort;
-    private static DatagramSocket clientSocket; 
-    
+    private static DatagramSocket clientSocket;
+    private String clientName;
 
-    public Client(){
+    public Client() {
         // Scanner s = new Scanner(System.in);
-        getServerAddress(scanner);
+        // getServerAddress(scanner);
         // s.close();
         InetSocketAddress activeServer = checkActiveServer();
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
+        this.clientName = getClientName();
 
         try {
             clientSocket = new DatagramSocket();
         } catch (SocketException e) {
             System.out.println("Socket Exception" + e.getMessage());
-            
+
         }
     }
 
-
     // Use this to return active server ip and port
-    public InetSocketAddress checkActiveServer(){
-        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
-        ACTIVE_PORT = SERVER_1_PORT;
-        ACTIVE_IP = SERVER_1_IP;
+    public InetSocketAddress checkActiveServer() {
+        ACTIVE_HOSTNAME = AVKASH_HOSTNAME;
+        ACTIVE_PORT = AVKASH_PORT;
+        ACTIVE_IP = AVKASH_IP;
 
         InetAddress ACTIVE_SERVER;
         try {
-                ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
-                return new InetSocketAddress(ACTIVE_SERVER, ACTIVE_PORT);
+            ACTIVE_SERVER = InetAddress.getByName(ACTIVE_IP.toString());
+            return new InetSocketAddress(ACTIVE_SERVER, ACTIVE_PORT);
         } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                    return null;
-        } 
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public String toString(){
-        return  activeServerIP + " " + activeServerPort; 
+    public String toString() {
+        return activeServerIP + " " + activeServerPort;
     }
 
     public static void main(String[] args) {
@@ -93,15 +101,21 @@ public class Client {
         // getServerAddress(scanner);
         // verify which server is active
         // InetAddress ACTIVE_SERVER = checkActiveServer();
-    
-        Client client  = new Client();
+
+        Client client = new Client();
 
         System.out.println(client);
+        client.registerUser();
 
-        client.start();
+        try {
+            client.start();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
-    public void start(){
+    public void start() throws InterruptedException {
 
         // Add a thread to listen to server messages
 
@@ -110,24 +124,66 @@ public class Client {
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
 
-        try {
-            // Scanner scanner = new Scanner(System.in);
+
+        PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), clientName, "Computer", "Engineering");
+
+
+
+        // String[] list = {"Operating System", " Networking"};
+        // SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(),clientName, list); 
+
+
+        // UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), clientName, "127.0.0.1", "50002");
+
+        // Thread.sleep(500);
+            try {
+                Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket);
+            } catch (IOException e) {
+                  // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        // DeRegisterRequest deregister = new DeRegisterRequest(requestCounter.incrementAndGet(),clientName);
+            
+        //     try {
+        //         Sender.sendTo(deregister, activeServerIP, activeServerPort, clientSocket);
+        //     } catch (IOException e) {
+        //          // TODO Auto-generated catch block
+        //         e.printStackTrace();
+        //     }
+
+        // try {
+           // Scanner scanner = new Scanner(System.in);
 
             // DatagramSocket clientSocket = new DatagramSocket();
 
             // Time client waits for a response before timing out
             // datagramSocket.setSoTimeout(5000);
 
-            String cmdInput = "";
-            do {
-            System.out.println("Enter username: ");
-            cmdInput = scanner.next();
-            RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+            // String cmdInput = "";
+            // do {
+            // System.out.println("Enter Request to be sent");
+            // if (scanner.hasNext()){
+            //     cmdInput = scanner.next();
+            // }
+            
+            // System.out.println(cmdInput);
+
+            //DeRegisterRequest deregister = new DeRegisterRequest(clientName);
+            
+            // try {
+            //     Sender.sendTo(deregister, activeServerIP, activeServerPort, clientSocket);
+            // } catch (IOException e) {
+            //     // TODO Auto-generated catch block
+            //     e.printStackTrace();
+            // }
+
+            // RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
             // ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
-            testMessage.print();
+            // testMessage.print();
             // Sender.sendTo(clientRegisterDenied, ACTIVE_SERVER, ACTIVE_PORT);
-            Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
+            // Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket);
             // System.out.println(testMessage.getClientName());
             // byte[] outgoingBuffer = echoString.getBytes();
 
@@ -142,16 +198,42 @@ public class Client {
             // System.out.println("Text received is: " + new String(incomingBuffer, 0,
             // packet.getLength()));
 
-            } while (!cmdInput.equals("exit"));
-            scanner.close();
-        } catch (SocketTimeoutException e) {
-            System.out.println("The socket timed out");
-        } catch (IOException e) {
-            System.out.println("Client error: " + e.getMessage());
-        }
+        //    } while (!cmdInput.equals("exit"));
+        // } 
+         // catch (SocketTimeoutException e) {
+        //     System.out.println("The socket timed out");
+        // } 
+        // catch (IOException e) {
+        //     System.out.println("Client error: " + e.getMessage());
+        // }
     }
 
 
+    public String getClientName(){
+        Scanner scanner = new Scanner(System.in); 
+        System.out.println("Enter Client Name: ");
+        String input = scanner.next(); 
+        scanner.close();
+        return input; 
+    }
+
+
+    public void registerUser(){
+
+        try {
+            RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), clientName,
+                    new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+            
+                Sender.sendTo(testMessage, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
 
     public static void getServerAddress(Scanner s) {
         System.out.print("Enter server 1 HostName: ");
