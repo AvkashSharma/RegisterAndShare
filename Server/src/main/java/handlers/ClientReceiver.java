@@ -94,8 +94,9 @@ public class ClientReceiver implements Runnable {
             // in the case Name is not registered the message is just ignored by the current
             // server. No further action is required
 
-        } else if (request instanceof UpdateRequest) {
-            System.out.println(" User Update Request Received");
+            }
+            else if(request instanceof UpdateRequest){
+                System.out.println(request.toString());
 
             // Upon reception of this message the current server can accept the update and
             // reply to the user using the message

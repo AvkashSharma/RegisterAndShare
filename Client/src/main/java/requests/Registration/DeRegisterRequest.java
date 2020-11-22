@@ -14,10 +14,9 @@ public class DeRegisterRequest extends Request implements Serializable {
 
     String clientName;
 
-    public DeRegisterRequest(int rid, String clientName) {
-        super(RequestType.DE_REGISTER);
+    public DeRegisterRequest(int rqNumber, String clientName){
+        super(RequestType.DE_REGISTER, rqNumber);
         this.clientName = clientName;
-        this.rid = rid;
     }
 
     public String getClientName() {

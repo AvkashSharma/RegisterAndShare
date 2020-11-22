@@ -23,18 +23,23 @@ import handlers.*;
 import requests.*;
 import requests.Request;
 import requests.RequestType;
+import requests.Publish.PublishDenied;
+import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterRequest;
 import requests.Registration.RegisterRequest;
+import requests.Update.SubjectsRequest;
+import requests.Update.SubjectsUpdated;
+import requests.Update.UpdateRequest;
 
 public class Client {
 
     public final Scanner scanner = new Scanner(System.in);
 
     // we can store this as INET ADDRESS later on
-    public static String SERVER_1_HOSTNAME = "KJ-ZENBOOK";
-    public static String SERVER_1_IP = "192.168.167.1";
-    public static int SERVER_1_PORT = 1234;
+    public static String SERVER_1_HOSTNAME = "Avkash-MacBook-Pro.local";
+    public static String SERVER_1_IP = "127.0.0.1";
+    public static int SERVER_1_PORT = 50001;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_2_IP = "192.168.167.1";
@@ -166,7 +171,6 @@ public class Client {
         ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
-
         registrationUI();
     }
 
@@ -207,6 +211,7 @@ public class Client {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
     }
 
     public void deregister(){
@@ -220,6 +225,37 @@ public class Client {
             e.printStackTrace();
         }
     }
+
+    public void publishRequest(){
+        try {
+            String[] list = {"Operating System", " Networking"};
+            SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(),clientName, list); 
+
+            PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), clientName, "Computer", "Engineering");
+            
+            Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUser(){
+        try {
+            UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), clientName, "127.0.0.1", "50002");
+            
+                Sender.sendTo(uRequest, activeServerIP, activeServerPort, clientSocket); 
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+}
 
     public static void main(String[] args) {
 

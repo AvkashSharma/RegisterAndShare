@@ -38,8 +38,8 @@ public class ServerReceiver implements Runnable {
 
       } catch (IOException e) {
           System.out.println("Receiver IOException " + e.getMessage());
-      } catch (ClassNotFoundException e) {
-        
+      } 
+      catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
   }
