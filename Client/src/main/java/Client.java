@@ -13,6 +13,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.print.event.PrintEvent;
 import javax.sound.sampled.SourceDataLine;
@@ -41,6 +42,7 @@ public class Client {
     public static int ACTIVE_PORT = 50001;
 
 
+    private AtomicInteger requestCounter = new AtomicInteger(0); 
     private InetAddress activeServerIP; 
     private int activeServerPort;
     private static DatagramSocket clientSocket; 
@@ -115,7 +117,7 @@ public class Client {
             do {
             System.out.println("Enter username: ");
             cmdInput = scanner.next();
-            RegisterRequest testMessage = new RegisterRequest(cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
+            RegisterRequest testMessage = new RegisterRequest(requestCounter.incrementAndGet(), cmdInput, new InetSocketAddress(InetAddress.getLocalHost(), 1234));
 
             // ClientRegisterDenied clientRegisterDenied = new ClientRegisterDenied("hello");
             testMessage.print();

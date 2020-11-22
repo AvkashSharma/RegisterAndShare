@@ -19,8 +19,8 @@ public class RegisterRequest extends Request implements Serializable{
     InetSocketAddress clientSocketAddress;
     String clientName;
 
-    public RegisterRequest(String clientName, InetSocketAddress clientSocketAddress) {
-        super(RequestType.REGISTER);
+    public RegisterRequest(int rqNumber, String clientName, InetSocketAddress clientSocketAddress) {
+        super(RequestType.REGISTER,rqNumber);
         this.clientName = clientName;
         this.clientSocketAddress = clientSocketAddress;
     }
@@ -30,7 +30,7 @@ public class RegisterRequest extends Request implements Serializable{
     }
     
     public InetSocketAddress getClientSocketAddress(){
-      return clientSocketAddress;
+        return clientSocketAddress;
     }
 
     @Override
