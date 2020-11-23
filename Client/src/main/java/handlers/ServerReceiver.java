@@ -39,12 +39,12 @@ public class ServerReceiver implements Runnable {
         handler.handleRequest((Object) is.readObject());
       }
 
-    } catch (IOException e) {
-      System.out.println("Receiver IOException " + e.getMessage());
-    } catch (ClassNotFoundException e) {
-
-      e.printStackTrace();
-    }
+      } catch (IOException e) {
+          System.out.println("Receiver IOException " + e.getMessage());
+      } 
+      catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
   }
 }
 
