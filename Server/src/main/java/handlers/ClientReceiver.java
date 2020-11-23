@@ -179,16 +179,18 @@ public class ClientReceiver implements Runnable {
         }
     }
 
+
+    // This is a helper method used to add subjects.
     public void addSubjects(){
         Database db = new Database();
 
-        db.addFavoriteSubject("avkash", "Food");
-        db.addFavoriteSubject("avkash", "Formula1");
-        db.addFavoriteSubject("avkash", "Sports");
+        //db.addFavoriteSubject("avkash", "Food");
+        //db.addFavoriteSubject("avkash", "Formula1");
+        //db.addFavoriteSubject("avkash", "Sports");
 
-        //db.addFavoriteSubject("tom", "Food");
-        //db.addFavoriteSubject("tom", "Formula1");
-        //db.addFavoriteSubject("tom", "Sports");
+        db.addFavoriteSubject("tom", "Food");
+        db.addFavoriteSubject("tom", "Formula1");
+        db.addFavoriteSubject("tom", "Sports");
 
 
     }
@@ -196,7 +198,7 @@ public class ClientReceiver implements Runnable {
 
     public void publish(PublishRequest request){
 
-        // addSubjects();
+        //addSubjects();
 
         String username = request.getClientName(); 
         String subject = request.getSubject(); 
@@ -214,6 +216,10 @@ public class ClientReceiver implements Runnable {
                     List<String> subjects = db.getFavoriteSubjects(username);
 
                     if(subjects.contains(subject)){
+
+                        // user adds a message to the subject 
+                        db.addMessage(username, subject, message);
+
                         // get list of all users subscribed to that subject
                         List<User> subscribedUsers = db.getSubjectUsers(subject);
                         // dispatch the message to all the subscribed users
