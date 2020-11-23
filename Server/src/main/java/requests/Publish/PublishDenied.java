@@ -10,16 +10,15 @@ public class PublishDenied extends Request implements Serializable {
     
     String Reason;
 
-    public PublishDenied(String Reason){
+    public PublishDenied(int reqNumber,String Reason){
 
-        super(RequestType.PUBLISH_DENIED);
-       
+        super(RequestType.PUBLISH_DENIED,reqNumber);
+    
         this.Reason=Reason;
 
     }
     
-     
-     public String getReason(){
+    public String getReason(){
         return Reason;
     }
 @Override
