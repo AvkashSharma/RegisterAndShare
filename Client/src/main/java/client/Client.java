@@ -64,6 +64,7 @@ public class Client {
 
         try {
             clientSocket = new DatagramSocket();
+            System.out.println(clientSocket.getLocalSocketAddress());
         } catch (SocketException e) {
             System.out.println("Socket Exception" + e.getMessage());
         }
@@ -222,7 +223,7 @@ public class Client {
         String username = "";
         username = scanner.next();
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), username,
-                new InetSocketAddress(activeServerIP, ACTIVE_PORT));
+                new InetSocketAddress(clientSocket.getLocalAddress(), clientSocket.getLocalPort()));
         try {
             Sender.sendTo(registerMessage, activeServerIP, activeServerPort, clientSocket);
             ClientData.username.set(username);

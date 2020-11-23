@@ -9,21 +9,12 @@ import requests.RequestType;
 */
 
 public class DeRegisterRequest extends Request implements Serializable {
-<<<<<<< HEAD
 
     String clientName;
-=======
-    String clientName;
-
-    public DeRegisterRequest(int rqNumber, String clientName){
-        super(RequestType.DE_REGISTER, rqNumber);
-        this.clientName = clientName;
->>>>>>> sendRequests
 
     public DeRegisterRequest(int rid, String clientName) {
-        super(RequestType.DE_REGISTER);
+        super(RequestType.DE_REGISTER, rid);
         this.clientName = clientName;
-        this.rid = rid;
     }
 
     public String getClientName() {
