@@ -15,4 +15,16 @@ public class User {
         return db.userExist(username);
     }
 
+    public String getUsername(){
+        return username;
+    }
+
+    public String getUserIP(){
+        return ip;
+    }
+
+    public int getUserSocket(){
+        return socket;
+    }
+
 }

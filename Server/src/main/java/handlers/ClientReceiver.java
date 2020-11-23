@@ -1,17 +1,20 @@
 package handlers;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
+import java.util.List;
 
 import db.Database;
+import db.User;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
+import requests.Publish.MessageConfirmation;
+import requests.Publish.PublishDenied;
 import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
@@ -38,7 +41,7 @@ public class ClientReceiver implements Runnable {
 
             ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
             ObjectInputStream is = new ObjectInputStream(byteStream);
-            System.out.println(is);
+            // System.out.println(is);
             Object o = (Object) is.readObject();
 
             System.out.println(o.toString());
@@ -112,12 +115,9 @@ public class ClientReceiver implements Runnable {
             // other server
             // in the case of denial send SubjectsRejected to the user
         } else if (request instanceof PublishRequest) {
-            System.out.println("Publish Request Received");
-            // check name of the user , subject and if the subject is in the list of
-            // subjects of interest for the user.
-            // if yes, send MessageConfirmation to all users who have this subject in their
-            // list of interest
-            // in case of errors, send PublishDenied to the original user
+
+            publish((PublishRequest)request);
+            
         } else if (request instanceof ChangeServer) {
             System.out.println("Received change server Request");
             // Server needs to inform all the registered users about Change server Request
@@ -178,4 +178,90 @@ public class ClientReceiver implements Runnable {
             e.printStackTrace();
         }
     }
+
+
+    // This is a helper method used to add subjects.
+    public void addSubjects(){
+        Database db = new Database();
+
+        //db.addFavoriteSubject("avkash", "Food");
+        //db.addFavoriteSubject("avkash", "Formula1");
+        //db.addFavoriteSubject("avkash", "Sports");
+
+        db.addFavoriteSubject("tom", "Food");
+        db.addFavoriteSubject("tom", "Formula1");
+        db.addFavoriteSubject("tom", "Sports");
+
+
+    }
+
+
+    public void publish(PublishRequest request){
+
+        //addSubjects();
+
+        String username = request.getClientName(); 
+        String subject = request.getSubject(); 
+        String message = request.getText();
+
+        Database db = new Database();
+
+        try{
+            // Check if user is registered
+            if(db.userExist(username)){
+                // Check subject
+                if(db.subjectExist(subject)){
+                    
+                    // if the subject is in the list of subjects of interest for the user
+                    List<String> subjects = db.getFavoriteSubjects(username);
+
+                    if(subjects.contains(subject)){
+
+                        // user adds a message to the subject 
+                        db.addMessage(username, subject, message);
+
+                        // get list of all users subscribed to that subject
+                        List<User> subscribedUsers = db.getSubjectUsers(subject);
+                        // dispatch the message to all the subscribed users
+                        for(User user : subscribedUsers){
+                            MessageConfirmation confirmation = new MessageConfirmation(username,subject,message);
+                            System.out.println(user.getUsername());
+                            System.out.println(user.getUserSocket());
+                            // Send confirmation to all users
+                            //DatagramSocket socket  =  new DatagramSocket(user.getUserSocket());
+                            
+                            byte [] buffer = new byte[1024];
+                            // InetAddress address = InetAddress.getByName(user.getUserIP());
+
+                            // TODO can only test on LocalHost
+                            InetAddress address = InetAddress.getLocalHost();
+                            SocketAddress socketAddress = new InetSocketAddress(address, user.getUserSocket());
+
+                            DatagramPacket packet = new DatagramPacket(buffer, buffer.length,socketAddress);
+                            
+                            ClientSender.sendResponse(confirmation, packet, clientSocket);                       
+                        }
+                    }else{
+                        // publish denied
+                        PublishDenied denied = new PublishDenied(request.getRid(),"Subject is not in present in your list of subjects");
+                        ClientSender.sendResponse(denied, packetReceived, clientSocket);
+                    }    
+                    }else{
+                    // handle user does not have subject in the list
+                    PublishDenied denied = new PublishDenied(request.getRid(),"Subject does not exist");
+                    ClientSender.sendResponse(denied, packetReceived, clientSocket);
+                }
+            }else{
+                // handle username not registered
+                PublishDenied denied = new PublishDenied(request.getRid(),"You are not registered. Please register");
+                ClientSender.sendResponse(denied, packetReceived, clientSocket);
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 }
+

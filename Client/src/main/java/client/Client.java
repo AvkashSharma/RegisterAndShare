@@ -41,7 +41,7 @@ public class Client {
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "Avkash-MacBook-Pro.local";
     public static String SERVER_1_IP = "127.0.0.1";
-    public static int SERVER_1_PORT = 1234;
+    public static int SERVER_1_PORT = 50001;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_2_IP = "192.168.167.1";
@@ -119,41 +119,47 @@ public class Client {
 
     // Use this to return active server ip and port
     public InetSocketAddress checkActiveServer() {
-        while (true) {
 
-            //
-            //
-            // COMMENT to skip entering IP address
-            //
-            //
-            // getServerAddress(scanner);//<---------------------------------------------------------TO
-            // SKIP ENTERING IP
-            try {
-                boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
-                boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
+        ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+                ACTIVE_PORT = SERVER_1_PORT;
+                ACTIVE_IP = SERVER_1_IP;
+        // while (true) {
 
-                if (server1Active) {
-                    ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
-                    ACTIVE_PORT = SERVER_1_PORT;
-                    ACTIVE_IP = SERVER_1_IP;
-                    break;
-                } else if (server2Active) {
-                    ACTIVE_HOSTNAME = SERVER_2_HOSTNAME;
-                    ACTIVE_PORT = SERVER_2_PORT;
-                    ACTIVE_IP = SERVER_2_IP;
-                    break;
-                } else {
-                    System.out.println("Server 1 and Server 2 are unreachable. Please enter valid Server Address");
-                }
+        //     //
+        //     //
+        //     // COMMENT to skip entering IP address
+        //     //
+        //     //
+        //     // getServerAddress(scanner);//<---------------------------------------------------------TO
+        //     // SKIP ENTERING IP
+        //     try {
+        //         boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
+        //         boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
 
-            } catch (UnknownHostException e1) {
-                // TODO Auto-generated catch block
-                // e1.printStackTrace();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                // e1.printStackTrace();
-            }
-        }
+                
+
+        //         if (server1Active) {
+        //             ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
+        //             ACTIVE_PORT = SERVER_1_PORT;
+        //             ACTIVE_IP = SERVER_1_IP;
+        //             break;
+        //         } else if (server2Active) {
+        //             ACTIVE_HOSTNAME = SERVER_2_HOSTNAME;
+        //             ACTIVE_PORT = SERVER_2_PORT;
+        //             ACTIVE_IP = SERVER_2_IP;
+        //             break;
+        //         } else {
+        //             System.out.println("Server 1 and Server 2 are unreachable. Please enter valid Server Address");
+        //         }
+
+        //     } catch (UnknownHostException e1) {
+        //         // TODO Auto-generated catch block
+        //         // e1.printStackTrace();
+        //     } catch (IOException e1) {
+        //         // TODO Auto-generated catch block
+        //         // e1.printStackTrace();
+        //     }
+        // }
 
         try {
             InetAddress ACTIVE_SERVER;
@@ -195,6 +201,7 @@ public class Client {
                 System.out.println("2-Deregister");
                 System.out.println("3-Update User location(ip, port)");
                 System.out.println("4-Subscribe to subjects");
+                System.out.println("5-Publish message on subjects of interest");
             }
 
             System.out.print("Choice: ");
@@ -209,6 +216,9 @@ public class Client {
                     break;
                 case "2":
                     deregister();
+                    break;
+                case "5":
+                    publishRequest();
                     break;
                 case "-1":
                     continue;
@@ -267,24 +277,21 @@ public class Client {
     }
 
     public void publishRequest() {
+        System.out.print("\tEnter subject of interest:  ");
+        String subject = "";
+        subject = scanner.next();
+        System.out.print("\tEnter the message:  ");
+        String message = "";
+        message = scanner.next();
+        message += scanner.nextLine();
+
+        PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), ClientData.username.get(),subject, message);
+
         try {
-            String[] list = { "Operating System", " Networking" };
-            SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),
-                    list);
-
-            PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), ClientData.username.get(),
-                    "Computer", "Engineering");
-
             Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket);
-        } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
-
-
 }
