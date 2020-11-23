@@ -8,33 +8,36 @@ import java.net.DatagramSocket;
 
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
+import requests.Registration.DeRegisterConfirmed;
+import client.Client;
+import client.ClientData;
 
 public class ServerReceiver implements Runnable {
 
-  private DatagramSocket clientSocket; 
+  private DatagramSocket clientSocket;
 
-  public ServerReceiver(DatagramSocket clientSocket){
+  public ServerReceiver(DatagramSocket clientSocket) {
     this.clientSocket = clientSocket;
   }
 
   public void run() {
-      try{
-          while(true){
+    try {
+      while (true) {
 
-            byte[] incomingData = new byte[1024];
+        byte[] incomingData = new byte[1024];
 
-            DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
-            clientSocket.receive(incomingPacket);
+        DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
+        clientSocket.receive(incomingPacket);
 
-            byte[] dataBuffer = incomingPacket.getData();
-            ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
-            ObjectInputStream is = new ObjectInputStream(byteStream);
+        byte[] dataBuffer = incomingPacket.getData();
+        ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
+        ObjectInputStream is = new ObjectInputStream(byteStream);
 
-            // Create an object of RequestHandler
-            RequestHandler handler = new RequestHandler();
-            // call handleRequest
-            handler.handleRequest((Object)is.readObject());
-          }
+        // Create an object of RequestHandler
+        RequestHandler handler = new RequestHandler();
+        // call handleRequest
+        handler.handleRequest((Object) is.readObject());
+      }
 
       } catch (IOException e) {
           System.out.println("Receiver IOException " + e.getMessage());
@@ -45,21 +48,30 @@ public class ServerReceiver implements Runnable {
   }
 }
 
-  class RequestHandler {
+class RequestHandler {
 
-    public void handleRequest(Object request){
+  public void handleRequest(Object request) {
 
-      // Handle Successful Register Request - Don't think we need it
-      if(request instanceof ClientRegisterConfirmed){
-        System.out.println(request.toString());
-      }
-
-      // Upon reception of REGISTER-DENIED, the user will give up for a little while before retrying again depending on the reason. 
-      else if (request instanceof ClientRegisterDenied){
-        System.out.println(request.toString());
-      }
-      else {
-        System.out.println(request.toString());
-      }
+    // Handle Successful Register Request - Don't think we need it
+    if (request instanceof ClientRegisterConfirmed) {
+      ClientData.isRegistered.set(true);
+      System.out.println("\n"+request.toString());
     }
+
+    // Upon reception of REGISTER-DENIED, the user will give up for a little while
+    // before retrying again depending on the reason.
+    else if (request instanceof ClientRegisterDenied) {
+      System.out.println(request.toString());
+      ClientData.isRegistered.set(false);
+    } 
+    else if (request instanceof DeRegisterConfirmed) {
+      System.out.println(request.toString());
+      ClientData.isRegistered.set(false);
+      ClientData.username.set("");
+    } 
+    
+    else {
+      System.out.println(request.toString());
+    }
+  }
 }

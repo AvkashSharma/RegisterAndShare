@@ -1,3 +1,5 @@
+package client;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -39,7 +41,7 @@ public class Client {
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "Avkash-MacBook-Pro.local";
     public static String SERVER_1_IP = "127.0.0.1";
-    public static int SERVER_1_PORT = 50001;
+    public static int SERVER_1_PORT = 1234;
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_2_IP = "192.168.167.1";
@@ -54,10 +56,9 @@ public class Client {
     private int activeServerPort;
     private static DatagramSocket clientSocket;
 
-    public static AtomicBoolean isRegister = new AtomicBoolean(false);
-
     public Client() {
         InetSocketAddress activeServer = checkActiveServer();
+        System.out.println("-----------------------------------------");
         this.activeServerIP = activeServer.getAddress();
         this.activeServerPort = activeServer.getPort();
 
@@ -70,8 +71,14 @@ public class Client {
 
     // Sends ping request to a provided IP address
     public static boolean sendPingRequest(String ipAddress, int port) throws UnknownHostException, IOException {
+        boolean isalive = false;
+        SocketAddress socketAddress = new InetSocketAddress(ipAddress, port);
+        Socket socket = new Socket();
         InetAddress add = InetAddress.getByName(ipAddress);
-        System.out.println("Sending Ping Request to " + ipAddress);
+        int timeout=2000;
+
+        System.out.println("Sending Ping Request to " + ipAddress+ ":" + port);
+        
         if (add.isReachable(port)) {
             System.out.println("Host " + ipAddress + ":" + port + " is reachable");
             return true;
@@ -115,10 +122,11 @@ public class Client {
 
             //
             //
-            //COMMENT to skip entering IP address
+            // COMMENT to skip entering IP address
             //
             //
-            // getServerAddress(scanner);//<---------------------------------------------------------TO SKIP ENTERING IP
+            // getServerAddress(scanner);//<---------------------------------------------------------TO
+            // SKIP ENTERING IP
             try {
                 boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
                 boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
@@ -171,21 +179,29 @@ public class Client {
         ServerReceiver receiver = new ServerReceiver(clientSocket);
         Thread receiverThread = new Thread(receiver);
         receiverThread.start();
-        registrationUI();
+        ui();
     }
 
-    public void registrationUI() {
+    public void ui() {
         String val = "";
         while (!val.equals("exit")) {
-            // if (!isRegister.get())
+            System.out.println("------------------------------------------");
+            System.out.println("Enter 'exit' to exit application, Press 'Enter' to refresh");
+            if (!ClientData.isRegistered.get())
                 System.out.println("1-Register");
-            // else
+            else {
+                System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
+                System.out.println("3-Update User location(ip, port)");
+                System.out.println("4-Subscribe to subjects");
+            }
 
-            System.out.println("Enter 'exit' to exit application");
             System.out.print("Choice: ");
-            val = scanner.next();
+            val = scanner.nextLine();
 
+            if (val.isEmpty()) {
+                val = "-1";
+            }
             switch (val) {
                 case "1":
                     register();
@@ -193,6 +209,8 @@ public class Client {
                 case "2":
                     deregister();
                     break;
+                case "-1":
+                    continue;
                 default:
                     System.out.println("Not a valid option");
             }
@@ -200,24 +218,30 @@ public class Client {
     }
 
     public void register() {
-        System.out.println("Enter Username: ");
+        System.out.print("\tEnter Username to register: ");
         String username = "";
         username = scanner.next();
         RegisterRequest registerMessage = new RegisterRequest(requestCounter.incrementAndGet(), username,
                 new InetSocketAddress(activeServerIP, ACTIVE_PORT));
         try {
             Sender.sendTo(registerMessage, activeServerIP, activeServerPort, clientSocket);
+            ClientData.username.set(username);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
     }
 
-    public void deregister(){
-        String username = "";
-        username = scanner.next();
-        DeRegisterRequest deregisterMessage = new DeRegisterRequest(requestCounter.incrementAndGet(), username);
+    public void deregister() {
+        System.out.print("\tDo you want to deregister " + ClientData.username.get() + "(y/n): ");
+        String response = "";
+        response = scanner.next();
+        if (response.equals("n")) {
+            return;
+        }
+        DeRegisterRequest deregisterMessage = new DeRegisterRequest(requestCounter.incrementAndGet(),
+                ClientData.username.get());
         try {
             Sender.sendTo(deregisterMessage, activeServerIP, activeServerPort, clientSocket);
         } catch (IOException e) {
@@ -226,14 +250,12 @@ public class Client {
         }
     }
 
-    public void publishRequest(){
+    public void updateUser() {
         try {
-            String[] list = {"Operating System", " Networking"};
-            SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(),clientName, list); 
+            UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), ClientData.username.get(),
+                    "127.0.0.1", "50002");
 
-            PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), clientName, "Computer", "Engineering");
-            
-            Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket); 
+            Sender.sendTo(uRequest, activeServerIP, activeServerPort, clientSocket);
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -243,11 +265,16 @@ public class Client {
         }
     }
 
-    public void updateUser(){
+    public void publishRequest() {
         try {
-            UpdateRequest uRequest = new UpdateRequest(requestCounter.incrementAndGet(), clientName, "127.0.0.1", "50002");
-            
-                Sender.sendTo(uRequest, activeServerIP, activeServerPort, clientSocket); 
+            String[] list = { "Operating System", " Networking" };
+            SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),
+                    list);
+
+            PublishRequest pRequest = new PublishRequest(requestCounter.incrementAndGet(), ClientData.username.get(),
+                    "Computer", "Engineering");
+
+            Sender.sendTo(pRequest, activeServerIP, activeServerPort, clientSocket);
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -255,11 +282,8 @@ public class Client {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-}
-
-    public static void main(String[] args) {
-
-        Client client = new Client();
-        client.start();
     }
+
+
+
 }
