@@ -2,7 +2,8 @@ package requests.Update;
 import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
-
+import java.util.ArrayList;
+import java.util.List;
 /*
 - Request # 
 - Unique name
@@ -13,9 +14,9 @@ public class SubjectsRequest extends Request implements Serializable{
 
     
     String clientName;
-    String [] listOfSubjects;
+    List <String>listOfSubjects=new ArrayList<String>();
 
-    public SubjectsRequest(int reqNumber, String clientName, String[] listOfSubjects) {
+    public SubjectsRequest(int reqNumber, String clientName, List<String>listOfSubjects) {
         super(RequestType.SUBJECTS, reqNumber);
         this.clientName = clientName;
         this.listOfSubjects=listOfSubjects;
@@ -24,7 +25,7 @@ public class SubjectsRequest extends Request implements Serializable{
     public String getClientName() {
         return clientName;
     }
-    public String[] getListOfSubjects() {
+    public List<String> getListOfSubjects() {
         return listOfSubjects;
     }
 

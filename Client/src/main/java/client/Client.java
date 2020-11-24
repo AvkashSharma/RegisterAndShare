@@ -1,6 +1,7 @@
 package client;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +15,9 @@ import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -40,8 +44,9 @@ public class Client {
 
     // we can store this as INET ADDRESS later on
     public static String SERVER_1_HOSTNAME = "Avkash-MacBook-Pro.local";
-    public static String SERVER_1_IP = "127.0.0.1";
-    public static int SERVER_1_PORT = 50001;
+    public static String SERVER_1_IP = "192.168.0.80";
+    public static int SERVER_1_PORT = 1234;
+
 
     public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
     public static String SERVER_2_IP = "192.168.167.1";
@@ -217,6 +222,9 @@ public class Client {
                 case "2":
                     deregister();
                     break;
+                case "4":
+                    subscribeToSubjects();
+                    break;
                 case "5":
                     publishRequest();
                     break;
@@ -275,7 +283,31 @@ public class Client {
             e.printStackTrace();
         }
     }
+    public void subscribeToSubjects(){
+        //get list of subjects
+        //input the number on the same line
+        //confirm the request or deny it
+        //update the database
+        System.out.print("\tEnter the subject you want to subscribe to: ");
+        String subject="";
+        subject=scanner.next();
+        List<String> listOfSubjects=new ArrayList<String>();
+        while(!subject.equals("exit")){
+        listOfSubjects.add(subject);
+        System.out.print("\tEnter the subject you want to subscribe to: ");
+        subject=scanner.next();
+    
+        }
+        SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
 
+        try {
+            Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
     public void publishRequest() {
         System.out.print("\tEnter subject of interest:  ");
         String subject = "";
