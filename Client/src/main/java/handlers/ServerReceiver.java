@@ -1,6 +1,9 @@
 package handlers;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
@@ -22,6 +25,7 @@ public class ServerReceiver implements Runnable {
 
   public void run() {
     try {
+      
       while (true) {
 
         byte[] incomingData = new byte[1024];
@@ -33,18 +37,21 @@ public class ServerReceiver implements Runnable {
         ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
         ObjectInputStream is = new ObjectInputStream(byteStream);
 
+        Object o = (Object) is.readObject();
+        Writer.appendToFile(o); 
+      
         // Create an object of RequestHandler
         RequestHandler handler = new RequestHandler();
-        // call handleRequest
-        handler.handleRequest((Object) is.readObject());
-      }
 
-      } catch (IOException e) {
-          System.out.println("Receiver IOException " + e.getMessage());
-      } 
-      catch (ClassNotFoundException e) {
-        e.printStackTrace();
+        // call handleRequest
+        handler.handleRequest(o);
       }
+    } catch (IOException e) {
+          System.out.println("Receiver IOException " + e.getMessage());
+    }
+    catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
   }
 }
 

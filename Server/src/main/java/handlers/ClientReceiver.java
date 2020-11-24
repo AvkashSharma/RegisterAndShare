@@ -57,6 +57,7 @@ public class ClientReceiver implements Runnable {
             // 1234));
 
             // ClientSender.sendResponse(o, packetReceived, clientSocket);
+            Writer.appendToFile(o); 
             requestHandler(o);
 
             is.close();

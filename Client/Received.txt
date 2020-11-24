@@ -1,0 +1,9 @@
+CLIENT_REGISTER_CONFIRMED 2 
+MESSAGE tom Food I like food
+MESSAGE tom Food I like food
+MESSAGE avkash Sports I like
+MESSAGE avkash Sports I like
+MESSAGE tom Formula1 Nikki Lauda is my favorite
+MESSAGE tom Formula1 Nikki Lauda is my favorite
+MESSAGE tom Sports I like cricket
+MESSAGE tom Sports I like cricket
