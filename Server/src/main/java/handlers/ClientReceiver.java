@@ -108,6 +108,7 @@ public class ClientReceiver implements Runnable {
             // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
         } else if (request instanceof SubjectsRequest) {
             System.out.println("Update Subjects ");
+            sendListOfSubjects((SubjectsRequest)request);
             // current server can accept the update or reject it because of errors in the
             // name or in the list of subjects.
             // check for errors in the name or in the list of subjects
@@ -125,7 +126,10 @@ public class ClientReceiver implements Runnable {
             // when a server is not serving it can change its IP address and socket#, but
             // informs only the current(serving) server with the following message
             System.out.println("Received Update Server Request");
-        } else {
+        } else if(request instanceof ListOfSubjects){
+             
+        }
+         else {
             System.out.println("No such request present to handle the case");
         }
     }
@@ -195,7 +199,32 @@ public class ClientReceiver implements Runnable {
 
     }
 
-
+    public void sendListOfSubjects(SubjectsRequest request){
+    
+        String username=request.getClientName();
+        Database db=new Database();
+        try{
+            //Check if user is registered
+            if(db.userExist(username)){
+            List<String> subjects=db.getSubjects();
+            System.out.println("These are available subjects "+subjects);
+            String list="";
+            for(String subject:subjects){
+            list+=" "+subject;
+            }           
+            ClientSender.sendResponse("\n\t Choose among the following subjects: "+list, packetReceived, clientSocket); 
+            }
+            else{
+                String noSubjects="No subjects available";
+                System.out.println(noSubjects);
+                ClientSender.sendResponse(noSubjects, packetReceived, clientSocket);
+            }
+        }
+            catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }    
+    }
     public void publish(PublishRequest request){
 
         //addSubjects();
