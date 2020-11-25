@@ -13,6 +13,7 @@ import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
+import requests.ClientPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
 import requests.Publish.PublishRequest;
@@ -126,6 +127,15 @@ public class ClientReceiver implements Runnable {
             // when a server is not serving it can change its IP address and socket#, but
             // informs only the current(serving) server with the following message
             System.out.println("Received Update Server Request");
+        }
+        else if(request instanceof ClientPingServer){
+            System.out.println("Client Pinging");
+            try {
+                ClientSender.sendResponse(new ClientPingServer(true), packetReceived, clientSocket);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } else {
             System.out.println("No such request present to handle the case");
         }

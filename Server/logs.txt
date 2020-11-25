@@ -1,2 +1,10 @@
 PUBLISH 5 tom Sports I like cricket
 REGISTER 1 ka 0.0.0.0/0.0.0.0:63257
+REGISTER 1 kart 0.0.0.0/0.0.0.0:54556
+DE-REGISTER 1 
+REGISTER 2 karthi 0.0.0.0/0.0.0.0:58400
+REGISTER 1 ka 0.0.0.0/0.0.0.0:60160
+requests.ClientPingServer@505a1c1e
+requests.ClientPingServer@3e7b6dc3
+requests.ClientPingServer@4d662f83
+REGISTER 1 kat 0.0.0.0/0.0.0.0:52570

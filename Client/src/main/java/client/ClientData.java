@@ -12,6 +12,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import handlers.Sender;
+import requests.ClientPing;
+import requests.ClientPingServer;
+
 public class ClientData {
     public static AtomicBoolean isRegistered = new AtomicBoolean(false);
     public static AtomicReference<String> username = new AtomicReference<String>("");
@@ -33,25 +37,66 @@ public class ClientData {
     public static int ACTIVE_PORT = ClientData.SERVER_1_PORT;
     public static InetSocketAddress serverSocket;
 
-
-    // public static boolean pingIP(String ipAddress){
+    public static boolean isPortAlive(String ipAddress, int port) {
+        try {
+            Socket socket = new Socket(ipAddress, port);
+            socket.setSoTimeout(1000);
+            // (new Socket(ipAddress, port)).close();
+            socket.close();
+            System.out.println("port is not in use");
+            return false;
         
-    // }
-    // Sends ping request to a provided IP address
-    public static boolean sendPingRequest(String ipAddress, int port) throws UnknownHostException, IOException {
-        boolean isalive = false;
-        SocketAddress socketAddress = new InetSocketAddress(ipAddress, port);
-        Socket socket = new Socket();
-        InetAddress add = InetAddress.getByName(ipAddress);
-        int timeout = 2000;
+        } catch (IOException e) {
+            return true;
+        }
+   
+    }
 
-        System.out.println("Sending Ping Request to " + ipAddress + ":" + port);
+
+    public static void isServer(DatagramSocket datagramSocket){
+        ClientPingServer ping = new ClientPingServer(true);
+        try {
+            Sender.sendTo(ping, datagramSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static boolean isIpAlive(String ipAddress, int port) throws IOException {
+        InetAddress add = InetAddress.getByName(ipAddress);
+        System.out.println("Sending Ping Request to " + ipAddress);
 
         if (add.isReachable(port)) {
-            System.out.println("Host " + ipAddress + ":" + port + " is reachable");
+            // System.out.println("Host " + ipAddress + ":" + port + " is reachable");
             return true;
         } else {
-            System.out.println("Sorry ! We can't reach to this host - " + ipAddress + ":" + port);
+            // System.out.println("Sorry ! We can't reach to this host - " + ipAddress + ":"
+            // + port);
+            return false;
+        }
+    }
+
+    // Sends ping request to a provided IP address
+    public static boolean sendPingRequest(String ipAddress, int port) throws UnknownHostException, IOException {
+
+        ClientPingServer.ping(ipAddress, port);
+        
+        boolean ipAlive = isIpAlive(ipAddress, port);
+        if (ipAlive) {
+            System.out.println(ipAddress + " is reachable.");
+            if(isPortAlive(ipAddress, port)){
+                System.out.println(port+" port is reachable");
+                return true;
+            }
+            else{
+                System.out.println(port+" port is not reachable");
+                return false;
+            }
+        } else {
+            System.out.println(ipAddress + " is not reachanble");
             return false;
         }
     }
