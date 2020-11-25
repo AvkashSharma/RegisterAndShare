@@ -207,7 +207,7 @@ public class ClientReceiver implements Runnable {
             //Check if user is registered
             if(db.userExist(username)){
             List<String> subjects=db.getSubjects();
-            System.out.println("These are available subjects "+subjects);
+            // System.out.println("These are available subjects "+subjects);
             String list="";
             for(String subject:subjects){
             list+=" "+subject;

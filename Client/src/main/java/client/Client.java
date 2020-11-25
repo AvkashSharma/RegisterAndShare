@@ -205,8 +205,9 @@ public class Client {
                 System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
                 System.out.println("3-Update User location(ip, port)");
-                System.out.println("4-Subscribe to subjects");
+                System.out.println("4-See Available list of Subjects");
                 System.out.println("5-Publish message on subjects of interest");
+                System.out.println("6-Choose a list of Subjects to subscribe on");
             }
 
             System.out.print("Choice: ");
@@ -223,10 +224,13 @@ public class Client {
                     deregister();
                     break;
                 case "4":
-                    subscribeToSubjects();
+                    getListOfSubjects();
                     break;
                 case "5":
                     publishRequest();
+                    break;
+                case "6":
+                    subscribeToSubjects();
                     break;
                 case "-1":
                     continue;
@@ -283,21 +287,8 @@ public class Client {
             e.printStackTrace();
         }
     }
-    public void subscribeToSubjects(){
-        //get list of subjects
-        //input the number on the same line
-        //confirm the request or deny it
-        //update the database
-        // System.out.print("\tEnter the subject you want to subscribe to: ");
-        // String subject ="";
-        // subject=scanner.next();
+    public void getListOfSubjects(){
         List<String> listOfSubjects=new ArrayList<String>();
-        // while(!subject.equals("exit")){
-        // listOfSubjects.add(subject);
-        // System.out.print("\tEnter the subject you want to subscribe to: ");
-        // subject=scanner.next();
-    
-        // }
         SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
         
         try {
@@ -308,6 +299,31 @@ public class Client {
             e.printStackTrace();
         }
     }
+    public void subscribeToSubjects(){
+        //get list of subjects
+        //input the number on the same line
+        //confirm the request or deny it
+        //update the database
+        System.out.print("\tEnter the subject (enter exit when you're done): ");
+        String subject ="";
+        subject=scanner.next();
+        List<String> listOfSubjects=new ArrayList<String>();
+        while(!subject.equals("exit")){
+        listOfSubjects.add(subject);
+        System.out.print("\tEnter the subject (enter exit when you're done): ");
+        subject=scanner.next();
+        }
+        SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
+        
+        try {
+            // Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
+            Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
     
     public void publishRequest() {
         System.out.print("\tEnter subject of interest:  ");
