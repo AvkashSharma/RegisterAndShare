@@ -7,3 +7,4 @@ MESSAGE tom Formula1 Nikki Lauda is my favorite
 MESSAGE tom Formula1 Nikki Lauda is my favorite
 MESSAGE tom Sports I like cricket
 MESSAGE tom Sports I like cricket
+CLIENT-REGISTER-DENIED 1 Username exists

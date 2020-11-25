@@ -1,1 +1,2 @@
 PUBLISH 5 tom Sports I like cricket
+REGISTER 1 ka 0.0.0.0/0.0.0.0:63257
