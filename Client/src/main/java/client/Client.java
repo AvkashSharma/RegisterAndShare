@@ -29,6 +29,7 @@ import requests.Publish.PublishDenied;
 import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterRequest;
+import requests.Registration.LoginRequest;
 import requests.Registration.RegisterRequest;
 import requests.Update.SubjectsRequest;
 import requests.Update.SubjectsUpdated;
@@ -42,11 +43,12 @@ public class Client {
     public Client() {
         ClientData.checkActiveServer(scanner);
         System.out.println("-----------------------------------------");
-    
+
         try {
             clientSocket = new DatagramSocket();
-            System.out.println(clientSocket.getLocalSocketAddress());
-        } catch (SocketException e) {
+            ClientData.CLIENT_IP = InetAddress.getLocalHost().getHostAddress().toString();
+            ClientData.CLIENT_PORT = clientSocket.getLocalPort();
+        } catch (SocketException | UnknownHostException e) {
             System.out.println("Socket Exception" + e.getMessage());
         }
     }
@@ -65,11 +67,14 @@ public class Client {
     public void ui() {
         String val = "";
         while (!val.equals("exit")) {
-            System.out.println("------------------------------------------");
+            System.out.println("------------------@" + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
+                    + "------------------------");
             System.out.println("Enter 'exit' to exit application, Press 'Enter' to refresh");
-            if (!ClientData.isRegistered.get())
+
+            if (!ClientData.isRegistered.get()) {
                 System.out.println("1-Register");
-            else {
+                System.out.println("2-Login");
+            } else {
                 System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
                 System.out.println("3-Update User location(ip, port)");
@@ -88,7 +93,10 @@ public class Client {
                     register();
                     break;
                 case "2":
-                    deregister();
+                    if (!ClientData.isRegistered.get())
+                        login();
+                    else
+                        deregister();
                     break;
                 case "5":
                     publishRequest();
@@ -97,6 +105,7 @@ public class Client {
                     continue;
                 default:
                     System.out.println("Not a valid option");
+                    continue;
             }
         }
     }
@@ -105,16 +114,32 @@ public class Client {
         System.out.print("\tEnter Username to register: ");
         String username = "";
         username = scanner.next();
-        RegisterRequest registerMessage = new RegisterRequest(ClientData.requestCounter.incrementAndGet(), username,
-                new InetSocketAddress(clientSocket.getLocalAddress(), clientSocket.getLocalPort()));
+
         try {
+            RegisterRequest registerMessage = new RegisterRequest(ClientData.requestCounter.incrementAndGet(), username,
+                    ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
             Sender.sendTo(registerMessage, clientSocket);
             ClientData.username.set(username);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
 
+    public void login() {
+        System.out.println("\tEnter login username: ");
+        String username = "";
+        username = scanner.next();
+
+        LoginRequest loginRequest = new LoginRequest(ClientData.requestCounter.incrementAndGet(), username,
+                ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
+        try {
+            Sender.sendTo(loginRequest, clientSocket);
+            ClientData.username.set(username);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void deregister() {
@@ -136,8 +161,8 @@ public class Client {
 
     public void updateUser() {
         try {
-            UpdateRequest uRequest = new UpdateRequest(ClientData.requestCounter.incrementAndGet(), ClientData.username.get(),
-                    "127.0.0.1", "50002");
+            UpdateRequest uRequest = new UpdateRequest(ClientData.requestCounter.incrementAndGet(),
+                    ClientData.username.get(), "127.0.0.1", "50002");
 
             Sender.sendTo(uRequest, clientSocket);
         } catch (UnknownHostException e) {
@@ -158,7 +183,8 @@ public class Client {
         message = scanner.next();
         message += scanner.nextLine();
 
-        PublishRequest pRequest = new PublishRequest(ClientData.requestCounter.incrementAndGet(), ClientData.username.get(),subject, message);
+        PublishRequest pRequest = new PublishRequest(ClientData.requestCounter.incrementAndGet(),
+                ClientData.username.get(), subject, message);
 
         try {
             Sender.sendTo(pRequest, clientSocket);

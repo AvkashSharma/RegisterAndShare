@@ -4,16 +4,13 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import handlers.Sender;
-import requests.ClientPing;
+
 import requests.ClientPingServer;
 
 public class ClientData {
@@ -22,84 +19,20 @@ public class ClientData {
     public static AtomicInteger requestCounter = new AtomicInteger(0);
 
     // public static InetAddress server1Address;
-    public static String SERVER_1_HOSTNAME = "Avkash-MacBook-Pro.local";
     public static String SERVER_1_IP = "127.0.0.1";
     public static int SERVER_1_PORT = 50001;
 
     // public static InetAddress server2Address;
-    public static String SERVER_2_HOSTNAME = "KJ-ZENBOOK";
-    public static String SERVER_2_IP = "192.168.167.1";
-    public static int SERVER_2_PORT = 60000;
+    public static String SERVER_2_IP = "192.168.81.1";
+    public static int SERVER_2_PORT = 1234;
 
     public static InetAddress activeServerAddress;
-    public static String ACTIVE_HOSTNAME = ClientData.SERVER_1_HOSTNAME;
     public static String ACTIVE_IP = ClientData.SERVER_1_IP;
     public static int ACTIVE_PORT = ClientData.SERVER_1_PORT;
     public static InetSocketAddress serverSocket;
 
-    public static boolean isPortAlive(String ipAddress, int port) {
-        try {
-            Socket socket = new Socket(ipAddress, port);
-            socket.setSoTimeout(1000);
-            // (new Socket(ipAddress, port)).close();
-            socket.close();
-            System.out.println("port is not in use");
-            return false;
-        
-        } catch (IOException e) {
-            return true;
-        }
-   
-    }
-
-
-    public static void isServer(DatagramSocket datagramSocket){
-        ClientPingServer ping = new ClientPingServer(true);
-        try {
-            Sender.sendTo(ping, datagramSocket);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
-
-    public static boolean isIpAlive(String ipAddress, int port) throws IOException {
-        InetAddress add = InetAddress.getByName(ipAddress);
-        System.out.println("Sending Ping Request to " + ipAddress);
-
-        if (add.isReachable(port)) {
-            // System.out.println("Host " + ipAddress + ":" + port + " is reachable");
-            return true;
-        } else {
-            // System.out.println("Sorry ! We can't reach to this host - " + ipAddress + ":"
-            // + port);
-            return false;
-        }
-    }
-
-    // Sends ping request to a provided IP address
-    public static boolean sendPingRequest(String ipAddress, int port) throws UnknownHostException, IOException {
-
-        ClientPingServer.ping(ipAddress, port);
-        
-        boolean ipAlive = isIpAlive(ipAddress, port);
-        if (ipAlive) {
-            System.out.println(ipAddress + " is reachable.");
-            if(isPortAlive(ipAddress, port)){
-                System.out.println(port+" port is reachable");
-                return true;
-            }
-            else{
-                System.out.println(port+" port is not reachable");
-                return false;
-            }
-        } else {
-            System.out.println(ipAddress + " is not reachanble");
-            return false;
-        }
-    }
+    public static String CLIENT_IP;
+    public static int CLIENT_PORT;
 
     // UI to enter Server IP address
     public static void getServerAddress(Scanner s) {
@@ -131,19 +64,17 @@ public class ClientData {
         while (true) {
 
             // COMMENT to skip entering IP address
-            getServerAddress(scanner);// <---------------------------------------------------------TO
+            // getServerAddress(scanner);// <---------------------------------------------------------TO
             // SKIP ENTERING IP
             try {
-                boolean server1Active = sendPingRequest(SERVER_1_IP, SERVER_1_PORT);
-                boolean server2Active = sendPingRequest(SERVER_2_IP, SERVER_2_PORT);
+                boolean server1Active = ClientPingServer.ping(SERVER_1_IP, SERVER_1_PORT);;
+                boolean server2Active =  ClientPingServer.ping(SERVER_2_IP, SERVER_2_PORT);
 
                 if (server1Active) {
-                    ACTIVE_HOSTNAME = SERVER_1_HOSTNAME;
                     ACTIVE_PORT = SERVER_1_PORT;
                     ACTIVE_IP = SERVER_1_IP;
                     break;
                 } else if (server2Active) {
-                    ACTIVE_HOSTNAME = SERVER_2_HOSTNAME;
                     ACTIVE_PORT = SERVER_2_PORT;
                     ACTIVE_IP = SERVER_2_IP;
                     break;
@@ -151,10 +82,10 @@ public class ClientData {
                     System.out.println("Server 1 and Server 2 are unreachable. Please enter valid Server Address");
                 }
 
-            } catch (UnknownHostException e1) {
+            } catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
                 // e1.printStackTrace();
-            } catch (IOException e1) {
+            } catch (IOException e) {
                 // TODO Auto-generated catch block
                 // e1.printStackTrace();
             }

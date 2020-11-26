@@ -70,7 +70,7 @@ public class Server implements Runnable {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Port Number for server");
+        System.out.print("Enter Port Number for server: ");
 
         int portNumber = sc.nextInt();  
         
