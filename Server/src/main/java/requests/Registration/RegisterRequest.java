@@ -1,6 +1,9 @@
 package requests.Registration;
+
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 
 import requests.Request;
 import requests.RequestType;
@@ -14,41 +17,39 @@ Register Request
 - Socket #
 */
 
-public class RegisterRequest extends Request implements Serializable{
+public class RegisterRequest extends Request implements Serializable {
 
-    InetSocketAddress clientSocketAddress;
-    String clientName;
+    private String address;
+    private int port;
+    private String clientName;
 
-    public RegisterRequest(int rqNumber, String clientName, InetSocketAddress clientSocketAddress) {
-        super(RequestType.REGISTER,rqNumber);
+    public RegisterRequest(int rqNumber, String clientName, String address, int port) {
+        super(RequestType.REGISTER, rqNumber);
         this.clientName = clientName;
-        this.clientSocketAddress = clientSocketAddress;
+        this.address = address;
+        this.port = port;
     }
 
     public String getClientName() {
         return clientName;
     }
-    
-    public InetSocketAddress getClientSocketAddress(){
-        return clientSocketAddress;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getPort() {
+        return port;
     }
 
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + this.getRid()+" "+ getClientName() + " " + getClientSocketAddress();
+        return RequestType.REGISTER + " " + this.getRid() + " " + getClientName() + " " + getAddress() + ":"
+                + getPort();
     }
 
-    public void print(){
+    public void print() {
         System.out.println(this.toString());
     }
-
-
-    // TEST CODE
-    // public static void main(String[] args) throws UnknownHostException {
-    //     RegisterMessage rm = new RegisterMessage("rrr", new InetSocketAddress(InetAddress.getLocalHost(), 6000));
-
-    //     System.out.println(rm.clientSocketAddress.getPort());
-
-    // }
 
 }

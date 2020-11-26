@@ -8,12 +8,14 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import client.ClientData;
+
 
 
 //used to send meesages
 public class Sender {
 
-    public static void sendTo(Object object, InetAddress address, int port, DatagramSocket datagramSocket)
+    public static void sendTo(Object object, DatagramSocket datagramSocket)
             throws IOException {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -22,7 +24,7 @@ public class Sender {
             os.writeObject(object);
 
             byte[] data = outputStream.toByteArray();
-            DatagramPacket sendPacket = new DatagramPacket(data, data.length, address, port);
+            DatagramPacket sendPacket = new DatagramPacket(data, data.length, ClientData.activeServerAddress, ClientData.ACTIVE_PORT);
             datagramSocket.send(sendPacket);
 
         } catch (UnknownHostException e) {

@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
+import requests.Registration.LoginConfirmed;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
@@ -76,7 +77,10 @@ class RequestHandler {
       ClientData.isRegistered.set(false);
       ClientData.username.set("");
     } 
-    
+    else if (request instanceof LoginConfirmed) {
+      System.out.println(request.toString());
+      ClientData.isRegistered.set(true);
+    } 
     else {
       System.out.println(request.toString());
     }

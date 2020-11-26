@@ -13,6 +13,7 @@ import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
+import requests.ClientPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
 import requests.Publish.PublishRequest;
@@ -20,6 +21,7 @@ import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
 import requests.Registration.DeRegisterRequest;
+import requests.Registration.LoginRequest;
 
 public class ClientReceiver implements Runnable {
 
@@ -57,7 +59,7 @@ public class ClientReceiver implements Runnable {
             // 1234));
 
             // ClientSender.sendResponse(o, packetReceived, clientSocket);
-            Writer.appendToFile(o); 
+            Writer.appendToFile(o);
             requestHandler(o);
 
             is.close();
@@ -98,9 +100,8 @@ public class ClientReceiver implements Runnable {
             // in the case Name is not registered the message is just ignored by the current
             // server. No further action is required
 
-            }
-            else if(request instanceof UpdateRequest){
-                System.out.println(request.toString());
+        } else if (request instanceof UpdateRequest) {
+            System.out.println(request.toString());
 
             // Upon reception of this message the current server can accept the update and
             // reply to the user using the message
@@ -117,8 +118,8 @@ public class ClientReceiver implements Runnable {
             // in the case of denial send SubjectsRejected to the user
         } else if (request instanceof PublishRequest) {
 
-            publish((PublishRequest)request);
-            
+            publish((PublishRequest) request);
+
         } else if (request instanceof ChangeServer) {
             System.out.println("Received change server Request");
             // Server needs to inform all the registered users about Change server Request
@@ -126,6 +127,19 @@ public class ClientReceiver implements Runnable {
             // when a server is not serving it can change its IP address and socket#, but
             // informs only the current(serving) server with the following message
             System.out.println("Received Update Server Request");
+        } else if (request instanceof ClientPingServer) {
+            System.out.println("Client Pinging");
+            try {
+                ((ClientPingServer) request).setActive(true);
+                ClientSender.sendResponse(request, packetReceived, clientSocket);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        else if (request instanceof LoginRequest) {
+            System.out.println();
         } else {
             System.out.println("No such request present to handle the case");
         }
@@ -137,14 +151,12 @@ public class ClientReceiver implements Runnable {
             boolean dbResponse = false;
             Database db = new Database();
             if (!db.userExist(username)) {
-                dbResponse = db.addUser(username, request.getClientSocketAddress().getAddress().toString(),
-                        request.getClientSocketAddress().getPort());
+                dbResponse = db.addUser(username, request.getAddress(), request.getPort());
                 if (dbResponse) {
                     ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(request.getRid());
                     ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
                     return;
-                }
-                else{
+                } else {
                     ClientRegisterDenied denied = new ClientRegisterDenied("Problem with database", request.getRid());
                     ClientSender.sendResponse(denied, packetReceived, clientSocket);
                 }
@@ -159,7 +171,6 @@ public class ClientReceiver implements Runnable {
         }
     }
 
-    
     public void deregister(DeRegisterRequest request) {
         try {
             String username = request.getClientName();
@@ -180,81 +191,79 @@ public class ClientReceiver implements Runnable {
         }
     }
 
-
     // This is a helper method used to add subjects.
-    public void addSubjects(){
+    public void addSubjects() {
         Database db = new Database();
 
-        //db.addFavoriteSubject("avkash", "Food");
-        //db.addFavoriteSubject("avkash", "Formula1");
-        //db.addFavoriteSubject("avkash", "Sports");
+        // db.addFavoriteSubject("avkash", "Food");
+        // db.addFavoriteSubject("avkash", "Formula1");
+        // db.addFavoriteSubject("avkash", "Sports");
 
         db.addFavoriteSubject("tom", "Food");
         db.addFavoriteSubject("tom", "Formula1");
         db.addFavoriteSubject("tom", "Sports");
 
-
     }
 
+    public void publish(PublishRequest request) {
 
-    public void publish(PublishRequest request){
+        // addSubjects();
 
-        //addSubjects();
-
-        String username = request.getClientName(); 
-        String subject = request.getSubject(); 
+        String username = request.getClientName();
+        String subject = request.getSubject();
         String message = request.getText();
 
         Database db = new Database();
 
-        try{
+        try {
             // Check if user is registered
-            if(db.userExist(username)){
+            if (db.userExist(username)) {
                 // Check subject
-                if(db.subjectExist(subject)){
-                    
+                if (db.subjectExist(subject)) {
+
                     // if the subject is in the list of subjects of interest for the user
                     List<String> subjects = db.getFavoriteSubjects(username);
 
-                    if(subjects.contains(subject)){
+                    if (subjects.contains(subject)) {
 
-                        // user adds a message to the subject 
+                        // user adds a message to the subject
                         db.addMessage(username, subject, message);
 
                         // get list of all users subscribed to that subject
                         List<User> subscribedUsers = db.getSubjectUsers(subject);
                         // dispatch the message to all the subscribed users
-                        for(User user : subscribedUsers){
-                            MessageConfirmation confirmation = new MessageConfirmation(username,subject,message);
+                        for (User user : subscribedUsers) {
+                            MessageConfirmation confirmation = new MessageConfirmation(username, subject, message);
                             System.out.println(user.getUsername());
                             System.out.println(user.getUserSocket());
                             // Send confirmation to all users
-                            //DatagramSocket socket  =  new DatagramSocket(user.getUserSocket());
-                            
-                            byte [] buffer = new byte[1024];
+                            // DatagramSocket socket = new DatagramSocket(user.getUserSocket());
+
+                            byte[] buffer = new byte[1024];
                             // InetAddress address = InetAddress.getByName(user.getUserIP());
 
                             // TODO can only test on LocalHost
                             InetAddress address = InetAddress.getLocalHost();
                             SocketAddress socketAddress = new InetSocketAddress(address, user.getUserSocket());
 
-                            DatagramPacket packet = new DatagramPacket(buffer, buffer.length,socketAddress);
-                            
-                            ClientSender.sendResponse(confirmation, packet, clientSocket);                       
+                            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, socketAddress);
+
+                            ClientSender.sendResponse(confirmation, packet, clientSocket);
                         }
-                    }else{
+                    } else {
                         // publish denied
-                        PublishDenied denied = new PublishDenied(request.getRid(),"Subject is not in present in your list of subjects");
+                        PublishDenied denied = new PublishDenied(request.getRid(),
+                                "Subject is not in present in your list of subjects");
                         ClientSender.sendResponse(denied, packetReceived, clientSocket);
-                    }    
-                    }else{
+                    }
+                } else {
                     // handle user does not have subject in the list
-                    PublishDenied denied = new PublishDenied(request.getRid(),"Subject does not exist");
+                    PublishDenied denied = new PublishDenied(request.getRid(), "Subject does not exist");
                     ClientSender.sendResponse(denied, packetReceived, clientSocket);
                 }
-            }else{
+            } else {
                 // handle username not registered
-                PublishDenied denied = new PublishDenied(request.getRid(),"You are not registered. Please register");
+                PublishDenied denied = new PublishDenied(request.getRid(), "You are not registered. Please register");
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
 
@@ -265,4 +274,3 @@ public class ClientReceiver implements Runnable {
     }
 
 }
-

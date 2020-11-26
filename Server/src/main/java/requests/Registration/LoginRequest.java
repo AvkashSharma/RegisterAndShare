@@ -1,29 +1,20 @@
 package requests.Registration;
 
 import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 
 import requests.Request;
 import requests.RequestType;
 
-/*
-Register Request
-- Request #
-- Unique name
-- IP Address 
-- Socket #
-*/
-
-public class RegisterRequest extends Request implements Serializable {
-
+public class LoginRequest extends Request implements Serializable{
+    /**
+     *
+     */
     private String address;
     private int port;
     private String clientName;
 
-    public RegisterRequest(int rqNumber, String clientName, String address, int port) {
-        super(RequestType.REGISTER, rqNumber);
+    public LoginRequest(int rqNumber, String clientName, String address, int port) {
+        super(RequestType.LOGIN, rqNumber);
         this.clientName = clientName;
         this.address = address;
         this.port = port;
@@ -43,12 +34,11 @@ public class RegisterRequest extends Request implements Serializable {
 
     @Override
     public String toString() {
-        return RequestType.REGISTER + " " + this.getRid() + " " + getClientName() + " " + getAddress() + ":"
+        return RequestType.LOGIN + " " + this.getRid() + " " + getClientName() + " " + getAddress() + ":"
                 + getPort();
     }
 
     public void print() {
         System.out.println(this.toString());
     }
-
 }
