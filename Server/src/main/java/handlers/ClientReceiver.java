@@ -13,6 +13,7 @@ import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
+import server.ServerData;
 import requests.ClientPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
@@ -75,7 +76,11 @@ public class ClientReceiver implements Runnable {
     public synchronized void requestHandler(Object request) {
 
         if (request instanceof RegisterRequest) {
-            register((RegisterRequest) request);
+            if (ServerData.active.get()){
+                System.out.println(ServerData.active.get());
+                register((RegisterRequest) request);
+
+            }
             // Upon reception of this message the current server, can accept or refuse the
             // registration.
             // Registration can be denied if the provided Name is already in use
@@ -90,7 +95,8 @@ public class ClientReceiver implements Runnable {
             // else ServerRegisterDenied
 
         } else if (request instanceof DeRegisterRequest) {
-            deregister((DeRegisterRequest) request);
+            if (ServerData.active.get())
+                deregister((DeRegisterRequest) request);
 
             // If name is already registered, the current server will remove the name and
             // all the information related to this user.
@@ -101,7 +107,8 @@ public class ClientReceiver implements Runnable {
             // server. No further action is required
 
         } else if (request instanceof UpdateRequest) {
-            System.out.println(request.toString());
+            if (ServerData.active.get())
+                System.out.println(request.toString());
 
             // Upon reception of this message the current server can accept the update and
             // reply to the user using the message
@@ -109,7 +116,8 @@ public class ClientReceiver implements Runnable {
             // if not send UpdateDenied
             // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
         } else if (request instanceof SubjectsRequest) {
-            System.out.println("Update Subjects ");
+            if (ServerData.active.get())
+                System.out.println("Update Subjects ");
             // current server can accept the update or reject it because of errors in the
             // name or in the list of subjects.
             // check for errors in the name or in the list of subjects
@@ -128,18 +136,21 @@ public class ClientReceiver implements Runnable {
             // informs only the current(serving) server with the following message
             System.out.println("Received Update Server Request");
         } else if (request instanceof ClientPingServer) {
-            System.out.println("Client Pinging");
-            try {
-                ((ClientPingServer) request).setActive(true);
-                ClientSender.sendResponse(request, packetReceived, clientSocket);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            if (ServerData.active.get()) {
+                System.out.println("Client Pinging");
+                try {
+                    ((ClientPingServer) request).setActive(true);
+                    ClientSender.sendResponse(request, packetReceived, clientSocket);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
 
         else if (request instanceof LoginRequest) {
-            System.out.println();
+            if (ServerData.active.get())
+                System.out.println();
         } else {
             System.out.println("No such request present to handle the case");
         }

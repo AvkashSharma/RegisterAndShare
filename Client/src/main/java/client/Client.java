@@ -69,7 +69,7 @@ public class Client {
         while (!val.equals("exit")) {
             System.out.println("------------------@" + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
-            System.out.println("Enter 'exit' to exit application, Press 'Enter' to refresh");
+            System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
 
             if (!ClientData.isRegistered.get()) {
                 System.out.println("1-Register");
