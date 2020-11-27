@@ -9,6 +9,7 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import handlers.*;
+import requests.ServerPingServer;
 
 public class Server implements Runnable {
 
@@ -60,30 +61,45 @@ public class Server implements Runnable {
     }
 
     public void serverConfig() {
+        System.out.println("Enter server timeout(minutes): ");
+        ServerData.timeout.set(scanner.nextInt() * 60 * 1000);
+
         System.out.print("Enter Port Number for server: ");
         ServerData.port.set(scanner.nextInt());
 
         System.out.print("Enter a server name: ");
         ServerData.name = scanner.next();
 
-        //Is it the first server?
-        
-        System.out.println("Enter second server address: ");
-        ServerData.addressB.set(scanner.next());
+        while (true) {
+            // Is it the first server?
+            System.out.print("Is this your first server(y/n): ");
+            String firstServer = scanner.nextLine();
+            if (firstServer.equals("y")) {
+                break;
+            } else if (firstServer.equals("n")) {
+                System.out.println("Enter other server's address: ");
+                ServerData.addressB.set(scanner.next());
 
-        System.out.println("Enter second server port: ");
-        ServerData.portB.set(scanner.nextInt());
+                System.out.println("Enter other server's port: ");
+                ServerData.portB.set(scanner.nextInt());
 
-        //ping server B
-        
+                try {
+                    ServerData.isServing.set(!ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get()));
 
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
     }
 
     public void ui() {
         String val = "";
         while (!val.equals("exit")) {
-            System.out.println("\n----------------Server Listening on " + ServerData.address + ":" + ServerData.port.get()
-                    + "----------------");
+            System.out.println("\n----------------Server Listening on " + ServerData.address + ":"
+                    + ServerData.port.get() + "---------------- Online: "+ ServerData.isServing.get());
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.println("1-Change Port");
             System.out.println("2-Change IP");
@@ -124,9 +140,9 @@ public class Server implements Runnable {
 
     public void updatePort() {
         System.out.println("Enter port number: ");
-        //change port number
-        //close socket and reopen on new port
-        //inform server of change
+        // change port number
+        // close socket and reopen on new port
+        // inform server of change
     }
 
     public void updateIP() {
@@ -134,10 +150,10 @@ public class Server implements Runnable {
     }
 
     public void stopServing() {
-        ServerData.active.set(false);
+        ServerData.isServing.set(false);
     }
 
     public void serve() {
-        ServerData.active.set(true);
+        ServerData.isServing.set(true);
     }
 }
