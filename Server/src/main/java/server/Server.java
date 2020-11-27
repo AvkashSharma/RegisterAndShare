@@ -8,6 +8,8 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.TimerTask;
+
 import handlers.*;
 import requests.ServerPingServer;
 
@@ -31,7 +33,9 @@ public class Server implements Runnable {
     public void run() {
         try {
             socket = new DatagramSocket(ServerData.port.get());
+            startTimer();
             while (true) {
+
                 byte[] buffer = new byte[bufferSize];
 
                 DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
@@ -61,8 +65,9 @@ public class Server implements Runnable {
     }
 
     public void serverConfig() {
-        System.out.println("Enter server timeout(minutes): ");
-        ServerData.timeout.set(scanner.nextInt() * 60 * 1000);
+        System.out.println("Enter server timeout(seconds): ");
+        ServerData.timeout.set(scanner.nextInt());
+        ServerData.interval = ServerData.timeout.get();
 
         System.out.print("Enter Port Number for server: ");
         ServerData.port.set(scanner.nextInt());
@@ -99,12 +104,14 @@ public class Server implements Runnable {
         String val = "";
         while (!val.equals("exit")) {
             System.out.println("\n----------------Server Listening on " + ServerData.address + ":"
-                    + ServerData.port.get() + "---------------- Online: "+ ServerData.isServing.get());
+                    + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get());
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.println("1-Change Port");
             System.out.println("2-Change IP");
             System.out.println("3-Stop Serving Clients");
             System.out.println("4-Serve Clients");
+            System.out.println("5-Ping other server");
+            System.out.println("6-Swap Server");
 
             System.out.print("Choice: ");
             val = scanner.nextLine();
@@ -138,6 +145,28 @@ public class Server implements Runnable {
         }
     }
 
+    public void startTimer() {
+        ServerData.timer.scheduleAtFixedRate(new TimerTask() {
+
+            public void run() {
+                if(ServerData.interval == 1){
+                    if(ServerData.isServing.get()){
+                    //  before going offline make sure other server goes online
+                        ServerData.isServing.set(false);
+                    }
+                    else
+                        ServerData.isServing.set(true);
+                    // ServerData.timer.cancel();
+                    ServerData.interval = ServerData.timeout.get();
+                }
+                --ServerData.interval;
+
+                // int timeS = ServerData.setInterval();
+                System.out.println(ServerData.interval);
+            }
+        }, 1000, 1000);
+    }
+
     public void updatePort() {
         System.out.println("Enter port number: ");
         // change port number
@@ -155,5 +184,10 @@ public class Server implements Runnable {
 
     public void serve() {
         ServerData.isServing.set(true);
+    }
+
+    // swap server
+    public void swap() {
+
     }
 }
