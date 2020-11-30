@@ -8,6 +8,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.Timer;
 import java.util.TimerTask;
 
 import handlers.*;
@@ -150,14 +151,12 @@ public class Server implements Runnable {
 
             public void run() {
                 if(ServerData.interval == 1){
-                    if(ServerData.isServing.get()){
-                    //  before going offline make sure other server goes online
-                        ServerData.isServing.set(false);
-                    }
+                    if(ServerData.isServing.get())
+                        stopServing();
                     else
-                        ServerData.isServing.set(true);
-                    // ServerData.timer.cancel();
-                    ServerData.interval = ServerData.timeout.get();
+                        serve();
+                        ServerData.timer.cancel();
+                        ServerData.timer = new Timer();
                 }
                 --ServerData.interval;
 
@@ -179,11 +178,36 @@ public class Server implements Runnable {
     }
 
     public void stopServing() {
+        boolean bServing = false;
+        try {
+            bServing = ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get());
+
+            // make b go online
+            //wait for b to go online
+
+
+            //tell clients to go b
+            //create thread to send all together
+
+            //go offline
+
+            //else remain online
+
+        } catch (IOException e) {
+            bServing = false;
+        }
+
+        //check other server is online before going offline
+        // ping server and his status
+        //handle clients
+
         ServerData.isServing.set(false);
     }
 
     public void serve() {
         ServerData.isServing.set(true);
+        ServerData.interval = ServerData.timeout.get();
+        startTimer();
     }
 
     // swap server

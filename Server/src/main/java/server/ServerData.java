@@ -18,6 +18,7 @@ public class ServerData {
     public static Timer timer = new Timer();
     public static int interval;
 
+
     public static final int setInterval(){
         if(interval == 1){
             timer.cancel();
