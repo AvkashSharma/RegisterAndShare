@@ -16,8 +16,8 @@ public class SubjectsRejected extends Request implements Serializable {
     String clientName;
      String [] listOfSubjects;
 
-    public SubjectsRejected(String clientName, String[] listOfSubjects){
-      super(RequestType.SUBJECTS_REJECTED);
+    public SubjectsRejected(int reqNumber,String clientName, String[] listOfSubjects){
+      super(RequestType.SUBJECTS_REJECTED,reqNumber);
       this.clientName = clientName;
       this.listOfSubjects=listOfSubjects;
     }

@@ -4,12 +4,14 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
+import java.util.Arrays;
 import java.util.List;
 
 import db.Database;
 import db.User;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
+import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
@@ -106,8 +108,13 @@ public class ClientReceiver implements Runnable {
             // Check if name exists
             // if not send UpdateDenied
             // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
-        } else if (request instanceof SubjectsRequest) {
-            sendListOfSubjects((SubjectsRequest)request);
+        }
+        else if(request instanceof AvailableListOfSubjects){
+            sendListOfSubjects((AvailableListOfSubjects)request);
+        }
+        else if (request instanceof SubjectsRequest) {
+            subscribeToSubjects((SubjectsRequest)request);
+         
             // System.out.println("Update Subjects ");
             //send a confirmation if the subject subscription is confirmed on not
             // current server can accept the update or reject it because of errors in the
@@ -127,7 +134,7 @@ public class ClientReceiver implements Runnable {
             // when a server is not serving it can change its IP address and socket#, but
             // informs only the current(serving) server with the following message
             System.out.println("Received Update Server Request");
-        } else if(request instanceof ListOfSubjects){
+        } else if(request instanceof AvailableListOfSubjects){
              
         }
          else {
@@ -200,7 +207,7 @@ public class ClientReceiver implements Runnable {
 
     }
 
-    public void sendListOfSubjects(SubjectsRequest request){
+    public void sendListOfSubjects(AvailableListOfSubjects request){
     
         String username=request.getClientName();
         Database db=new Database();
@@ -226,10 +233,50 @@ public class ClientReceiver implements Runnable {
             e.printStackTrace();
         }    
     }
-    // public void subscribe(SubjectsRequest request ){
-    //     String username=request.getClientName();
-    //     List <String> subjects=request.getListOfSubjects();
-    // }
+    public void subscribeToSubjects(SubjectsRequest request ){
+        String username=request.getClientName();
+        List<String>subjects=request.getSubjectsToSubscribe();
+        Database db= new Database();
+        try{
+            //check if user is registered
+            if(db.userExist(username)){
+            //check if the subject exist
+            String subject="";
+            boolean contained;
+            String reply="";
+            String subscribedSubjects="";
+            List <String> subscribedList;
+            for(int i=0; i<subjects.size();i++){
+                subject=subjects.get(i);
+                contained=db.getSubjects().toString().toLowerCase().contains(subject.toString().toLowerCase());
+                if(contained){
+                System.out.println(subject+" is in the available subjects");
+                db.addFavoriteSubject(username, subject);
+                reply="\n\t"+subject+" has been added to your subscribed subjects";
+                ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                }
+                else{
+                System.out.println(subject+" is not in the available subjects");
+                reply="\n\t"+subject+" is not available in the available subject and has not been added";
+                ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                }
+            }
+            subscribedSubjects="\n\tThe following are your subscribed subjects: ";
+            ClientSender.sendResponse(subscribedSubjects, packetReceived, clientSocket);
+            subscribedList=db.getFavoriteSubjects(username);
+            ClientSender.sendResponse("\n\t"+subscribedList, packetReceived, clientSocket);
+
+            }
+            else{
+                String denied="The user does not exist";
+                ClientSender.sendResponse(denied, packetReceived, clientSocket);
+            }
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     public void publish(PublishRequest request){
 
         //addSubjects();

@@ -289,7 +289,7 @@ public class Client {
     }
     public void getListOfSubjects(){
         List<String> listOfSubjects=new ArrayList<String>();
-        SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
+        AvailableListOfSubjects sRequest = new AvailableListOfSubjects(requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
         
         try {
             // Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
