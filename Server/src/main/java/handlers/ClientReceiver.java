@@ -250,13 +250,13 @@ public class ClientReceiver implements Runnable {
                 subject=subjects.get(i);
                 contained=db.getSubjects().toString().toLowerCase().contains(subject.toString().toLowerCase());
                 if(contained){
-                System.out.println(subject+" is in the available subjects");
+                // System.out.println(subject+" is in the available subjects");
                 db.addFavoriteSubject(username, subject);
                 reply="\n\t"+subject+" has been added to your subscribed subjects";
                 ClientSender.sendResponse(reply, packetReceived, clientSocket);
                 }
                 else{
-                System.out.println(subject+" is not in the available subjects");
+                // System.out.println(subject+" is not in the available subjects");
                 reply="\n\t"+subject+" is not available in the available subject and has not been added";
                 ClientSender.sendResponse(reply, packetReceived, clientSocket);
                 }
