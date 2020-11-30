@@ -107,8 +107,9 @@ public class ClientReceiver implements Runnable {
             // if not send UpdateDenied
             // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
         } else if (request instanceof SubjectsRequest) {
-            System.out.println("Update Subjects ");
             sendListOfSubjects((SubjectsRequest)request);
+            // System.out.println("Update Subjects ");
+            //send a confirmation if the subject subscription is confirmed on not
             // current server can accept the update or reject it because of errors in the
             // name or in the list of subjects.
             // check for errors in the name or in the list of subjects
@@ -225,6 +226,10 @@ public class ClientReceiver implements Runnable {
             e.printStackTrace();
         }    
     }
+    // public void subscribe(SubjectsRequest request ){
+    //     String username=request.getClientName();
+    //     List <String> subjects=request.getListOfSubjects();
+    // }
     public void publish(PublishRequest request){
 
         //addSubjects();

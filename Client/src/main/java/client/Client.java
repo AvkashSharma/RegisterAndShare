@@ -300,23 +300,23 @@ public class Client {
         }
     }
     public void subscribeToSubjects(){
-        //get list of subjects
-        //input the number on the same line
+        
+        
         //confirm the request or deny it
         //update the database
         System.out.print("\tEnter the subject (enter exit when you're done): ");
         String subject ="";
         subject=scanner.next();
-        List<String> listOfSubjects=new ArrayList<String>();
+        List<String> subjectsToSubscribe=new ArrayList<String>();
         while(!subject.equals("exit")){
-        listOfSubjects.add(subject);
+        subjectsToSubscribe.add(subject);
         System.out.print("\tEnter the subject (enter exit when you're done): ");
         subject=scanner.next();
         }
-        SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
+        SubjectsRequest sRequest = new SubjectsRequest(requestCounter.incrementAndGet(), ClientData.username.get(),subjectsToSubscribe);
         
         try {
-            // Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
+            
             Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
         } catch (IOException e) {
             // TODO Auto-generated catch block

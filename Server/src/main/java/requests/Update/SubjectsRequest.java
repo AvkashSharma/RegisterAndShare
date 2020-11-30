@@ -14,25 +14,25 @@ public class SubjectsRequest extends Request implements Serializable{
 
     
     String clientName;
-    List <String>listOfSubjects=new ArrayList<String>();
+    List <String>subjectsToSubscribe=new ArrayList<String>();
 
-    public SubjectsRequest(int reqNumber, String clientName, List<String>listOfSubjects) {
+    public SubjectsRequest(int reqNumber, String clientName,List<String>subjectsToSubscribe) {
         super(RequestType.SUBJECTS, reqNumber);
         this.clientName = clientName;
-        this.listOfSubjects=listOfSubjects;
+        this.subjectsToSubscribe=subjectsToSubscribe;
     }
 
     public String getClientName() {
         return clientName;
     }
-    public List<String> getListOfSubjects() {
-        return listOfSubjects;
+  
+    public List<String> getSubjectsToSubscribe() {
+        return subjectsToSubscribe;
     }
-
 
     @Override
     public String toString() {
-        return RequestType.SUBJECTS + " " + this.getRid()+" "+ getClientName() + " " +getListOfSubjects();
+        return RequestType.SUBJECTS + " " + this.getRid()+" "+ getClientName()+ " "+getSubjectsToSubscribe();
     }
 
     public void print(){
