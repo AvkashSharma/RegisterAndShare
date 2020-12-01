@@ -1,5 +1,8 @@
 package requests.server;
 
-public class UpdateServerRequest {
+import java.io.Serializable;
+
+public class UpdateServerRequest implements Serializable {
+    
     
 }
