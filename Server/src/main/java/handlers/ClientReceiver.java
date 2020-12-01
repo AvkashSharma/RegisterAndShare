@@ -214,6 +214,7 @@ public class ClientReceiver implements Runnable {
                 ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
+            db.close();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -235,6 +236,7 @@ public class ClientReceiver implements Runnable {
                 }
             }
 
+            db.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -252,7 +254,7 @@ public class ClientReceiver implements Runnable {
         db.addFavoriteSubject("tom", "Food");
         db.addFavoriteSubject("tom", "Formula1");
         db.addFavoriteSubject("tom", "Sports");
-
+        db.close();
     }
 
     public void sendListOfSubjects(AvailableListOfSubjects request) {
@@ -275,6 +277,7 @@ public class ClientReceiver implements Runnable {
                 System.out.println(noSubjects);
                 ClientSender.sendResponse(noSubjects, packetReceived, clientSocket);
             }
+            db.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -328,6 +331,7 @@ public class ClientReceiver implements Runnable {
                 String denied = "The user does not exist";
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
+            db.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -394,33 +398,10 @@ public class ClientReceiver implements Runnable {
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
 
+            db.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-    }
-
-    // let know the clients that server has changed address
-    public void changeServer() {
-
-        Database db = new Database();
-
-        List<User> Users = db.getUsers();
-        for (User user : Users) {
-            ChangeServer changeServer = new ChangeServer(ServerData.addressB.get(), ServerData.portB.get());
-            System.out.println(user.getUsername() + " " + user.getUserSocket());
-            byte[] buffer = new byte[1024];
-            
-            SocketAddress socketAddress = new InetSocketAddress(user.getUserIP(), user.getUserSocket());
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, socketAddress);
-
-            try {
-                ClientSender.sendResponse(changeServer, packet, clientSocket);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                System.out.println("Could not connect to client");
-                e.printStackTrace();
-            }
         }
     }
 

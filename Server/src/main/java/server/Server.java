@@ -4,15 +4,21 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import db.Database;
+import db.User;
 import handlers.*;
 import requests.ServerPingServer;
+import requests.Update.ChangeServer;
 import requests.server.ServeRequest;
 
 public class Server implements Runnable {
@@ -184,7 +190,7 @@ public class Server implements Runnable {
 
         boolean bServingStatus = false;
         try {
-            //ping other server to see if its up and running
+            // ping other server to see if its up and running
             bServingStatus = ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get());
             System.out.println(bServingStatus);
             if (bServingStatus) {
@@ -193,6 +199,7 @@ public class Server implements Runnable {
                 Sender.sendTo(serveRequest, socket, ServerData.addressB.get(), ServerData.portB.get());
                 // ClientSender.sendResponse(toSend, packet, clientSocket);
                 ServerData.isServing.set(false);
+                changeServer();
                 // check other server is online before going offline
                 // ping server and his status
                 // handle clients
@@ -226,8 +233,28 @@ public class Server implements Runnable {
         startTimer();
     }
 
-    // swap server
-    public void swap() {
+    // let know the clients that server has changed address
+    public static void changeServer() {
 
+        Database db = new Database();
+
+        List<User> Users = db.getUsers();
+        for (User user : Users) {
+            ChangeServer changeServer = new ChangeServer(ServerData.addressB.get(), ServerData.portB.get());
+            System.out.println(user.getUsername() + " " + user.getUserSocket());
+            byte[] buffer = new byte[1024];
+
+            SocketAddress socketAddress = new InetSocketAddress(user.getUserIP(), user.getUserSocket());
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, socketAddress);
+
+            try {
+                ClientSender.sendResponse(changeServer, packet, socket);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                System.out.println("Could not connect to client");
+                e.printStackTrace();
+            }
+        }
+        db.close();
     }
 }

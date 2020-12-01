@@ -30,3 +30,24 @@ CLIENT_REGISTER_CONFIRMED 1
 	 Choose among the following subjects:  Food Formula1 Sports
 PUBLISH-DENIED 3 Subject is not in present in your list of subjects
 DE-REGISTER_CONFIRMED 0 
+CLIENT-REGISTER-DENIED 1 Username exists
+CLIENT-REGISTER-DENIED 2 Username exists
+CLIENT-REGISTER-DENIED 4 Username exists
+CLIENT_REGISTER_CONFIRMED 5 
+CLIENT-REGISTER-DENIED 1 Username exists
+CLIENT_REGISTER_CONFIRMED 2 
+CLIENT_REGISTER_CONFIRMED 1 
+CHANGE-SERVER 192.168.2.11:1234
+CHANGE-SERVER 192.168.2.11:1234
+CHANGE-SERVER 192.168.2.11:6666
+CHANGE-SERVER 192.168.2.11:6666
+
+	 Choose among the following subjects:  Food Formula1 Sports
+CHANGE-SERVER 192.168.2.11:6666
+CHANGE-SERVER 192.168.2.11:6666
+
+	 Choose among the following subjects:  Food Formula1 Sports
+
+	 Choose among the following subjects:  Food Formula1 Sports
+CHANGE-SERVER 192.168.2.11:6666
+CHANGE-SERVER 192.168.2.11:6666

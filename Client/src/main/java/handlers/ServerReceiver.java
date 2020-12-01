@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import requests.Registration.LoginConfirmed;
+import requests.Update.ChangeServer;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
@@ -26,7 +29,7 @@ public class ServerReceiver implements Runnable {
 
   public void run() {
     try {
-      
+
       while (true) {
 
         byte[] incomingData = new byte[1024];
@@ -39,8 +42,8 @@ public class ServerReceiver implements Runnable {
         ObjectInputStream is = new ObjectInputStream(byteStream);
 
         Object o = (Object) is.readObject();
-        Writer.appendToFile(o); 
-      
+        Writer.appendToFile(o);
+
         // Create an object of RequestHandler
         RequestHandler handler = new RequestHandler();
 
@@ -48,10 +51,9 @@ public class ServerReceiver implements Runnable {
         handler.handleRequest(o);
       }
     } catch (IOException e) {
-          System.out.println("Receiver IOException " + e.getMessage());
-    }
-    catch (ClassNotFoundException e) {
-        e.printStackTrace();
+      System.out.println("Receiver IOException " + e.getMessage());
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
     }
   }
 }
@@ -63,7 +65,7 @@ class RequestHandler {
     // Handle Successful Register Request - Don't think we need it
     if (request instanceof ClientRegisterConfirmed) {
       ClientData.isRegistered.set(true);
-      System.out.println("\n"+request.toString());
+      System.out.println("\n" + request.toString());
     }
 
     // Upon reception of REGISTER-DENIED, the user will give up for a little while
@@ -71,17 +73,26 @@ class RequestHandler {
     else if (request instanceof ClientRegisterDenied) {
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
-    } 
-    else if (request instanceof DeRegisterConfirmed) {
+    } else if (request instanceof DeRegisterConfirmed) {
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
       ClientData.username.set("");
-    } 
-    else if (request instanceof LoginConfirmed) {
+    } else if (request instanceof LoginConfirmed) {
       System.out.println(request.toString());
       ClientData.isRegistered.set(true);
-    } 
-    else {
+    } else if (request instanceof ChangeServer) {
+      System.out.println(request.toString());
+
+      ChangeServer ser = (ChangeServer) request;
+      ClientData.ACTIVE_IP = ser.getAddress();
+      ClientData.ACTIVE_PORT = ser.getPort();
+      try {
+        ClientData.activeServerAddress = InetAddress.getByName(ser.getAddress());
+      } catch (UnknownHostException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    } else {
       System.out.println(request.toString());
     }
   }

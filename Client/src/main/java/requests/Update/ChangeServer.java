@@ -1,6 +1,8 @@
 package requests.Update;
+
 import java.io.Serializable;
-import java.net.InetSocketAddress;
+import requests.Request;
+import requests.RequestType;
 /*
   - Request # 
   - Ip
@@ -8,11 +10,12 @@ import java.net.InetSocketAddress;
 
   */
 
-import requests.Request;
-import requests.RequestType;
-
 public class ChangeServer extends Request implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String address;
     private int port;
 
