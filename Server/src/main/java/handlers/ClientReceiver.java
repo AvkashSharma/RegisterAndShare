@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
+import java.util.Arrays;
 import java.util.List;
 
 import db.Database;
@@ -11,6 +12,7 @@ import db.User;
 import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
+import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
@@ -128,10 +130,27 @@ public class ClientReceiver implements Runnable {
 
                 // Also, inform the other server about this using DeregisterServerToServer
 
-                // in the case Name is not registered the message is just ignored by the current
-                // server. No further action is required
-
-            } else if (request instanceof UpdateRequest) {
+            // Upon reception of this message the current server can accept the update and
+            // reply to the user using the message
+            // Check if name exists
+            // if not send UpdateDenied
+            // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
+        }
+        else if(request instanceof AvailableListOfSubjects){
+            sendListOfSubjects((AvailableListOfSubjects)request);
+        }
+        else if (request instanceof SubjectsRequest) {
+            subscribeToSubjects((SubjectsRequest)request);
+         
+            // System.out.println("Update Subjects ");
+            //send a confirmation if the subject subscription is confirmed on not
+            // current server can accept the update or reject it because of errors in the
+            // name or in the list of subjects.
+            // check for errors in the name or in the list of subjects
+            // in the case of accept request send SubjectsUpdated to the user and to the
+            // other server
+            // in the case of denial send SubjectsRejected to the user
+        } else if (request instanceof UpdateRequest) {
                 System.out.println(request.toString());
 
                 // Upon reception of this message the current server can accept the update and
@@ -238,9 +257,91 @@ public class ClientReceiver implements Runnable {
 
     }
 
-    public void publish(PublishRequest request) {
+    public void sendListOfSubjects(AvailableListOfSubjects request){
+    
+        String username=request.getClientName();
+        Database db=new Database();
+        try{
+            //Check if user is registered
+            if(db.userExist(username)){
+            List<String> subjects=db.getSubjects();
+            // System.out.println("These are available subjects "+subjects);
+            String list="";
+            for(String subject:subjects){
+            list+=" "+subject;
+            }           
+            ClientSender.sendResponse("\n\t Choose among the following subjects: "+list, packetReceived, clientSocket); 
+            }
+            else{
+                String noSubjects="No subjects available";
+                System.out.println(noSubjects);
+                ClientSender.sendResponse(noSubjects, packetReceived, clientSocket);
+            }
+        }
+            catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }    
+    }
+    public void subscribeToSubjects(SubjectsRequest request ){
+        String username=request.getClientName();
+        List<String>subjects=request.getSubjectsToSubscribe();
+        Database db= new Database();
+        try{
+            //check if user is registered
+            if(db.userExist(username)){
+            //check if the subject exist
+            String subject="";
+            boolean contained;
+            boolean alreadyExist;
+            String reply="";
+            String subscribedSubjects="";
+            List <String> subscribedList;
+            for(int i=0; i<subjects.size();i++){
+                subject=subjects.get(i);
+                //check if subject to be subscribed on is in the list of available subjects
+                contained=db.getSubjects().contains(subject);
+                alreadyExist=db.getFavoriteSubjects(username).contains(subject);
+                if(contained){
+                    if(!alreadyExist){
+                        db.addFavoriteSubject(username, subject);
+                        reply="\n\t"+subject+" has been added to your subscribed subjects";
+                        ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                    }
+                    else{
+                        reply="\n\t"+subject+" was already in your subscribed subjects";
+                        ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                    }
+                // System.out.println(subject+" is in the available subjects");
+              
+              
+               
+                }
+                
+                
+                else{
+                // System.out.println(subject+" is not in the available subjects");
+                reply="\n\t"+subject+" is not available in the available subject and has not been added";
+                ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                }
+            }
+            subscribedSubjects="\n\tThe following are your subscribed subjects: ";
+            ClientSender.sendResponse(subscribedSubjects, packetReceived, clientSocket);
+            subscribedList=db.getFavoriteSubjects(username);
+            ClientSender.sendResponse("\n\t"+subscribedList, packetReceived, clientSocket);
 
-        // addSubjects();
+            }
+            else{
+                String denied="The user does not exist";
+                ClientSender.sendResponse(denied, packetReceived, clientSocket);
+            }
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    public void publish(PublishRequest request){
 
         String username = request.getClientName();
         String subject = request.getSubject();
