@@ -241,18 +241,32 @@ public class ClientReceiver implements Runnable {
             //check if the subject exist
             String subject="";
             boolean contained;
+            boolean alreadyExist;
             String reply="";
             String subscribedSubjects="";
             List <String> subscribedList;
             for(int i=0; i<subjects.size();i++){
                 subject=subjects.get(i);
-                contained=db.getSubjects().toString().toLowerCase().contains(subject.toString().toLowerCase());
+                //check if subject to be subscribed on is in the list of available subjects
+                contained=db.getSubjects().contains(subject);
+                alreadyExist=db.getFavoriteSubjects(username).contains(subject);
                 if(contained){
+                    if(!alreadyExist){
+                        db.addFavoriteSubject(username, subject);
+                        reply="\n\t"+subject+" has been added to your subscribed subjects";
+                        ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                    }
+                    else{
+                        reply="\n\t"+subject+" was already in your subscribed subjects";
+                        ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                    }
                 // System.out.println(subject+" is in the available subjects");
-                db.addFavoriteSubject(username, subject);
-                reply="\n\t"+subject+" has been added to your subscribed subjects";
-                ClientSender.sendResponse(reply, packetReceived, clientSocket);
+              
+              
+               
                 }
+                
+                
                 else{
                 // System.out.println(subject+" is not in the available subjects");
                 reply="\n\t"+subject+" is not available in the available subject and has not been added";
