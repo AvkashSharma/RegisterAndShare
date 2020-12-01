@@ -9,13 +9,19 @@ import java.util.List;
 
 import db.Database;
 import db.User;
+import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
 import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
+import requests.server.ServeConfirmed;
+import requests.server.ServeRequest;
+import requests.server.ServeRequest.*;
+import server.ServerData;
 import requests.ClientPingServer;
+import requests.ServerPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
 import requests.Publish.PublishRequest;
@@ -29,7 +35,6 @@ public class ClientReceiver implements Runnable {
 
     private DatagramPacket packetReceived;
     private DatagramSocket clientSocket;
-    private String receivedData;
     byte[] dataBuffer;
 
     public ClientReceiver(DatagramPacket packetReceived, DatagramSocket clientSocket) {
@@ -76,34 +81,54 @@ public class ClientReceiver implements Runnable {
 
     public synchronized void requestHandler(Object request) {
 
-        if (request instanceof RegisterRequest) {
-            register((RegisterRequest) request);
-            // Upon reception of this message the current server, can accept or refuse the
-            // registration.
-            // Registration can be denied if the provided Name is already in use
-            // if Registration is accepted send Registered packet
-            // else send Register-Denied
+        // Server requests
+        if (request instanceof ServerPingServer) {
+            System.out.println("Received ping from server");
+            ((ServerPingServer) request).setIsServing(ServerData.isServing.get());
+            try {
+                ClientSender.sendResponse(request, packetReceived, clientSocket);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else if (request instanceof ServeRequest) {
+            System.out.println("Server requested to go online");
+            // Server server and start the timer
+            Server.serve();
+            // let know the other server its online
+            try {
 
-            // Serving server needs to inform the other server with the outcome of the
-            // registration, accepted or denied using the messages
+                ClientSender.sendResponse(new ServeConfirmed("Serving"), packetReceived, clientSocket);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
-            // ServerRegistrationConfirmed
+        // client requests
+        else if (ServerData.isServing.get()) {
+            if (request instanceof RegisterRequest) {
+                register((RegisterRequest) request);
+                // Upon reception of this message the current server, can accept or refuse the
+                // registration.
+                // Registration can be denied if the provided Name is already in use
+                // if Registration is accepted send Registered packet
+                // else send Register-Denied
 
-            // else ServerRegisterDenied
+                // Serving server needs to inform the other server with the outcome of the
+                // registration, accepted or denied using the messages
 
-        } else if (request instanceof DeRegisterRequest) {
-            deregister((DeRegisterRequest) request);
+                // ServerRegistrationConfirmed
 
-            // If name is already registered, the current server will remove the name and
-            // all the information related to this user.
+                // else ServerRegisterDenied
 
-            // Also, inform the other server about this using DeregisterServerToServer
+            } else if (request instanceof DeRegisterRequest) {
+                deregister((DeRegisterRequest) request);
 
-            // in the case Name is not registered the message is just ignored by the current
-            // server. No further action is required
+                // If name is already registered, the current server will remove the name and
+                // all the information related to this user.
 
-        } else if (request instanceof UpdateRequest) {
-            System.out.println(request.toString());
+                // Also, inform the other server about this using DeregisterServerToServer
 
             // Upon reception of this message the current server can accept the update and
             // reply to the user using the message
@@ -125,32 +150,50 @@ public class ClientReceiver implements Runnable {
             // in the case of accept request send SubjectsUpdated to the user and to the
             // other server
             // in the case of denial send SubjectsRejected to the user
-        } else if (request instanceof PublishRequest) {
+        } else if (request instanceof UpdateRequest) {
+                System.out.println(request.toString());
 
-            publish((PublishRequest) request);
+                // Upon reception of this message the current server can accept the update and
+                // reply to the user using the message
+                // Check if name exists
+                // if not send UpdateDenied
+                // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
+            } else if (request instanceof SubjectsRequest) {
+                System.out.println("Update Subjects ");
+                // current server can accept the update or reject it because of errors in the
+                // name or in the list of subjects.
+                // check for errors in the name or in the list of subjects
+                // in the case of accept request send SubjectsUpdated to the user and to the
+                // other server
+                // in the case of denial send SubjectsRejected to the user
+            } else if (request instanceof PublishRequest) {
 
-        } else if (request instanceof ChangeServer) {
-            System.out.println("Received change server Request");
-            // Server needs to inform all the registered users about Change server Request
-        } else if (request instanceof UpdateServer) {
-            // when a server is not serving it can change its IP address and socket#, but
-            // informs only the current(serving) server with the following message
-            System.out.println("Received Update Server Request");
-        } else if (request instanceof ClientPingServer) {
-            System.out.println("Client Pinging");
-            try {
-                ((ClientPingServer) request).setActive(true);
-                ClientSender.sendResponse(request, packetReceived, clientSocket);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                publish((PublishRequest) request);
+
+            } else if (request instanceof ChangeServer) {
+                System.out.println("Received change server Request");
+                // Server needs to inform all the registered users about Change server Request
+            } else if (request instanceof UpdateServer) {
+                // when a server is not serving it can change its IP address and socket#, but
+                // informs only the current(serving) server with the following message
+                System.out.println("Received Update Server Request");
+            } else if (request instanceof ClientPingServer) {
+                System.out.println("Client Pinging");
+                try {
+                    ((ClientPingServer) request).setActive(true);
+                    ClientSender.sendResponse(request, packetReceived, clientSocket);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
             }
-        }
 
-        else if (request instanceof LoginRequest) {
-            System.out.println();
-        } else {
-            System.out.println("No such request present to handle the case");
+            else if (request instanceof LoginRequest) {
+                System.out.println();
+            } else {
+                System.out.println("No such request present to handle the case");
+            }
         }
     }
 
