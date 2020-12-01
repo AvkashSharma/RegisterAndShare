@@ -25,6 +25,7 @@ public enum RequestType {
     CHANGE_SERVER("CHANGE-SERVER"),
     UPDATE_SERVER("UPDATE-SERVER");
 
+
     private final String requestType;
 
     private RequestType(String requestType){

@@ -8,11 +8,15 @@ import java.util.List;
 
 import db.Database;
 import db.User;
+import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
+import requests.server.ServeConfirmed;
+import requests.server.ServeRequest;
+import requests.server.ServeRequest.*;
 import server.ServerData;
 import requests.ClientPingServer;
 import requests.ServerPingServer;
@@ -29,7 +33,6 @@ public class ClientReceiver implements Runnable {
 
     private DatagramPacket packetReceived;
     private DatagramSocket clientSocket;
-    private String receivedData;
     byte[] dataBuffer;
 
     public ClientReceiver(DatagramPacket packetReceived, DatagramSocket clientSocket) {
@@ -76,19 +79,31 @@ public class ClientReceiver implements Runnable {
 
     public synchronized void requestHandler(Object request) {
 
-        //Server requests
+        // Server requests
         if (request instanceof ServerPingServer) {
             System.out.println("Received ping from server");
             ((ServerPingServer) request).setIsServing(ServerData.isServing.get());
-                    try {
+            try {
                 ClientSender.sendResponse(request, packetReceived, clientSocket);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else if (request instanceof ServeRequest) {
+            System.out.println("Server requested to go online");
+            // Server server and start the timer
+            Server.serve();
+            // let know the other server its online
+            try {
+
+                ClientSender.sendResponse(new ServeConfirmed("Serving"), packetReceived, clientSocket);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
 
-        //client requests
+        // client requests
         else if (ServerData.isServing.get()) {
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);
@@ -157,8 +172,7 @@ public class ClientReceiver implements Runnable {
 
             else if (request instanceof LoginRequest) {
                 System.out.println();
-            } 
-            else {
+            } else {
                 System.out.println("No such request present to handle the case");
             }
         }

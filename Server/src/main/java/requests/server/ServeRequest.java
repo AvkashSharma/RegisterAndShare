@@ -1,6 +1,8 @@
 package requests.server;
 
-public class ServeRequest {
+import java.io.Serializable;
+
+public class ServeRequest implements Serializable {
     private Boolean serve = true;
 
     public ServeRequest(Boolean serve) {
@@ -13,5 +15,14 @@ public class ServeRequest {
 
     public void setServe(Boolean serve) {
         this.serve = serve;
+    }
+
+    @Override
+    public String toString() {
+        return "SERVE REQUEST ";
+    }
+
+    public void print() {
+        System.out.println(this.toString());
     }
 }

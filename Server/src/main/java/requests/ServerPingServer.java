@@ -72,6 +72,7 @@ public class ServerPingServer implements Serializable {
         System.out.println(this.toString());
     }
 
+    // return is Serving status
     public static Boolean ping(String ipAddress, int port) throws IOException {
         try {
             DatagramSocket datagramSocket = new DatagramSocket();
@@ -102,7 +103,6 @@ public class ServerPingServer implements Serializable {
 
             try {
                 ServerPingServer o = (ServerPingServer) is.readObject();
-                return o.isServing;
 
             } catch (ClassNotFoundException e) {
                 System.out.println("Not able to serialize response");
@@ -111,10 +111,8 @@ public class ServerPingServer implements Serializable {
 
         } catch (UnknownHostException e) {
             System.out.println("Unknown address: " + ipAddress + ":" + port);
-            // e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Connection timeout for " + ipAddress + ":" + port);
-            // e.printStackTrace();
         }
         return false;
     }

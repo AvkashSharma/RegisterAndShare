@@ -13,12 +13,13 @@ import java.util.TimerTask;
 
 import handlers.*;
 import requests.ServerPingServer;
+import requests.server.ServeRequest;
 
 public class Server implements Runnable {
 
     public final Scanner scanner = new Scanner(System.in);
     private final int bufferSize;
-    private volatile DatagramSocket socket;
+    private static volatile DatagramSocket socket;
 
     public Server() {
         serverConfig();
@@ -73,13 +74,10 @@ public class Server implements Runnable {
         System.out.print("Enter Port Number for server: ");
         ServerData.port.set(scanner.nextInt());
 
-        System.out.print("Enter a server name: ");
-        ServerData.name = scanner.next();
-
         while (true) {
             // Is it the first server?
             System.out.print("Is this your first server(y/n): ");
-            String firstServer = scanner.nextLine();
+            String firstServer = scanner.next();
             if (firstServer.equals("y")) {
                 break;
             } else if (firstServer.equals("n")) {
@@ -107,12 +105,12 @@ public class Server implements Runnable {
             System.out.println("\n----------------Server Listening on " + ServerData.address + ":"
                     + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get());
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
-            System.out.println("1-Change Port");
-            System.out.println("2-Change IP");
+            System.out.println("1-Change Port (UPDATE-SERVER)");
+            System.out.println("2-Change IP (UPDATE-SERVER)");
             System.out.println("3-Stop Serving Clients");
             System.out.println("4-Serve Clients");
             System.out.println("5-Ping other server");
-            System.out.println("6-Swap Server");
+            System.out.println("6-Swap Server (CHANGE-SERVER)");
 
             System.out.print("Choice: ");
             val = scanner.nextLine();
@@ -146,22 +144,24 @@ public class Server implements Runnable {
         }
     }
 
-    public void startTimer() {
+    public static void startTimer() {
         ServerData.timer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                if(ServerData.interval == 1){
-                    if(ServerData.isServing.get())
+                System.out.println(ServerData.interval);
+                if (ServerData.interval == 0) {
+
+                    // stopServing();
+                    if (ServerData.isServing.get()) {
                         stopServing();
-                    else
+                    } else
                         serve();
-                        ServerData.timer.cancel();
-                        ServerData.timer = new Timer();
+
+                    // ServerData.timer.cancel();
+                    // System.out.println("Cancel timer");
+                    // ServerData.timer = new Timer();
                 }
                 --ServerData.interval;
-
-                // int timeS = ServerData.setInterval();
-                System.out.println(ServerData.interval);
             }
         }, 1000, 1000);
     }
@@ -177,36 +177,52 @@ public class Server implements Runnable {
 
     }
 
-    public void stopServing() {
-        boolean bServing = false;
+    public static void stopServing() {
+        ServerData.timer.cancel();
+        System.out.println("Cancel timer");
+        ServerData.timer = new Timer();
+
+        boolean bServingStatus = false;
         try {
-            bServing = ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get());
+            //ping other server to see if its up and running
+            bServingStatus = ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get());
+            System.out.println(bServingStatus);
+            if (bServingStatus) {
+                // send Serve Request
+                ServeRequest serveRequest = new ServeRequest(true);
+                Sender.sendTo(serveRequest, socket, ServerData.addressB.get(), ServerData.portB.get());
+                // ClientSender.sendResponse(toSend, packet, clientSocket);
+                ServerData.isServing.set(false);
+                // check other server is online before going offline
+                // ping server and his status
+                // handle clients
+            }
+
+            else {
+                serve();
+            }
 
             // make b go online
-            //wait for b to go online
+            // wait for b to go online
 
+            // tell clients to go b
+            // create thread to send all together
 
-            //tell clients to go b
-            //create thread to send all together
+            // go offline
 
-            //go offline
-
-            //else remain online
+            // else remain online
 
         } catch (IOException e) {
-            bServing = false;
+            bServingStatus = false;
         }
 
-        //check other server is online before going offline
-        // ping server and his status
-        //handle clients
-
-        ServerData.isServing.set(false);
     }
 
-    public void serve() {
-        ServerData.isServing.set(true);
+    public static void serve() {
         ServerData.interval = ServerData.timeout.get();
+        ServerData.timer.cancel();
+        ServerData.timer = new Timer();
+        ServerData.isServing.set(true);
         startTimer();
     }
 

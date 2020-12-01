@@ -6,7 +6,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ServerData {
-    public static String name = "";
     public static AtomicReference<String> address = new AtomicReference<String>("");
     public static AtomicInteger port = new AtomicInteger(0);
     public static AtomicBoolean isServing = new AtomicBoolean(true);
