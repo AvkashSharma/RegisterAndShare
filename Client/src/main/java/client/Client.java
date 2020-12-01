@@ -1,6 +1,7 @@
 package client;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +15,9 @@ import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -78,8 +82,9 @@ public class Client {
                 System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
                 System.out.println("3-Update User location(ip, port)");
-                System.out.println("4-Subscribe to subjects");
+                System.out.println("4-See Available list of Subjects");
                 System.out.println("5-Publish message on subjects of interest");
+                System.out.println("6-Choose a list of Subjects to subscribe on");
             }
 
             System.out.print("Choice: ");
@@ -98,8 +103,14 @@ public class Client {
                     else
                         deregister();
                     break;
+                case "4":
+                    getListOfSubjects();
+                    break;
                 case "5":
                     publishRequest();
+                    break;
+                case "6":
+                    subscribeToSubjects();
                     break;
                 case "-1":
                     continue;
@@ -173,7 +184,44 @@ public class Client {
             e.printStackTrace();
         }
     }
-
+    public void getListOfSubjects(){
+        List<String> listOfSubjects=new ArrayList<String>();
+        AvailableListOfSubjects sRequest = new AvailableListOfSubjects(ClientData.requestCounter.incrementAndGet(), ClientData.username.get(),listOfSubjects);
+        
+        try {
+            // Sender.sendTo(sRequest, activeServerIP, activeServerPort, clientSocket);
+            Sender.sendTo(sRequest, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    public void subscribeToSubjects(){
+        
+        
+        //confirm the request or deny it
+        //update the database
+        System.out.print("\tEnter the subject (enter exit when you're done): ");
+        String subject ="";
+        subject=scanner.next();
+        List<String> subjectsToSubscribe=new ArrayList<String>();
+        while(!subject.equals("exit")){
+        subjectsToSubscribe.add(subject);
+        System.out.print("\tEnter the subject (enter exit when you're done): ");
+        subject=scanner.next();
+        }
+        SubjectsRequest sRequest = new SubjectsRequest(ClientData.requestCounter.incrementAndGet(), ClientData.username.get(),subjectsToSubscribe);
+        
+        try {
+            
+            Sender.sendTo(sRequest, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
+    
     public void publishRequest() {
         System.out.print("\tEnter subject of interest:  ");
         String subject = "";

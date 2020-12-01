@@ -2,7 +2,8 @@ package requests.Update;
 import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
-
+import java.util.ArrayList;
+import java.util.List;
 /*
 - Request # 
 - Unique name
@@ -13,25 +14,25 @@ public class SubjectsRequest extends Request implements Serializable{
 
     
     String clientName;
-    String [] listOfSubjects;
+    List <String>subjectsToSubscribe=new ArrayList<String>();
 
-    public SubjectsRequest(int reqNumber, String clientName, String[] listOfSubjects) {
+    public SubjectsRequest(int reqNumber, String clientName,List<String>subjectsToSubscribe) {
         super(RequestType.SUBJECTS, reqNumber);
         this.clientName = clientName;
-        this.listOfSubjects=listOfSubjects;
+        this.subjectsToSubscribe=subjectsToSubscribe;
     }
 
     public String getClientName() {
         return clientName;
     }
-    public String[] getListOfSubjects() {
-        return listOfSubjects;
+  
+    public List<String> getSubjectsToSubscribe() {
+        return subjectsToSubscribe;
     }
-
 
     @Override
     public String toString() {
-        return RequestType.SUBJECTS + " " + this.getRid()+" "+ getClientName() + " " +getListOfSubjects();
+        return RequestType.SUBJECTS + " " + this.getRid()+" "+ getClientName()+ " "+getSubjectsToSubscribe();
     }
 
     public void print(){
