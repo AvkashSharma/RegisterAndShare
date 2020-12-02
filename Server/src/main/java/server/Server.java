@@ -41,7 +41,7 @@ public class Server implements Runnable {
     public void run() {
         try {
             socket = new DatagramSocket(ServerData.port.get());
-            startTimer();
+            startActiveTimer();
             while (true) {
 
                 byte[] buffer = new byte[bufferSize];
@@ -155,7 +155,13 @@ public class Server implements Runnable {
         }
     }
 
-    public static void startTimer() {
+    /**
+     * Start the timer for the server to be ONLINE
+     */
+    public static void startActiveTimer() {
+        ServerData.inactiveTimer.cancel();
+        ServerData.inactiveTimer = new Timer();
+        ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.activeTimer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
@@ -163,15 +169,11 @@ public class Server implements Runnable {
                         + ServerData.isServing.get());
                 if (ServerData.activeInterval <= 0) {
 
-                    // stopServing();
                     if (ServerData.isServing.get()) {
                         stopServing();
                     } else
                         serve();
 
-                    // ServerData.timer.cancel();
-                    // System.out.println("Cancel timer");
-                    // ServerData.timer = new Timer();
                 }
                 --ServerData.activeInterval;
             }
@@ -179,6 +181,9 @@ public class Server implements Runnable {
     }
 
     public static void startInactiveTimer() {
+        ServerData.activeTimer.cancel();
+        ServerData.activeTimer = new Timer();
+        ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
@@ -186,8 +191,6 @@ public class Server implements Runnable {
                 if (ServerData.inactiveInterval <= 0) {
                     serve();
                 }
-                // ServerData.inactiveTimer.cancel();
-                // ServerData.inactiveTimer = new Timer();
 
                 --ServerData.inactiveInterval;
             }
@@ -205,11 +208,21 @@ public class Server implements Runnable {
         // inform server of change
     }
 
+    /**
+     * Server verifies if backup server can go ONLINE only then this server can go
+     * OFFLINE, if not the server stays online
+     * <p>
+     * Tell Backup server to go online
+     * <p>
+     * Wait for Backup server to be online
+     * <p>
+     * Let Clients know about the change
+     * <p>
+     * Only then this server goes offline and start the offline timer
+     */
     public static void stopServing() {
-        ServerData.activeTimer.cancel();
-        ServerData.activeTimer = new Timer();
-        ServerData.inactiveTimer.cancel();
-        ServerData.inactiveTimer = new Timer();
+        // ServerData.inactiveTimer.cancel();
+        // ServerData.inactiveTimer = new Timer();
         boolean bServingStatus = false;
 
         try {
@@ -220,31 +233,16 @@ public class Server implements Runnable {
                 // send Serve Request
                 ServeRequest serveRequest = new ServeRequest(true);
                 Sender.sendTo(serveRequest, socket, ServerData.addressB.get(), ServerData.portB.get());
-                // ClientSender.sendResponse(toSend, packet, clientSocket);
                 ServerData.isServing.set(false);
                 changeServer();
 
                 // reset inactive timer
-                ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
                 startInactiveTimer();
-                // check other server is online before going offline
-                // ping server and his status
-                // handle clients
             }
 
             else {
                 serve();
             }
-
-            // make b go online
-            // wait for b to go online
-
-            // tell clients to go b
-            // create thread to send all together
-
-            // go offline
-
-            // else remain online
 
         } catch (IOException e) {
             bServingStatus = false;
@@ -252,22 +250,18 @@ public class Server implements Runnable {
 
     }
 
+    /**
+     * Server goes ONLINE and starts its timer
+     */
     public static void serve() {
-        ServerData.activeInterval = ServerData.sleepTime.get();
-
-        ServerData.activeTimer.cancel();
-        ServerData.activeTimer = new Timer();
-        
         ServerData.isServing.set(true);
-
-        ServerData.inactiveTimer.cancel();
-        ServerData.inactiveTimer = new Timer();
-
-        startTimer();
-
+        startActiveTimer();
     }
 
-    // let know the clients that server has changed address
+    /**
+     * Let know the clients that server has changed address
+     */
+    // TODO create threads instead when sending
     public static void changeServer() {
         Database db = new Database();
         List<User> Users = db.getUsers();
@@ -282,7 +276,7 @@ public class Server implements Runnable {
             try {
                 ClientSender.sendResponse(changeServer, packet, socket);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+                // TODO to
                 System.out.println("Could not connect to client");
                 e.printStackTrace();
             }
