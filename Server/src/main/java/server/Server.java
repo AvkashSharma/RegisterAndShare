@@ -17,7 +17,7 @@ import java.util.TimerTask;
 import db.Database;
 import db.User;
 import handlers.*;
-import requests.ServerPingServer;
+import requests.server.ServerPingServer;
 import requests.Update.ChangeServer;
 import requests.server.ServeRequest;
 
@@ -161,6 +161,8 @@ public class Server implements Runnable {
     public static void startActiveTimer() {
         ServerData.inactiveTimer.cancel();
         ServerData.inactiveTimer = new Timer();
+        ServerData.activeTimer.cancel();
+        ServerData.activeTimer = new Timer();
         ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.activeTimer.scheduleAtFixedRate(new TimerTask() {
 
@@ -183,6 +185,8 @@ public class Server implements Runnable {
     public static void startInactiveTimer() {
         ServerData.activeTimer.cancel();
         ServerData.activeTimer = new Timer();
+        ServerData.inactiveTimer.cancel();
+        ServerData.inactiveTimer = new Timer();
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -190,6 +194,7 @@ public class Server implements Runnable {
                         + ServerData.isServing.get());
                 if (ServerData.inactiveInterval <= 0) {
                     serve();
+                    changeServer();
                 }
 
                 --ServerData.inactiveInterval;
@@ -221,8 +226,6 @@ public class Server implements Runnable {
      * Only then this server goes offline and start the offline timer
      */
     public static void stopServing() {
-        // ServerData.inactiveTimer.cancel();
-        // ServerData.inactiveTimer = new Timer();
         boolean bServingStatus = false;
 
         try {
@@ -254,6 +257,7 @@ public class Server implements Runnable {
      * Server goes ONLINE and starts its timer
      */
     public static void serve() {
+        ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.isServing.set(true);
         startActiveTimer();
     }
