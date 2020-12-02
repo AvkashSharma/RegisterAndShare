@@ -6,22 +6,47 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ServerData {
+    /**
+     * Server's Ip address
+     * 
+     * @SERVER
+     */
     public static AtomicReference<String> address = new AtomicReference<String>("");
+    /**
+     * Server's Port number
+     * 
+     * @SERVER
+     */
     public static AtomicInteger port = new AtomicInteger(0);
+    /**
+     * Server status ===> ONLINE = true, OFFLINE = false
+     * 
+     * @SERVER
+     */
     public static AtomicBoolean isServing = new AtomicBoolean(true);
-    public static AtomicInteger timeout = new AtomicInteger(60*1000);
+    /**
+     * Server should sleep after this long
+     * 
+     * @SERVER
+     */
+    public static AtomicInteger sleepTime = new AtomicInteger(60 * 1000);
 
+    /**
+     * Backup Server ip address
+     * 
+     * @BACKUP-SERVER
+     */
     public static AtomicReference<String> addressB = new AtomicReference<String>("");
+    /**
+     * Backup Server port number
+     * 
+     * @BACKUP-SERVER
+     */
     public static AtomicInteger portB = new AtomicInteger(0);
 
-    public static Timer timer = new Timer();
-    public static int interval;
-
-
-    public static final int setInterval(){
-        if(interval == 1){
-            timer.cancel();
-        }
-        return --interval;
-    }
+    public static Timer activeTimer = new Timer();
+    public static Timer inactiveTimer = new Timer();
+    public static int activeInterval;
+    public static int inactiveInterval;
+    public static int timeout = 10;
 }

@@ -1,8 +1,8 @@
 package requests.Update;
+
 import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
-import java.net.InetSocketAddress;
 /*
   - Request # 
   - Ip
@@ -11,27 +11,35 @@ import java.net.InetSocketAddress;
   */
 
 public class ChangeServer extends Request implements Serializable {
-    
-    InetSocketAddress clientSocketAddress;
 
-    public ChangeServer(InetSocketAddress clientSocketAddress){
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private String address;
+    private int port;
 
+    public ChangeServer(String address, int port) {
         super(RequestType.CHANGE_SERVER);
-       
-       this.clientSocketAddress=clientSocketAddress;
+        this.address = address;
+        this.port = port;
+    }
 
+    public int getPort() {
+        return port;
     }
-    
-     
-     public InetSocketAddress getClientSocketAddress(){
-        return clientSocketAddress;
+
+    public String getAddress() {
+        return address;
     }
-@Override
+
+    @Override
     public String toString() {
-        return RequestType.CHANGE_SERVER + " "+ getClientSocketAddress()+ " " ;
+        return RequestType.CHANGE_SERVER + " " + getAddress() + ":" + getPort();
     }
 
-    public void print(){
+    public void print() {
         System.out.println(this.toString());
     }
+
 }

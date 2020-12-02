@@ -10,7 +10,11 @@ import requests.RequestType;
   */
 public class UpdateDenied extends Request implements Serializable {
    
-    String reason;
+    /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+  String reason;
 
     public UpdateDenied( String reason){
       super(RequestType.UPDATE_DENIED);

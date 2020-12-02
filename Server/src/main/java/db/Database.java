@@ -62,22 +62,21 @@ public class Database {
 
     }
 
-    public void getUsers() {
+    // get List of all registered users
+    public List<User> getUsers() {
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users");
+            List<User> users = new ArrayList<User>();
+
+            PreparedStatement ps = conn.prepareStatement("SELECT * from users");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String username = rs.getString("username");
-                String name = rs.getString("ip");
-                String lastName = rs.getString("socket");
-
-                System.out.println(username);
-                // do something with the extracted data...
+                users.add(new User(rs.getString("username"), rs.getString("ip"), rs.getInt("socket")));
             }
+            return users;
         } catch (SQLException e) {
             System.out.println("Connection error");
-            // handle the exception
         }
+        return null;
     }
 
     // delete user from database
@@ -209,8 +208,8 @@ public class Database {
     // user adds a message to the subject if they are subscribed to it
     public boolean addMessage(String username, String subject, String message) {
         try {
-            PreparedStatement ps = conn.prepareStatement(
-                    String.format("INSERT messages(subject, username, message) values ('%s','%s','%s')", subject, username, message));
+            PreparedStatement ps = conn.prepareStatement(String.format(
+                    "INSERT messages(subject, username, message) values ('%s','%s','%s')", subject, username, message));
             ps.execute();
             return true;
 
@@ -223,5 +222,13 @@ public class Database {
     public void changeServerAddress(String serverID) {
 
     }
-
+    
+    public void close(){
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }
