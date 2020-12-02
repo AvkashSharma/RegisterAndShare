@@ -9,19 +9,23 @@ public class ServerData {
     public static AtomicReference<String> address = new AtomicReference<String>("");
     public static AtomicInteger port = new AtomicInteger(0);
     public static AtomicBoolean isServing = new AtomicBoolean(true);
-    public static AtomicInteger timeout = new AtomicInteger(60*1000);
+    public static AtomicInteger sleepTime = new AtomicInteger(60*1000);
 
     public static AtomicReference<String> addressB = new AtomicReference<String>("");
     public static AtomicInteger portB = new AtomicInteger(0);
 
-    public static Timer timer = new Timer();
-    public static int interval;
+
+    public static Timer activeTimer = new Timer();
+    public static Timer inactiveTimer = new Timer();
+    public static int activeInterval;
+    public static int inactiveInterval;
+    public static int timeout = 10;
 
 
     public static final int setInterval(){
-        if(interval == 1){
-            timer.cancel();
+        if(activeInterval == 1){
+            activeTimer.cancel();
         }
-        return --interval;
+        return --activeInterval;
     }
 }

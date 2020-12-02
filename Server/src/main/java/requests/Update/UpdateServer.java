@@ -12,6 +12,10 @@ import requests.RequestType;
 
 public class UpdateServer extends Request implements Serializable{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     InetSocketAddress clientSocketAddress;
    
   

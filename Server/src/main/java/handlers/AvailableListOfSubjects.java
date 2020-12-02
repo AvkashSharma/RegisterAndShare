@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 public class AvailableListOfSubjects extends Request implements Serializable {
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
     List<String> AvailableListOfSubjects= new ArrayList<String>();
     

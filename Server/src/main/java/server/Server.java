@@ -74,8 +74,9 @@ public class Server implements Runnable {
 
     public void serverConfig() {
         System.out.println("Enter server timeout(seconds): ");
-        ServerData.timeout.set(scanner.nextInt());
-        ServerData.interval = ServerData.timeout.get();
+        ServerData.sleepTime.set(scanner.nextInt());
+        ServerData.activeInterval = ServerData.sleepTime.get();
+        ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
 
         System.out.print("Enter Port Number for server: ");
         ServerData.port.set(scanner.nextInt());
@@ -87,7 +88,12 @@ public class Server implements Runnable {
             if (firstServer.equals("y")) {
                 break;
             } else if (firstServer.equals("n")) {
-                System.out.println("Enter other server's address: ");
+                try {
+                    System.out.println("Enter other server's address(" + InetAddress.getLocalHost().toString() + "): ");
+                } catch (UnknownHostException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 ServerData.addressB.set(scanner.next());
 
                 System.out.println("Enter other server's port: ");
@@ -95,7 +101,6 @@ public class Server implements Runnable {
 
                 try {
                     ServerData.isServing.set(!ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get()));
-
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -118,7 +123,7 @@ public class Server implements Runnable {
             System.out.println("5-Ping other server");
             System.out.println("6-Swap Server (CHANGE-SERVER)");
 
-            System.out.print("Choice: ");
+            System.out.print("\t\t\t\tChoice: ");
             val = scanner.nextLine();
 
             if (val.isEmpty()) {
@@ -151,11 +156,12 @@ public class Server implements Runnable {
     }
 
     public static void startTimer() {
-        ServerData.timer.scheduleAtFixedRate(new TimerTask() {
+        ServerData.activeTimer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                System.out.println(ServerData.interval);
-                if (ServerData.interval == 0) {
+                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                        + ServerData.isServing.get());
+                if (ServerData.activeInterval <= 0) {
 
                     // stopServing();
                     if (ServerData.isServing.get()) {
@@ -167,9 +173,29 @@ public class Server implements Runnable {
                     // System.out.println("Cancel timer");
                     // ServerData.timer = new Timer();
                 }
-                --ServerData.interval;
+                --ServerData.activeInterval;
             }
         }, 1000, 1000);
+    }
+
+    public static void startInactiveTimer() {
+        ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                        + ServerData.isServing.get());
+                if (ServerData.inactiveInterval <= 0) {
+                    serve();
+                }
+                // ServerData.inactiveTimer.cancel();
+                // ServerData.inactiveTimer = new Timer();
+
+                --ServerData.inactiveInterval;
+            }
+        }, 1000, 1000);
+    }
+
+    public void updateIP() {
+
     }
 
     public void updatePort() {
@@ -179,16 +205,13 @@ public class Server implements Runnable {
         // inform server of change
     }
 
-    public void updateIP() {
-
-    }
-
     public static void stopServing() {
-        ServerData.timer.cancel();
-        System.out.println("Cancel timer");
-        ServerData.timer = new Timer();
-
+        ServerData.activeTimer.cancel();
+        ServerData.activeTimer = new Timer();
+        ServerData.inactiveTimer.cancel();
+        ServerData.inactiveTimer = new Timer();
         boolean bServingStatus = false;
+
         try {
             // ping other server to see if its up and running
             bServingStatus = ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get());
@@ -200,6 +223,10 @@ public class Server implements Runnable {
                 // ClientSender.sendResponse(toSend, packet, clientSocket);
                 ServerData.isServing.set(false);
                 changeServer();
+
+                // reset inactive timer
+                ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
+                startInactiveTimer();
                 // check other server is online before going offline
                 // ping server and his status
                 // handle clients
@@ -226,22 +253,27 @@ public class Server implements Runnable {
     }
 
     public static void serve() {
-        ServerData.interval = ServerData.timeout.get();
-        ServerData.timer.cancel();
-        ServerData.timer = new Timer();
+        ServerData.activeInterval = ServerData.sleepTime.get();
+
+        ServerData.activeTimer.cancel();
+        ServerData.activeTimer = new Timer();
+        
         ServerData.isServing.set(true);
+
+        ServerData.inactiveTimer.cancel();
+        ServerData.inactiveTimer = new Timer();
+
         startTimer();
+
     }
 
     // let know the clients that server has changed address
     public static void changeServer() {
-
         Database db = new Database();
-
         List<User> Users = db.getUsers();
         for (User user : Users) {
             ChangeServer changeServer = new ChangeServer(ServerData.addressB.get(), ServerData.portB.get());
-            System.out.println(user.getUsername() + " " + user.getUserSocket());
+            System.out.println(user.getUsername() + " " + user.getUserIP() + ":" + user.getUserSocket());
             byte[] buffer = new byte[1024];
 
             SocketAddress socketAddress = new InetSocketAddress(user.getUserIP(), user.getUserSocket());
