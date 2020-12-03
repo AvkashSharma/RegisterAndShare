@@ -1,6 +1,5 @@
 package handlers;
 
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
