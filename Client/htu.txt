@@ -1,0 +1,16 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects:  Food Formula1 Sports
+----------------NEW MESSAGE--------------------
+
+	Food has been added to your subscribed subjects
+----------------NEW MESSAGE--------------------
+
+	The following are your subscribed subjects: 
+----------------NEW MESSAGE--------------------
+
+	[Food]
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 

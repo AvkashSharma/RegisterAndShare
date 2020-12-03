@@ -11,6 +11,11 @@ public class Writer {
 
     try(BufferedWriter br = new BufferedWriter(new FileWriter("logs.txt",true))){
       System.out.println("Writer "+ object.toString());
+      StringBuilder str = new StringBuilder();
+
+      str.append("----------------NEW MESSAGE--------------------"); 
+      br.write(str.toString());
+      br.newLine();
       br.write(object.toString());
       br.newLine();
 
