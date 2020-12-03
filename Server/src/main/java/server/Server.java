@@ -24,21 +24,19 @@ import requests.server.ServeRequest;
 public class Server implements Runnable {
 
     public final Scanner scanner = new Scanner(System.in);
-    private final int bufferSize;
+    private final int bufferSize = 1024;
     private static String display = "";
     private static volatile DatagramSocket socket;
     ClientReceiver clientReceiver;
-    Thread threadClientReceiver;
+    private static boolean stopThread = true;
 
     public Server() {
         serverConfig();
         try {
             ServerData.address.set(InetAddress.getLocalHost().toString());
         } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        this.bufferSize = 1024;
     }
 
     public void run() {
@@ -48,20 +46,15 @@ public class Server implements Runnable {
             while (true) {
 
                 byte[] buffer = new byte[bufferSize];
-
                 DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
 
                 try {
                     socket.receive(incoming);
 
-                    // Need to pass received data
-                    clientReceiver = new ClientReceiver(incoming, socket);
-
-                    // Create a new Thread
-                    threadClientReceiver = new Thread(clientReceiver);
-
-                    // Start the thread
-                    threadClientReceiver.start();
+                    if (stopThread) {
+                        // Need to pass received data
+                        clientReceiver = new ClientReceiver(incoming, socket);
+                    }
 
                 } catch (SocketTimeoutException ex) {
                     System.out.println("SocketTimeoutException: " + ex.getMessage());
@@ -97,7 +90,6 @@ public class Server implements Runnable {
                 try {
                     System.out.println("Enter other server's address(" + InetAddress.getLocalHost().toString() + "): ");
                 } catch (UnknownHostException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
                 ServerData.addressB.set(scanner.next());
@@ -108,7 +100,6 @@ public class Server implements Runnable {
                 try {
                     ServerData.isServing.set(!ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get()));
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 break;
@@ -177,11 +168,10 @@ public class Server implements Runnable {
                         + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.activeInterval <= 0) {
 
-                    if (ServerData.isServing.get()) {
+                    if (ServerData.isServing.get())
                         stopServing();
-                    } else
+                    else
                         serve();
-
                 }
                 --ServerData.activeInterval;
             }
@@ -189,10 +179,7 @@ public class Server implements Runnable {
     }
 
     public static void startInactiveTimer() {
-        ServerData.activeTimer.cancel();
-        ServerData.activeTimer = new Timer();
-        ServerData.inactiveTimer.cancel();
-        ServerData.inactiveTimer = new Timer();
+        resetTimers();
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -208,25 +195,32 @@ public class Server implements Runnable {
         }, 1000, 1000);
     }
 
+    /***
+     * Reset the active and inactive Timer
+     */
+    public static void resetTimers() {
+        ServerData.activeTimer.cancel();
+        ServerData.activeTimer = new Timer();
+        ServerData.inactiveTimer.cancel();
+        ServerData.inactiveTimer = new Timer();
+    }
+
     public void updatePort() {
-        // display = "Enter port number: ";
+        resetTimers();
         System.out.println("\t Enter port number: ");
         ServerData.port.set(scanner.nextInt());
-        
-        threadClientReceiver.interrupt();
-    
-        // socket.close();
-        // try {
-        //     socket = new DatagramSocket(ServerData.port.get());
-        // } catch (SocketException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
-        // }
 
-        // socket.close();
-        // change port number
-        // close socket and reopen on new port
-        // inform server of change
+        stopThread = false;
+
+        try {
+            socket.close();
+            socket = new DatagramSocket(ServerData.port.get());
+            serve();
+            changeServer();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -275,13 +269,13 @@ public class Server implements Runnable {
     public static void serve() {
         ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.isServing.set(true);
+        stopThread = true;
         startActiveTimer();
     }
 
     /**
      * Let know the clients that server has changed address
      */
-    // TODO create threads instead when sending
     public static void changeServer() {
         Database db = new Database();
         List<User> Users = db.getUsers();
@@ -296,7 +290,6 @@ public class Server implements Runnable {
             try {
                 ClientSender.sendResponse(changeServer, packet, socket);
             } catch (IOException e) {
-                // TODO to
                 System.out.println("Could not connect to client");
                 e.printStackTrace();
             }

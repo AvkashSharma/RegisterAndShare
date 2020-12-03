@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
-import java.util.Arrays;
 import java.util.List;
 
 import db.Database;
@@ -12,7 +11,6 @@ import db.User;
 import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
-import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
@@ -35,10 +33,14 @@ public class ClientReceiver implements Runnable {
     private DatagramPacket packetReceived;
     private DatagramSocket clientSocket;
     byte[] dataBuffer;
+    Thread threadClientReceiver;
 
     public ClientReceiver(DatagramPacket packetReceived, DatagramSocket clientSocket) {
         this.packetReceived = packetReceived;
         this.clientSocket = clientSocket;
+
+        threadClientReceiver = new Thread(this);
+        threadClientReceiver.start();
     }
 
     public void run() {
@@ -78,10 +80,6 @@ public class ClientReceiver implements Runnable {
         }
     }
 
-    public void interrupt(){
-        Thread.currentThread().interrupt();
-    }
-
     public synchronized void requestHandler(Object request) {
 
         // Server requests
@@ -91,7 +89,6 @@ public class ClientReceiver implements Runnable {
             try {
                 ClientSender.sendResponse(request, packetReceived, clientSocket);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else if (request instanceof ServeRequest) {
@@ -103,7 +100,6 @@ public class ClientReceiver implements Runnable {
 
                 ClientSender.sendResponse(new ServeConfirmed("Serving"), packetReceived, clientSocket);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -184,7 +180,6 @@ public class ClientReceiver implements Runnable {
                     ((ClientPingServer) request).setActive(true);
                     ClientSender.sendResponse(request, packetReceived, clientSocket);
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
@@ -220,7 +215,6 @@ public class ClientReceiver implements Runnable {
             db.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -241,7 +235,6 @@ public class ClientReceiver implements Runnable {
 
             db.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -282,7 +275,6 @@ public class ClientReceiver implements Runnable {
             }
             db.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -336,7 +328,6 @@ public class ClientReceiver implements Runnable {
             }
             db.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -376,7 +367,6 @@ public class ClientReceiver implements Runnable {
                             byte[] buffer = new byte[1024];
                             // InetAddress address = InetAddress.getByName(user.getUserIP());
 
-                            // TODO can only test on LocalHost
                             InetAddress address = InetAddress.getLocalHost();
                             SocketAddress socketAddress = new InetSocketAddress(address, user.getUserSocket());
 
@@ -403,7 +393,6 @@ public class ClientReceiver implements Runnable {
 
             db.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

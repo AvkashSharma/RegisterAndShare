@@ -30,10 +30,8 @@ public class UpdateRequest extends Request  {
             this.clientSocketAddress = new InetSocketAddress(InetAddress.getByName(address.toString()),
                     Integer.parseInt(port.trim()));
         } catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
