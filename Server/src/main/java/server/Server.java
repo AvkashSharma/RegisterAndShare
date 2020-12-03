@@ -25,7 +25,10 @@ public class Server implements Runnable {
 
     public final Scanner scanner = new Scanner(System.in);
     private final int bufferSize;
+    private static String display = "";
     private static volatile DatagramSocket socket;
+    ClientReceiver clientReceiver;
+    Thread threadClientReceiver;
 
     public Server() {
         serverConfig();
@@ -52,10 +55,10 @@ public class Server implements Runnable {
                     socket.receive(incoming);
 
                     // Need to pass received data
-                    ClientReceiver clientReceiver = new ClientReceiver(incoming, socket);
+                    clientReceiver = new ClientReceiver(incoming, socket);
 
                     // Create a new Thread
-                    Thread threadClientReceiver = new Thread(clientReceiver);
+                    threadClientReceiver = new Thread(clientReceiver);
 
                     // Start the thread
                     threadClientReceiver.start();
@@ -72,6 +75,9 @@ public class Server implements Runnable {
         }
     }
 
+    /**
+     * configure server on startup
+     */
     public void serverConfig() {
         System.out.println("Enter server timeout(seconds): ");
         ServerData.sleepTime.set(scanner.nextInt());
@@ -114,14 +120,13 @@ public class Server implements Runnable {
         String val = "";
         while (!val.equals("exit")) {
             System.out.println("\n----------------Server Listening on " + ServerData.address + ":"
-                    + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get());
+                    + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get() + "\t");
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
-            System.out.println("1-Change Port (UPDATE-SERVER)");
-            System.out.println("2-Change IP (UPDATE-SERVER)");
-            System.out.println("3-Stop Serving Clients");
-            System.out.println("4-Serve Clients");
-            System.out.println("5-Ping other server");
-            System.out.println("6-Swap Server (CHANGE-SERVER)");
+            System.out.println("1-Change Server's Port (UPDATE-SERVER)");
+            System.out.println("2-Stop Serving Clients");
+            System.out.println("3-Serve Clients");
+            System.out.println("4-Update Server");
+            System.out.println("5-Update User's (CHANGE-SERVER)");
 
             System.out.print("\t\t\t\tChoice: ");
             val = scanner.nextLine();
@@ -135,17 +140,18 @@ public class Server implements Runnable {
                     updatePort();
                     break;
                 case "2":
-                    System.out.println("Changing Server address");
-                    updateIP();
-                    break;
-                case "3":
                     System.out.println("Stop serving clients");
                     stopServing();
                     break;
-                case "4":
+                case "3":
                     System.out.println("Serving clients");
                     serve();
                     break;
+                case "4":
+                    System.out.println("Serving clients");
+                    // serve();
+                    break;
+
                 case "-1":
                     continue;
                 default:
@@ -168,7 +174,7 @@ public class Server implements Runnable {
 
             public void run() {
                 System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                        + ServerData.isServing.get());
+                        + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.activeInterval <= 0) {
 
                     if (ServerData.isServing.get()) {
@@ -191,7 +197,7 @@ public class Server implements Runnable {
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                        + ServerData.isServing.get());
+                        + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.inactiveInterval <= 0) {
                     serve();
                     changeServer();
@@ -202,12 +208,22 @@ public class Server implements Runnable {
         }, 1000, 1000);
     }
 
-    public void updateIP() {
-
-    }
-
     public void updatePort() {
-        System.out.println("Enter port number: ");
+        // display = "Enter port number: ";
+        System.out.println("\t Enter port number: ");
+        ServerData.port.set(scanner.nextInt());
+        
+        threadClientReceiver.interrupt();
+    
+        // socket.close();
+        // try {
+        //     socket = new DatagramSocket(ServerData.port.get());
+        // } catch (SocketException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
+
+        // socket.close();
         // change port number
         // close socket and reopen on new port
         // inform server of change

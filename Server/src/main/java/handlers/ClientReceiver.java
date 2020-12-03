@@ -78,6 +78,10 @@ public class ClientReceiver implements Runnable {
         }
     }
 
+    public void interrupt(){
+        Thread.currentThread().interrupt();
+    }
+
     public synchronized void requestHandler(Object request) {
 
         // Server requests
