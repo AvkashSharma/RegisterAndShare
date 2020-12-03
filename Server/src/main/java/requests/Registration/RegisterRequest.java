@@ -1,10 +1,5 @@
 package requests.Registration;
 
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
-
 import requests.Request;
 import requests.RequestType;
 
@@ -17,8 +12,12 @@ Register Request
 - Socket #
 */
 
-public class RegisterRequest extends Request implements Serializable {
+public class RegisterRequest extends Request  {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String address;
     private int port;
     private String clientName;

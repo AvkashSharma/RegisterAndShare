@@ -1,5 +1,4 @@
 package requests.Publish;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
@@ -10,8 +9,12 @@ import requests.RequestType;
   - Text
   */
 
-public class MessageConfirmation extends Request implements Serializable {
+public class MessageConfirmation extends Request  {
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
     String Subject;
     String Text;

@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
@@ -11,8 +10,12 @@ import requests.RequestType;
 
 
 
-public class SubjectsUpdated extends Request implements Serializable {
+public class SubjectsUpdated extends Request {
      
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
      String [] listOfSubjects;
 

@@ -1,6 +1,5 @@
 package requests.Update;
 
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 /*
@@ -10,7 +9,7 @@ import requests.RequestType;
 
   */
 
-public class ChangeServer extends Request implements Serializable {
+public class ChangeServer extends Request {
 
     /**
      *

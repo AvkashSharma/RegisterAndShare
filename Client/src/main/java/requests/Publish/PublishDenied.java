@@ -1,14 +1,16 @@
 package requests.Publish;
-import java.io.Serializable;
-
 import requests.Request;
 import requests.RequestType;
 /*
   - Request # 
   - Reason
   */
-public class PublishDenied extends Request implements Serializable {
+public class PublishDenied extends Request {
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String Reason;
 
     public PublishDenied(int reqNumber,String Reason){

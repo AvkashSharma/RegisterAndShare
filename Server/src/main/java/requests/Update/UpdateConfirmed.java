@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 import java.net.InetSocketAddress;
@@ -11,17 +10,21 @@ import java.net.InetSocketAddress;
 - Socket #
 */
 
-public class UpdateConfirmed extends Request implements Serializable {
-     InetSocketAddress clientSocketAddress;
+public class UpdateConfirmed extends Request  {
+    /**
+    *
+    */
+    private static final long serialVersionUID = 1L;
+    InetSocketAddress clientSocketAddress;
     String clientName;
 
     public UpdateConfirmed(String clientName, InetSocketAddress clientSocketAddress){
-      super(RequestType.UPDATE_CONFIRMED);
-      this.clientName = clientName;
-      this.clientSocketAddress = clientSocketAddress;
+        super(RequestType.UPDATE_CONFIRMED);
+        this.clientName = clientName;
+        this.clientSocketAddress = clientSocketAddress;
 
     }
-     public String getClientName() {
+    public String getClientName() {
         return clientName;
     }
     

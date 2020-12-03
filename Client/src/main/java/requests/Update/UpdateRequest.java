@@ -1,6 +1,5 @@
 package requests.Update;
 
-import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
@@ -15,8 +14,12 @@ import requests.RequestType;
 - Socket
   */
 
-public class UpdateRequest extends Request implements Serializable {
+public class UpdateRequest extends Request  {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     InetSocketAddress clientSocketAddress;
     String clientName;
 

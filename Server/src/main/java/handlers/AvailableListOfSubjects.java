@@ -6,7 +6,7 @@ import requests.RequestType;
 
 import java.util.ArrayList;
 import java.util.List;
-public class AvailableListOfSubjects extends Request implements Serializable {
+public class AvailableListOfSubjects extends Request {
     
     /**
      *

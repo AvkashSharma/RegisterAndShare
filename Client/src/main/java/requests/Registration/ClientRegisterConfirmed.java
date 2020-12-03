@@ -1,18 +1,20 @@
 package requests.Registration;
-import java.io.Serializable;
-
 import requests.Request;
 import requests.RequestType;
-
 
 /*
 Register Request
 - Request #
 */
 
-public class ClientRegisterConfirmed extends Request implements Serializable {
+public class ClientRegisterConfirmed extends Request  {
     
-    public ClientRegisterConfirmed(){
+    /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+
+  public ClientRegisterConfirmed() {
       super(RequestType.CLIENT_REGISTER_CONFIRMED);
     }
 

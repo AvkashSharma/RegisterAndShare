@@ -1,5 +1,4 @@
 package requests.Registration;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
@@ -9,8 +8,12 @@ import requests.RequestType;
 - Unique Name
 */
 
-public class DeRegisterServerToServer extends Request implements Serializable {
+public class DeRegisterServerToServer extends Request {
    
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
 
     public DeRegisterServerToServer(String clientName){

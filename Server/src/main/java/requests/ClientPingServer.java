@@ -16,6 +16,10 @@ public class ClientPingServer implements Serializable {
     /**
      *
      */
+    private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
     private boolean active;
     private InetSocketAddress clientSocketAddress;
 
