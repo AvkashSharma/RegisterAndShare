@@ -12,7 +12,6 @@ import java.util.Scanner;
 import handlers.*;
 import requests.Publish.PublishRequest;
 import requests.Registration.DeRegisterRequest;
-import requests.Registration.LoginRequest;
 import requests.Registration.RegisterRequest;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
@@ -51,6 +50,8 @@ public class Client {
         while (!val.equals("exit")) {
             System.out.println("------------------@" + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
+            System.out.println("---------Connected: @" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
+                    + "------------------------");
             System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
 
             if (!ClientData.isRegistered.get()) {
@@ -77,9 +78,12 @@ public class Client {
                     break;
                 case "2":
                     if (!ClientData.isRegistered.get())
-                        login();
+                        update(0);
                     else
                         deregister();
+                    break;
+                case "3":
+                    update(1);
                     break;
                 case "4":
                     getListOfSubjects();
@@ -110,23 +114,35 @@ public class Client {
             Sender.sendTo(registerMessage, clientSocket);
             ClientData.username.set(username);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public void login() {
-        System.out.println("\tEnter login username: ");
-        String username = "";
-        username = scanner.next();
-
-        LoginRequest loginRequest = new LoginRequest(ClientData.requestCounter.incrementAndGet(), username,
-                ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
-        try {
-            Sender.sendTo(loginRequest, clientSocket);
+    /**
+     * Update user ip address and port
+     * @param type 1 = user already logged in,
+     * 0 = user not logged in
+     */ 
+    public void update(int type) {
+        UpdateRequest updateRequest;
+        if (type == 1) {
+            System.out.print("\tEnter IP address: ");
+            String ip = scanner.next();
+            System.out.print("\tEnter Port Number: ");
+            int port = scanner.nextInt();
+            updateRequest = new UpdateRequest(ClientData.requestCounter.incrementAndGet(), ClientData.username.get(),
+                    ip, port);
+        } else {
+            System.out.print("\tEnter login username: ");
+            String username = scanner.next();
+            updateRequest = new UpdateRequest(ClientData.requestCounter.incrementAndGet(), username,
+                    ClientData.CLIENT_IP , ClientData.CLIENT_PORT);
             ClientData.username.set(username);
+        }
+
+        try {
+            Sender.sendTo(updateRequest, clientSocket);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -144,19 +160,6 @@ public class Client {
             Sender.sendTo(deregisterMessage, clientSocket);
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    public void updateUser() {
-        try {
-            UpdateRequest uRequest = new UpdateRequest(ClientData.requestCounter.incrementAndGet(),
-                    ClientData.username.get(), "127.0.0.1", "50002");
-
-            Sender.sendTo(uRequest, clientSocket);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

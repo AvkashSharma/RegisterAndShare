@@ -6,12 +6,15 @@ import java.io.ObjectInputStream;
 import java.net.*;
 import java.util.List;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
+
 import db.Database;
 import db.User;
 import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
+import requests.Update.UpdateConfirmed;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
 import requests.server.ServeConfirmed;
@@ -26,7 +29,6 @@ import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
 import requests.Registration.DeRegisterRequest;
-import requests.Registration.LoginRequest;
 
 public class ClientReceiver implements Runnable {
 
@@ -108,32 +110,10 @@ public class ClientReceiver implements Runnable {
         else if (ServerData.isServing.get()) {
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);
-                // Upon reception of this message the current server, can accept or refuse the
-                // registration.
-                // Registration can be denied if the provided Name is already in use
-                // if Registration is accepted send Registered packet
-                // else send Register-Denied
-
-                // Serving server needs to inform the other server with the outcome of the
-                // registration, accepted or denied using the messages
-
-                // ServerRegistrationConfirmed
-
-                // else ServerRegisterDenied
 
             } else if (request instanceof DeRegisterRequest) {
                 deregister((DeRegisterRequest) request);
 
-                // If name is already registered, the current server will remove the name and
-                // all the information related to this user.
-
-                // Also, inform the other server about this using DeregisterServerToServer
-
-                // Upon reception of this message the current server can accept the update and
-                // reply to the user using the message
-                // Check if name exists
-                // if not send UpdateDenied
-                // else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
             } else if (request instanceof AvailableListOfSubjects) {
                 sendListOfSubjects((AvailableListOfSubjects) request);
             } else if (request instanceof SubjectsRequest) {
@@ -148,7 +128,7 @@ public class ClientReceiver implements Runnable {
                 // other server
                 // in the case of denial send SubjectsRejected to the user
             } else if (request instanceof UpdateRequest) {
-                System.out.println(request.toString());
+                update((UpdateRequest) request);
 
                 // Upon reception of this message the current server can accept the update and
                 // reply to the user using the message
@@ -183,16 +163,26 @@ public class ClientReceiver implements Runnable {
                     e.printStackTrace();
                 }
 
-            }
-
-            else if (request instanceof LoginRequest) {
-                System.out.println();
             } else {
                 System.out.println("No such request present to handle the case");
             }
         }
     }
 
+    /**
+     * Upon reception of this message the current server, can accept or refuse the
+     * registration.
+     * <p>
+     * Registration can be denied if the provided Name is already in use if
+     * Registration is accepted send Registered packet else send Register-Denied
+     * 
+     * Serving server needs to inform the other server with the outcome of the
+     * registration, accepted or denied using the messages
+     * 
+     * ServerRegistrationConfirmed
+     * 
+     * else ServerRegisterDenied
+     */
     public void register(RegisterRequest request) {
         try {
             String username = request.getClientName();
@@ -200,10 +190,10 @@ public class ClientReceiver implements Runnable {
             Database db = new Database();
             if (!db.userExist(username)) {
                 dbResponse = db.addUser(username, request.getAddress(), request.getPort());
+                db.close();
                 if (dbResponse) {
                     ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(request.getRid());
                     ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
-                    return;
                 } else {
                     ClientRegisterDenied denied = new ClientRegisterDenied("Problem with database", request.getRid());
                     ClientSender.sendResponse(denied, packetReceived, clientSocket);
@@ -212,13 +202,26 @@ public class ClientReceiver implements Runnable {
                 ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
-            db.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * If name is already registered, the current server will remove the name and
+     * all the information related to this user.
+     * 
+     * Also, inform the other server about this using DeregisterServerToServer
+     * 
+     * Upon reception of this message the current server can accept the update and
+     * reply to the user using the message Check if name exists
+     * <p>
+     * if not end UpdateDenied
+     * <p>
+     * else Send UpdateConfirmed to client Send UpdateConfirmed to secondServer
+     * 
+     * @param request
+     */
     public void deregister(DeRegisterRequest request) {
         try {
             String username = request.getClientName();
@@ -226,13 +229,30 @@ public class ClientReceiver implements Runnable {
             Database db = new Database();
             if (db.userExist(username)) {
                 dbResponse = db.removeUser(username);
+                db.close();
                 if (!dbResponse) {
                     DeRegisterConfirmed confirmation = new DeRegisterConfirmed();
                     ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
-                    return;
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void update(UpdateRequest request) {
+        try {
+            String username = request.getClientName();
+            boolean dbResponse = false;
+            Database db = new Database();
+            if (db.userExist(username)) {
+                dbResponse = db.updateUser(request.getClientName(), request.getAddress(), request.getPort());
+                if (dbResponse) {
+                    UpdateConfirmed updateConfirmed = new UpdateConfirmed(request.getRid(), request.getClientName(),
+                            request.getAddress(), request.getPort());
+                    ClientSender.sendResponse(updateConfirmed, packetReceived, clientSocket);
+                }
+            }
             db.close();
         } catch (IOException e) {
             e.printStackTrace();

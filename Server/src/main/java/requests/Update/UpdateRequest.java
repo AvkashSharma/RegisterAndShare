@@ -1,8 +1,5 @@
 package requests.Update;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import requests.Request;
 import requests.RequestType;
 
@@ -13,45 +10,43 @@ import requests.RequestType;
 - Socket
   */
 
-public class UpdateRequest extends Request {
+public class UpdateRequest extends Request  {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    InetSocketAddress clientSocketAddress;
+    private String address;
+    private int port;
     String clientName;
 
-    public UpdateRequest(int rqNumber, String clientName, String address, String port) {
+    public UpdateRequest(int rqNumber, String clientName, String address, int port) {
         super(RequestType.UPDATE, rqNumber);
         this.clientName = clientName;
-        try {
-            this.clientSocketAddress = new InetSocketAddress(InetAddress.getByName(address.toString()),
-                    Integer.parseInt(port.trim()));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+        this.address = address;
+        this.port = port;
     }
 
     public String getClientName() {
         return clientName;
     }
 
-    public InetSocketAddress getClientSocketAddress(){
-        return clientSocketAddress;
+    public String getAddress() {
+        return address;
     }
-    
-    
+
+    public int getPort() {
+        return port;
+    }
+
     @Override
     public String toString() {
-        return RequestType.UPDATE + " " + this.getRid()+" "+ getClientName() + " " + getClientSocketAddress();
+        return RequestType.UPDATE + " " + this.getRid() + " " + getClientName() + " " + getAddress() + ":"
+                + getPort();
     }
 
     public void print(){
         System.out.println(this.toString());
     }
-
     
 }
