@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 
 import requests.Request;
 import requests.RequestType;
@@ -9,9 +8,13 @@ import requests.RequestType;
   - Request # 
   - Reason
   */
-public class UpdateDenied extends Request implements Serializable {
+public class UpdateDenied extends Request {
    
-    String reason;
+    /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+  String reason;
 
     public UpdateDenied( String reason){
       super(RequestType.UPDATE_DENIED);

@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 import java.net.InetSocketAddress;
 import requests.Request;
 import requests.RequestType;
@@ -10,7 +9,7 @@ import requests.RequestType;
   - Socket
   */
 
-public class UpdateServer extends Request implements Serializable{
+public class UpdateServer extends Request {
 
     /**
      *

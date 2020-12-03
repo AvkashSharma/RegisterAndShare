@@ -1,5 +1,4 @@
 package requests.Registration;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 import java.net.InetSocketAddress;
@@ -12,9 +11,13 @@ Register Request
 - Socket
 */
 
-public class ServerRegisterConfirmed extends Request implements Serializable {
+public class ServerRegisterConfirmed extends Request {
     
-    InetSocketAddress serverSocketAddress;
+    /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+  InetSocketAddress serverSocketAddress;
     String clientName;
     public ServerRegisterConfirmed( String clientName,  InetSocketAddress serverSocketAddress){
       super(RequestType.SERVER_REGISTER_CONFIRMED);

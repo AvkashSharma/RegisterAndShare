@@ -1,5 +1,4 @@
 package requests.Registration;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
@@ -9,9 +8,13 @@ Register Request
 - Request #
 - Reason
 */
-public class ClientRegisterDenied extends Request implements Serializable {
-   
+public class ClientRegisterDenied extends Request  {
+
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String reason;
 
     public ClientRegisterDenied(String reason, int rid){

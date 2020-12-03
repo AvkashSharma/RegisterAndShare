@@ -51,3 +51,56 @@ CHANGE-SERVER 192.168.2.11:6666
 	 Choose among the following subjects:  Food Formula1 Sports
 CHANGE-SERVER 192.168.2.11:6666
 CHANGE-SERVER 192.168.2.11:6666
+CLIENT_REGISTER_CONFIRMED 1 
+PUBLISH-DENIED 4 Subject does not exist
+
+	tree is not available in the available subject and has not been added
+
+	The following are your subscribed subjects: 
+
+	[]
+CHANGE-SERVER 127.0.0.1:50002
+CHANGE-SERVER 127.0.0.1:50001
+CLIENT_REGISTER_CONFIRMED 2 
+CHANGE-SERVER 127.0.0.1:50002
+CHANGE-SERVER 127.0.0.1:50001
+
+	tree is not available in the available subject and has not been added
+
+	The following are your subscribed subjects: 
+
+	[]
+CHANGE-SERVER 127.0.0.1:50002
+CHANGE-SERVER 127.0.0.1:50001
+CHANGE-SERVER 127.0.0.1:50002
+CHANGE-SERVER 127.0.0.1:50001
+CLIENT_REGISTER_CONFIRMED 1 
+CLIENT_REGISTER_CONFIRMED 1 
+
+	 Choose among the following subjects:  Food Formula1 Sports
+
+	 Choose among the following subjects:  Food Formula1 Sports
+CLIENT-REGISTER-DENIED 4 Username exists
+CLIENT_REGISTER_CONFIRMED 5 
+
+	 Choose among the following subjects:  Food Formula1 Sports
+CLIENT_REGISTER_CONFIRMED 7 
+
+	 Choose among the following subjects:  Food Formula1 Sports
+CLIENT-REGISTER-DENIED 9 Username exists
+CLIENT_REGISTER_CONFIRMED 10 
+No subjects available
+CLIENT_REGISTER_CONFIRMED 1 
+
+	 Choose among the following subjects:  Food Formula1 Sports
+
+	 Choose among the following subjects:  Food Formula1 Sports
+
+	Food has been added to your subscribed subjects
+
+	The following are your subscribed subjects: 
+
+	[Food]
+MESSAGE rey Food i like food
+CLIENT_REGISTER_CONFIRMED 1 
+CLIENT-REGISTER-DENIED 1 Username exists

@@ -1,5 +1,4 @@
 package requests.Registration;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 import java.net.InetSocketAddress;
@@ -12,9 +11,13 @@ Register Request
 - Ip address
 - Socket#
 */
-public class ServerRegisterDenied extends Request implements Serializable {
+public class ServerRegisterDenied extends Request {
    
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
     InetSocketAddress ServerSocketAddress;
 

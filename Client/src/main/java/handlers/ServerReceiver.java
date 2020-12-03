@@ -1,9 +1,7 @@
 package handlers;
 
-import java.io.BufferedWriter;
+
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
@@ -16,7 +14,6 @@ import requests.Update.ChangeServer;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
-import client.Client;
 import client.ClientData;
 
 public class ServerReceiver implements Runnable {

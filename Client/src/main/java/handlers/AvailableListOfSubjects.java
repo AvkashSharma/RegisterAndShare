@@ -1,12 +1,15 @@
 package handlers;
 
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 import java.util.ArrayList;
 import java.util.List;
-public class AvailableListOfSubjects extends Request implements Serializable {
+public class AvailableListOfSubjects extends Request {
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
     List<String> AvailableListOfSubjects= new ArrayList<String>();
     

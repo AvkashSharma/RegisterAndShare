@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 import java.util.ArrayList;
@@ -10,9 +9,13 @@ import java.util.List;
 - List of Subjects
   */
 
-public class SubjectsRequest extends Request implements Serializable{
+public class SubjectsRequest extends Request {
 
     
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     String clientName;
     List <String>subjectsToSubscribe=new ArrayList<String>();
 

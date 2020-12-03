@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 
@@ -8,8 +7,8 @@ import requests.RequestType;
   - Request # 
   - Reason
   */
-public class UpdateDenied extends Request implements Serializable {
-   
+public class UpdateDenied extends Request {
+  
     /**
    *
    */

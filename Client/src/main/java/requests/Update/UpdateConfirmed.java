@@ -1,5 +1,4 @@
 package requests.Update;
-import java.io.Serializable;
 import java.net.InetSocketAddress;
 
 import requests.Request;
@@ -12,8 +11,12 @@ import requests.RequestType;
 - Socket #
 */
 
-public class UpdateConfirmed extends Request implements Serializable {
-     InetSocketAddress clientSocketAddress;
+public class UpdateConfirmed extends Request  {
+     /**
+    *
+    */
+    private static final long serialVersionUID = 1L;
+    InetSocketAddress clientSocketAddress;
     String clientName;
 
     public UpdateConfirmed(String clientName, InetSocketAddress clientSocketAddress){

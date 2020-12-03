@@ -1,11 +1,13 @@
 package requests.Registration;
 
-import java.io.Serializable;
-
 import requests.Request;
 import requests.RequestType;
 
-public class LoginRequest extends Request implements Serializable{
+public class LoginRequest extends Request {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     /**
      *
      */

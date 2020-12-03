@@ -1,16 +1,15 @@
 package requests.Update;
 
-import java.io.Serializable;
 import requests.Request;
 import requests.RequestType;
 /*
-  - Request # 
-  - Ip
-  - Socket #
+- Request # 
+- Ip
+- Socket #
 
   */
 
-public class ChangeServer extends Request implements Serializable {
+public class ChangeServer extends Request  {
 
     /**
      *

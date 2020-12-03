@@ -1,13 +1,17 @@
 package requests.Registration;
-import java.io.Serializable;
 
 import requests.Request;
 import requests.RequestType;
 
 
-public class LoginConfirmed extends Request implements Serializable {
+public class LoginConfirmed extends Request  {
     
-    public LoginConfirmed(){
+    /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+
+  public LoginConfirmed() {
       super(RequestType.LOGIN_CONFIRMED);
     }
 
