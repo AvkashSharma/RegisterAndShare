@@ -1,0 +1,66 @@
+----------------SENDING-------------
+UPDATE 6 karthi 192.168.2.11:57087
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 6 karthi 192.168.2.11:57087
+Sending to ->192.168.2.1:8
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 6 karthi 192.168.2.11:57087
+----------------SENDING-------------
+UPDATE 8 karthi 192.168.2.11:63761
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 8 karthi 192.168.2.11:63761
+Sending to ->192.168.2.11:1
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 8 karthi 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+DE-REGISTER 7 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+DE-REGISTER 8 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+DE-REGISTER 9 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 
+----------------SENDING-------------
+DE-REGISTER 9 karthi
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+DE-REGISTER 10 karthi
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 11 karhti 192.168.2.11:57087
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 11 karhti 192.168.2.11:57087
+Sending to ->192.168.2.1:8
+----------------SENDING-------------
+REGISTER 13 karthi 192.168.2.11:57087
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 13 karthi 192.168.2.11:57087
+Sending to ->192.168.2.1:8
+----------------NEW MESSAGE--------------------
+REGISTERED 13 
+----------------SENDING-------------
+DE-REGISTER 11 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 
+----------------SENDING-------------
+DE-REGISTER 14 karthi
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+DE-REGISTER 15 karthi
+Sending to ->192.168.2.11:1234

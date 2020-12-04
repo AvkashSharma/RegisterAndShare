@@ -1,0 +1,16 @@
+----------------NEW MESSAGE--------------------
+CLIENT-REGISTER-DENIED 3 Username exists
+----------------SENDING-------------
+UPDATE 4 mike 192.168.2.11:51312
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 4 mike 192.168.2.11:51312
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 4 mike 192.168.2.11:51312
+----------------SENDING-------------
+REGISTER 5 m1 192.168.2.11:51312
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 5 m1 192.168.2.11:51312
+Sending to ->192.168.2.11:6666

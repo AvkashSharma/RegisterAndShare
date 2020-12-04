@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import requests.Update.ChangeServer;
 import requests.Update.UpdateConfirmed;
+import requests.Update.UpdateDenied;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
@@ -40,11 +41,8 @@ public class ServerReceiver implements Runnable {
         Object o = (Object) is.readObject();
         Writer.appendToFile(o);
 
-        // Create an object of RequestHandler
-        RequestHandler handler = new RequestHandler();
-
         // call handleRequest
-        handler.handleRequest(o);
+        handleRequest(o, incomingPacket);
       }
     } catch (IOException e) {
       System.out.println("Receiver IOException " + e.getMessage());
@@ -52,14 +50,12 @@ public class ServerReceiver implements Runnable {
       e.printStackTrace();
     }
   }
-}
 
-class RequestHandler {
-
-  public void handleRequest(Object request) {
+  public void handleRequest(Object request, DatagramPacket packet) {
 
     // Handle Successful Register Request - Don't think we need it
     if (request instanceof ClientRegisterConfirmed) {
+      ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       ClientData.isRegistered.set(true);
       System.out.println("\n" + request.toString());
     }
@@ -67,6 +63,7 @@ class RequestHandler {
     // Upon reception of REGISTER-DENIED, the user will give up for a little while
     // before retrying again depending on the reason.
     else if (request instanceof ClientRegisterDenied) {
+      ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
 
@@ -75,16 +72,17 @@ class RequestHandler {
       ClientData.isRegistered.set(false);
       ClientData.username.set("");
 
-    } 
-    else if (request instanceof UpdateConfirmed) {
-
-      System.out.println("update confirmed");
+    } else if (request instanceof UpdateConfirmed) {
+      ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       ClientData.isRegistered.set(true);
       System.out.println(request.toString());
-      
 
-    } 
-    else if (request instanceof ChangeServer) {
+    } else if (request instanceof UpdateDenied) {
+      ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
+      ClientData.isRegistered.set(false);
+      System.out.println(request.toString());
+      
+    } else if (request instanceof ChangeServer) {
 
       System.out.println(request.toString());
 
