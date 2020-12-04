@@ -99,10 +99,8 @@ public class ClientData {
                 }
 
             } catch (UnknownHostException e) {
-                // TODO Auto-generated catch block
                 // e1.printStackTrace();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 // e1.printStackTrace();
             }
         }
@@ -112,8 +110,7 @@ public class ClientData {
             serverSocket = new InetSocketAddress(activeServerAddress, ACTIVE_PORT);
             return serverSocket;
         } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
-            // e.printStackTrace();
+            e.printStackTrace();
         }
 
         return null;

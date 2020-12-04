@@ -7,3 +7,88 @@ UPDATE 2 kj 192.168.2.11:61079
 Sending to ->192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 UPDATE-CONFIRMED 2 kj 192.168.2.11:61079
+----------------SENDING-------------
+UPDATE 1 kj 192.168.2.11:62404
+Sending to ->192.168.2.11:6667
+----------------SENDING-------------
+UPDATE 1 kj 192.168.2.11:50333
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 kj 192.168.2.11:50333
+Sending to ->1:1
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 kj 192.168.2.11:50333
+----------------SENDING-------------
+UPDATE 1 kj 192.168.2.11:61003
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 kj 192.168.2.11:61003
+Sending to ->1:1
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 kj 192.168.2.11:61003
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS kj []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects:  Food Formula1 Sports
+----------------SENDING-------------
+SUBJECTS 3 kj [Sports, done]
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	Sports has been added to your subscribed subjects
+----------------NEW MESSAGE--------------------
+
+	done is not available in the available subject and has not been added
+----------------NEW MESSAGE--------------------
+
+	The following are your subscribed subjects: 
+----------------NEW MESSAGE--------------------
+
+	[Sports]
+----------------SENDING-------------
+PUBLISH 4 kj sports Hi sports fan
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+PUBLISH-DENIED 4 Subject is not in present in your list of subjects
+----------------SENDING-------------
+SUBJECTS 5 kj [sports]
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	sports is not available in the available subject and has not been added
+----------------NEW MESSAGE--------------------
+
+	The following are your subscribed subjects: 
+----------------NEW MESSAGE--------------------
+
+	[Sports]
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS kj []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects:  Food Formula1 Sports
+----------------SENDING-------------
+PUBLISH 7 kj Sport ha
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+PUBLISH-DENIED 7 Subject does not exist
+----------------SENDING-------------
+SUBJECTS 8 kj [Sports]
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	Sports was already in your subscribed subjects
+----------------NEW MESSAGE--------------------
+
+	The following are your subscribed subjects: 
+----------------NEW MESSAGE--------------------
+
+	[Sports]
+----------------SENDING-------------
+PUBLISH 9 kj Sports hi sports fan
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE kj Sports hi sports fan

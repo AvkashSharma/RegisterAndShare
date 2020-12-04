@@ -13,7 +13,7 @@ public class Writer {
   public static void appendToFile(Object object) throws IOException{
     String fileName = ClientData.username.get().toString()+ ".txt";
     try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
-      System.out.println("Writer "+ object.toString());
+      // System.out.println("Writer "+ object.toString());
       StringBuilder str = new StringBuilder();
 
       str.append("----------------NEW MESSAGE--------------------"); 
@@ -28,7 +28,7 @@ public class Writer {
   public static void sendRequestToFile(Object object, String serverAddress, int serverPort) throws IOException {
     String fileName = ClientData.username.get().toString()+ ".txt";
     try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
-      System.out.println("Writer "+ object.toString());
+      // System.out.println("Writer "+ object.toString());
       StringBuilder str = new StringBuilder();
 
       str.append("----------------SENDING-------------"); 

@@ -151,7 +151,8 @@ public class Client {
         }
 
         try {
-            Sender.sendTo(updateRequest, clientSocket);
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
         } catch (IOException e) {
             e.printStackTrace();
         }

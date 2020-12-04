@@ -1477,3 +1477,23 @@ REGISTER 1 kj 192.168.2.11:61651
 REGISTER 1 kj 192.168.2.11:61079
 ----------------NEW MESSAGE--------------------
 UPDATE 2 kj 192.168.2.11:61079
+----------------NEW MESSAGE--------------------
+UPDATE 1 kj 192.168.2.11:50333
+----------------NEW MESSAGE--------------------
+UPDATE 1 kj 192.168.2.11:61003
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj []
+----------------NEW MESSAGE--------------------
+SUBJECTS 3 kj [Sports, done]
+----------------NEW MESSAGE--------------------
+PUBLISH 4 kj sports Hi sports fan
+----------------NEW MESSAGE--------------------
+SUBJECTS 5 kj [sports]
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj []
+----------------NEW MESSAGE--------------------
+PUBLISH 7 kj Sport ha
+----------------NEW MESSAGE--------------------
+SUBJECTS 8 kj [Sports]
+----------------NEW MESSAGE--------------------
+PUBLISH 9 kj Sports hi sports fan
