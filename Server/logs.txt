@@ -1497,3 +1497,261 @@ PUBLISH 7 kj Sport ha
 SUBJECTS 8 kj [Sports]
 ----------------NEW MESSAGE--------------------
 PUBLISH 9 kj Sports hi sports fan
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 kj 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 2 kj 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 kj1 192.168.2.11:50474
+----------------NEW MESSAGE--------------------
+REGISTER 1 kj1 192.168.2.11:50474
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 3 kj 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+UPDATE 4 kj 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+REGISTER 1 kj 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+REGISTER 2 kj2 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj2 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj2 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kj1 []
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DE-REGISTER 5 kj2
+----------------NEW MESSAGE--------------------
+UPDATE 6 karthi 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+DE-REGISTER 7 kj
+----------------NEW MESSAGE--------------------
+UPDATE 8 karthi 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DE-REGISTER 7 karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DE-REGISTER 8 karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DE-REGISTER 9 karthi
+----------------NEW MESSAGE--------------------
+DE-REGISTER 9 karthi
+----------------NEW MESSAGE--------------------
+DE-REGISTER 10 karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 10 karthi 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+REGISTER 11 karhti 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+REGISTER 12 karthi 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 13 karthi 192.168.2.11:57087
+----------------NEW MESSAGE--------------------
+DE-REGISTER 11 karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 12 1 192.168.2.11:63761
+----------------NEW MESSAGE--------------------
+SUBJECTS 13 1 [Sports]
+----------------NEW MESSAGE--------------------
+DE-REGISTER 14 karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DE-REGISTER 15 karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+PUBLISH 4 kj1 Sports hi 1
+----------------NEW MESSAGE--------------------
+SUBJECTS 5 kj1 [Sports]
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+PUBLISH 6 kj1 Sports hi 1
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 2 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+REGISTER 1 2 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 2
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 3 mike 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+REGISTER 3 mike 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 4 mike 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+UPDATE 4 mike 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+REGISTER 5 m1 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+REGISTER 5 m1 192.168.2.11:51312
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS m1 []
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SUBJECTS 7 m1 [Food, Sports]
+----------------NEW MESSAGE--------------------
+PUBLISH 8 m1 Sports hello from m1
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
