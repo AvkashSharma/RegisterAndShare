@@ -1,6 +1,5 @@
 package handlers;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,9 +7,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
-import requests.Registration.LoginConfirmed;
 import requests.Update.ChangeServer;
+import requests.Update.UpdateConfirmed;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
@@ -38,6 +36,7 @@ public class ServerReceiver implements Runnable {
         ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
         ObjectInputStream is = new ObjectInputStream(byteStream);
 
+        System.out.println("received packet");
         Object o = (Object) is.readObject();
         Writer.appendToFile(o);
 
@@ -70,14 +69,23 @@ class RequestHandler {
     else if (request instanceof ClientRegisterDenied) {
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
+
     } else if (request instanceof DeRegisterConfirmed) {
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
       ClientData.username.set("");
-    } else if (request instanceof LoginConfirmed) {
-      System.out.println(request.toString());
+
+    } 
+    else if (request instanceof UpdateConfirmed) {
+
+      System.out.println("update confirmed");
       ClientData.isRegistered.set(true);
-    } else if (request instanceof ChangeServer) {
+      System.out.println(request.toString());
+      
+
+    } 
+    else if (request instanceof ChangeServer) {
+
       System.out.println(request.toString());
 
       ChangeServer ser = (ChangeServer) request;

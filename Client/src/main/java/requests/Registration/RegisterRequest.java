@@ -1,8 +1,5 @@
 package requests.Registration;
 
-
-
-
 import requests.Request;
 import requests.RequestType;
 

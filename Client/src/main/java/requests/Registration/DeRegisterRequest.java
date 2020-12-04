@@ -1,5 +1,4 @@
 package requests.Registration;
-
 import requests.Request;
 import requests.RequestType;
 
@@ -16,8 +15,8 @@ public class DeRegisterRequest extends Request {
     private static final long serialVersionUID = 1L;
     String clientName;
 
-    public DeRegisterRequest(int rqNumber, String clientName){
-        super(RequestType.DE_REGISTER, rqNumber);
+    public DeRegisterRequest(int rid, String clientName) {
+        super(RequestType.DE_REGISTER, rid);
         this.clientName = clientName;
     }
 
