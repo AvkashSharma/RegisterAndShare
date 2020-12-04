@@ -34,9 +34,25 @@ public class ClientData {
     public static String CLIENT_IP;
     public static int CLIENT_PORT;
 
+
+    public static void setActiveAddress(String address, int port){
+        ACTIVE_PORT = port;
+        ACTIVE_IP = address;
+        try {
+            activeServerAddress = InetAddress.getByName(ACTIVE_IP.toString());
+        } catch (UnknownHostException e) { 
+            e.printStackTrace();
+        }
+    }
     // UI to enter Server IP address
     public static void getServerAddress(Scanner s) {
-        System.out.print("Enter server 1 \n\t\tIp Address: ");
+        String localAddress = "";
+        try {
+            localAddress = InetAddress.getLocalHost().getHostAddress().toString();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        System.out.print("Enter server 1 \n\t\tIp Address("+localAddress+"): ");
         SERVER_1_IP = s.next();
         System.out.print("\t\tPort: ");
         // todo - validate that its a valid port
@@ -46,7 +62,7 @@ public class ClientData {
             throw new IllegalArgumentException("Port out of range");
         }
 
-        System.out.print("Enter server 2 \n\t\tIp Address: ");
+        System.out.print("Enter server 2 \n\t\tIp Address("+localAddress+"): ");
         SERVER_2_IP = s.next();
         System.out.print("\t\tPort: ");
         // todo - validate that its a valid port
@@ -64,7 +80,7 @@ public class ClientData {
         while (true) {
 
             // COMMENT to skip entering IP address
-            // getServerAddress(scanner);// <---------------------------------------------------------TO
+            getServerAddress(scanner);// <---------------------------------------------------------TO
             // SKIP ENTERING IP
             try {
                 boolean server1Active = ClientPingServer.ping(SERVER_1_IP, SERVER_1_PORT);;

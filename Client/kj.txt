@@ -1,0 +1,9 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+----------------NEW MESSAGE--------------------
+CLIENT-REGISTER-DENIED 1 Username exists
+----------------SENDING-------------
+UPDATE 2 kj 192.168.2.11:61079
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 2 kj 192.168.2.11:61079

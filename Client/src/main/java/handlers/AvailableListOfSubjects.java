@@ -23,7 +23,7 @@ public class AvailableListOfSubjects extends Request {
         return clientName;
     }
      public List<String> getAvailableListOfSubjects(){
-        return getAvailableListOfSubjects();
+        return AvailableListOfSubjects;
     }
     @Override
     public String toString() {
