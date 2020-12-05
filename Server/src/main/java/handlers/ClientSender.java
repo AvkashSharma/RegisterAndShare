@@ -31,8 +31,8 @@ public class ClientSender {
         DatagramPacket outputPacket = new DatagramPacket(data, data.length,clientAddress,clientPort);
 
         
-            // Send the created packet to the client
-             clientSocket.send(outputPacket);
+        // Send the created packet to the client
+        clientSocket.send(outputPacket);
         }
         catch (IOException e){
             e.printStackTrace();

@@ -6,12 +6,12 @@ import java.io.ObjectInputStream;
 import java.net.*;
 import java.util.List;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
-
 import db.Database;
 import db.User;
 import server.Server;
 import requests.Registration.RegisterRequest;
+import requests.Registration.ServerRegisterConfirmed;
+import requests.Registration.ServerRegisterDenied;
 import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateConfirmed;
@@ -33,6 +33,7 @@ import requests.Registration.DeRegisterRequest;
 public class ClientReceiver implements Runnable {
 
     private DatagramPacket packetReceived;
+    // client socket name is not appropriate. this is the server socket that is used to send response
     private DatagramSocket clientSocket;
     byte[] dataBuffer;
     Thread threadClientReceiver;
@@ -194,13 +195,30 @@ public class ClientReceiver implements Runnable {
                 if (dbResponse) {
                     ClientRegisterConfirmed confirmation = new ClientRegisterConfirmed(request.getRid());
                     ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+
+                    // Send confirmation to IDLE server
+                    ServerRegisterConfirmed serverConfirmation = new ServerRegisterConfirmed(request.getRid(), request.getClientName(), request.getAddress(), request.getPort());
+                    System.out.print("ACTIVE TO IDLE: ");
+                    System.out.println(serverConfirmation.toString());
+                    ServerSender.sendResponse(serverConfirmation,clientSocket);
+                    
                 } else {
                     ClientRegisterDenied denied = new ClientRegisterDenied("Problem with database", request.getRid());
                     ClientSender.sendResponse(denied, packetReceived, clientSocket);
+
+                    ServerRegisterDenied serverDenied = new ServerRegisterDenied(request.getRid(), request.getClientName(), request.getAddress(), request.getPort());
+                    System.out.print("ACTIVE TO IDLE: ");
+                    System.out.println(serverDenied.toString());
+                    ServerSender.sendResponse(serverDenied,clientSocket);
                 }
             } else {
                 ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
+
+                ServerRegisterDenied serverDenied = new ServerRegisterDenied(request.getRid(), request.getClientName(), request.getAddress(), request.getPort());
+                System.out.print("ACTIVE TO IDLE: ");
+                System.out.println(serverDenied.toString());
+                ServerSender.sendResponse(serverDenied,clientSocket);
             }
         } catch (IOException e) {
             e.printStackTrace();

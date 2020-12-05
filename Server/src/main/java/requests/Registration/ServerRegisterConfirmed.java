@@ -1,7 +1,6 @@
 package requests.Registration;
 import requests.Request;
 import requests.RequestType;
-import java.net.InetSocketAddress;
 
 /*
 Register Request
@@ -17,26 +16,36 @@ public class ServerRegisterConfirmed extends Request {
    *
    */
   private static final long serialVersionUID = 1L;
-  InetSocketAddress serverSocketAddress;
-    String clientName;
-    public ServerRegisterConfirmed( String clientName,  InetSocketAddress serverSocketAddress){
-      super(RequestType.SERVER_REGISTER_CONFIRMED);
+  private String clientName;
+  private String address;
+  private int socket;
+  
+    
+  public ServerRegisterConfirmed(int rqNumber, String clientName, String address, int socket){
+      super(RequestType.SERVER_REGISTER_CONFIRMED,rqNumber);
       this.clientName=clientName;
-      this.serverSocketAddress=serverSocketAddress;
+      this.address = address;
+      this.socket = socket; 
     }
     
     public String getClientName() {
-        return clientName;
+      return clientName;
+    }
+
+    public String getAddress() {
+      return address;
+    }
+
+    public int getSocket() {
+      return socket;
     }
     
-    public InetSocketAddress getServerSocketAddress(){
-      return serverSocketAddress;
-    } 
-
     @Override
-    public String toString(){
-        return RequestType.SERVER_REGISTER_CONFIRMED+ " " + this.getRid()+ " "+ getClientName()+ " "+ getServerSocketAddress() ;
+    public String toString() {
+        return RequestType.SERVER_REGISTER_CONFIRMED + " " + this.getRid() + " " + getClientName() + " " + getAddress() + ":"
+                + getSocket();
     }
+    
 
     public void print(){
         System.out.println(this.toString());
