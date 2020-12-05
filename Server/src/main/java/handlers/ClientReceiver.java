@@ -372,6 +372,10 @@ public class ClientReceiver implements Runnable {
                 subscribedList = db.getFavoriteSubjects(username);
                 ClientSender.sendResponse("\n\t" + subscribedList, packetReceived, clientSocket);
 
+                System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
+                System.out.println(subscribedList.toString());
+                ServerSender.sendResponse(subscribedList,clientSocket);
+
             } else {
                 String denied = "The user does not exist";
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
