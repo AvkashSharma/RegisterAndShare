@@ -4,12 +4,16 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import server.ServerData;
+
 public class Writer {
 
 
   public static void appendToFile(Object object) throws IOException{
 
-    try(BufferedWriter br = new BufferedWriter(new FileWriter("logs.txt",true))){
+    String fileName = ServerData.serverName.toString()+ ".txt";
+
+    try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
       System.out.println("Writer "+ object.toString());
       StringBuilder str = new StringBuilder();
 

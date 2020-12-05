@@ -1,0 +1,22 @@
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+REGISTER 1 quote 127.0.0.1:64250
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVER-REGISTER-CONFIRMED 1 potter 127.0.0.1:61813
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+REGISTER 2 1 127.0.0.1:61813
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
