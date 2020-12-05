@@ -1,7 +1,6 @@
 package requests.Registration;
 import requests.Request;
 import requests.RequestType;
-import java.net.InetSocketAddress;
 
 
 /*
@@ -12,32 +11,36 @@ Register Request
 - Socket#
 */
 public class ServerRegisterDenied extends Request {
-   
-    
-    /**
-     *
-     */
+
+
     private static final long serialVersionUID = 1L;
-    String clientName;
-    InetSocketAddress ServerSocketAddress;
+    private String clientName;
+    private String address;
+    private int socket;
 
-    public ServerRegisterDenied(String clientName, InetSocketAddress ServerSocketAddress){
-      super(RequestType.SERVER_REGISTER_DENIED);
-      
-      this.clientName = clientName;
-        this.ServerSocketAddress = ServerSocketAddress;
-
+    public ServerRegisterDenied(int rqNumber, String clientName, String address, int socket){
+        super(RequestType.SERVER_REGISTER_DENIED,rqNumber); 
+        this.clientName=clientName;
+        this.address = address;
+        this.socket = socket; 
     }
-    public String getName() {
+    
+    public String getClientName() {
         return clientName;
     }
-     public InetSocketAddress getServerSocketAddress(){
-      return ServerSocketAddress;
+
+    public String getAddress() {
+        return address;
     }
 
+    public int getSocket() {
+        return socket;
+    }
+    
     @Override
-    public String toString(){
-        return RequestType.SERVER_REGISTER_DENIED+ " "  + this.getRid()+" "+getName()+" "+getServerSocketAddress() ;
+    public String toString() {
+        return RequestType.SERVER_REGISTER_DENIED + " " + this.getRid() + " " + getClientName() + " " + getAddress() + ":"
+            + getSocket();
     }
 
     public void print(){

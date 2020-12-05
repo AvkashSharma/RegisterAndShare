@@ -19,12 +19,12 @@ public class ClientData {
     public static AtomicInteger requestCounter = new AtomicInteger(0);
 
     // public static InetAddress server1Address;
-    public static String SERVER_1_IP = "192.168.2.11";
-    public static int SERVER_1_PORT = 6667;
+    public static String SERVER_1_IP = "127.0.0.1";
+    public static int SERVER_1_PORT = 50001;
 
     // public static InetAddress server2Address;
-    public static String SERVER_2_IP = "192.168.81.1";
-    public static int SERVER_2_PORT = 1234;
+    public static String SERVER_2_IP = "127.0.0.1";
+    public static int SERVER_2_PORT = 50002;
 
     public static InetAddress activeServerAddress;
     public static String ACTIVE_IP = ClientData.SERVER_1_IP;
