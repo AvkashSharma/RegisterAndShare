@@ -44,6 +44,13 @@ public class ServerData {
      */
     public static AtomicInteger portB = new AtomicInteger(0);
 
+    /**
+     * Server's serverName
+     * 
+     * @SERVER
+     */
+    public static AtomicReference<String> serverName = new AtomicReference<String>("");
+
     public static Timer activeTimer = new Timer();
     public static Timer inactiveTimer = new Timer();
     public static int activeInterval;

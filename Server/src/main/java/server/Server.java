@@ -80,6 +80,9 @@ public class Server implements Runnable {
         System.out.print("Enter Port Number for server: ");
         ServerData.port.set(scanner.nextInt());
 
+        System.out.print("Enter name of the server: ");
+        ServerData.serverName.set(scanner.next());
+
         while (true) {
             // Is it the first server?
             System.out.print("Is this your first server(y/n): ");
