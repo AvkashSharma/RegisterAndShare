@@ -314,7 +314,14 @@ public class ClientReceiver implements Runnable {
                 // System.out.println("These are available subjects "+subjects);
                 String list = "";
                 for (String subject : subjects) {
-                    list += " " + subject;
+                    list += subject;
+                        if (subjects.get(subjects.size()-2)==subject){
+                            list+=" and ";
+                        }
+                       else if(!(subjects.get(subjects.size()-1)==subject)){
+                            list+=", ";
+                        }
+                        
                 }
                 ClientSender.sendResponse("\n\t Choose among the following subjects: " + list, packetReceived,
                         clientSocket);
@@ -341,7 +348,7 @@ public class ClientReceiver implements Runnable {
                 boolean contained;
                 boolean alreadyExist;
                 String reply = "";
-                String subscribedSubjects = "";
+                String subjectsInString="\n\tThe following are your subscribed subjects: ";
                 List<String> subscribedList;
                 for (int i = 0; i < subjects.size(); i++) {
                     subject = subjects.get(i);
@@ -366,11 +373,19 @@ public class ClientReceiver implements Runnable {
                         reply = "\n\t" + subject + " is not available in the available subject and has not been added";
                         ClientSender.sendResponse(reply, packetReceived, clientSocket);
                     }
-                }
-                subscribedSubjects = "\n\tThe following are your subscribed subjects: ";
-                ClientSender.sendResponse(subscribedSubjects, packetReceived, clientSocket);
+                }        
                 subscribedList = db.getFavoriteSubjects(username);
-                ClientSender.sendResponse("\n\t" + subscribedList, packetReceived, clientSocket);
+                //turning the list into a string
+                for(String sub:subscribedList){
+                   subjectsInString+=sub;
+                   if (subscribedList.get(subscribedList.size()-2)==sub){
+                            subjectsInString+=" and ";
+                        }
+                       else if(!(subscribedList.get(subscribedList.size()-1)==sub)){
+                           subjectsInString+=", ";
+                        }
+                }
+                ClientSender.sendResponse(subjectsInString, packetReceived, clientSocket);
 
                 System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
                 System.out.println(subscribedList.toString());
