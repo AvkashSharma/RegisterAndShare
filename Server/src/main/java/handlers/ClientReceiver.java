@@ -277,6 +277,10 @@ public class ClientReceiver implements Runnable {
                     UpdateConfirmed updateConfirmed = new UpdateConfirmed(request.getRid(), request.getClientName(),
                             request.getAddress(), request.getPort());
                     ClientSender.sendResponse(updateConfirmed, packetReceived, clientSocket);
+
+                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.println(updateConfirmed.toString());
+                    ServerSender.sendResponse(updateConfirmed,clientSocket);
                 }
             }
             db.close();
