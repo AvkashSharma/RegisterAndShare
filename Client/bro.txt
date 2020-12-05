@@ -120,3 +120,17 @@ CLIENT-REGISTER-DENIED 3 Username exists
 CLIENT-REGISTER-DENIED 2 Username exists
 ----------------NEW MESSAGE--------------------
 CLIENT-REGISTER-DENIED 3 Username exists
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 
+----------------NEW MESSAGE--------------------
+REGISTERED 3 
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 
+----------------NEW MESSAGE--------------------
+REGISTERED 3 
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 

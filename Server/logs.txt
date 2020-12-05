@@ -2247,3 +2247,195 @@ SERVER PING true 127.0.0.1:50001
 SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+REGISTER 1 bro 127.0.0.1:52837
+----------------NEW MESSAGE--------------------
+SERVER-REGISTER-CONFIRMED 1 bro 127.0.0.1:52837
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 bro
+----------------NEW MESSAGE--------------------
+DE-REGISTER-SERVER-TO-SERVER bro
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 3 bro 127.0.0.1:52837
+----------------NEW MESSAGE--------------------
+SERVER-REGISTER-CONFIRMED 3 bro 127.0.0.1:52837
+----------------NEW MESSAGE--------------------
+DE-REGISTER 4 bro
+----------------NEW MESSAGE--------------------
+DE-REGISTER-SERVER-TO-SERVER bro
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 5 bro 127.0.0.1:52837
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+CLIENT PING /127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 bro 127.0.0.1:58219
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 6 bro 127.0.0.1:52837
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 2 bro 127.0.0.1:58219
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 3 bro 127.0.0.1:58219
+----------------NEW MESSAGE--------------------
+SERVER-REGISTER-CONFIRMED 3 bro 127.0.0.1:58219
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DE-REGISTER 4 bro
+----------------NEW MESSAGE--------------------
+DE-REGISTER-SERVER-TO-SERVER bro
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50001
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 127.0.0.1:50002
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving

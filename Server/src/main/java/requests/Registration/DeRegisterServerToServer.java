@@ -9,7 +9,7 @@ import requests.RequestType;
 */
 
 public class DeRegisterServerToServer extends Request {
-   
+
     /**
      *
      */
@@ -17,10 +17,8 @@ public class DeRegisterServerToServer extends Request {
     String clientName;
 
     public DeRegisterServerToServer(String clientName){
-      super(RequestType.DE_REGISTER_SERVER_TO_SERVER);
-      this.clientName = clientName;
-      
-
+        super(RequestType.DE_REGISTER_SERVER_TO_SERVER);
+        this.clientName = clientName;
     }
     public String getClientName(){
         return clientName;

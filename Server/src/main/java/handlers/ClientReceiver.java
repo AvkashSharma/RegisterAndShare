@@ -29,6 +29,7 @@ import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
 import requests.Registration.DeRegisterRequest;
+import requests.Registration.DeRegisterServerToServer;
 
 public class ClientReceiver implements Runnable {
 
@@ -251,6 +252,13 @@ public class ClientReceiver implements Runnable {
                 if (!dbResponse) {
                     DeRegisterConfirmed confirmation = new DeRegisterConfirmed();
                     ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+
+                    // send de-register confirmation to IDLE server
+                    DeRegisterServerToServer serverConfirmation = new DeRegisterServerToServer(username);
+                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.println(serverConfirmation.toString());
+                    ServerSender.sendResponse(serverConfirmation,clientSocket);
+
                 }
             }
         } catch (IOException e) {
