@@ -22,7 +22,8 @@ public class Client {
     public static DatagramSocket clientSocket;
 
     public Client() {
-        ClientData.checkActiveServer(scanner);
+        // ClientData.checkActiveServer(scanner);
+        ClientData.getServerAddress(scanner);
         System.out.println("-----------------------------------------");
 
         try {
@@ -57,6 +58,7 @@ public class Client {
             if (!ClientData.isRegistered.get()) {
                 System.out.println("1-Register");
                 System.out.println("2-Update location");
+                System.out.println("3-Configure server addresses");
             } else {
                 System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
@@ -83,7 +85,10 @@ public class Client {
                         deregister();
                     break;
                 case "3":
-                    update(1);
+                    if (!ClientData.isRegistered.get())
+                       ClientData.getServerAddress(scanner);
+                    else
+                        update(1);
                     break;
                 case "4":
                     getListOfSubjects();
@@ -103,6 +108,9 @@ public class Client {
         }
     }
 
+    /**
+     * When clients register, sends request to both server
+     */
     public void register() {
         System.out.print("\tEnter Username to register: ");
         String username = "";
@@ -111,7 +119,9 @@ public class Client {
         try {
             RegisterRequest registerMessage = new RegisterRequest(ClientData.requestCounter.incrementAndGet(), username,
                     ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
-            Sender.sendTo(registerMessage, clientSocket);
+            // Sender.sendTo(registerMessage, clientSocket);
+            Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+            Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
             ClientData.username.set(username);
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,9 +130,9 @@ public class Client {
 
     /**
      * Update user ip address and port
-     * @param type 1 = user already logged in,
-     * 0 = user not logged in
-     */ 
+     * 
+     * @param type 1 = user already logged in, 0 = user not logged in
+     */
     public void update(int type) {
         UpdateRequest updateRequest;
         if (type == 1) {
@@ -136,12 +146,13 @@ public class Client {
             System.out.print("\tEnter login username: ");
             String username = scanner.next();
             updateRequest = new UpdateRequest(ClientData.requestCounter.incrementAndGet(), username,
-                    ClientData.CLIENT_IP , ClientData.CLIENT_PORT);
+                    ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
             ClientData.username.set(username);
         }
 
         try {
-            Sender.sendTo(updateRequest, clientSocket);
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
         } catch (IOException e) {
             e.printStackTrace();
         }

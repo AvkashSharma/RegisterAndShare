@@ -1,0 +1,82 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS kj1 []
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects:  Food Formula1 Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS kj1 []
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects:  Food Formula1 Sports
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+PUBLISH 4 kj1 Sports hi 1
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+PUBLISH-DENIED 4 Subject is not in present in your list of subjects
+----------------SENDING-------------
+SUBJECTS 5 kj1 [Sports]
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+
+	Sports has been added to your subscribed subjects
+----------------NEW MESSAGE--------------------
+
+	The following are your subscribed subjects: 
+----------------NEW MESSAGE--------------------
+
+	[Sports]
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+PUBLISH 6 kj1 Sports hi 1
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE kj1 Sports hi 1
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE m1 Sports hello from m1
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
