@@ -1,193 +1,242 @@
 ----------------NEW MESSAGE--------------------
-REGISTERED 1 
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-REGISTERED 1 
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+REGISTER 1 k1 10.42.18.7:53197
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+REGISTER 1 k2 10.42.18.7:52492
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+REGISTER 1 k3 10.42.18.7:51777
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+REGISTERED 1 k3 10.42.18.7:51777
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-REGISTERED 1 
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+REGISTER 1 k1 10.42.18.7:59923
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+REGISTER 1 k3 10.42.18.7:57865
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+REGISTER 2 k3 10.42.18.7:57865
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CLIENT-REGISTER-DENIED 5 Username exists
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CLIENT-REGISTER-DENIED 7 Username exists
+UPDATE-SERVER KJ-ZENBOOK/10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CLIENT-REGISTER-DENIED 8 Username exists
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+UPDATE-SERVER 10.42.18.7:1234
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVER PING true 10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50001
+SERVER PING true 10.42.18.7:9999
 ----------------NEW MESSAGE--------------------
-
-	Food has been added to your subscribed subjects
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-
-	The following are your subscribed subjects: 
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-
-	[Food]
+UPDATE 1 k1 10.42.18.7:59659
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 127.0.0.1:50002
+UPDATE-CONFIRMED 1 k1 10.42.18.7:59659
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 2 kj1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+UPDATE 3 kj1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+UPDATE 4 kj1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 5 k1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTERED 3 k2 10.42.18.7:60779
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 

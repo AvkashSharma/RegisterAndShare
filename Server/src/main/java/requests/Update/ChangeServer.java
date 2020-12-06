@@ -3,9 +3,9 @@ package requests.Update;
 import requests.Request;
 import requests.RequestType;
 /*
-  - Request # 
-  - Ip
-  - Socket #
+- Request # 
+- Ip
+- Socket #
 
   */
 
@@ -18,10 +18,23 @@ public class ChangeServer extends Request {
     private String address;
     private int port;
 
-    public ChangeServer(String address, int port) {
+    private String addressB;
+    private int portB;
+
+    public ChangeServer(String address, int port, String addressB, int portB) {
         super(RequestType.CHANGE_SERVER);
         this.address = address;
         this.port = port;
+        this.addressB = addressB;
+        this.portB = portB;
+    }
+
+    public int getPortB() {
+        return portB;
+    }
+
+    public String getAddressB() {
+        return addressB;
     }
 
     public int getPort() {

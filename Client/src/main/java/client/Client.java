@@ -49,10 +49,12 @@ public class Client {
     public void ui() {
         String val = "";
         while (!val.equals("exit")) {
-            System.out.println("------------------@" + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
+            System.out.println("------------------Client: " + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
-            System.out.println("---------Connected: @" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
+            System.out.println("------------------Connected to:" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
                     + "------------------------");
+            System.out.println("------------------serverA: " + ClientData.SERVER_1_IP + ":" + ClientData.SERVER_1_PORT
+                    + "------serverB: " + ClientData.SERVER_2_IP + ":" + ClientData.SERVER_2_PORT);
             System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
 
             if (!ClientData.isRegistered.get()) {
@@ -86,7 +88,7 @@ public class Client {
                     break;
                 case "3":
                     if (!ClientData.isRegistered.get())
-                       ClientData.getServerAddress(scanner);
+                        ClientData.getServerAddress(scanner);
                     else
                         update(1);
                     break;

@@ -21,6 +21,7 @@ import requests.server.ServeConfirmed;
 import requests.server.ServeRequest;
 import server.ServerData;
 import requests.ClientPingServer;
+import requests.RequestType;
 import requests.server.ServerPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
@@ -107,6 +108,9 @@ public class ClientReceiver implements Runnable {
                 e.printStackTrace();
             }
         }
+            else if (request instanceof UpdateServer) {
+              updateServer((UpdateServer)request);
+        }
 
         // client requests
         else if (ServerData.isServing.get()) {
@@ -149,14 +153,7 @@ public class ClientReceiver implements Runnable {
 
                 publish((PublishRequest) request);
 
-            } else if (request instanceof ChangeServer) {
-                System.out.println("Received change server Request");
-                // Server needs to inform all the registered users about Change server Request
-            } else if (request instanceof UpdateServer) {
-                // when a server is not serving it can change its IP address and socket#, but
-                // informs only the current(serving) server with the following message
-                System.out.println("Received Update Server Request");
-            } else if (request instanceof ClientPingServer) {
+            }  else if (request instanceof ClientPingServer) {
                 System.out.println("Client Pinging");
                 try {
                     ((ClientPingServer) request).setActive(true);
@@ -171,6 +168,11 @@ public class ClientReceiver implements Runnable {
         }
     }
 
+    public void updateServer(UpdateServer request){
+        System.out.println("Backup server has changed location");
+        ServerData.addressB.set(request.getAddress());
+        ServerData.portB.set(request.getPort());
+    }
     /**
      * Upon reception of this message the current server, can accept or refuse the
      * registration.
