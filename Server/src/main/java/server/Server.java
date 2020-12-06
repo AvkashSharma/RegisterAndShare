@@ -19,6 +19,7 @@ import db.User;
 import handlers.*;
 import requests.server.ServerPingServer;
 import requests.Update.ChangeServer;
+import requests.Update.UpdateServer;
 import requests.server.ServeRequest;
 
 public class Server implements Runnable {
@@ -28,12 +29,12 @@ public class Server implements Runnable {
     private static String display = "";
     private static volatile DatagramSocket socket;
     ClientReceiver clientReceiver;
-    private static boolean stopThread = true;
+    private static boolean closeSocket = true;
 
     public Server() {
         serverConfig();
         try {
-            ServerData.address.set(InetAddress.getLocalHost().toString());
+            ServerData.address.set(InetAddress.getLocalHost().getHostAddress().toString());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -51,7 +52,7 @@ public class Server implements Runnable {
                 try {
                     socket.receive(incoming);
 
-                    if (stopThread) {
+                    if (closeSocket) {
                         // Need to pass received data
                         clientReceiver = new ClientReceiver(incoming, socket);
                     }
@@ -91,7 +92,7 @@ public class Server implements Runnable {
                 break;
             } else if (firstServer.equals("n")) {
                 try {
-                    System.out.println("Enter other server's address(" + InetAddress.getLocalHost().toString() + "): ");
+                    System.out.println("Enter other server's address(" + InetAddress.getLocalHost().getHostAddress().toString() + "): ");
                 } catch (UnknownHostException e1) {
                     e1.printStackTrace();
                 }
@@ -113,14 +114,13 @@ public class Server implements Runnable {
     public void ui() {
         String val = "";
         while (!val.equals("exit")) {
-            System.out.println("\n----------------Server Listening on " + ServerData.address + ":"
+            System.out.println("\n----------------Server Listening on " + ServerData.address.get() + ":"
                     + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get() + "\t");
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.println("1-Change Server's Port (UPDATE-SERVER)");
-            System.out.println("2-Stop Serving Clients");
-            System.out.println("3-Serve Clients");
-            System.out.println("4-Update Server");
-            System.out.println("5-Update User's (CHANGE-SERVER)");
+            System.out.println("2-Inform User's (CHANGE-SERVER)");
+            System.out.println("3-Stop Serving Clients");
+            System.out.println("4-Serve Clients");
 
             System.out.print("\t\t\t\tChoice: ");
             val = scanner.nextLine();
@@ -130,20 +130,20 @@ public class Server implements Runnable {
             }
             switch (val) {
                 case "1":
-                    System.out.println("Changing Server port");
+                    System.out.println("Changing server port");
                     updatePort();
                     break;
                 case "2":
+                    System.out.println("Informing user's");
+                    changeServer();
+                    break;
+                case "3":
                     System.out.println("Stop serving clients");
                     stopServing();
                     break;
-                case "3":
-                    System.out.println("Serving clients");
-                    serve();
-                    break;
                 case "4":
                     System.out.println("Serving clients");
-                    // serve();
+                    serve();
                     break;
 
                 case "-1":
@@ -211,15 +211,26 @@ public class Server implements Runnable {
     public void updatePort() {
         resetTimers();
         System.out.println("\t Enter port number: ");
+        int originalPort = ServerData.port.get();
         ServerData.port.set(scanner.nextInt());
 
-        stopThread = false;
+        closeSocket = false;
 
         try {
             socket.close();
             socket = new DatagramSocket(ServerData.port.get());
-            serve();
-            changeServer();
+            closeSocket = true;
+            // serve();
+            // changeServer();
+            System.out.println(ServerData.address.get());
+            UpdateServer update = new UpdateServer(ServerData.address.get(), ServerData.port.get());
+            try {
+                Sender.sendTo(update, socket, ServerData.addressB.get(), ServerData.portB.get());
+            } catch (IOException e) {
+                System.out.println("Could not reach backup server, port not changed");
+                ServerData.port.set(originalPort);
+                e.printStackTrace();
+            }
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -263,7 +274,6 @@ public class Server implements Runnable {
         } catch (IOException e) {
             bServingStatus = false;
         }
-
     }
 
     /**
@@ -272,7 +282,7 @@ public class Server implements Runnable {
     public static void serve() {
         ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.isServing.set(true);
-        stopThread = true;
+        closeSocket = true;
         startActiveTimer();
     }
 
@@ -283,7 +293,7 @@ public class Server implements Runnable {
         Database db = new Database();
         List<User> Users = db.getUsers();
         for (User user : Users) {
-            ChangeServer changeServer = new ChangeServer(ServerData.addressB.get(), ServerData.portB.get());
+            ChangeServer changeServer = new ChangeServer(ServerData.addressB.get(), ServerData.portB.get(), ServerData.address.get(), ServerData.port.get());
             System.out.println(user.getUsername() + " " + user.getUserIP() + ":" + user.getUserSocket());
             byte[] buffer = new byte[1024];
 

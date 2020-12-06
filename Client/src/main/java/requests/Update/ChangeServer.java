@@ -9,7 +9,7 @@ import requests.RequestType;
 
   */
 
-public class ChangeServer extends Request  {
+public class ChangeServer extends Request {
 
     /**
      *
@@ -18,10 +18,23 @@ public class ChangeServer extends Request  {
     private String address;
     private int port;
 
-    public ChangeServer(String address, int port) {
+    private String addressB;
+    private int portB;
+
+    public ChangeServer(String address, int port, String addressB, int portB) {
         super(RequestType.CHANGE_SERVER);
         this.address = address;
         this.port = port;
+        this.addressB = addressB;
+        this.portB = portB;
+    }
+
+    public int getPortB() {
+        return portB;
+    }
+
+    public String getAddressB() {
+        return addressB;
     }
 
     public int getPort() {
@@ -40,5 +53,4 @@ public class ChangeServer extends Request  {
     public void print() {
         System.out.println(this.toString());
     }
-
 }

@@ -1,5 +1,5 @@
 package requests.Update;
-import java.net.InetSocketAddress;
+
 import requests.Request;
 import requests.RequestType;
 
@@ -8,36 +8,37 @@ import requests.RequestType;
   - Ip address
   - Socket
   */
-
+/**
+ * Update server's port number
+ */
 public class UpdateServer extends Request {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
-    InetSocketAddress clientSocketAddress;
-   
-  
-    public UpdateServer( InetSocketAddress clientSocketAddress) {
+    private String address;
+    private int port;
+
+    public UpdateServer(String address, int port) {
         super(RequestType.UPDATE_SERVER);
-       
-        this.clientSocketAddress = clientSocketAddress;
+
+        this.address = address;
+        this.port = port;
     }
 
-  
-    
-    public InetSocketAddress getClientSocketAddress(){
-        return clientSocketAddress;
+    public int getPort() {
+        return port;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     @Override
     public String toString() {
-        return RequestType.UPDATE_SERVER +" " + getClientSocketAddress();
+        return RequestType.UPDATE_SERVER +" " + getAddress()+":"+getPort();
     }
 
     public void print(){
         System.out.println(this.toString());
     }
-
     
 }
