@@ -213,7 +213,8 @@ public class ClientReceiver implements Runnable {
                     ServerSender.sendResponse(serverDenied,clientSocket);
                 }
             } else {
-                ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
+                
+                ClientRegisterDenied denied = new ClientRegisterDenied("Username exists already", request.getRid());
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
 
                 ServerRegisterDenied serverDenied = new ServerRegisterDenied(request.getRid(), request.getClientName(), request.getAddress(), request.getPort());
@@ -358,10 +359,10 @@ public class ClientReceiver implements Runnable {
                     if (contained) {
                         if (!alreadyExist) {
                             db.addFavoriteSubject(username, subject);
-                            reply = "\n\t" + subject + " has been added to your subscribed subjects";
+                            reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+subject;
                             ClientSender.sendResponse(reply, packetReceived, clientSocket);
                         } else {
-                            reply = "\n\t" + subject + " was already in your subscribed subjects";
+                            reply = "\n\t" + "SUBJECTS-REJECTED "+ request.getRid()+" "+ request.getClientName()+" "+subject +" was already in the list";
                             ClientSender.sendResponse(reply, packetReceived, clientSocket);
                         }
                         // System.out.println(subject+" is in the available subjects");
@@ -370,7 +371,7 @@ public class ClientReceiver implements Runnable {
 
                     else {
                         // System.out.println(subject+" is not in the available subjects");
-                        reply = "\n\t" + subject + " is not available in the available subject and has not been added";
+                        reply = "\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subject + " is not available";
                         ClientSender.sendResponse(reply, packetReceived, clientSocket);
                     }
                 }        
