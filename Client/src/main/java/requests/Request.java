@@ -16,15 +16,18 @@ public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
     protected RequestType requestType;
     protected int rid;
+    private transient Timer timer;
+    
 
     public Request(RequestType requestType) {
-        this.requestType = requestType;
+        this.requestType = requestType;  
+        this.timer = new Timer();
     }
     
     public Request(RequestType requestType, int reqNumber) {
         this.requestType = requestType;
         this.rid = reqNumber;
-        
+        this.timer = new Timer();
     }
 
     public RequestType getRequestType() {
@@ -44,10 +47,10 @@ public class Request implements Serializable {
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException  {    
         in.defaultReadObject();  }
 
-    public void startTimer(){
-        Timer timer = new Timer();
+    public void startTimer(){    
+        
         timer.scheduleAtFixedRate(new TimerTask(){
-            int tp = 10000;
+        int tp = 10000;
             
             @Override
             public void run() {
@@ -62,19 +65,36 @@ public class Request implements Serializable {
                 
             }
             
-        }, 1000,1000);
+        }, 10,1000);
     }
 
     public void done(){
         System.out.println("Done");
     }
 
+    public void stopTimer(){
+        System.out.println("STOP TIMER CALLED");
 
-    // public static void main(String[] args) {
-    //     Request req = new Request(RequestType.REGISTER);
+        timer.cancel();
+    }
 
-    //     req.startTimer();
-    // }
+
+//     public static void main(String[] args) {
+//         Request req = new Request(RequestType.REGISTER);
+
+//         req.startTimer();
+
+//         new java.util.Timer().schedule( 
+//         new java.util.TimerTask() {
+//             @Override
+//             public void run() {
+//                 req.stopTimer();
+//             }
+//         }, 
+//         5000
+// );
+
+//     }
     
 }
 

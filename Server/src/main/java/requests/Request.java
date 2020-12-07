@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Request implements Serializable {
 
@@ -13,6 +15,7 @@ public class Request implements Serializable {
     private static final long serialVersionUID = 1L;
     protected RequestType requestType;
     protected int rid;
+    
 
     public Request(RequestType requestType, int reqNumber) {
         this.requestType = requestType;
@@ -37,6 +40,4 @@ public class Request implements Serializable {
     public void writeObject(ObjectOutputStream out) throws IOException  { 
         out.defaultWriteObject();  
     }
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException  {    
-        in.defaultReadObject();  }
 }

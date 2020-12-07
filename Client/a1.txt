@@ -1,3 +1,18 @@
 ----------------SENDING-------------
 DE-REGISTER 2 a1
 Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+UPDATE 2 a1 127.0.0.1:63225
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+UPDATE 2 a1 127.0.0.1:63225
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+DE-REGISTER 2 a1
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+DE-REGISTER 4 a1
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+DE-REGISTER 2 a1
+Sending to ->127.0.0.1:50001
