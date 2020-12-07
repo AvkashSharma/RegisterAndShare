@@ -31,6 +31,9 @@ import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
 import requests.Registration.DeRegisterRequest;
 import requests.Registration.DeRegisterServerToServer;
+import requests.Registration.DisconnectClientServerToServer;
+import requests.Registration.DisconnectRequest;
+import requests.Registration.DisconnectionConfirmed;
 
 public class ClientReceiver implements Runnable {
 
@@ -120,7 +123,13 @@ public class ClientReceiver implements Runnable {
             } else if (request instanceof DeRegisterRequest) {
                 deregister((DeRegisterRequest) request);
 
-            } else if (request instanceof AvailableListOfSubjects) {
+            }
+              else if (request instanceof DisconnectRequest){
+                disconnect((DisconnectRequest) request);
+
+            }
+            
+            else if (request instanceof AvailableListOfSubjects) {
                 sendListOfSubjects((AvailableListOfSubjects) request);
             } else if (request instanceof SubjectsRequest) {
                 subscribeToSubjects((SubjectsRequest) request);
@@ -259,6 +268,30 @@ public class ClientReceiver implements Runnable {
                     // send de-register confirmation to IDLE server
                     DeRegisterServerToServer serverConfirmation = new DeRegisterServerToServer(username);
                     System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.println(serverConfirmation.toString());
+                    ServerSender.sendResponse(serverConfirmation,clientSocket);
+
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnect(DisconnectRequest request){
+        try {
+            String username = request.getClientName();
+            boolean dbResponse = false;
+            Database db = new Database();
+            if (db.userExist(username)) {
+                db.close();
+                if (!dbResponse) {
+                    DisconnectionConfirmed confirmation = new DisconnectionConfirmed();
+                    ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+
+                    // send disconnection confirmation to IDLE server
+                    DisconnectClientServerToServer serverConfirmation = new DisconnectClientServerToServer(username);
+                    System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation,clientSocket);
 
