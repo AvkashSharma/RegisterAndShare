@@ -11,32 +11,22 @@ import requests.RequestType;
 public class DisconnectRequest extends Request {
     private static final long serialVersionUID = 1L;
     String clientName;
-    private String address;
-    private int port;
+    
 
-    public DisconnectRequest(int reqNumber, String clientName,String address,int port) {
+    public DisconnectRequest(int reqNumber, String clientName) {
         super(RequestType.DISCONNECT, reqNumber);
         this.clientName = clientName;
-        this.address=address;
-        this.port=port;
+      
     }
 
     public String getClientName() {
         return clientName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
 
     @Override
     public String toString() {
-        return RequestType.DISCONNECT + " " + this.getRid()+" "+ getClientName() +" "+getAddress()+ " "+ getPort();
+        return RequestType.DISCONNECT + " " + this.getRid()+" "+ getClientName();
     }
 
     public void print(){
