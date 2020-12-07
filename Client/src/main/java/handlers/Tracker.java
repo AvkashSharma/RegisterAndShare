@@ -1,6 +1,8 @@
 package handlers;
 
+
 import client.ClientData;
+import requests.Request;
 import requests.Publish.PublishDenied;
 import requests.Publish.PublishRequest;
 import requests.Registration.ClientRegisterConfirmed;
@@ -30,19 +32,20 @@ public class Tracker {
 
       int Rid = req.getRid();
       System.out.println("REGISTER REQUEST RID:                          " + Rid);
+      req.startTimer();
       ClientData.requestMap.put(Rid, request);
       System.out.println("SIZE OF HASH MAP:                              " + ClientData.requestMap.size());
-      req.startTimer();
+      
     }
 
     // Handle De-Register Request
     else if(request instanceof DeRegisterRequest){
-      DeRegisterRequest req = (DeRegisterRequest)request;
-      int Rid = req.getRid();
-      System.out.println("DE-REGISTER REQUEST RID:                      " + Rid);
-      ClientData.requestMap.put(Rid, request);
-      System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
-      //req.startTimer();
+      // DeRegisterRequest req = (DeRegisterRequest)request;
+      // int Rid = req.getRid();
+      // System.out.println("DE-REGISTER REQUEST RID:                      " + Rid);
+      // ClientData.requestMap.put(Rid, request);
+      // System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
+      
     }
 
     // Handle User Update Request
@@ -50,6 +53,7 @@ public class Tracker {
       UpdateRequest req = (UpdateRequest)request;
       int Rid = req.getRid();
       System.out.println("UPDATE REQUEST RID:                      " + Rid);
+      req.startTimer();
       ClientData.requestMap.put(Rid, request);
       System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
     }
@@ -59,6 +63,7 @@ public class Tracker {
       SubjectsRequest req = (SubjectsRequest) request;
       int Rid = req.getRid();
       System.out.println("SUBJECT REQUEST RID:                      " + Rid);
+      req.startTimer();
       ClientData.requestMap.put(Rid, request);
       System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
     }
@@ -68,10 +73,10 @@ public class Tracker {
       PublishRequest req = (PublishRequest) request;
       int Rid = req.getRid();
       System.out.println("PUBLISH REQUEST RID:                      " + Rid);
+      req.startTimer();
       ClientData.requestMap.put(Rid, request);
       System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
     }
-
   }
 
   /**
@@ -88,8 +93,7 @@ public class Tracker {
     // Handle Register confirmation Received
     if(response instanceof ClientRegisterConfirmed){
       ClientRegisterConfirmed res = (ClientRegisterConfirmed) response;
-      // Stop the timer
-      res.stopTimer();
+      
       // Get the Rid
       int Rid = res.getRid();
       System.out.println("REGISTER CONFIRMATION RID:                          " + Rid);
@@ -97,10 +101,14 @@ public class Tracker {
       if(ClientData.requestMap.containsKey(Rid)){
         System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
-        
+
+        // Need to get the same object from the Map to stop the timer
+        Request reqToStop = (Request)ClientData.requestMap.get(Rid);
+        reqToStop.stopTimer();
+
         // print the size of the map
         System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
-        //ClientData.requestMap.remove(Rid);
+        ClientData.requestMap.remove(Rid);
         
         // print the size of the map
         System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
@@ -116,6 +124,11 @@ public class Tracker {
       if(ClientData.requestMap.containsKey(Rid)){
         System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
+
+        // Need to get the same object from the Map to stop the timer
+        Request reqToStop = (Request)ClientData.requestMap.get(Rid);
+        reqToStop.stopTimer();
+
         // print the size of the map
         System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
@@ -134,6 +147,11 @@ public class Tracker {
       if(ClientData.requestMap.containsKey(Rid)){
         System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
+
+        // Need to get the same object from the Map to stop the timer
+        Request reqToStop = (Request)ClientData.requestMap.get(Rid);
+        reqToStop.stopTimer();
+
         // print the size of the map
         System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
@@ -141,7 +159,6 @@ public class Tracker {
         System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
-
 
     // Handle User Update Denied
     else if(response instanceof UpdateDenied){
@@ -153,6 +170,11 @@ public class Tracker {
       if(ClientData.requestMap.containsKey(Rid)){
         System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
+
+        // Need to get the same object from the Map to stop the timer
+        Request reqToStop = (Request)ClientData.requestMap.get(Rid);
+        reqToStop.stopTimer();
+
         // print the size of the map
         System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
@@ -171,6 +193,12 @@ public class Tracker {
       if(ClientData.requestMap.containsKey(Rid)){
         System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
+
+
+        // Need to get the same object from the Map to stop the timer
+        Request reqToStop = (Request)ClientData.requestMap.get(Rid);
+        reqToStop.stopTimer();
+        
         // print the size of the map
         System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
@@ -210,6 +238,9 @@ public class Tracker {
         System.out.println(ClientData.requestMap.get(Rid));
         // print the size of the map
         System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // Need to get the same object from the Map to stop the timer
+        Request reqToStop = (Request)ClientData.requestMap.get(Rid);
+        reqToStop.stopTimer();
         ClientData.requestMap.remove(Rid);
          // print the size of the map
         System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
@@ -220,7 +251,5 @@ public class Tracker {
       System.out.println("THIS RESPONSE IS NOT HANDLED");
     }
 
-
   }
-
 }

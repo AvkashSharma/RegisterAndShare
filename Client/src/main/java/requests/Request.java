@@ -18,6 +18,9 @@ public class Request implements Serializable {
     protected int rid;
     private transient Timer timer;
     
+    public Request(){
+        timer = new Timer();
+    }
 
     public Request(RequestType requestType) {
         this.requestType = requestType;  
