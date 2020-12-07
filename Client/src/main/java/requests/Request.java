@@ -53,18 +53,17 @@ public class Request implements Serializable {
     public void startTimer(){    
         
         timer.scheduleAtFixedRate(new TimerTask(){
-        int tp = 10000;
+        int timePeriod = 10000;
             
             @Override
             public void run() {
-                System.out.println("Timer Started: " + tp);
+                System.out.println("Timer: " + timePeriod);
 
-                if(tp <= 0){
-                    System.out.println(tp);
+                if(timePeriod <= 0){
                     timer.cancel();
                     done();
                 }
-                tp = tp - 1000;
+                timePeriod = timePeriod - 1000;
                 
             }
             
@@ -72,7 +71,7 @@ public class Request implements Serializable {
     }
 
     public void done(){
-        System.out.println("Done");
+        System.out.println("REQUEST TIMEOUT: " + this.toString());
     }
 
     public void stopTimer(){
