@@ -68,6 +68,7 @@ public class Client {
                 System.out.println("4-See Available list of Subjects");
                 System.out.println("5-Publish message on subjects of interest");
                 System.out.println("6-Choose a list of Subjects to subscribe on");
+                System.out.println("7-Disconnect");
             }
 
             System.out.print("Choice: ");
@@ -100,6 +101,9 @@ public class Client {
                     break;
                 case "6":
                     subscribeToSubjects();
+                    break;
+                    case "7":
+                   //disconnect
                     break;
                 case "-1":
                     continue;
@@ -187,6 +191,10 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void disconnect(){
+        ClientData.username.get()
+
     }
 
     public void subscribeToSubjects() {
