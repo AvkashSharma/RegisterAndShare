@@ -21,6 +21,7 @@ import requests.server.ServeConfirmed;
 import requests.server.ServeRequest;
 import server.ServerData;
 import requests.ClientPingServer;
+import requests.RequestType;
 import requests.server.ServerPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
@@ -30,6 +31,9 @@ import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
 import requests.Registration.DeRegisterRequest;
 import requests.Registration.DeRegisterServerToServer;
+import requests.Registration.DisconnectClientServerToServer;
+import requests.Registration.DisconnectRequest;
+import requests.Registration.DisconnectionConfirmed;
 
 public class ClientReceiver implements Runnable {
 
@@ -107,6 +111,9 @@ public class ClientReceiver implements Runnable {
                 e.printStackTrace();
             }
         }
+            else if (request instanceof UpdateServer) {
+              updateServer((UpdateServer)request);
+        }
 
         // client requests
         else if (ServerData.isServing.get()) {
@@ -116,7 +123,13 @@ public class ClientReceiver implements Runnable {
             } else if (request instanceof DeRegisterRequest) {
                 deregister((DeRegisterRequest) request);
 
-            } else if (request instanceof AvailableListOfSubjects) {
+            }
+              else if (request instanceof DisconnectRequest){
+                disconnect((DisconnectRequest) request);
+
+            }
+            
+            else if (request instanceof AvailableListOfSubjects) {
                 sendListOfSubjects((AvailableListOfSubjects) request);
             } else if (request instanceof SubjectsRequest) {
                 subscribeToSubjects((SubjectsRequest) request);
@@ -149,14 +162,7 @@ public class ClientReceiver implements Runnable {
 
                 publish((PublishRequest) request);
 
-            } else if (request instanceof ChangeServer) {
-                System.out.println("Received change server Request");
-                // Server needs to inform all the registered users about Change server Request
-            } else if (request instanceof UpdateServer) {
-                // when a server is not serving it can change its IP address and socket#, but
-                // informs only the current(serving) server with the following message
-                System.out.println("Received Update Server Request");
-            } else if (request instanceof ClientPingServer) {
+            }  else if (request instanceof ClientPingServer) {
                 System.out.println("Client Pinging");
                 try {
                     ((ClientPingServer) request).setActive(true);
@@ -171,6 +177,11 @@ public class ClientReceiver implements Runnable {
         }
     }
 
+    public void updateServer(UpdateServer request){
+        System.out.println("Backup server has changed location");
+        ServerData.addressB.set(request.getAddress());
+        ServerData.portB.set(request.getPort());
+    }
     /**
      * Upon reception of this message the current server, can accept or refuse the
      * registration.
@@ -213,7 +224,8 @@ public class ClientReceiver implements Runnable {
                     ServerSender.sendResponse(serverDenied,clientSocket);
                 }
             } else {
-                ClientRegisterDenied denied = new ClientRegisterDenied("Username exists", request.getRid());
+                
+                ClientRegisterDenied denied = new ClientRegisterDenied("Username exists already", request.getRid());
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
 
                 ServerRegisterDenied serverDenied = new ServerRegisterDenied(request.getRid(), request.getClientName(), request.getAddress(), request.getPort());
@@ -256,6 +268,30 @@ public class ClientReceiver implements Runnable {
                     // send de-register confirmation to IDLE server
                     DeRegisterServerToServer serverConfirmation = new DeRegisterServerToServer(username);
                     System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.println(serverConfirmation.toString());
+                    ServerSender.sendResponse(serverConfirmation,clientSocket);
+
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnect(DisconnectRequest request){
+        try {
+            String username = request.getClientName();
+            boolean dbResponse = false;
+            Database db = new Database();
+            if (db.userExist(username)) {
+                db.close();
+                if (!dbResponse) {
+                    DisconnectionConfirmed confirmation = new DisconnectionConfirmed();
+                    ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
+
+                    // send disconnection confirmation to IDLE server
+                    DisconnectClientServerToServer serverConfirmation = new DisconnectClientServerToServer(username);
+                    System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation,clientSocket);
 
@@ -358,10 +394,10 @@ public class ClientReceiver implements Runnable {
                     if (contained) {
                         if (!alreadyExist) {
                             db.addFavoriteSubject(username, subject);
-                            reply = "\n\t" + subject + " has been added to your subscribed subjects";
+                            reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+subject;
                             ClientSender.sendResponse(reply, packetReceived, clientSocket);
                         } else {
-                            reply = "\n\t" + subject + " was already in your subscribed subjects";
+                            reply = "\n\t" + "SUBJECTS-REJECTED "+ request.getRid()+" "+ request.getClientName()+" "+subject +" was already in the list";
                             ClientSender.sendResponse(reply, packetReceived, clientSocket);
                         }
                         // System.out.println(subject+" is in the available subjects");
@@ -370,7 +406,7 @@ public class ClientReceiver implements Runnable {
 
                     else {
                         // System.out.println(subject+" is not in the available subjects");
-                        reply = "\n\t" + subject + " is not available in the available subject and has not been added";
+                        reply = "\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subject + " is not available";
                         ClientSender.sendResponse(reply, packetReceived, clientSocket);
                     }
                 }        

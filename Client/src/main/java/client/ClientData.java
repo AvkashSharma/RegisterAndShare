@@ -17,6 +17,7 @@ import requests.ClientPingServer;
 
 public class ClientData {
     public static AtomicBoolean isRegistered = new AtomicBoolean(false);
+    public static AtomicBoolean isDisconnected= new AtomicBoolean(true);
     public static AtomicReference<String> username = new AtomicReference<String>("");
     public static AtomicInteger requestCounter = new AtomicInteger(0);
 
@@ -104,7 +105,7 @@ public class ClientData {
 
             } catch (UnknownHostException e) {
                 // e1.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException e) { 
                 // e1.printStackTrace();
             }
         }

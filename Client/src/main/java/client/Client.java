@@ -12,6 +12,7 @@ import java.util.Scanner;
 import handlers.*;
 import requests.Publish.PublishRequest;
 import requests.Registration.DeRegisterRequest;
+import requests.Registration.DisconnectRequest;
 import requests.Registration.RegisterRequest;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateRequest;
@@ -49,16 +50,19 @@ public class Client {
     public void ui() {
         String val = "";
         while (!val.equals("exit")) {
-            System.out.println("------------------@" + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
+            System.out.println("------------------Client: " + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
-            System.out.println("---------Connected: @" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
+            System.out.println("------------------Connected to:" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
                     + "------------------------");
+            System.out.println("------------------serverA: " + ClientData.SERVER_1_IP + ":" + ClientData.SERVER_1_PORT
+                    + "------serverB: " + ClientData.SERVER_2_IP + ":" + ClientData.SERVER_2_PORT);
             System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
 
-            if (!ClientData.isRegistered.get()) {
+            if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get()) {
                 System.out.println("1-Register");
                 System.out.println("2-Update location");
                 System.out.println("3-Configure server addresses");
+              
             } else {
                 System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
@@ -66,6 +70,7 @@ public class Client {
                 System.out.println("4-See Available list of Subjects");
                 System.out.println("5-Publish message on subjects of interest");
                 System.out.println("6-Choose a list of Subjects to subscribe on");
+                System.out.println("7-Disconnect");
             }
 
             System.out.print("Choice: ");
@@ -79,13 +84,13 @@ public class Client {
                     register();
                     break;
                 case "2":
-                    if (!ClientData.isRegistered.get())
+                    if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get())
                         update(0);
                     else
                         deregister();
                     break;
                 case "3":
-                    if (!ClientData.isRegistered.get())
+                    if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get())
                         ClientData.getServerAddress(scanner);
                     else
                         update(1);
@@ -98,6 +103,9 @@ public class Client {
                     break;
                 case "6":
                     subscribeToSubjects();
+                    break;
+                    case "7":
+                    disconnect();
                     break;
                 case "-1":
                     continue;
@@ -158,6 +166,26 @@ public class Client {
         }
     }
 
+     public void disconnect(){
+         System.out.print("\tDo you want to disconnect " + ClientData.username.get() + "(y/n): ");
+         String response = "";
+        response = scanner.next();
+        if (response.equals("n")) {
+            return;
+        }
+        DisconnectRequest disconnectMessage = new DisconnectRequest(ClientData.requestCounter.incrementAndGet(),
+                ClientData.username.get());
+                 
+        try {
+            Sender.sendTo(disconnectMessage, clientSocket);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+      
+
+    }
     public void deregister() {
         System.out.print("\tDo you want to deregister " + ClientData.username.get() + "(y/n): ");
         String response = "";
@@ -186,6 +214,7 @@ public class Client {
             e.printStackTrace();
         }
     }
+   
 
     public void subscribeToSubjects() {
 

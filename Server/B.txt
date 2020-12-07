@@ -1,0 +1,276 @@
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 10.42.18.7:53197
+----------------NEW MESSAGE--------------------
+REGISTERED 1 k1 10.42.18.7:53197
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 k2 10.42.18.7:52492
+----------------NEW MESSAGE--------------------
+REGISTERED 1 k2 10.42.18.7:52492
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+REGISTER 1 k3 10.42.18.7:51777
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 10.42.18.7:59923
+----------------NEW MESSAGE--------------------
+REGISTERED 1 k1 10.42.18.7:59923
+----------------NEW MESSAGE--------------------
+REGISTER 1 k2 10.42.18.7:62384
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTERED 2 k3 10.42.18.7:57865
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE-SERVER KJ-ZENBOOK/10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE-SERVER 10.42.18.7:9999
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 10.42.18.7:59659
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 1 k1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 2 kj1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+UPDATE 3 kj1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+UPDATE 4 kj1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 5 k1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 k1 10.42.18.7:51314
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 k2 10.42.18.7:60779
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 2 k2 10.42.18.7:60779
+----------------NEW MESSAGE--------------------
+REGISTER 3 k2 10.42.18.7:60779
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 10.42.18.7:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE-SERVER 10.42.18.7:6666
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving

@@ -13,6 +13,7 @@ import requests.Update.UpdateDenied;
 import requests.Registration.ClientRegisterConfirmed;
 import requests.Registration.ClientRegisterDenied;
 import requests.Registration.DeRegisterConfirmed;
+import requests.Registration.DisconnectionConfirmed;
 import client.ClientData;
 
 public class ServerReceiver implements Runnable {
@@ -57,6 +58,7 @@ public class ServerReceiver implements Runnable {
     if (request instanceof ClientRegisterConfirmed) {
       ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       ClientData.isRegistered.set(true);
+      ClientData.isDisconnected.set(false);
       System.out.println("\n" + request.toString());
     }
 
@@ -66,29 +68,47 @@ public class ServerReceiver implements Runnable {
       ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
+      ClientData.isDisconnected.set(false);
 
     } else if (request instanceof DeRegisterConfirmed) {
       System.out.println(request.toString());
       ClientData.isRegistered.set(false);
+      ClientData.isDisconnected.set(true);
       ClientData.username.set("");
 
-    } else if (request instanceof UpdateConfirmed) {
+    }
+    else if (request instanceof DisconnectionConfirmed) {
+      System.out.println(request.toString());
+      ClientData.isRegistered.set(false);
+      ClientData.isDisconnected.set(true);
+      ClientData.username.set("");
+
+    }
+    else if (request instanceof UpdateConfirmed) {
       ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       ClientData.isRegistered.set(true);
+      ClientData.isDisconnected.set(false);
       System.out.println(request.toString());
 
     } else if (request instanceof UpdateDenied) {
       ClientData.setActiveAddress(packet.getAddress().toString().replace("/", ""), packet.getPort());
       ClientData.isRegistered.set(false);
+      ClientData.isDisconnected.set(false);
       System.out.println(request.toString());
-      
-    } else if (request instanceof ChangeServer) {
 
+    }
+    // Change server's address
+    else if (request instanceof ChangeServer) {
       System.out.println(request.toString());
 
       ChangeServer ser = (ChangeServer) request;
       ClientData.ACTIVE_IP = ser.getAddress();
       ClientData.ACTIVE_PORT = ser.getPort();
+      ClientData.SERVER_1_IP = ser.getAddress();
+      ClientData.SERVER_1_PORT = ser.getPort();
+      ClientData.SERVER_2_IP = ser.getAddressB();
+      ClientData.SERVER_2_PORT = ser.getPortB();
+      
       try {
         ClientData.activeServerAddress = InetAddress.getByName(ser.getAddress());
       } catch (UnknownHostException e) {
