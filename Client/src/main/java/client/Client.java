@@ -86,7 +86,7 @@ public class Client {
                     break;
                 case "3":
                     if (!ClientData.isRegistered.get())
-                       ClientData.getServerAddress(scanner);
+                        ClientData.getServerAddress(scanner);
                     else
                         update(1);
                     break;

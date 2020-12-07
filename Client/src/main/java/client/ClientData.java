@@ -1,11 +1,13 @@
 package client;
 
 import java.io.IOException;
-import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,6 +35,8 @@ public class ClientData {
 
     public static String CLIENT_IP;
     public static int CLIENT_PORT;
+
+    public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
 
 
     public static void setActiveAddress(String address, int port){
