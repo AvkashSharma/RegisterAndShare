@@ -24,6 +24,8 @@ public class Sender {
             os.writeObject(object);
             Writer.sendRequestToFile(object, ClientData.ACTIVE_IP, ClientData.ACTIVE_PORT);
 
+            Tracker.handleSentRequest(object);
+
             byte[] data = outputStream.toByteArray();
             DatagramPacket sendPacket = new DatagramPacket(data, data.length, ClientData.activeServerAddress, ClientData.ACTIVE_PORT);
             datagramSocket.send(sendPacket);
@@ -43,6 +45,10 @@ public class Sender {
 
             os.writeObject(object);
             Writer.sendRequestToFile(object, address, port);
+
+            Tracker.handleSentRequest(object);
+
+
             byte[] data = outputStream.toByteArray();
             InetAddress addr =InetAddress.getByName(address);
             DatagramPacket sendPacket = new DatagramPacket(data, data.length, addr, port);

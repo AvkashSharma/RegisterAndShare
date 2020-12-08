@@ -20,3 +20,93 @@ SERVE REQUEST
 REGISTER 2 1 127.0.0.1:61813
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 potte 127.0.0.1:53412
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:64793
+----------------NEW MESSAGE--------------------
+REGISTER 1 pol 127.0.0.1:60526
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:49637
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:50966
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:64285
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:52981
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:50243
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:57713
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:65529
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 potter
+----------------NEW MESSAGE--------------------
+REGISTER 3 potter 127.0.0.1:65529
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:63270
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:52617
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 potter
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:53035
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:59314
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:49246
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:62571
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:56937
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:56996
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:58577
+----------------NEW MESSAGE--------------------
+REGISTER 2 potter 127.0.0.1:58577
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:61085
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:53269
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:61348
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:59204
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:52265
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 a1
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:63224
+----------------NEW MESSAGE--------------------
+UPDATE 2 a1 127.0.0.1:63225
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:53543
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 a1
+----------------NEW MESSAGE--------------------
+REGISTER 3 a1 127.0.0.1:53543
+----------------NEW MESSAGE--------------------
+DE-REGISTER 4 a1
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:63462
+----------------NEW MESSAGE--------------------
+DE-REGISTER 2 a1
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:60113
+----------------NEW MESSAGE--------------------
+REGISTER 1 f2 127.0.0.1:59511
+----------------NEW MESSAGE--------------------
+REGISTER 1 t2 127.0.0.1:56762
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:62187
+----------------NEW MESSAGE--------------------
+REGISTER 1 a1 127.0.0.1:50767
+----------------NEW MESSAGE--------------------
+REGISTER 1 a 127.0.0.1:62813
+----------------NEW MESSAGE--------------------
+REGISTER 1 a 127.0.0.1:53668
+----------------NEW MESSAGE--------------------
+REGISTER 1 potter 127.0.0.1:56105

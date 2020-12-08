@@ -1,42 +1,234 @@
 ----------------SENDING-------------
-REGISTER 1 k1 10.42.18.7:53197
-Sending to ->10.42.18.7:1234
+REGISTER 1 potte 127.0.0.1:53412
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k1 10.42.18.7:53197
-Sending to ->10.42.18.7:6666
+REGISTER 1 potte 127.0.0.1:53412
+Sending to ->127.0.0.1:50002
 ----------------SENDING-------------
-REGISTER 1 k2 10.42.18.7:52492
-Sending to ->10.42.18.7:1234
+REGISTER 1 potter 127.0.0.1:64793
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k2 10.42.18.7:52492
-Sending to ->10.42.18.7:6666
+REGISTER 1 potter 127.0.0.1:64793
+Sending to ->127.0.0.1:50002
 ----------------SENDING-------------
-REGISTER 1 k3 10.42.18.7:51777
-Sending to ->10.42.18.7:1234
+REGISTER 1 pol 127.0.0.1:60526
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k3 10.42.18.7:51777
-Sending to ->10.42.18.7:6666
+REGISTER 1 pol 127.0.0.1:60526
+Sending to ->127.0.0.1:50002
 ----------------SENDING-------------
-REGISTER 1 k1 10.42.18.7:59923
-Sending to ->10.42.18.7:1234
+REGISTER 1 potter 127.0.0.1:49637
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k1 10.42.18.7:59923
-Sending to ->10.42.18.7:6666
+REGISTER 1 potter 127.0.0.1:49637
+Sending to ->127.0.0.1:50002
 ----------------SENDING-------------
-REGISTER 1 k2 10.42.18.7:62384
-Sending to ->10.42.18.7:6549
+REGISTER 1 potter 127.0.0.1:50966
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k2 10.42.18.7:62384
-Sending to ->10.42.18.7:6666
+REGISTER 1 potter 127.0.0.1:50966
+Sending to ->127.0.0.1:50002
 ----------------SENDING-------------
-REGISTER 1 k3 10.42.18.7:57865
-Sending to ->10.42.18.7:1234
+REGISTER 1 potter 127.0.0.1:64285
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k3 10.42.18.7:57865
-Sending to ->10.42.12:654
+REGISTER 1 potter 127.0.0.1:64285
+Sending to ->127.0.0.1:50002
 ----------------SENDING-------------
-REGISTER 1 k1 10.42.18.7:51314
-Sending to ->10.42.18.7:1234
+REGISTER 1 potter 127.0.0.1:52981
+Sending to ->127.0.0.1:50001
 ----------------SENDING-------------
-REGISTER 1 k1 10.42.18.7:51314
-Sending to ->10.42.18.7:9999
+REGISTER 1 potter 127.0.0.1:52981
+Sending to ->127.0.0.2:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:61111
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:61111
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:49796
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:49796
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:50243
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:50243
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:57713
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:57713
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:65529
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:65529
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 3 potter 127.0.0.1:65529
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 3 potter 127.0.0.1:65529
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:63270
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:63270
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:52617
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:52617
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:53035
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:53035
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:59314
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:59314
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:49246
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:49246
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:62571
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:62571
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:56937
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:56937
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:56996
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:56996
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:58577
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:58577
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:61085
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:61085
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:53269
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:53269
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:61348
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:61348
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:59204
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:59204
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:52265
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:52265
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:63224
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:63224
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:53543
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:53543
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 3 a1 127.0.0.1:53543
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 3 a1 127.0.0.1:53543
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:63462
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:63462
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:60113
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:60113
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 f2 127.0.0.1:59511
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 f2 127.0.0.1:59511
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 t2 127.0.0.1:56762
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 t2 127.0.0.1:56762
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:62187
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:62187
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:50767
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a1 127.0.0.1:50767
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a 127.0.0.1:62813
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 a 127.0.0.1:62813
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a 127.0.0.1:53668
+Sending to ->127.0.0.1:50002
+----------------SENDING-------------
+REGISTER 1 a 127.0.0.1:53668
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:56105
+Sending to ->127.0.0.1:50001
+----------------SENDING-------------
+REGISTER 1 potter 127.0.0.1:56105
+Sending to ->127.0.0.1:50002

@@ -40,8 +40,8 @@ public class ServerReceiver implements Runnable {
 
         System.out.println("received packet");
         Object o = (Object) is.readObject();
-        Writer.appendToFile(o);
-
+        //Writer.appendToFile(o);
+        Tracker.handleReceivedResponse(o);
         // call handleRequest
         handleRequest(o, incomingPacket);
       }
