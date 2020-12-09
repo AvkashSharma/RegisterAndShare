@@ -22,7 +22,7 @@ public class Tracker {
   /**
    * This method adds request sent by the client 
    * to the HashMap and start the timer
-   * @param request
+   * @param requestd
    */
   public static void handleSentRequest(Object request){
 

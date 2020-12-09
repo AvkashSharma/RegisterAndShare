@@ -40,10 +40,10 @@ public class ServerReceiver implements Runnable {
 
         System.out.println("received packet");
         Object o = (Object) is.readObject();
-        //Writer.appendToFile(o);
+        Writer.appendToFile(o);
         Tracker.handleReceivedResponse(o);
         // call handleRequest
-        handleRequest(o, incomingPacket);
+        requestHandler(o, incomingPacket);
       }
     } catch (IOException e) {
       System.out.println("Receiver IOException " + e.getMessage());
@@ -52,7 +52,7 @@ public class ServerReceiver implements Runnable {
     }
   }
 
-  public void handleRequest(Object request, DatagramPacket packet) {
+  public void requestHandler(Object request, DatagramPacket packet) {
 
     // Handle Successful Register Request - Don't think we need it
     if (request instanceof ClientRegisterConfirmed) {

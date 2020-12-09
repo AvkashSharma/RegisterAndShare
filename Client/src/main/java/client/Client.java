@@ -66,7 +66,7 @@ public class Client {
             } else {
                 System.out.println("Logged in as " + ClientData.username.get());
                 System.out.println("2-Deregister");
-                System.out.println("3-Update location(ip, port)");
+                System.out.println("3-Update location(DEBUG)");
                 System.out.println("4-See Available list of Subjects");
                 System.out.println("5-Publish message on subjects of interest");
                 System.out.println("6-Choose a list of Subjects to subscribe on");

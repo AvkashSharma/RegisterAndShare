@@ -116,6 +116,7 @@ public class Server implements Runnable {
         while (!val.equals("exit")) {
             System.out.println("\n----------------Server Listening on " + ServerData.address.get() + ":"
                     + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get() + "\t");
+            System.out.println("Waiting Request: "+ServerData.requestMap.size());
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.println("1-Change Server's Port (UPDATE-SERVER)");
             System.out.println("2-Inform User's (CHANGE-SERVER)");
