@@ -45,3 +45,6 @@ Sending to ->192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
 
 	The following are your subscribed subjects: Food and Sports
+----------------SENDING-------------
+REGISTER 2 ka1 192.168.81.1:61071
+Sending to ->1.1.1.1:1234
