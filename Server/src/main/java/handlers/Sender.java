@@ -9,8 +9,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 
-
-
 //used to send meesages
 public class Sender {
 
