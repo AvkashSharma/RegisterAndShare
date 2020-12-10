@@ -19,7 +19,7 @@ import requests.Update.UpdateRequest;
 
 public class Client {
 
-    public final Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     public static DatagramSocket clientSocket;
 
     public Client() {
@@ -72,7 +72,7 @@ public class Client {
                 System.out.println("7-Disconnect");
             }
             System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
-            System.out.print("Choice: ");
+            System.out.println("Choice: ");
             val = scanner.nextLine();
 
             if (val.isEmpty()) {
@@ -80,7 +80,7 @@ public class Client {
             }
             switch (val) {
                 case "1":
-                    register();
+                    register(scanner);
                     break;
                 case "2":
                     if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get())
@@ -118,18 +118,26 @@ public class Client {
     /**
      * When clients register, sends request to both server
      */
-    public void register() {
+    public void register(Scanner s) {
         System.out.print("\tEnter Username to register: ");
         String username = "";
-        username = scanner.next();
+        username = s.next();
 
         try {
             RegisterRequest registerMessage = new RegisterRequest(ClientData.requestCounter.incrementAndGet(), username,
                     ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
-            // Sender.sendTo(registerMessage, clientSocket);
             Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
             Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
             ClientData.username.set(username);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void register(RegisterRequest registerMessage) {
+        try {
+            Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+            Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
         } catch (IOException e) {
             e.printStackTrace();
         }

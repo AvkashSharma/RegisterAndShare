@@ -38,7 +38,7 @@ public class ClientData {
     public static int CLIENT_PORT;
 
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
-
+    public static AtomicInteger retryAttempt = new AtomicInteger(0);
 
     public static void setActiveAddress(String address, int port){
         ACTIVE_PORT = port;
