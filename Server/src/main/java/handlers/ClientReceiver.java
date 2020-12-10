@@ -12,16 +12,15 @@ import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Registration.ServerRegisterConfirmed;
 import requests.Registration.ServerRegisterDenied;
-import requests.Update.ChangeServer;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateConfirmed;
+import requests.Update.UpdateDenied;
 import requests.Update.UpdateRequest;
 import requests.Update.UpdateServer;
 import requests.server.ServeConfirmed;
 import requests.server.ServeRequest;
 import server.ServerData;
 import requests.ClientPingServer;
-import requests.RequestType;
 import requests.server.ServerPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
@@ -59,7 +58,6 @@ public class ClientReceiver implements Runnable {
 
             ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
             ObjectInputStream is = new ObjectInputStream(byteStream);
-            // System.out.println(is);
             Object o = (Object) is.readObject();
 
             System.out.println(o.toString());
@@ -81,23 +79,33 @@ public class ClientReceiver implements Runnable {
     }
 
     public synchronized void requestHandler(Object request) {
-
         // Server requests
         if (request instanceof ServerPingServer) {
-            System.out.println("Received ping from server");
+            System.out.println("received ping from server");
             ((ServerPingServer) request).setIsServing(ServerData.isServing.get());
+           
             try {
+                InetAddress addr = packetReceived.getAddress();
+                String addressb = addr.getLocalHost().getHostAddress().toString();
+                int portB = packetReceived.getPort();
+                ServerData.addressB.set(addressb);
+                ServerData.portB.set(portB);
                 ClientSender.sendResponse(request, packetReceived, clientSocket);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if (request instanceof ServeRequest) {
-            System.out.println("Server requested to go online");
-            // Server server and start the timer
-            Server.serve();
-            // let know the other server its online
-            try {
 
+            try {
+                InetAddress addr = packetReceived.getAddress();
+                String addressb = addr.getLocalHost().getHostAddress().toString();
+                int portB = packetReceived.getPort();
+                ServerData.addressB.set(addressb);
+                ServerData.portB.set(portB);
+                System.out.println("Server requested to go online");
+                // Server server and start the timer
+                Server.serve();
+                // let know the other server its online
                 ClientSender.sendResponse(new ServeConfirmed("Serving"), packetReceived, clientSocket);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -313,6 +321,14 @@ public class ClientReceiver implements Runnable {
                     System.out.println(updateConfirmed.toString());
                     ServerSender.sendResponse(updateConfirmed,clientSocket);
                 }
+            }
+            else{
+                System.out.println("User does not exist");
+                db.close();
+                UpdateDenied updateDenied = new UpdateDenied(request.getRid(), request.getClientName() +" is not a valid username");
+                ClientSender.sendResponse(updateDenied, packetReceived, clientSocket);
+                System.out.println(updateDenied.toString());
+                ServerSender.sendResponse(updateDenied,clientSocket);
             }
             Tracker.stop(request.getRid(), packetReceived);
             

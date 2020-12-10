@@ -1,5 +1,4 @@
 package requests.Update;
-
 import requests.Request;
 import requests.RequestType;
 
@@ -9,15 +8,15 @@ import requests.RequestType;
   - Reason
   */
 public class UpdateDenied extends Request {
-   
+  
     /**
    *
    */
   private static final long serialVersionUID = 1L;
   String reason;
 
-    public UpdateDenied( String reason){
-      super(RequestType.UPDATE_DENIED);
+    public UpdateDenied(int rid, String reason){
+      super(RequestType.UPDATE_DENIED, rid);
 
       this.reason=reason;
 

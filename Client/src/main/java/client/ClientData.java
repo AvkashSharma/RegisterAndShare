@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-
+import handlers.Common;
 import requests.ClientPingServer;
 
 public class ClientData {
@@ -58,24 +58,22 @@ public class ClientData {
             e.printStackTrace();
         }
         System.out.print("Enter server 1 \n\t\tIp Address("+localAddress+"): ");
-        SERVER_1_IP = s.next();
-        System.out.print("\t\tPort: ");
-        // todo - validate that its a valid port
-        SERVER_1_PORT = s.nextInt();
+        SERVER_1_IP = Common.scanIp(s);
+        SERVER_1_PORT = Common.scanInt(s, "\t\tPort: ");
         // Ports should be between 49152 - 65535
         if (SERVER_1_PORT < 1 || SERVER_1_PORT > 65535) {
-            throw new IllegalArgumentException("Port out of range");
+            System.out.println("port out of range");
+            SERVER_1_PORT = Common.scanInt(s, "\t\tPort: ");
         }
 
         System.out.print("Enter server 2 \n\t\tIp Address("+localAddress+"): ");
-        SERVER_2_IP = s.next();
-        System.out.print("\t\tPort: ");
-        // todo - validate that its a valid port
-        SERVER_2_PORT = s.nextInt();
+        SERVER_2_IP =  Common.scanIp(s);
+        SERVER_2_PORT = Common.scanInt(s, "\t\tPort: ");
 
         // Ports should be between 49152 - 65535
         if (SERVER_2_PORT < 1 || SERVER_2_PORT > 65535) {
-            throw new IllegalArgumentException("Port out of range");
+            System.out.println("port out of range");
+            SERVER_2_PORT = Common.scanInt(s, "\t\tPort: ");
         }
     }
 

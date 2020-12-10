@@ -41,32 +41,34 @@ public class Server implements Runnable {
     }
 
     public void run() {
-        try {
-            socket = new DatagramSocket(ServerData.port.get());
-            startActiveTimer();
-            while (true) {
+        // try {
+        //     socket = new DatagramSocket(ServerData.port.get());
+        // } catch (SocketException e) {
+        //     // TODO Auto-generated catch block
+        //     e.printStackTrace();
+        // }
+        startActiveTimer();
+        while (true) {
 
-                byte[] buffer = new byte[bufferSize];
-                DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
+            byte[] buffer = new byte[bufferSize];
+            DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
 
-                try {
-                    socket.receive(incoming);
+            try {
+                socket.receive(incoming);
 
-                    if (closeSocket) {
-                        // Need to pass received data
-                        clientReceiver = new ClientReceiver(incoming, socket);
-                    }
-
-                } catch (SocketTimeoutException ex) {
-                    System.out.println("SocketTimeoutException: " + ex.getMessage());
-
-                } catch (IOException ex) {
-                    System.out.println("IOException " + ex.getMessage());
+                if (closeSocket) {
+                    // Need to pass received data
+                    clientReceiver = new ClientReceiver(incoming, socket);
                 }
-            } // end while
-        } catch (SocketException ex) {
-            System.out.println("SocketException: " + ex.getMessage());
-        }
+
+            } catch (SocketTimeoutException ex) {
+                System.out.println("SocketTimeoutException: " + ex.getMessage());
+
+            } catch (IOException ex) {
+                System.out.println("IOException " + ex.getMessage());
+            }
+        } // end while
+
     }
 
     /**
@@ -77,7 +79,19 @@ public class Server implements Runnable {
         ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
 
+        //check if socket is available
         ServerData.port.set(Common.scanInt(scanner, "Enter Port Number for server: "));
+        while (true) {
+            try {
+                socket = new DatagramSocket(ServerData.port.get());
+                break;
+            } catch (SocketException ex) {
+                // socket.close();
+                System.out.println("SocketException: " + ex.getMessage());
+                ServerData.port.set(Common.scanInt(scanner, "Enter an available Port Number for server: "));
+            }
+        }
+
         ServerData.serverName.set(Common.scanString(scanner, "Enter name of the server: "));
 
         while (true) {
@@ -107,13 +121,14 @@ public class Server implements Runnable {
         while (!val.equals("exit")) {
             System.out.println("\n----------------Server Listening on " + ServerData.address.get() + ":"
                     + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get() + "\t");
+            System.out.println("\n----------------Server B: " + ServerData.addressB.get() + ":" + ServerData.portB.get()
+                    + "---------------- Online: " + "\t");
             System.out.println("Waiting Request: " + ServerData.requestMap.size());
-            System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.println("1-Change Server's Port (UPDATE-SERVER)");
             System.out.println("2-Inform User's (CHANGE-SERVER)");
             System.out.println("3-Stop Serving Clients");
             System.out.println("4-Serve Clients");
-
+            System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.print("\t\t\t\tChoice: ");
             val = scanner.nextLine();
 
@@ -202,9 +217,8 @@ public class Server implements Runnable {
 
     public void updatePort() {
         resetTimers();
-        System.out.println("\t Enter port number: ");
         int originalPort = ServerData.port.get();
-        ServerData.port.set(scanner.nextInt());
+        ServerData.port.set(Common.scanInt(scanner, "Enter port number: "));
 
         closeSocket = false;
 
