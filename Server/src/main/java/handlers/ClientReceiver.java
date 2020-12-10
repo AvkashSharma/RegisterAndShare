@@ -63,19 +63,11 @@ public class ClientReceiver implements Runnable {
             Object o = (Object) is.readObject();
 
             System.out.println(o.toString());
-            if (o instanceof RegisterRequest) {
-                System.out.println("register request");
-                System.out.println(o.toString());
-            } else if (o instanceof ClientRegisterDenied) {
-                System.out.println("register denied");
-            }
 
-            // RegisterRequest respondMessage = new RegisterRequest("Object from server
-            // "+o.getClientName(), new InetSocketAddress(InetAddress.getLocalHost(),
-            // 1234));
-
-            // ClientSender.sendResponse(o, packetReceived, clientSocket);
+            //output to file
             Writer.appendToFile(o);
+            //track the received request
+            Tracker.receivedRequest(o, packetReceived);
             requestHandler(o);
 
             is.close();
@@ -126,7 +118,6 @@ public class ClientReceiver implements Runnable {
             }
               else if (request instanceof DisconnectRequest){
                 disconnect((DisconnectRequest) request);
-
             }
             
             else if (request instanceof AvailableListOfSubjects) {
@@ -233,6 +224,8 @@ public class ClientReceiver implements Runnable {
                 System.out.println(serverDenied.toString());
                 ServerSender.sendResponse(serverDenied,clientSocket);
             }
+            //remove from tracker
+            Tracker.stop(request.getRid(), packetReceived);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -270,9 +263,10 @@ public class ClientReceiver implements Runnable {
                     System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation,clientSocket);
-
                 }
             }
+             //remove from tracker
+             Tracker.stop(request.getRid(), packetReceived);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -294,9 +288,9 @@ public class ClientReceiver implements Runnable {
                     System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation,clientSocket);
-
                 }
             }
+            Tracker.stop(request.getRid(), packetReceived);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -309,6 +303,7 @@ public class ClientReceiver implements Runnable {
             Database db = new Database();
             if (db.userExist(username)) {
                 dbResponse = db.updateUser(request.getClientName(), request.getAddress(), request.getPort());
+                db.close();
                 if (dbResponse) {
                     UpdateConfirmed updateConfirmed = new UpdateConfirmed(request.getRid(), request.getClientName(),
                             request.getAddress(), request.getPort());
@@ -319,7 +314,8 @@ public class ClientReceiver implements Runnable {
                     ServerSender.sendResponse(updateConfirmed,clientSocket);
                 }
             }
-            db.close();
+            Tracker.stop(request.getRid(), packetReceived);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -347,6 +343,7 @@ public class ClientReceiver implements Runnable {
             // Check if user is registered
             if (db.userExist(username)) {
                 List<String> subjects = db.getSubjects();
+                db.close();
                 // System.out.println("These are available subjects "+subjects);
                 String list = "";
                 for (String subject : subjects) {
@@ -366,7 +363,7 @@ public class ClientReceiver implements Runnable {
                 System.out.println(noSubjects);
                 ClientSender.sendResponse(noSubjects, packetReceived, clientSocket);
             }
-            db.close();
+            Tracker.stop(request.getRid(), packetReceived);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -431,6 +428,7 @@ public class ClientReceiver implements Runnable {
                 String denied = "The user does not exist";
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
+            Tracker.stop(request.getRid(), packetReceived);
             db.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -495,7 +493,7 @@ public class ClientReceiver implements Runnable {
                 PublishDenied denied = new PublishDenied(request.getRid(), "You are not registered. Please register");
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
-
+            Tracker.stop(request.getRid(), packetReceived);
             db.close();
         } catch (IOException e) {
             e.printStackTrace();

@@ -57,14 +57,11 @@ public class Request implements Serializable {
             
             @Override
             public void run() {
-                System.out.println("Timer: " + timePeriod);
-
                 if(timePeriod <= 0){
                     timer.cancel();
                     done();
                 }
                 timePeriod = timePeriod - 1000;
-                
             }
             
         }, 10,1000);
@@ -79,24 +76,5 @@ public class Request implements Serializable {
 
         timer.cancel();
     }
-
-
-//     public static void main(String[] args) {
-//         Request req = new Request(RequestType.REGISTER);
-
-//         req.startTimer();
-
-//         new java.util.Timer().schedule( 
-//         new java.util.TimerTask() {
-//             @Override
-//             public void run() {
-//                 req.stopTimer();
-//             }
-//         }, 
-//         5000
-// );
-
-//     }
-    
 }
 

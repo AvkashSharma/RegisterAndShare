@@ -1,6 +1,7 @@
 package server;
 
 import java.util.Timer;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -51,6 +52,11 @@ public class ServerData {
      */
     public static AtomicReference<String> serverName = new AtomicReference<String>("");
 
+    /**
+     * List of active requsts
+     */
+    public static ConcurrentHashMap<String,Object> requestMap = new ConcurrentHashMap<>();
+    
     public static Timer activeTimer = new Timer();
     public static Timer inactiveTimer = new Timer();
     public static int activeInterval;

@@ -18,14 +18,8 @@ public class ClientSender {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ObjectOutputStream os = new ObjectOutputStream(outputStream);
         os.writeObject(toSend);
-        // Received data from the client
-        // String receivedData = new String(packet.getData());
 
-        // byte[] sendingDataBuffer = receivedData.toUpperCase().getBytes();
         byte[] data = outputStream.toByteArray();
-
-        
-        
 
         // Create new UDP packet with data to send to the client
         DatagramPacket outputPacket = new DatagramPacket(data, data.length,clientAddress,clientPort);
