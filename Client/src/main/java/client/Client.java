@@ -46,9 +46,9 @@ public class Client {
         ui();
     }
 
-    public void ui() {
+    public static void ui() {
         String val = "";
-        while (!val.equals("exit")) {
+        while (!val.equals("exit") || ClientData.uiTakeOver.get()) {
             System.out.println("------------------Client: " + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
             System.out.println("------------------Connected to:" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
@@ -118,7 +118,7 @@ public class Client {
     /**
      * When clients register, sends request to both server
      */
-    public void register(Scanner s) {
+    public static void register(Scanner s) {
         System.out.print("\tEnter Username to register: ");
         String username = "";
         username = s.next();
@@ -148,7 +148,7 @@ public class Client {
      * 
      * @param type 1 = user already logged in, 0 = user not logged in
      */
-    public void update(int type) {
+    public static void update(int type) {
         UpdateRequest updateRequest;
         if (type == 1) {
             System.out.print("\tEnter IP address: ");
@@ -173,7 +173,7 @@ public class Client {
         }
     }
 
-     public void disconnect(){
+     public static void disconnect(){
          System.out.print("\tDo you want to disconnect " + ClientData.username.get() + "(y/n): ");
          String response = "";
         response = scanner.next();
@@ -193,7 +193,7 @@ public class Client {
       
 
     }
-    public void deregister() {
+    public static void deregister() {
         System.out.print("\tDo you want to deregister " + ClientData.username.get() + "(y/n): ");
         String response = "";
         response = scanner.next();
@@ -210,7 +210,7 @@ public class Client {
         }
     }
 
-    public void getListOfSubjects() {
+    public static void getListOfSubjects() {
         List<String> listOfSubjects = new ArrayList<String>();
         AvailableListOfSubjects sRequest = new AvailableListOfSubjects(ClientData.requestCounter.incrementAndGet(),
                 ClientData.username.get(), listOfSubjects);
@@ -223,7 +223,7 @@ public class Client {
     }
    
 
-    public void subscribeToSubjects() {
+    public static void subscribeToSubjects() {
 
         // confirm the request or deny it
         // update the database
@@ -247,7 +247,7 @@ public class Client {
         }
     }
 
-    public void publishRequest() {
+    public static void publishRequest() {
         System.out.print("\tEnter subject of interest:  ");
         String subject = "";
         subject = scanner.next();

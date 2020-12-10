@@ -60,7 +60,7 @@ public class Request implements Serializable {
     public void startTimer() {
 
         timer.scheduleAtFixedRate(new TimerTask() {
-            int timePeriod = 5000;
+            int timePeriod = 3000;
 
             @Override
             public void run() {
@@ -72,9 +72,9 @@ public class Request implements Serializable {
             }
 
         }, 10, 1000);
-    }
+    } 
 
-    public void done() {
+    public synchronized void done() {
         System.out.println("REQUEST TIMEOUT: " + this.toString());
 
         if (requestType == RequestType.REGISTER) {
@@ -89,13 +89,11 @@ public class Request implements Serializable {
             } else {
 
                 // print the size of the map
-                //TODO problem with scanner
                 System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
                 ClientData.getServerAddress(new Scanner(System.in));
                 ClientData.retryAttempt.set(0);
                 ClientData.requestMap.remove(this.rid);
             }
-
         }
 
     }
