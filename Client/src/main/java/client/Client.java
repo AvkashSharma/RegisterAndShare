@@ -23,7 +23,6 @@ public class Client {
     public static DatagramSocket clientSocket;
 
     public Client() {
-        // ClientData.checkActiveServer(scanner);
         ClientData.getServerAddress(scanner);
         System.out.println("-----------------------------------------");
 
@@ -56,7 +55,7 @@ public class Client {
                     + "------------------------");
             System.out.println("------------------serverA: " + ClientData.SERVER_1_IP + ":" + ClientData.SERVER_1_PORT
                     + "------serverB: " + ClientData.SERVER_2_IP + ":" + ClientData.SERVER_2_PORT);
-            System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
+          
 
             if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get()) {
                 System.out.println("1-Register");
@@ -72,7 +71,7 @@ public class Client {
                 System.out.println("6-Choose a list of Subjects to subscribe on");
                 System.out.println("7-Disconnect");
             }
-
+            System.out.println("Enter 'ctrl+C' to exit Client, Press 'ENTER' to refresh");
             System.out.print("Choice: ");
             val = scanner.nextLine();
 

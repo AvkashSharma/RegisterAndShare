@@ -1,112 +1,120 @@
 ----------------NEW MESSAGE--------------------
-CLIENT PING /127.0.0.1:50001
+REGISTER 1 ka1 192.168.81.1:64034
 ----------------NEW MESSAGE--------------------
-REGISTER 1 quote 127.0.0.1:64250
+SERVER PING true 192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
-SERVER PING true 127.0.0.1:50001
+UPDATE 2 ka1 192.168.81.1:64034
 ----------------NEW MESSAGE--------------------
-CLIENT PING /127.0.0.1:50001
+REGISTER 1 ka1 192.168.81.1:52509
 ----------------NEW MESSAGE--------------------
-SERVE CONFIRMED - Serving
+REGISTER-DENIED 1 ka1 192.168.81.1:52509
 ----------------NEW MESSAGE--------------------
-CLIENT PING /127.0.0.1:50001
-----------------NEW MESSAGE--------------------
-SERVER-REGISTER-CONFIRMED 1 potter 127.0.0.1:61813
-----------------NEW MESSAGE--------------------
-SERVER PING true 127.0.0.1:50001
+SERVER PING true 192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
 SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-REGISTER 2 1 127.0.0.1:61813
+AVAILABLE_LIST-OF-SUBJECTS ka1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS ka1 []
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+REGISTER 4 ka1 192.168.81.1:52509
+----------------NEW MESSAGE--------------------
+UPDATE 5 ka1 192.168.81.1:52509
+----------------NEW MESSAGE--------------------
+DISCONNECT 6 ka1
+----------------NEW MESSAGE--------------------
+UPDATE 7 kat 192.168.81.1:52509
+----------------NEW MESSAGE--------------------
+DISCONNECT 5 ka1
+----------------NEW MESSAGE--------------------
+UPDATE 6 kat 192.168.81.1:64034
+----------------NEW MESSAGE--------------------
+UPDATE 8 kat 192.168.81.1:52509
+----------------NEW MESSAGE--------------------
+REGISTER 5 ka1 192.168.81.1:64379
+----------------NEW MESSAGE--------------------
+UPDATE 6 kas 192.168.81.1:64379
+----------------NEW MESSAGE--------------------
+UPDATE 7 kas 192.168.81.1:64379
+----------------NEW MESSAGE--------------------
+UPDATE 8 kasdf 192.168.81.1:64379
+----------------NEW MESSAGE--------------------
+UPDATE 9 kac 192.168.81.1:64379
+----------------NEW MESSAGE--------------------
+UPDATE 1 kadsj 192.168.81.1:49613
+----------------NEW MESSAGE--------------------
+UPDATE 2 kvikd 192.168.81.1:49613
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+REGISTER 3 kas 192.168.81.1:49613
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS kas []
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.81.1:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potte 127.0.0.1:53412
+SERVER PING true 192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:64793
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-REGISTER 1 pol 127.0.0.1:60526
+SERVE CONFIRMED - Serving
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:49637
+SERVER PING true 192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:50966
+SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:64285
+REGISTER 1 ka 192.168.81.1:60814
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:52981
+DE-REGISTER 2 ka
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:50243
+UPDATE 3 ka1 192.168.81.1:60814
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:57713
+AVAILABLE_LIST-OF-SUBJECTS ka1 []
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:65529
+SUBJECTS 5 ka1 [Food, gq, done]
 ----------------NEW MESSAGE--------------------
-DE-REGISTER 2 potter
+SUBJECTS 6 ka1 []
 ----------------NEW MESSAGE--------------------
-REGISTER 3 potter 127.0.0.1:65529
+SUBJECTS 7 ka1 [e]
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:63270
+SUBJECTS 8 ka1 []
 ----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:52617
-----------------NEW MESSAGE--------------------
-DE-REGISTER 2 potter
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:53035
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:59314
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:49246
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:62571
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:56937
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:56996
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:58577
-----------------NEW MESSAGE--------------------
-REGISTER 2 potter 127.0.0.1:58577
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:61085
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:53269
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:61348
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:59204
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:52265
-----------------NEW MESSAGE--------------------
-DE-REGISTER 2 a1
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:63224
-----------------NEW MESSAGE--------------------
-UPDATE 2 a1 127.0.0.1:63225
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:53543
-----------------NEW MESSAGE--------------------
-DE-REGISTER 2 a1
-----------------NEW MESSAGE--------------------
-REGISTER 3 a1 127.0.0.1:53543
-----------------NEW MESSAGE--------------------
-DE-REGISTER 4 a1
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:63462
-----------------NEW MESSAGE--------------------
-DE-REGISTER 2 a1
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:60113
-----------------NEW MESSAGE--------------------
-REGISTER 1 f2 127.0.0.1:59511
-----------------NEW MESSAGE--------------------
-REGISTER 1 t2 127.0.0.1:56762
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:62187
-----------------NEW MESSAGE--------------------
-REGISTER 1 a1 127.0.0.1:50767
-----------------NEW MESSAGE--------------------
-REGISTER 1 a 127.0.0.1:62813
-----------------NEW MESSAGE--------------------
-REGISTER 1 a 127.0.0.1:53668
-----------------NEW MESSAGE--------------------
-REGISTER 1 potter 127.0.0.1:56105
+SUBJECTS 9 ka1 [Sports]

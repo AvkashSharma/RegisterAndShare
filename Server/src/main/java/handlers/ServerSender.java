@@ -11,33 +11,29 @@ import server.ServerData;
 
 public class ServerSender {
 
-
   // need to change the datagram socket from client to other server socket
-  public static void sendResponse(Object toSend,DatagramSocket datagramSocket) throws IOException{
-    try{
-    
+  public static void sendResponse(Object toSend, DatagramSocket datagramSocket) {
+    try {
+
       // Obtain Client's IP address and the port
       InetAddress addressB = InetAddress.getByName(ServerData.addressB.get());
       int portB = ServerData.portB.get();
-    
+
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       ObjectOutputStream os = new ObjectOutputStream(outputStream);
       os.writeObject(toSend);
-
-
       byte[] data = outputStream.toByteArray();
 
       // Create new UDP packet with data to send to the other server
-      DatagramPacket outputPacket = new DatagramPacket(data, data.length, addressB, portB );
+      DatagramPacket outputPacket = new DatagramPacket(data, data.length, addressB, portB);
 
-      
-          // Send the created packet to the IDLE server
-          System.out.println("INFORMING IDLE Server ");
-          datagramSocket.send(outputPacket);
-      }
-      catch (IOException e){
-          e.printStackTrace();
-      }
-}
-    
+      // Send the created packet to the IDLE server
+      // System.out.println("INFORMING IDLE Server ");
+      datagramSocket.send(outputPacket);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
 }

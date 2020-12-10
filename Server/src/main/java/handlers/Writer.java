@@ -14,7 +14,7 @@ public class Writer {
     String fileName = ServerData.serverName.toString()+ ".txt";
 
     try(BufferedWriter br = new BufferedWriter(new FileWriter(fileName,true))){
-      System.out.println("Writer "+ object.toString());
+      // System.out.println("Writer "+ object.toString());
       StringBuilder str = new StringBuilder();
 
       str.append("----------------NEW MESSAGE--------------------"); 

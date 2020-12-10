@@ -1,102 +1,11 @@
 ----------------SENDING-------------
-REGISTER 3 ka1 192.168.81.1:51246
-Sending to ->192.168.81:123
-----------------SENDING-------------
-REGISTER 3 ka1 192.168.81.1:51246
+UPDATE 3 ka1 192.168.81.1:60814
 Sending to ->192.168.81.1:1234
 ----------------SENDING-------------
-REGISTER 4 ka1 192.168.81.1:51246
-Sending to ->192.168.81:123
-----------------SENDING-------------
-REGISTER 4 ka1 192.168.81.1:51246
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 5 ka1 192.168.81.1:51246
-Sending to ->192.168.81:123
-----------------SENDING-------------
-REGISTER 5 ka1 192.168.81.1:51246
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 6 ka1 192.168.81.1:51246
-Sending to ->192.168.81:123
-----------------SENDING-------------
-REGISTER 6 ka1 192.168.81.1:51246
-Sending to ->192.168.81.1:1234
+UPDATE 3 ka1 192.168.81.1:60814
+Sending to ->1.1.1.1:1234
 ----------------NEW MESSAGE--------------------
-REGISTERED 6 
-----------------SENDING-------------
-DE-REGISTER 7 ka1
-Sending to ->192.168.81.1:1234
-----------------NEW MESSAGE--------------------
-DE-REGISTER_CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTERED 8 
-----------------SENDING-------------
-DISCONNECT 9 ka1
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-DISCONNECT 10 ka1
-Sending to ->192.168.81.1:1234
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 Username exists already
-----------------SENDING-------------
-REGISTER 2 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 2 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 2 Username exists already
-----------------SENDING-------------
-REGISTER 3 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 3 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 3 Username exists already
-----------------SENDING-------------
-REGISTER 4 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 4 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 4 Username exists already
-----------------SENDING-------------
-REGISTER 5 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 5 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 5 Username exists already
-----------------SENDING-------------
-REGISTER 6 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 6 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 6 Username exists already
-----------------SENDING-------------
-REGISTER 7 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 7 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 7 Username exists already
-----------------SENDING-------------
-UPDATE 8 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-UPDATE 8 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 8 ka1 192.168.81.1:61350
+UPDATE-CONFIRMED 3 ka1 192.168.81.1:60814
 ----------------SENDING-------------
 AVAILABLE-LIST-OF-SUBJECTS ka1 []
 Sending to ->192.168.81.1:1234
@@ -104,121 +13,35 @@ Sending to ->192.168.81.1:1234
 
 	 Choose among the following subjects: Food, Formula1 and Sports
 ----------------SENDING-------------
-DISCONNECT 10 ka1
+SUBJECTS 5 ka1 [Food, gq, done]
 Sending to ->192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
+
+	SUBJECTS-UPDATED 5 ka1 Food
 ----------------NEW MESSAGE--------------------
-REGISTER-DENIED 11 Username exists already
+
+	SUBJECTS-REJECTED 5 ka1 gq is not available
+----------------NEW MESSAGE--------------------
+
+	SUBJECTS-REJECTED 5 ka1 done is not available
 ----------------SENDING-------------
-REGISTER 12 ka1 192.168.81.1:61350
+SUBJECTS 6 ka1 []
 Sending to ->192.168.81.1:1234
 ----------------SENDING-------------
-REGISTER 12 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 12 Username exists already
-----------------SENDING-------------
-REGISTER 13 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 13 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 13 Username exists already
-----------------SENDING-------------
-UPDATE 14 ka1 192.168.81.1:61350
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-UPDATE 14 ka1 192.168.81.1:61350
-Sending to ->12:123
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 14 ka1 192.168.81.1:61350
-----------------SENDING-------------
-UPDATE 1 ka1 192.168.81.1:64992
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-UPDATE 1 ka1 192.168.81.1:64992
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 1 ka1 192.168.81.1:64992
-----------------SENDING-------------
-UPDATE 2 ka1 1:1
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-UPDATE 2 ka1 1:1
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 2 ka1 1:1
-----------------SENDING-------------
-DISCONNECT 3 ka1
+SUBJECTS 7 ka1 [e]
 Sending to ->192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 Username exists already
+
+	SUBJECTS-REJECTED 7 ka1 e is not available
 ----------------SENDING-------------
-REGISTER 2 ka1 192.168.81.1:55977
+SUBJECTS 8 ka1 []
 Sending to ->192.168.81.1:1234
 ----------------SENDING-------------
-REGISTER 2 ka1 192.168.81.1:55977
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 2 Username exists already
-----------------SENDING-------------
-REGISTER 3 ka1 192.168.81.1:55977
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 3 ka1 192.168.81.1:55977
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 3 Username exists already
-----------------SENDING-------------
-REGISTER 4 ka1 192.168.81.1:55977
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-REGISTER 4 ka1 192.168.81.1:55977
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 4 Username exists already
-----------------SENDING-------------
-UPDATE 5 ka1 192.168.81.1:55977
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-UPDATE 5 ka1 192.168.81.1:55977
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 5 ka1 192.168.81.1:55977
-----------------SENDING-------------
-DISCONNECT 6 ka1
+SUBJECTS 9 ka1 [Sports]
 Sending to ->192.168.81.1:1234
 ----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
+
+	SUBJECTS-UPDATED 9 ka1 Sports
 ----------------NEW MESSAGE--------------------
-REGISTER-DENIED 7 Username exists already
-----------------SENDING-------------
-UPDATE 8 ka1 192.168.81.1:55977
-Sending to ->192.168.81.1:1234
-----------------SENDING-------------
-UPDATE 8 ka1 192.168.81.1:55977
-Sending to ->1:1
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 8 ka1 192.168.81.1:55977
-----------------SENDING-------------
-DE-REGISTER 9 ka1
-Sending to ->192.168.81.1:1234
-----------------NEW MESSAGE--------------------
-DE-REGISTER_CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTERED 10 
-----------------SENDING-------------
-DISCONNECT 11 ka1
-Sending to ->192.168.81.1:1234
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 12 Username exists already
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.81.1:6666
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 14 Username exists already
+
+	The following are your subscribed subjects: Food and Sports

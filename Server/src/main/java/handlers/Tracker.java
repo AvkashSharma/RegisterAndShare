@@ -1,11 +1,9 @@
 package handlers;
 
 import java.net.DatagramPacket;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import requests.Request;
-import requests.RequestType;
 import server.ServerData;
 
 public class Tracker {
