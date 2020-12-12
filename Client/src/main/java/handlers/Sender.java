@@ -55,9 +55,11 @@ public class Sender {
             datagramSocket.send(sendPacket);
             
         } catch (UnknownHostException e) {
+            // System.out.println("UnknownHostException No host available");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            // System.out.println("IO exception error");
         }
     }
 }

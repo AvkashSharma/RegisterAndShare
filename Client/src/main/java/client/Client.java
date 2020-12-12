@@ -23,7 +23,9 @@ public class Client {
     public static DatagramSocket clientSocket;
 
     public Client() {
+        ClientData.firstTime.set(true);
         ClientData.getServerAddress(scanner);
+        ClientData.firstTime.set(false);
         System.out.println("-----------------------------------------");
 
         try {
@@ -126,7 +128,9 @@ public class Client {
         try {
             RegisterRequest registerMessage = new RegisterRequest(ClientData.requestCounter.incrementAndGet(), username,
                     ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
+            System.out.println(ClientData.SERVER_1_IP +" "+ClientData.SERVER_1_PORT);
             Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+
             Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
             ClientData.username.set(username);
         } catch (IOException e) {

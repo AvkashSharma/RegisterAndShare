@@ -82,7 +82,7 @@ public class Request implements Serializable {
             RegisterRequest newreq = new RegisterRequest(this.rid, req.getClientName(), req.getAddress(),
                     req.getPort());
 
-            if (ClientData.retryAttempt.get() < 5) {
+            if (ClientData.retryAttempt.get() < 3) {
                 ClientData.retryAttempt.incrementAndGet();
                 ClientData.requestMap.remove(this.rid);
                 Client.register(newreq);
