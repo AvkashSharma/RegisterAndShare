@@ -268,7 +268,7 @@ public class ClientReceiver implements Runnable {
 
                     // send de-register confirmation to IDLE server
                     DeRegisterServerToServer serverConfirmation = new DeRegisterServerToServer(username);
-                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation,clientSocket);
                 }
@@ -293,7 +293,7 @@ public class ClientReceiver implements Runnable {
 
                     // send disconnection confirmation to IDLE server
                     DisconnectClientServerToServer serverConfirmation = new DisconnectClientServerToServer(username);
-                    System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
+                    // System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation,clientSocket);
                 }
@@ -317,13 +317,13 @@ public class ClientReceiver implements Runnable {
                             request.getAddress(), request.getPort());
                     ClientSender.sendResponse(updateConfirmed, packetReceived, clientSocket);
 
-                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(updateConfirmed.toString());
                     ServerSender.sendResponse(updateConfirmed,clientSocket);
                 }
             }
             else{
-                System.out.println("User does not exist");
+                // System.out.println("User does not exist");
                 db.close();
                 UpdateDenied updateDenied = new UpdateDenied(request.getRid(), request.getClientName() +" is not a valid username");
                 ClientSender.sendResponse(updateDenied, packetReceived, clientSocket);

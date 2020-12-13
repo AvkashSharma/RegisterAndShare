@@ -170,3 +170,19 @@ SERVER PING true 192.168.2.11:1234
 SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 2 192.168.2.11:55032
+----------------NEW MESSAGE--------------------
+DISCONNECT 2 2
+----------------NEW MESSAGE--------------------
+REGISTER 3 ka8 192.168.2.11:55032
+----------------NEW MESSAGE--------------------
+DISCONNECT 4 ka8
+----------------NEW MESSAGE--------------------
+UPDATE 5 ka8 192.168.2.11:55032
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 

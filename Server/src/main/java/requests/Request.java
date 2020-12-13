@@ -72,7 +72,7 @@ public class Request implements Serializable {
     }
 
     public void stopTimer(){
-        System.out.println("STOP TIMER CALLED");
+        // System.out.println("STOP TIMER CALLED");
 
         timer.cancel();
     }

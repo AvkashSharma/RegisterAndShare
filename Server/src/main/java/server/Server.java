@@ -126,8 +126,8 @@ public class Server implements Runnable {
             System.out.println("Waiting Request: " + ServerData.requestMap.size());
             System.out.println("1-Change Server's Port (UPDATE-SERVER)");
             System.out.println("2-Inform User's (CHANGE-SERVER)");
-            System.out.println("3-Stop Serving Clients");
-            System.out.println("4-Serve Clients");
+            // System.out.println("3-Stop Serving Clients (DEBUG)");
+            // System.out.println("4-Serve Clients (DEBUG)");
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
             System.out.print("\t\t\tChoice: ");
             val = scanner.nextLine();
@@ -148,14 +148,14 @@ public class Server implements Runnable {
                     System.out.println("Informing user's");
                     changeServer();
                     break;
-                case "3":
-                    System.out.println("Stop serving clients(DEBUG)");
-                    stopServing();
-                    break;
-                case "4":
-                    System.out.println("Serving clients(DEBUG)");
-                    serve();
-                    break;
+                // case "3":
+                //     System.out.println("Stop serving clients");
+                //     stopServing();
+                //     break;
+                // case "4":
+                //     System.out.println("Serving clients");
+                //     serve();
+                //     break;
 
                 case "-1":
                     continue;
@@ -266,7 +266,7 @@ public class Server implements Runnable {
         try {
             // ping other server to see if its up and running
             bServingStatus = ServerPingServer.ping(ServerData.addressB.get(), ServerData.portB.get());
-            System.out.println(bServingStatus);
+            // System.out.println(bServingStatus);
             if (bServingStatus) {
                 // send Serve Request
                 ServeRequest serveRequest = new ServeRequest(true);

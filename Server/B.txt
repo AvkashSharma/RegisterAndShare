@@ -90,3 +90,5 @@ SERVE CONFIRMED - Serving
 SERVER PING true 192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving

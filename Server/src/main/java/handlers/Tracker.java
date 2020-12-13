@@ -16,11 +16,11 @@ public class Tracker {
                 int port = packet.getPort();
                 int rid = req.getRid();
                 String hashId =  rid+"-"+ip+":"+port;
-                System.out.println("REQUEST RID:                          " + hashId);
+                // System.out.println("REQUEST RID:                          " + hashId);
                 req.startTimer();
                 ServerData.requestMap.put(hashId, request);
 
-                System.out.println("SIZE OF HASH MAP:                              " + ServerData.requestMap.size());
+                // System.out.println("SIZE OF HASH MAP:                              " + ServerData.requestMap.size());
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             }
@@ -34,11 +34,10 @@ public class Tracker {
             String hashId = rid+"-"+ip+":"+port;
 
             Request req = (Request) ServerData.requestMap.get(hashId);
-            System.out.println(req.getRid());
             req.stopTimer();
-            System.out.println("SIZE OF HASH MAP BEFORE: " + ServerData.requestMap.size());
+            // System.out.println("SIZE OF HASH MAP BEFORE: " + ServerData.requestMap.size());
             ServerData.requestMap.remove(hashId);
-            System.out.println("SIZE OF HASH MAP AFTER: " + ServerData.requestMap.size());
+            // System.out.println("SIZE OF HASH MAP AFTER: " + ServerData.requestMap.size());
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

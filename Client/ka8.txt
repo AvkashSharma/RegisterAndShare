@@ -1,0 +1,19 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 3 
+----------------SENDING-------------
+DISCONNECT 4 ka8
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DISCONNECTION-CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 5 ka8 192.168.2.11:55032
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 5 ka8 192.168.2.11:55032
+Sending to ->1.1.1.1:15
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 ka8 192.168.2.11:55032
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
