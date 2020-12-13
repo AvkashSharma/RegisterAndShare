@@ -95,11 +95,10 @@ public class Request implements Serializable {
                 ClientData.requestMap.remove(this.rid);
             }
         }
-
     }
 
     public void stopTimer() {
-        System.out.println("STOP TIMER CALLED");
+        // System.out.println("STOP TIMER CALLED");
         timer.cancel();
     }
 }

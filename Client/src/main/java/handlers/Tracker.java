@@ -215,13 +215,13 @@ public class Tracker {
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
          // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
 
@@ -234,21 +234,21 @@ public class Tracker {
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         // Need to get the same object from the Map to stop the timer
         Request reqToStop = (Request)ClientData.requestMap.get(Rid);
         reqToStop.stopTimer();
         ClientData.requestMap.remove(Rid);
          // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
 
     else {
-      System.out.println("THIS RESPONSE IS NOT HANDLED BY REQUEST TRACKER");
+      // System.out.println("THIS RESPONSE IS NOT HANDLED BY REQUEST TRACKER");
     }
 
   }

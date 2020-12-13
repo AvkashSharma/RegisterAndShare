@@ -5,3 +5,11 @@ DISCONNECT 2 2
 Sending to ->192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 DISCONNECTION-CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 2 2 192.168.2.11:53333
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 2 2 192.168.2.11:53333
+Sending to ->1.1.1.1:14
+----------------NEW MESSAGE--------------------
+UPDATE-DENIED 2 2 is not a valid username
