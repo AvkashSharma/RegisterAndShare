@@ -64,8 +64,7 @@ public class ClientReceiver implements Runnable {
 
             //output to file
             Writer.appendToFile(o);
-            //track the received request
-            Tracker.receivedRequest(o, packetReceived);
+
             requestHandler(o);
 
             is.close();
@@ -118,6 +117,8 @@ public class ClientReceiver implements Runnable {
 
         // client requests
         else if (ServerData.isServing.get()) {
+            //track the received request
+            Tracker.receivedRequest(request, packetReceived);
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);
 
