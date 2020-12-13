@@ -163,6 +163,17 @@ public class Database {
             addFavoriteSubject(username, subject);
         }
     }
+     public boolean removeAFavSubject(String username, String subject) {
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    String.format("DELETE FROM subscriptions WHERE username='%s' and subject='%'", username,subject));
+            ps.execute();
+            return true;
+            } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 
     public void favoriteSubjectExist(String username, String subject) {
 
