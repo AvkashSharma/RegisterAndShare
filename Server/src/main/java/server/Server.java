@@ -178,8 +178,8 @@ public class Server implements Runnable {
         ServerData.activeTimer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                //         + ServerData.isServing.get() + "\t" + display);
+                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                        + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.activeInterval <= 0) {
 
                     if (ServerData.isServing.get())
@@ -197,8 +197,8 @@ public class Server implements Runnable {
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                //         + ServerData.isServing.get() + "\t" + display);
+                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                        + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.inactiveInterval <= 0) {
                     serve();
                     changeServer();
@@ -311,14 +311,14 @@ public class Server implements Runnable {
             System.out.println(user.getUsername() + " " + user.getUserIP() + ":" + user.getUserSocket());
             byte[] buffer = new byte[1024];
 
-            SocketAddress socketAddress = new InetSocketAddress(user.getUserIP(), user.getUserSocket());
-            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, socketAddress);
-
             try {
-                ClientSender.sendResponse(changeServer, packet, socket);
+            // SocketAddress socketAddress = new InetSocketAddress(user.getUserIP(), user.getUserSocket());
+            InetAddress add = InetAddress.getByName(user.getUserIP());
+            DatagramPacket packet = new DatagramPacket(buffer, buffer.length, add, user.getUserSocket());
+            ClientSender.sendResponse(changeServer, packet, socket);
             } catch (IOException e) {
                 System.out.println("Could not connect to client");
-                e.printStackTrace();
+                // e.printStackTrace();
             }
         }
         db.close();

@@ -64,8 +64,7 @@ public class ClientReceiver implements Runnable {
 
             //output to file
             Writer.appendToFile(o);
-            //track the received request
-            Tracker.receivedRequest(o, packetReceived);
+
             requestHandler(o);
 
             is.close();
@@ -87,7 +86,8 @@ public class ClientReceiver implements Runnable {
             try {
                 InetAddress addr = packetReceived.getAddress();
                 String addressb = addr.getLocalHost().getHostAddress().toString();
-                int portB = packetReceived.getPort();
+                // int portB = packetReceived.getPort();
+                int portB =  ((ServerPingServer) request).getPort();
                 ServerData.addressB.set(addressb);
                 ServerData.portB.set(portB);
                 ClientSender.sendResponse(request, packetReceived, clientSocket);
@@ -117,6 +117,8 @@ public class ClientReceiver implements Runnable {
 
         // client requests
         else if (ServerData.isServing.get()) {
+            //track the received request
+            Tracker.receivedRequest(request, packetReceived);
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);
 
