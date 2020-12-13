@@ -166,7 +166,7 @@ public class Database {
      public boolean removeAFavSubject(String username, String subject) {
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    String.format("DELETE FROM subscriptions WHERE username='%s' and subject='%'", username,subject));
+                    String.format("DELETE FROM subscriptions WHERE username='%s' and subject='%s'", username,subject));
             ps.execute();
             return true;
             } catch (SQLException e) {

@@ -194,3 +194,75 @@ AVAILABLE_LIST-OF-SUBJECTS m1 []
 SUBJECTS 3 m1 [Food]
 ----------------NEW MESSAGE--------------------
 SUBJECTS 4 m1 [Sports]
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 192.168.2.11:61897
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+UPDATE 2 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 2 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+[]
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SUBJECTS 6 k1 [Sports, Food]
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+REGISTER 11 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 11 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+UPDATE 12 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 12 k1 192.168.2.11:58501
+----------------NEW MESSAGE--------------------
+[Food, Formula1, Sports]
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
