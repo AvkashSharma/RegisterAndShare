@@ -310,6 +310,10 @@ public class ClientReceiver implements Runnable {
             boolean dbResponse = false;
             Database db = new Database();
             if (db.userExist(username)) {
+                // get old address of user
+                User oldUserInfo = db.getUser(username);
+                // System.out.println(oldUserInfo.getUserIP() +":"+oldUserInfo.getUserSocket());
+
                 dbResponse = db.updateUser(request.getClientName(), request.getAddress(), request.getPort());
                 db.close();
                 if (dbResponse) {
@@ -317,9 +321,13 @@ public class ClientReceiver implements Runnable {
                             request.getAddress(), request.getPort());
                     ClientSender.sendResponse(updateConfirmed, packetReceived, clientSocket);
 
+                    //disconnect old client
+                    DisconnectionConfirmed disconnectionConfirmed = new DisconnectionConfirmed();
+                    ClientSender.sendResponse(disconnectionConfirmed, clientSocket, oldUserInfo.getUserIP(), oldUserInfo.getUserSocket());
+
                     // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(updateConfirmed.toString());
-                    ServerSender.sendResponse(updateConfirmed,clientSocket);
+                    ServerSender.sendResponse(updateConfirmed, clientSocket);
                 }
             }
             else{

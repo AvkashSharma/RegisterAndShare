@@ -54,8 +54,22 @@ public class Database {
         return false;
     }
 
-    public void getUser(String username) {
+    public User getUser(String username) {
+        try {
+            User user;
 
+            PreparedStatement ps = conn.prepareStatement(String.format("SELECT * FROM users WHERE username ='%s'", username));
+            ResultSet rs = ps.executeQuery();
+            if (rs != null) {
+                rs.first(); // moves cursor to the first row
+                user = new User(rs.getString("username"), rs.getString("ip"), rs.getInt("socket"));
+                return user;
+            }
+            return null;
+        } catch (SQLException e) {
+            System.out.println("Connection error");
+        }
+        return null;
     }
 
     public void getUserByIp(String ip) {

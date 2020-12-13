@@ -112,7 +112,6 @@ public class ServerReceiver implements Runnable {
       try {
         ClientData.activeServerAddress = InetAddress.getByName(ser.getAddress());
       } catch (UnknownHostException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
     } else {

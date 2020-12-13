@@ -23,7 +23,27 @@ public class ClientSender {
 
         // Create new UDP packet with data to send to the client
         DatagramPacket outputPacket = new DatagramPacket(data, data.length,clientAddress,clientPort);
+        
+        // Send the created packet to the client
+        clientSocket.send(outputPacket);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
+
+    public static void sendResponse(Object toSend, DatagramSocket clientSocket,  String address, int port) throws IOException{
+        try{
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ObjectOutputStream os = new ObjectOutputStream(outputStream);
+        os.writeObject(toSend);
+
+        byte[] data = outputStream.toByteArray();
+
+        // Create new UDP packet with data to send to the client
+        InetAddress addr =InetAddress.getByName(address);
+        DatagramPacket outputPacket = new DatagramPacket(data, data.length,addr, port);
         
         // Send the created packet to the client
         clientSocket.send(outputPacket);

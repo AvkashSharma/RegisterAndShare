@@ -151,3 +151,31 @@ Sending to ->192.168.2.11:6666
 CHANGE-SERVER 192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 1 Username exists already
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:53333
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:53333
+Sending to ->1.1.1.1:14
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 3 k1 192.168.2.11:53333
+----------------SENDING-------------
+UPDATE 1 k1 192.168.2.11:63868
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 k1 192.168.2.11:63868
+Sending to ->1.1.1.1:123
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 k1 192.168.2.11:63868
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:63878
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:63878
+Sending to ->1.2.1.1:15
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 3 k1 192.168.2.11:63878
+----------------NEW MESSAGE--------------------
+DISCONNECTION-CONFIRMED 0 
