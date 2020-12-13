@@ -394,6 +394,7 @@ public class ClientReceiver implements Runnable {
             if (db.userExist(username)) {
                 // check if the subject exist
                 String subject = "";
+                String oldFav="";
                 boolean contained;
                 boolean alreadyExist;
                 String reply = "";
@@ -424,6 +425,13 @@ public class ClientReceiver implements Runnable {
                     }
                 }        
                 subscribedList = db.getFavoriteSubjects(username);
+                for(int i=0;i<subscribedList.size();i++){
+                 oldFav=subscribedList.get(i);
+                 if(!subjects.contains(oldFav)){
+                     db.removeAFavSubject(username, oldFav);
+                 }
+
+                }
                 //turning the list into a string
                 for(String sub:subscribedList){
                    subjectsInString+=sub;
