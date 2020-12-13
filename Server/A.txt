@@ -280,3 +280,27 @@ REGISTER 1 1 192.168.2.11:63878
 DE-REGISTER 2 1
 ----------------NEW MESSAGE--------------------
 UPDATE 3 k1 192.168.2.11:63878
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666

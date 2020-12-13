@@ -87,7 +87,8 @@ public class ClientReceiver implements Runnable {
             try {
                 InetAddress addr = packetReceived.getAddress();
                 String addressb = addr.getLocalHost().getHostAddress().toString();
-                int portB = packetReceived.getPort();
+                // int portB = packetReceived.getPort();
+                int portB =  ((ServerPingServer) request).getPort();
                 ServerData.addressB.set(addressb);
                 ServerData.portB.set(portB);
                 ClientSender.sendResponse(request, packetReceived, clientSocket);

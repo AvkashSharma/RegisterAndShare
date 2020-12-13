@@ -80,7 +80,7 @@ public class ServerPingServer implements Serializable {
             ObjectOutputStream os = new ObjectOutputStream(outputStream);
 
             // send ping object to server
-            ServerPingServer pingServer = new ServerPingServer(ServerData.isServing.get(), ipAddress, port);
+            ServerPingServer pingServer = new ServerPingServer(ServerData.isServing.get(), ipAddress, ServerData.port.get());
             os.writeObject(pingServer);
 
             byte[] data = outputStream.toByteArray();
