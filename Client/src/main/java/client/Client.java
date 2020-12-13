@@ -50,14 +50,15 @@ public class Client {
 
     public static void ui() {
         String val = "";
-        while (!val.equals("exit") || ClientData.uiTakeOver.get()) {
+        while (!val.equals("exit")) {
+            if(ClientData.uiTakeOver.get())
+                break;
             System.out.println("------------------Client: " + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
             System.out.println("------------------Connected to:" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
                     + "------------------------");
             System.out.println("------------------serverA: " + ClientData.SERVER_1_IP + ":" + ClientData.SERVER_1_PORT
                     + "------serverB: " + ClientData.SERVER_2_IP + ":" + ClientData.SERVER_2_PORT);
-          
 
             if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get()) {
                 System.out.println("1-Register");

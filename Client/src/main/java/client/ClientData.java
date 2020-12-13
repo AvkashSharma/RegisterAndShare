@@ -51,7 +51,7 @@ public class ClientData {
     }
     // UI to enter Server IP address
     public static void getServerAddress(Scanner s) {
-        ClientData.uiTakeOver.set(false);
+        ClientData.uiTakeOver.set(true);
         String localAddress = "";
         try {
             localAddress = InetAddress.getLocalHost().getHostAddress().toString();
@@ -77,8 +77,7 @@ public class ClientData {
             SERVER_2_PORT = Common.scanInt(s, "\t\tPort: ");
         }
         
-        System.out.println("firstTime: "+ClientData.firstTime.get());
-        ClientData.uiTakeOver.set(true);
+        ClientData.uiTakeOver.set(false);
         if(!ClientData.firstTime.get())
             Client.ui();
     }

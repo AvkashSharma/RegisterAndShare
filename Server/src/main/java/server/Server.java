@@ -75,7 +75,7 @@ public class Server implements Runnable {
      * configure server on startup
      */
     public void serverConfig() {
-        ServerData.sleepTime.set(Common.scanInt(scanner, "Enter server timeout(seconds): "));
+        ServerData.sleepTime.set(Common.scanInt(scanner, "Enter server's sleepTime (seconds): "));
         ServerData.activeInterval = ServerData.sleepTime.get();
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
 
@@ -121,7 +121,7 @@ public class Server implements Runnable {
         while (!val.equals("exit")) {
             System.out.println("\n----------------Server Listening on " + ServerData.address.get() + ":"
                     + ServerData.port.get() + "---------------- Online: " + ServerData.isServing.get() + "\t");
-            System.out.println("\n----------------Server B: " + ServerData.addressB.get() + ":" + ServerData.portB.get()
+            System.out.println("----------------Server B: " + ServerData.addressB.get() + ":" + ServerData.portB.get()
                     + "---------------- Online: " + "\t");
             System.out.println("Waiting Request: " + ServerData.requestMap.size());
             System.out.println("1-Change Server's Port (UPDATE-SERVER)");
@@ -129,7 +129,7 @@ public class Server implements Runnable {
             System.out.println("3-Stop Serving Clients");
             System.out.println("4-Serve Clients");
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
-            System.out.print("\t\t\t\tChoice: ");
+            System.out.print("\t\t\tChoice: ");
             val = scanner.nextLine();
 
             if (val.isEmpty()) {
@@ -137,7 +137,11 @@ public class Server implements Runnable {
             }
             switch (val) {
                 case "1":
-                    System.out.println("Changing server port");
+                    if(ServerData.isServing.get()){
+                        System.out.println("Cannot change server address when its serving");
+                        break;
+                    }
+                    System.out.println("Changing server address");
                     updatePort();
                     break;
                 case "2":
@@ -145,11 +149,11 @@ public class Server implements Runnable {
                     changeServer();
                     break;
                 case "3":
-                    System.out.println("Stop serving clients");
+                    System.out.println("Stop serving clients(DEBUG)");
                     stopServing();
                     break;
                 case "4":
-                    System.out.println("Serving clients");
+                    System.out.println("Serving clients(DEBUG)");
                     serve();
                     break;
 
@@ -174,8 +178,8 @@ public class Server implements Runnable {
         ServerData.activeTimer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                        + ServerData.isServing.get() + "\t" + display);
+                // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                //         + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.activeInterval <= 0) {
 
                     if (ServerData.isServing.get())
@@ -193,8 +197,8 @@ public class Server implements Runnable {
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                        + ServerData.isServing.get() + "\t" + display);
+                // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                //         + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.inactiveInterval <= 0) {
                     serve();
                     changeServer();
@@ -215,9 +219,14 @@ public class Server implements Runnable {
         ServerData.inactiveTimer = new Timer();
     }
 
+    /**
+     * Change server address (ip and port)
+     */
     public void updatePort() {
         resetTimers();
         int originalPort = ServerData.port.get();
+        System.out.print("Enter Ip address: ");
+        ServerData.address.set(Common.scanIp(scanner));
         ServerData.port.set(Common.scanInt(scanner, "Enter port number: "));
 
         closeSocket = false;

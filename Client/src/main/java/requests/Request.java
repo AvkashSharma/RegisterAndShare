@@ -89,7 +89,7 @@ public class Request implements Serializable {
             } else {
 
                 // print the size of the map
-                System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+                // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
                 ClientData.getServerAddress(new Scanner(System.in));
                 ClientData.retryAttempt.set(0);
                 ClientData.requestMap.remove(this.rid);
@@ -100,7 +100,6 @@ public class Request implements Serializable {
 
     public void stopTimer() {
         System.out.println("STOP TIMER CALLED");
-
         timer.cancel();
     }
 }
