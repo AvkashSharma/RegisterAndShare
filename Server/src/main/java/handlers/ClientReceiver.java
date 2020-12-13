@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import db.Database;
 import db.User;
@@ -395,10 +396,13 @@ public class ClientReceiver implements Runnable {
         }
     }
 
+    
     public void subscribeToSubjects(SubjectsRequest request) {
         String username = request.getClientName();
         List<String> subjects = request.getSubjectsToSubscribe();
         Database db = new Database();
+        //check if the user input subject is contained in the list of available subjects
+         AtomicBoolean isContained=new AtomicBoolean(true);
         try {
             // check if user is registered
             if (db.userExist(username)) {
@@ -406,7 +410,9 @@ public class ClientReceiver implements Runnable {
                 String subject = "";
                 String oldFav="";
                 boolean contained;
+
                 boolean alreadyExist;
+                String listOfSub = "";
                 String reply = "";
                 String subjectsInString="\n\tThe following are your subscribed subjects: ";
                 List<String> subscribedList;
@@ -415,25 +421,36 @@ public class ClientReceiver implements Runnable {
                     // check if subject to be subscribed on is in the list of available subjects
                     contained = db.getSubjects().contains(subject);
                     alreadyExist = db.getFavoriteSubjects(username).contains(subject);
-                    if (contained) {
+                    if (isContained.get()) {
+                       
+                    //  if(subject==subjects.get(i-2)){
+                    //         listOfSub+=subject+" and ";
+                    //      }
+                    //  else{
+                            listOfSub+=subject+" ";
+                        // }
                         if (!alreadyExist) {
                             db.addFavoriteSubject(username, subject);
-                            reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+subject;
-                            ClientSender.sendResponse(reply, packetReceived, clientSocket);
-                        } else {
-                            reply = "\n\t" + "SUBJECTS-REJECTED "+ request.getRid()+" "+ request.getClientName()+" "+subject +" was already in the list";
-                            ClientSender.sendResponse(reply, packetReceived, clientSocket);
-                        }
-                        // System.out.println(subject+" is in the available subjects");
+                           
+                        } 
+                       
 
                     }
 
                     else {
-                        // System.out.println(subject+" is not in the available subjects");
-                        reply = "\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subject + " is not available";
-                        ClientSender.sendResponse(reply, packetReceived, clientSocket);
+                        // notContained=true; 
+                        isContained.set(false);
                     }
-                }        
+                }    
+                if(isContained.get()){
+                    
+                   reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+listOfSub;
+                }
+                else{
+                    
+                    reply="\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subjects+ "The subject(s) is/are not available";
+                }
+
                 subscribedList = db.getFavoriteSubjects(username);
                 for(int i=0;i<subscribedList.size();i++){
                  oldFav=subscribedList.get(i);
@@ -452,6 +469,7 @@ public class ClientReceiver implements Runnable {
                            subjectsInString+=", ";
                         }
                 }
+                ClientSender.sendResponse(reply, packetReceived, clientSocket);
                 ClientSender.sendResponse(subjectsInString, packetReceived, clientSocket);
 
                 System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
@@ -462,10 +480,11 @@ public class ClientReceiver implements Runnable {
                 String denied = "The user does not exist";
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
-            Tracker.stop(request.getRid(), packetReceived);
-            db.close();
+           
         } catch (IOException e) {
             e.printStackTrace();
+             Tracker.stop(request.getRid(), packetReceived);
+             db.close();
         }
     }
 
