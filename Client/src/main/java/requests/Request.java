@@ -82,14 +82,14 @@ public class Request implements Serializable {
             RegisterRequest newreq = new RegisterRequest(this.rid, req.getClientName(), req.getAddress(),
                     req.getPort());
 
-            if (ClientData.retryAttempt.get() < 5) {
+            if (ClientData.retryAttempt.get() < 3) {
                 ClientData.retryAttempt.incrementAndGet();
                 ClientData.requestMap.remove(this.rid);
                 Client.register(newreq);
             } else {
 
                 // print the size of the map
-                System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+                // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
                 ClientData.getServerAddress(new Scanner(System.in));
                 ClientData.retryAttempt.set(0);
                 ClientData.requestMap.remove(this.rid);
@@ -100,7 +100,6 @@ public class Request implements Serializable {
 
     public void stopTimer() {
         System.out.println("STOP TIMER CALLED");
-
         timer.cancel();
     }
 }

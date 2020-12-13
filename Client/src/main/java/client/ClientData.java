@@ -38,6 +38,7 @@ public class ClientData {
     public static ConcurrentHashMap<Integer,Object> requestMap = new ConcurrentHashMap<>();
     public static AtomicInteger retryAttempt = new AtomicInteger(0);
     public static AtomicBoolean uiTakeOver = new AtomicBoolean(true);
+    public static AtomicBoolean firstTime = new AtomicBoolean(true);
 
     public static void setActiveAddress(String address, int port){
         ACTIVE_PORT = port;
@@ -50,7 +51,7 @@ public class ClientData {
     }
     // UI to enter Server IP address
     public static void getServerAddress(Scanner s) {
-        ClientData.uiTakeOver.set(false);
+        ClientData.uiTakeOver.set(true);
         String localAddress = "";
         try {
             localAddress = InetAddress.getLocalHost().getHostAddress().toString();
@@ -75,8 +76,10 @@ public class ClientData {
             System.out.println("port out of range");
             SERVER_2_PORT = Common.scanInt(s, "\t\tPort: ");
         }
-        ClientData.uiTakeOver.set(true);
-        Client.ui();
+        
+        ClientData.uiTakeOver.set(false);
+        if(!ClientData.firstTime.get())
+            Client.ui();
     }
 
     // Use this to return active server ip and port

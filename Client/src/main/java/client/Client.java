@@ -23,7 +23,9 @@ public class Client {
     public static DatagramSocket clientSocket;
 
     public Client() {
+        ClientData.firstTime.set(true);
         ClientData.getServerAddress(scanner);
+        ClientData.firstTime.set(false);
         System.out.println("-----------------------------------------");
 
         try {
@@ -48,14 +50,15 @@ public class Client {
 
     public static void ui() {
         String val = "";
-        while (!val.equals("exit") || ClientData.uiTakeOver.get()) {
+        while (!val.equals("exit")) {
+            if(ClientData.uiTakeOver.get())
+                break;
             System.out.println("------------------Client: " + ClientData.CLIENT_IP + ":" + ClientData.CLIENT_PORT
                     + "------------------------");
             System.out.println("------------------Connected to:" + ClientData.ACTIVE_IP + ":" + ClientData.ACTIVE_PORT
                     + "------------------------");
             System.out.println("------------------serverA: " + ClientData.SERVER_1_IP + ":" + ClientData.SERVER_1_PORT
                     + "------serverB: " + ClientData.SERVER_2_IP + ":" + ClientData.SERVER_2_PORT);
-          
 
             if (!ClientData.isRegistered.get()||ClientData.isDisconnected.get()) {
                 System.out.println("1-Register");
@@ -126,7 +129,9 @@ public class Client {
         try {
             RegisterRequest registerMessage = new RegisterRequest(ClientData.requestCounter.incrementAndGet(), username,
                     ClientData.CLIENT_IP, ClientData.CLIENT_PORT);
+            System.out.println(ClientData.SERVER_1_IP +" "+ClientData.SERVER_1_PORT);
             Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+
             Sender.sendTo(registerMessage, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
             ClientData.username.set(username);
         } catch (IOException e) {

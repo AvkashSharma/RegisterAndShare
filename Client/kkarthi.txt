@@ -1,0 +1,18 @@
+----------------SENDING-------------
+REGISTER 1 kkarthi 192.168.2.11:57274
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 kkarthi 192.168.2.11:57274
+Sending to ->192.168.2.11:666
+----------------SENDING-------------
+REGISTER 1 kkarthi 192.168.2.11:57274
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 kkarthi 192.168.2.11:57274
+Sending to ->192.168.2.11:666
+----------------SENDING-------------
+REGISTER 1 kkarthi 192.168.2.11:57274
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 kkarthi 192.168.2.11:57274
+Sending to ->192.168.2.11:666
