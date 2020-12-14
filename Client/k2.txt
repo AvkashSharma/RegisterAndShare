@@ -1,0 +1,8 @@
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 4 Username exists already
+----------------SENDING-------------
+REGISTER 5 k8 192.168.2.11:64791
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 5 k8 192.168.2.11:64791
+Sending to ->192.168.2.11:6666

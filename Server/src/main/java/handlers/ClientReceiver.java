@@ -118,6 +118,7 @@ public class ClientReceiver implements Runnable {
         // client requests
         else if (ServerData.isServing.get()) {
             //track the received request
+            System.out.println("ADDDEDING TO TRACCKER");
             Tracker.receivedRequest(request, packetReceived);
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);
