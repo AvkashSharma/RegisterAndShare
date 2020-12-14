@@ -178,8 +178,8 @@ public class Server implements Runnable {
         ServerData.activeTimer.scheduleAtFixedRate(new TimerTask() {
 
             public void run() {
-                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                        + ServerData.isServing.get() + "\t" + display);
+                // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                //         + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.activeInterval <= 0) {
 
                     if (ServerData.isServing.get())
@@ -197,8 +197,8 @@ public class Server implements Runnable {
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
         ServerData.inactiveTimer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
-                        + ServerData.isServing.get() + "\t" + display);
+                // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
+                //         + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.inactiveInterval <= 0) {
                     serve();
                     changeServer();
@@ -243,7 +243,15 @@ public class Server implements Runnable {
             // Sender.sendTo(update, socket, ServerData.addressB.get(),
             // ServerData.portB.get());
         } catch (SocketException e) {
-            e.printStackTrace();
+            ServerData.port.set(originalPort);
+            try {
+                socket = new DatagramSocket(ServerData.port.get());
+            } catch (SocketException e1) {
+                e1.printStackTrace();
+            }
+            System.out.println("Error with selected port. Please retry");
+            updatePort();
+            // e.printStackTrace();
         }
 
     }
