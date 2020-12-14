@@ -13,6 +13,7 @@ import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Registration.ServerRegisterConfirmed;
 import requests.Registration.ServerRegisterDenied;
+import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateConfirmed;
 import requests.Update.UpdateDenied;
@@ -395,86 +396,76 @@ public class ClientReceiver implements Runnable {
             e.printStackTrace();
         }
     }
-
+   
     
+
     public void subscribeToSubjects(SubjectsRequest request) {
         String username = request.getClientName();
+        //subjects a user wants to subscribe to
         List<String> subjects = request.getSubjectsToSubscribe();
         Database db = new Database();
-        //check if the user input subject is contained in the list of available subjects
-         AtomicBoolean isContained=new AtomicBoolean(true);
+        List<String> oldFavSubjectList=db.getFavoriteSubjects(username);
+       
+       
         try {
             // check if user is registered
             if (db.userExist(username)) {
-                // check if the subject exist
+                //check if the subject exist
                 String subject = "";
+                String subjectsRejected="";
                 String oldFav="";
                 boolean contained;
-
-                boolean alreadyExist;
-                String listOfSub = "";
+                boolean notContained=false;
+                // boolean alreadyExist;
+                String updatedSubjects = "";
                 String reply = "";
-                String subjectsInString="\n\tThe following are your subscribed subjects: ";
+            
                 List<String> subscribedList;
+             
+               
+                
+                //Clear the list of fav subjects
+                while(db.getFavoriteSubjects(username).size()!=0){
+                   oldFav=db.getFavoriteSubjects(username).get(0);
+                   db.removeAFavSubject(username, oldFav);
+                }
+              
                 for (int i = 0; i < subjects.size(); i++) {
                     subject = subjects.get(i);
-                    // check if subject to be subscribed on is in the list of available subjects
+                    subjectsRejected+=subject+" ";
                     contained = db.getSubjects().contains(subject);
-                    alreadyExist = db.getFavoriteSubjects(username).contains(subject);
-                    if (isContained.get()) {
-                       
-                    //  if(subject==subjects.get(i-2)){
-                    //         listOfSub+=subject+" and ";
-                    //      }
-                    //  else{
-                            listOfSub+=subject+" ";
-                        // }
-                        if (!alreadyExist) {
+            
+                    if (contained) {
                             db.addFavoriteSubject(username, subject);
-                           
-                        } 
+                            updatedSubjects+=subject+" ";
+                    }
+                    else{
                        
-
+                        notContained=true;
                     }
 
-                    else {
-                        // notContained=true; 
-                        isContained.set(false);
-                    }
-                }    
-                if(isContained.get()){
+                }
+              
+        
+                if(!notContained){
                     
-                   reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+listOfSub;
+                   reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+updatedSubjects;
                 }
                 else{
-                    
-                    reply="\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subjects+ "The subject(s) is/are not available";
+                    //  clear the list of fav subjects
+                    while(db.getFavoriteSubjects(username).size()!=0){
+                   oldFav=db.getFavoriteSubjects(username).get(0);
+                   db.removeAFavSubject(username, oldFav);
+                }
+                    db.addFavoriteSubjects(username, oldFavSubjectList);
+                    reply="\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subjectsRejected;
                 }
 
                 subscribedList = db.getFavoriteSubjects(username);
-                for(int i=0;i<subscribedList.size();i++){
-                 oldFav=subscribedList.get(i);
-                 if(!subjects.contains(oldFav)){
-                     db.removeAFavSubject(username, oldFav);
-                 }
-
-                }
-                //turning the list into a string
-                for(String sub:subscribedList){
-                   subjectsInString+=sub;
-                   if (subscribedList.get(subscribedList.size()-2)==sub){
-                            subjectsInString+=" and ";
-                        }
-                       else if(!(subscribedList.get(subscribedList.size()-1)==sub)){
-                           subjectsInString+=", ";
-                        }
-                }
                 ClientSender.sendResponse(reply, packetReceived, clientSocket);
-                ClientSender.sendResponse(subjectsInString, packetReceived, clientSocket);
-
                 System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
                 System.out.println(subscribedList.toString());
-                ServerSender.sendResponse(subscribedList,clientSocket);
+                ServerSender.sendResponse(updatedSubjects,clientSocket);
 
             } else {
                 String denied = "The user does not exist";
