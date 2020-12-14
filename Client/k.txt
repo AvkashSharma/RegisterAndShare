@@ -1,0 +1,8 @@
+----------------SENDING-------------
+UPDATE 1 k 192.168.2.11:61355
+Sending to ->192.168.2.11:8080
+----------------SENDING-------------
+UPDATE 1 k 192.168.2.11:61355
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-DENIED 1 k is not a valid username

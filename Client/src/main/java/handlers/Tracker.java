@@ -31,11 +31,9 @@ public class Tracker {
       RegisterRequest req = (RegisterRequest)request;
 
       int Rid = req.getRid();
-      System.out.println("REGISTER REQUEST RID:                          " + Rid);
       req.startTimer();
       ClientData.requestMap.put(Rid, request);
-      System.out.println("SIZE OF HASH MAP:                              " + ClientData.requestMap.size());
-      
+      // System.out.println("REGISTER REQUEST RID:                          " + Rid);
     }
 
     // Handle De-Register Request
@@ -52,30 +50,30 @@ public class Tracker {
     else if(request instanceof UpdateRequest){
       UpdateRequest req = (UpdateRequest)request;
       int Rid = req.getRid();
-      System.out.println("UPDATE REQUEST RID:                      " + Rid);
+      // System.out.println("UPDATE REQUEST RID:                      " + Rid);
       req.startTimer();
       ClientData.requestMap.put(Rid, request);
-      System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
+      // System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
     }
 
     // Handle Subject Update Request
     else if(request instanceof SubjectsRequest){
       SubjectsRequest req = (SubjectsRequest) request;
       int Rid = req.getRid();
-      System.out.println("SUBJECT REQUEST RID:                      " + Rid);
+      // System.out.println("SUBJECT REQUEST RID:                      " + Rid);
       req.startTimer();
       ClientData.requestMap.put(Rid, request);
-      System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
+      // System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
     }
 
     // Handle Publish Request
     else if(request instanceof PublishRequest){
       PublishRequest req = (PublishRequest) request;
       int Rid = req.getRid();
-      System.out.println("PUBLISH REQUEST RID:                      " + Rid);
+      // System.out.println("PUBLISH REQUEST RID:                      " + Rid);
       req.startTimer();
       ClientData.requestMap.put(Rid, request);
-      System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
+      // System.out.println("SIZE OF HASH MAP: " + ClientData.requestMap.size());
     }
   }
 
@@ -87,8 +85,8 @@ public class Tracker {
 
   public static void handleReceivedResponse(Object response){
 
-    System.out.print("RECEIVED RESPONSE:                        ");
-    System.out.println(response.toString());
+    // System.out.print("RECEIVED RESPONSE:                        ");
+    // System.out.println(response.toString());
 
     // Handle Register confirmation Received
     if(response instanceof ClientRegisterConfirmed){
@@ -96,10 +94,10 @@ public class Tracker {
       
       // Get the Rid
       int Rid = res.getRid();
-      System.out.println("REGISTER CONFIRMATION RID:                          " + Rid);
+      // System.out.println("REGISTER CONFIRMATION RID:                          " + Rid);
       // if the Rid exists in the map remove it 
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
         System.out.println(ClientData.requestMap.get(Rid));
 
         // Need to get the same object from the Map to stop the timer
@@ -107,11 +105,11 @@ public class Tracker {
         reqToStop.stopTimer();
 
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
         
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
 
@@ -119,21 +117,21 @@ public class Tracker {
     else if(response instanceof ClientRegisterDenied){
       ClientRegisterDenied res = (ClientRegisterDenied) response;
       int Rid = res.getRid();
-      System.out.println("REGISTER DENIED RID:                          " + Rid);
+      // System.out.println("REGISTER DENIED RID:                          " + Rid);
 
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
-        System.out.println(ClientData.requestMap.get(Rid));
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println(ClientData.requestMap.get(Rid));
 
         // Need to get the same object from the Map to stop the timer
         Request reqToStop = (Request)ClientData.requestMap.get(Rid);
         reqToStop.stopTimer();
 
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
          // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       } 
     }
 
@@ -141,22 +139,22 @@ public class Tracker {
     else if(response instanceof UpdateConfirmed){
       UpdateConfirmed res = (UpdateConfirmed) response;
       int Rid = res.getRid();
-      System.out.println("UPDATE CONFIRMED RID:                          " + Rid);
+      // System.out.println("UPDATE CONFIRMED RID:                          " + Rid);
 
       // if the Rid exists in the map remove it 
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
-        System.out.println(ClientData.requestMap.get(Rid));
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println(ClientData.requestMap.get(Rid));
 
         // Need to get the same object from the Map to stop the timer
         Request reqToStop = (Request)ClientData.requestMap.get(Rid);
         reqToStop.stopTimer();
 
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
          // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
 
@@ -164,22 +162,22 @@ public class Tracker {
     else if(response instanceof UpdateDenied){
       UpdateDenied res = (UpdateDenied) response;
       int Rid = res.getRid();
-      System.out.println("UPDATE DENIED RID:                          " + Rid);
+      // System.out.println("UPDATE DENIED RID:                          " + Rid);
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
-        System.out.println(ClientData.requestMap.get(Rid));
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println(ClientData.requestMap.get(Rid));
 
         // Need to get the same object from the Map to stop the timer
         Request reqToStop = (Request)ClientData.requestMap.get(Rid);
         reqToStop.stopTimer();
 
         // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
          // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
+        // System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
 
@@ -187,23 +185,19 @@ public class Tracker {
     else if(response instanceof SubjectsUpdated){
       SubjectsUpdated res = (SubjectsUpdated) response;
       int Rid = res.getRid();
-      System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
+      // System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){
-        System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
-        System.out.println(ClientData.requestMap.get(Rid));
+        // System.out.println("--------------------------FOUND A REQUEST ID GOING TO REMOVE FROM THE LIST");
+        // System.out.println(ClientData.requestMap.get(Rid));
 
 
         // Need to get the same object from the Map to stop the timer
         Request reqToStop = (Request)ClientData.requestMap.get(Rid);
         reqToStop.stopTimer();
         
-        // print the size of the map
-        System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
         ClientData.requestMap.remove(Rid);
-         // print the size of the map
-        System.out.println("SIZE OF HASH MAP AFTER: " + ClientData.requestMap.size());
       }
     }
 
@@ -211,7 +205,7 @@ public class Tracker {
     else if(response instanceof SubjectsRejected){
       SubjectsRejected res = (SubjectsRejected) response;
       int Rid = res.getRid();
-      System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
+      // System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){
@@ -230,7 +224,7 @@ public class Tracker {
     else if(response instanceof PublishDenied){
       PublishDenied res = (PublishDenied) response;
       int Rid = res.getRid();
-      System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
+      // System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){

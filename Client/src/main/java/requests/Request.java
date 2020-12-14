@@ -11,12 +11,14 @@ import java.util.TimerTask;
 import client.Client;
 import client.ClientData;
 import requests.Registration.RegisterRequest;
+import requests.Update.UpdateRequest;
 
 public class Request implements Serializable {
 
     /**
      *
      */
+
     private static final long serialVersionUID = 1L;
     protected RequestType requestType;
     protected int rid;
@@ -58,7 +60,6 @@ public class Request implements Serializable {
     }
 
     public void startTimer() {
-
         timer.scheduleAtFixedRate(new TimerTask() {
             int timePeriod = 3000;
 
@@ -85,6 +86,7 @@ public class Request implements Serializable {
             if (ClientData.retryAttempt.get() < 3) {
                 ClientData.retryAttempt.incrementAndGet();
                 ClientData.requestMap.remove(this.rid);
+                System.out.println("RETRYING: " + newreq.toString());
                 Client.register(newreq);
             } else {
 
@@ -94,6 +96,29 @@ public class Request implements Serializable {
                 ClientData.retryAttempt.set(0);
                 ClientData.requestMap.remove(this.rid);
             }
+        }
+        else if (requestType == RequestType.UPDATE) {
+            UpdateRequest req = (UpdateRequest) ClientData.requestMap.get(this.rid);
+            UpdateRequest newreq = new UpdateRequest(this.rid, req.getClientName(), req.getAddress(),
+                    req.getPort());
+
+            if (ClientData.retryAttempt.get() < 3) {
+                ClientData.retryAttempt.incrementAndGet();
+                ClientData.requestMap.remove(this.rid);
+                System.out.println("RETRYING: " + newreq.toString());
+                Client.update(newreq);
+            } else {
+
+                // print the size of the map
+                // System.out.println("SIZE OF HASH MAP BEFORE: " + ClientData.requestMap.size());
+                ClientData.getServerAddress(new Scanner(System.in));
+                ClientData.retryAttempt.set(0);
+                ClientData.requestMap.remove(this.rid);
+            }
+        }
+        else{
+            ClientData.requestMap.remove(this.rid);
+            ClientData.requestMap.remove(this.rid);
         }
     }
 

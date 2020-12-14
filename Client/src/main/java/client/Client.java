@@ -106,7 +106,7 @@ public class Client {
                 case "6":
                     subscribeToSubjects();
                     break;
-                    case "7":
+                case "7":
                     disconnect();
                     break;
                 case "-1":
@@ -178,6 +178,15 @@ public class Client {
         }
     }
 
+    public static void update(UpdateRequest updateRequest) {
+        try {
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
      public static void disconnect(){
          System.out.print("\tDo you want to disconnect " + ClientData.username.get() + "(y/n): ");
          String response = "";
@@ -187,7 +196,10 @@ public class Client {
         }
         DisconnectRequest disconnectMessage = new DisconnectRequest(ClientData.requestCounter.incrementAndGet(),
                 ClientData.username.get());
-                 
+        // ClientData.isRegistered.set(false);
+        // ClientData.isDisconnected.set(true);
+        // ClientData.username.set("");
+        
         try {
             Sender.sendTo(disconnectMessage, clientSocket);
         } catch (IOException e) {

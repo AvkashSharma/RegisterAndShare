@@ -38,7 +38,7 @@ public class ServerReceiver implements Runnable {
         ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
         ObjectInputStream is = new ObjectInputStream(byteStream);
 
-        System.out.println("received packet");
+        System.out.println("---RECEIVED: ");
         Object o = (Object) is.readObject();
         Writer.appendToFile(o);
         Tracker.handleReceivedResponse(o);
