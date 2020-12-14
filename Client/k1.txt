@@ -206,3 +206,278 @@ DE-REGISTER 3 k1
 Sending to ->192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 DE-REGISTER_CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 1 k1 192.168.2.11:57165
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 k1 192.168.2.11:57165
+Sending to ->1.1.1.1:12
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 k1 192.168.2.11:57165
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:49961
+Sending to ->192.168.2.11:12345
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:49961
+Sending to ->1.1.1.1:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:49961
+Sending to ->192.168.2.11:12345
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:49961
+Sending to ->1.1.1.1:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:49961
+Sending to ->192.168.2.11:12345
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:49961
+Sending to ->1.1.1.1:1234
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.121.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.1.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.121.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.1.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.121.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.1.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.121.1.1:123
+----------------SENDING-------------
+UPDATE 3 k1 192.168.2.11:52219
+Sending to ->1.1.1.1:123
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:57858
+Sending to ->1.1.1.1:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:57858
+Sending to ->1.1.1.1:453
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:57858
+Sending to ->1.1.1.1:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:57858
+Sending to ->1.1.1.1:453
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:57858
+Sending to ->1.1.1.1:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:57858
+Sending to ->1.1.1.1:453
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:56801
+Sending to ->1.1.1.1:432
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:56801
+Sending to ->1.23.2.2:43
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63143
+Sending to ->1.1.1.1:65
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63143
+Sending to ->1.1.1.1:654
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63143
+Sending to ->1.1.1.1:65
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63143
+Sending to ->1.1.1.1:654
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63143
+Sending to ->1.1.1.1:65
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63143
+Sending to ->1.1.1.1:654

@@ -178,6 +178,15 @@ public class Client {
         }
     }
 
+    public static void update(UpdateRequest updateRequest) {
+        try {
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_1_IP, ClientData.SERVER_1_PORT);
+            Sender.sendTo(updateRequest, clientSocket, ClientData.SERVER_2_IP, ClientData.SERVER_2_PORT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
      public static void disconnect(){
          System.out.print("\tDo you want to disconnect " + ClientData.username.get() + "(y/n): ");
          String response = "";

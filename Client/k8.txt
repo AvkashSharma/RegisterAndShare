@@ -10,3 +10,21 @@ CHANGE-SERVER 192.168.2.11:1234
 CHANGE-SERVER 192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+DE-REGISTER 6 k8
+Sending to ->192.168.2.11:6666
+----------------SENDING-------------
+DISCONNECT 7 k8
+Sending to ->192.168.2.11:6666
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k8 []
+Sending to ->192.168.2.11:6666
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k8 []
+Sending to ->192.168.2.11:6666
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k8 []
+Sending to ->192.168.2.11:6666
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k8 []
+Sending to ->192.168.2.11:6666

@@ -800,3 +800,57 @@ SERVER PING true 192.168.2.11:6666
 SERVE REQUEST 
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:57165
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
