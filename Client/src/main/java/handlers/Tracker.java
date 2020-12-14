@@ -139,7 +139,7 @@ public class Tracker {
     else if(response instanceof UpdateConfirmed){
       UpdateConfirmed res = (UpdateConfirmed) response;
       int Rid = res.getRid();
-      System.out.println("UPDATE CONFIRMED RID:                          " + Rid);
+      // System.out.println("UPDATE CONFIRMED RID:                          " + Rid);
 
       // if the Rid exists in the map remove it 
       if(ClientData.requestMap.containsKey(Rid)){
@@ -185,7 +185,7 @@ public class Tracker {
     else if(response instanceof SubjectsUpdated){
       SubjectsUpdated res = (SubjectsUpdated) response;
       int Rid = res.getRid();
-      System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
+      // System.out.println("SUBJECTS UPDATED RID:                          " + Rid);
 
       // if Rid exists in the map remove it
       if(ClientData.requestMap.containsKey(Rid)){

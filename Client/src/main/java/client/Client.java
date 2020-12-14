@@ -106,7 +106,7 @@ public class Client {
                 case "6":
                     subscribeToSubjects();
                     break;
-                    case "7":
+                case "7":
                     disconnect();
                     break;
                 case "-1":
@@ -196,7 +196,10 @@ public class Client {
         }
         DisconnectRequest disconnectMessage = new DisconnectRequest(ClientData.requestCounter.incrementAndGet(),
                 ClientData.username.get());
-                 
+        // ClientData.isRegistered.set(false);
+        // ClientData.isDisconnected.set(true);
+        // ClientData.username.set("");
+        
         try {
             Sender.sendTo(disconnectMessage, clientSocket);
         } catch (IOException e) {

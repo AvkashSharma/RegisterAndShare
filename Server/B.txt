@@ -492,3 +492,251 @@ SERVE CONFIRMED - Serving
 SERVER PING true 192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE-SERVER 192.168.2.11:12345
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 1 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE 2 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 2 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+DISCONNECT 4 k1
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 5 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE 6 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 6 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 7 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 7 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE 8 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 8 k1 192.168.2.11:58318
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 3 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DISCONNECT-CLIENT-SERVER-TO-SERVER k1
+----------------NEW MESSAGE--------------------
+UPDATE 5 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 6 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+REGISTER 7 k9 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+DE-REGISTER 8 k9
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 9 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 9 k1 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE 10 k2 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 10 k2 192.168.2.11:53616
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:63756
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 k 192.168.2.11:61355
+----------------NEW MESSAGE--------------------
+UPDATE-DENIED 1 k is not a valid username
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 k1 192.168.2.11:53041
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+REGISTER 1 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 1 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE 2 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 2 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+AVAILABLE_LIST-OF-SUBJECTS k1 []
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DISCONNECT-CLIENT-SERVER-TO-SERVER k1
+----------------NEW MESSAGE--------------------
+UPDATE 8 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 8 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 9 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 9 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE 10 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 10 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:8080
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+UPDATE 11 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 11 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+REGISTER 12 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 12 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE 13 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 13 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 14 k1 192.168.2.11:52555
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
