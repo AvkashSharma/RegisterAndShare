@@ -1,7 +1,0 @@
-----------------NEW MESSAGE--------------------
-REGISTERED 7 
-----------------SENDING-------------
-DE-REGISTER 8 k9
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-DE-REGISTER_CONFIRMED 0 

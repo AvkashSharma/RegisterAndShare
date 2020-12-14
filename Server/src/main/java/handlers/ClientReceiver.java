@@ -103,7 +103,7 @@ public class ClientReceiver implements Runnable {
                 int portB = packetReceived.getPort();
                 ServerData.addressB.set(addressb);
                 ServerData.portB.set(portB);
-                System.out.println("Server requested to go online");
+                // System.out.println("Server requested to go online");
                 // Server server and start the timer
                 Server.serve();
                 // let know the other server its online
@@ -118,7 +118,7 @@ public class ClientReceiver implements Runnable {
         // client requests
         else if (ServerData.isServing.get()) {
             // track the received request
-            System.out.println("ADDDEDING TO TRACCKER");
+            // System.out.println("ADDDEDING TO TRACCKER");
             Tracker.receivedRequest(request, packetReceived);
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);

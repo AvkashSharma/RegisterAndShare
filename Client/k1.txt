@@ -1,49 +1,95 @@
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:987
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:987
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 1 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:987
+----------------SENDING-------------
+REGISTER 2 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 2 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 2 Username exists already
+----------------SENDING-------------
+REGISTER 3 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 3 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 REGISTER-DENIED 3 Username exists already
 ----------------SENDING-------------
-REGISTER 4 k7 192.168.2.11:49162
-Sending to ->192.168.2.11:1
-----------------SENDING-------------
-REGISTER 4 k7 192.168.2.11:49162
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-REGISTERED 1 
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
+REGISTER 4 k1 192.168.2.11:63322
 Sending to ->192.168.2.11:1234
 ----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 2 k1 192.168.2.11:61897
-Sending to ->1.1.1.1:1234
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 Username exists already
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:58501
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:58501
+REGISTER 4 k1 192.168.2.11:63322
 Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 2 k1 192.168.2.11:58501
+REGISTER-DENIED 4 Username exists already
+----------------SENDING-------------
+REGISTER 5 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 5 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 2 k1 192.168.2.11:58501
+REGISTER-DENIED 5 Username exists already
+----------------SENDING-------------
+REGISTER 6 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 6 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 6 Username exists already
+----------------SENDING-------------
+REGISTER 7 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+REGISTER 7 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+REGISTER-DENIED 7 Username exists already
+----------------SENDING-------------
+UPDATE 8 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 8 k1 192.168.2.11:63322
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 8 k1 192.168.2.11:63322
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
+----------------SENDING-------------
+AVAILABLE-LIST-OF-SUBJECTS k1 []
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+
+	 Choose among the following subjects: Food, Formula1 and Sports
 ----------------SENDING-------------
 AVAILABLE-LIST-OF-SUBJECTS k1 []
 Sending to ->192.168.2.11:6666
@@ -61,782 +107,34 @@ Sending to ->192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:6666
 ----------------SENDING-------------
-SUBJECTS 5 k1 [food, sports]
+AVAILABLE-LIST-OF-SUBJECTS k1 []
 Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 
-	SUBJECTS-REJECTED 5 k1 food is not available
-----------------NEW MESSAGE--------------------
-
-	SUBJECTS-REJECTED 5 k1 sports is not available
-----------------NEW MESSAGE--------------------
-
-	The following are your subscribed subjects: 
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
+	 Choose among the following subjects: Food, Formula1 and Sports
 ----------------SENDING-------------
-SUBJECTS 6 k1 [Sports, Food]
-Sending to ->192.168.2.11:1234
+SUBJECTS 14 k1 [Food, Sports]
+Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 
-	SUBJECTS-UPDATED 6 k1 Sports
+	SUBJECTS-REJECTED 14 k1 Food was already in the list
 ----------------NEW MESSAGE--------------------
 
-	SUBJECTS-UPDATED 6 k1 Food
+	SUBJECTS-UPDATED 14 k1 Sports
 ----------------NEW MESSAGE--------------------
 
 	The following are your subscribed subjects: Food and Sports
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
 ----------------SENDING-------------
-SUBJECTS 7 k1 [Food]
+PUBLISH 15 k1 Food Hi food lover
 Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
-
-	SUBJECTS-REJECTED 7 k1 Food was already in the list
+MESSAGE k1 Food Hi food lover
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
 ----------------SENDING-------------
-DISCONNECT 8 k1
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-DISCONNECT 9 k1
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------SENDING-------------
-REGISTER 11 k1 192.168.2.11:58501
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-REGISTER 11 k1 192.168.2.11:58501
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 11 Username exists already
-----------------SENDING-------------
-UPDATE 12 k1 192.168.2.11:58501
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 12 k1 192.168.2.11:58501
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 12 k1 192.168.2.11:58501
-----------------SENDING-------------
-SUBJECTS 13 k1 [Formula1, Food]
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-
-	SUBJECTS-UPDATED 13 k1 Formula1
-----------------NEW MESSAGE--------------------
-
-	SUBJECTS-UPDATED 13 k1 Food
-----------------NEW MESSAGE--------------------
-
-	The following are your subscribed subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 Username exists already
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:53333
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:53333
-Sending to ->1.1.1.1:14
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 3 k1 192.168.2.11:53333
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:63868
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:63868
-Sending to ->1.1.1.1:123
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 1 k1 192.168.2.11:63868
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:63878
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:63878
-Sending to ->1.2.1.1:15
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 3 k1 192.168.2.11:63878
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:64791
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:64791
-Sending to ->192.1.21.1:654
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:64791
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:64791
-Sending to ->192.1.21.1:654
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 2 k1 192.168.2.11:64791
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------SENDING-------------
-DE-REGISTER 3 k1
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-DE-REGISTER_CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:57165
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:57165
-Sending to ->1.1.1.1:12
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 1 k1 192.168.2.11:57165
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:49961
-Sending to ->192.168.2.11:12345
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:49961
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:49961
-Sending to ->192.168.2.11:12345
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:49961
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:49961
-Sending to ->192.168.2.11:12345
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:49961
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.121.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.1.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.121.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.1.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.121.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.1.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.121.1.1:123
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:52219
-Sending to ->1.1.1.1:123
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:57858
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:57858
-Sending to ->1.1.1.1:453
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:57858
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:57858
-Sending to ->1.1.1.1:453
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:57858
-Sending to ->1.1.1.1:1234
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:57858
-Sending to ->1.1.1.1:453
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:56801
-Sending to ->1.1.1.1:432
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:56801
-Sending to ->1.23.2.2:43
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63143
-Sending to ->1.1.1.1:65
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63143
-Sending to ->1.1.1.1:654
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63143
-Sending to ->1.1.1.1:65
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63143
-Sending to ->1.1.1.1:654
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63143
-Sending to ->1.1.1.1:65
-----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63143
-Sending to ->1.1.1.1:654
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 Username exists already
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 2 k1 192.168.2.11:58318
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:8080
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------SENDING-------------
-DISCONNECT 4 k1
+DISCONNECT 16 k1
 Sending to ->192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 5 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 5 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 5 k1 192.168.2.11:58318
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 6 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 6 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 6 k1 192.168.2.11:58318
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 7 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 7 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 7 k1 192.168.2.11:58318
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 8 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 8 k1 192.168.2.11:58318
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 8 k1 192.168.2.11:58318
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 3 k1 192.168.2.11:53616
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 5 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 5 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 5 k1 192.168.2.11:53616
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 6 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 6 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:8080
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 6 k1 192.168.2.11:53616
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 9 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 9 k1 192.168.2.11:53616
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 9 k1 192.168.2.11:53616
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:63756
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:63756
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 1 k1 192.168.2.11:63756
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53041
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 1 k1 192.168.2.11:53041
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 1 k1 192.168.2.11:53041
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 1 Username exists already
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 2 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 2 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:8080
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:8080
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:8080
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-AVAILABLE-LIST-OF-SUBJECTS k1 []
-Sending to ->192.168.2.11:8080
-----------------NEW MESSAGE--------------------
-
-	 Choose among the following subjects: Food, Formula1 and Sports
-----------------SENDING-------------
-DISCONNECT 7 k1
-Sending to ->192.168.2.11:8080
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 8 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 8 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 8 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 9 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 9 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 9 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 10 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:8080
-----------------SENDING-------------
-UPDATE 10 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 10 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 11 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 11 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 11 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 12 Username exists already
-----------------SENDING-------------
-UPDATE 13 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 13 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 13 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 14 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------SENDING-------------
-UPDATE 14 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 14 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 15 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 15 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 15 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 16 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 16 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 16 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 17 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 17 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 17 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 18 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 18 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 18 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------NEW MESSAGE--------------------
-REGISTER-DENIED 19 Username exists already
-----------------SENDING-------------
-UPDATE 20 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 20 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 20 k1 192.168.2.11:52555
-----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 21 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 21 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 21 k1 192.168.2.11:52555
-----------------SENDING-------------
-DE-REGISTER 22 k1
-Sending to ->192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-DE-REGISTER_CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 23 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 23 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-DENIED 23 k1 is not a valid username
-----------------SENDING-------------
-UPDATE 24 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 24 k1 192.168.2.11:52555
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-UPDATE-DENIED 24 k1 is not a valid username
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:59860
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 3 k1 192.168.2.11:59860
-Sending to ->1.1.1.1:12
-----------------NEW MESSAGE--------------------
-UPDATE-DENIED 3 k1 is not a valid username
-----------------SENDING-------------
-UPDATE 6 k1 192.168.2.11:59860
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 6 k1 192.168.2.11:59860
-Sending to ->1.1.1.1:12
-----------------NEW MESSAGE--------------------
-UPDATE-DENIED 6 k1 is not a valid username
-----------------SENDING-------------
-UPDATE 9 k1 192.168.2.11:59860
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 9 k1 192.168.2.11:59860
-Sending to ->1.1.1.1:12
-----------------NEW MESSAGE--------------------
-UPDATE-DENIED 9 k1 is not a valid username
