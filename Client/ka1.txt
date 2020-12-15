@@ -1,0 +1,7 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 3 
+----------------SENDING-------------
+DE-REGISTER 4 ka1
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 

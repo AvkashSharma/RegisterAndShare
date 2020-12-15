@@ -240,3 +240,101 @@ Machine Learning OS Networking AI
 SERVER PING true 192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 ka 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+UPDATE-DENIED 1 ka is not a valid username
+----------------NEW MESSAGE--------------------
+REGISTER 2 ka 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+REGISTERED 2 ka 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+REGISTER 3 ka1 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+REGISTERED 3 ka1 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+DE-REGISTER-SERVER-TO-SERVER ka1
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 5 karthi 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+UPDATE 1 avkash 192.168.2.11:50395
+----------------NEW MESSAGE--------------------
+SUBJECTS 2 avkash [OS, Machine Learning]
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 mike 192.168.2.11:50394
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 mike 192.168.2.11:50394
+----------------NEW MESSAGE--------------------
+UPDATE 1 khendek 192.168.2.11:50975
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 khendek 192.168.2.11:50975
+----------------NEW MESSAGE--------------------
+SUBJECTS 2 khendek [OS, Machine Learning]
+----------------NEW MESSAGE--------------------
+PUBLISH 6 karthi OS Hello again, im finally working
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+DISCONNECT 7 karthi
+----------------NEW MESSAGE--------------------
+PUBLISH 3 mike OS hello
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving

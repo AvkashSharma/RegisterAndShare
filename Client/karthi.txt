@@ -500,3 +500,93 @@ Sending to ->192.168.2.11:1234
 SUBJECTS-UPDATED 4 karthi Machine Learning OS Networking AI 
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+UPDATE 5 karthi 192.168.2.11:53619
+Sending to ->192.168.2.11:6666
+----------------SENDING-------------
+UPDATE 5 karthi 192.168.2.11:53619
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 karthi 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+PUBLISH 6 karthi OS Hello again, im finally working
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+MESSAGE karthi OS Hello again, im finally working
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE mike OS Hi Karthi from OS
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+DISCONNECT 7 karthi
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+DISCONNECTION-CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 1 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 karthi 192.168.2.11:58656
+----------------SENDING-------------
+DISCONNECT 2 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DISCONNECTION-CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 3 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 3 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 3 karthi 192.168.2.11:58656
+----------------SENDING-------------
+DISCONNECT 4 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DISCONNECTION-CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 5 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 5 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 karthi 192.168.2.11:58656
+----------------SENDING-------------
+DISCONNECT 6 karthi
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+DISCONNECTION-CONFIRMED 0 
+----------------SENDING-------------
+UPDATE 7 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 7 karthi 192.168.2.11:58656
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 7 karthi 192.168.2.11:58656
+----------------NEW MESSAGE--------------------
+MESSAGE mike OS Hello peeps
+----------------SENDING-------------
+PUBLISH 8 karthi OS where is avkash
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE karthi OS where is avkash

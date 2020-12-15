@@ -287,8 +287,11 @@ public class ClientReceiver implements Runnable {
             boolean dbResponse = false;
             Database db = new Database();
             if (db.userExist(username)) {
-                db.close();
+               
                 if (!dbResponse) {
+
+                    db.disconnectUser(request.getClientName(), 0);
+                    db.close();
                     DisconnectionConfirmed confirmation = new DisconnectionConfirmed();
                     ClientSender.sendResponse(confirmation, packetReceived, clientSocket);
 
@@ -315,7 +318,7 @@ public class ClientReceiver implements Runnable {
                 User oldUserInfo = db.getUser(username);
                 // System.out.println(oldUserInfo.getUserIP() +":"+oldUserInfo.getUserSocket());
 
-                dbResponse = db.updateUser(request.getClientName(), request.getAddress(), request.getPort());
+                dbResponse = db.updateUser(request.getClientName(), request.getAddress(), request.getPort(), 1);
                 db.close();
                 if (dbResponse) {
                     UpdateConfirmed updateConfirmed = new UpdateConfirmed(request.getRid(), request.getClientName(),

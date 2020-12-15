@@ -78,3 +78,75 @@ CHANGE-SERVER 192.168.2.11:6666
 CHANGE-SERVER 192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+UPDATE 1 mike 192.168.2.11:50394
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 mike 192.168.2.11:50394
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 mike 192.168.2.11:50394
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+MESSAGE karthi OS Hello again, im finally working
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+PUBLISH 2 mike OS Hi Karthi from OS
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE mike OS Hi Karthi from OS
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+PUBLISH 3 mike OS hello
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+MESSAGE mike OS hello
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+PUBLISH 4 mike OS hello
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE mike OS hello
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 mike 192.168.2.11:55484
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 mike 192.168.2.11:55484
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 mike 192.168.2.11:55484
+----------------SENDING-------------
+PUBLISH 2 mike OS Hello peeps
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+MESSAGE mike OS Hello peeps
+----------------NEW MESSAGE--------------------
+MESSAGE karthi OS where is avkash

@@ -248,3 +248,121 @@ SERVE REQUEST
 SUBJECTS 4 karthi [Machine Learning, OS, Networking, AI]
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 ka 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+REGISTER 2 ka 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+REGISTER 3 ka1 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+DE-REGISTER 4 ka1
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 5 karthi 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 5 karthi 192.168.2.11:53619
+----------------NEW MESSAGE--------------------
+UPDATE 1 avkash 192.168.2.11:50395
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 avkash 192.168.2.11:50395
+----------------NEW MESSAGE--------------------
+OS Machine Learning 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 mike 192.168.2.11:50394
+----------------NEW MESSAGE--------------------
+UPDATE 1 khendek 192.168.2.11:50975
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+OS Machine Learning 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+PUBLISH 2 mike OS Hi Karthi from OS
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+DISCONNECT-CLIENT-SERVER-TO-SERVER karthi
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+PUBLISH 4 mike OS hello
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 karthi 192.168.2.11:58656
+----------------NEW MESSAGE--------------------
+DISCONNECT 2 karthi
+----------------NEW MESSAGE--------------------
+UPDATE 3 karthi 192.168.2.11:58656
+----------------NEW MESSAGE--------------------
+DISCONNECT 4 karthi
+----------------NEW MESSAGE--------------------
+UPDATE 5 karthi 192.168.2.11:58656
+----------------NEW MESSAGE--------------------
+DISCONNECT 6 karthi
+----------------NEW MESSAGE--------------------
+UPDATE 7 karthi 192.168.2.11:58656
+----------------NEW MESSAGE--------------------
+UPDATE 1 mike 192.168.2.11:55484
+----------------NEW MESSAGE--------------------
+UPDATE 1 avkash 192.168.2.11:50226
+----------------NEW MESSAGE--------------------
+PUBLISH 2 mike OS Hello peeps
+----------------NEW MESSAGE--------------------
+DISCONNECT 2 avkash
+----------------NEW MESSAGE--------------------
+PUBLISH 8 karthi OS where is avkash

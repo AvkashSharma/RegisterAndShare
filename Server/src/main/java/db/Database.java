@@ -29,7 +29,7 @@ public class Database {
     public boolean addUser(String username, String ip, int socket) {
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    String.format("INSERT users(username, ip, socket) VALUES ('%s','%s',%s)", username, ip, socket));
+                    String.format("INSERT users(username, ip, socket, isActive) VALUES ('%s','%s',%s, %s)", username, ip, socket, 1));
             ps.execute();
             return true;
 
@@ -114,11 +114,11 @@ public class Database {
     }
 
     // update user information
-    public boolean updateUser(String username, String ip, int socket) {
+    public boolean updateUser(String username, String ip, int socket, int isActive) {
         try {
             if (userExist(username)) {
                 PreparedStatement ps = conn.prepareStatement(
-                        String.format("UPDATE users SET ip='%s', socket=%s WHERE username='%s'", ip, socket, username));
+                        String.format("UPDATE users SET ip='%s', socket=%s, isActive=%s WHERE username='%s'", ip, socket, isActive, username));
                 ps.execute();
                 return true;
             }
@@ -128,6 +128,24 @@ public class Database {
         }
         return false;
     }
+
+        // update user information
+        public boolean disconnectUser(String username, int isActive) {
+            try {
+                if (userExist(username)) {
+                    PreparedStatement ps = conn.prepareStatement(
+                            String.format("UPDATE users SET isActive=%s WHERE username='%s'", isActive, username));
+                    ps.execute();
+                    return true;
+                }
+    
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            return false;
+        }
+
+    
 
     // check if subject exists
     public boolean subjectExist(String subject) {
@@ -228,7 +246,7 @@ public class Database {
             List<User> users = new ArrayList<User>();
 
             PreparedStatement ps = conn.prepareStatement(String.format(
-                    "SELECT users.* FROM subscriptions LEFT join users on subscriptions.username = users.username where subject = '%s'",
+                    "SELECT users.* FROM subscriptions LEFT join users on subscriptions.username = users.username where subject = '%s' and isActive=1",
                     subject));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
