@@ -16,7 +16,14 @@ public class SubjectsRejected extends Request {
      */
     private static final long serialVersionUID = 1L;
     String clientName;
-     String [] listOfSubjects;
+    String [] listOfSubjects;
+    String  list;
+
+    public SubjectsRejected(int rid, String clientName, String listOfSubjects){
+        super(RequestType.SUBJECTS_REJECTED, rid);
+        this.clientName = clientName;
+        this.list =listOfSubjects;
+      }
 
     public SubjectsRejected(String clientName, String[] listOfSubjects){
       super(RequestType.SUBJECTS_REJECTED);
@@ -30,9 +37,13 @@ public class SubjectsRejected extends Request {
     public String[] getListOfSubjects(){
         return listOfSubjects;
     }
+    public String getList(){
+        return list;
+    }
+
     @Override
     public String toString(){
-        return RequestType.SUBJECTS_REJECTED+ " " + this.getRid()+" "+ getClientName()+" "+getListOfSubjects() ;
+        return RequestType.SUBJECTS_REJECTED+ " " + this.getRid()+" "+ getClientName()+" "+getList() ;
     }
 
     public void print(){

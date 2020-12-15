@@ -1,0 +1,31 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+----------------SENDING-------------
+DE-REGISTER 2 avkash
+Sending to ->192.168.2.11:6667
+----------------NEW MESSAGE--------------------
+DE-REGISTER_CONFIRMED 0 
+----------------NEW MESSAGE--------------------
+REGISTERED 3 
+----------------SENDING-------------
+UPDATE 1 avkash 192.168.2.11:63510
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 avkash 192.168.2.11:63510
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 avkash 192.168.2.11:63510
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666

@@ -250,6 +250,7 @@ public class Client {
             subjectsToSubscribe.add(subject);
             System.out.print("\tEnter the subject (enter exit when you're done): ");
             subject = scanner.next();
+            subject += scanner.nextLine();
         }
         SubjectsRequest sRequest = new SubjectsRequest(ClientData.requestCounter.incrementAndGet(),
                 ClientData.username.get(), subjectsToSubscribe);

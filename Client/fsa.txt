@@ -1,0 +1,8 @@
+----------------SENDING-------------
+UPDATE 3 fsa 192.168.2.11:51461
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 3 fsa 192.168.2.11:51461
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-DENIED 3 fsa is not a valid username

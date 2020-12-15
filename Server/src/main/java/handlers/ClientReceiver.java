@@ -12,7 +12,9 @@ import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Registration.ServerRegisterConfirmed;
 import requests.Registration.ServerRegisterDenied;
+import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
+import requests.Update.SubjectsUpdated;
 import requests.Update.UpdateConfirmed;
 import requests.Update.UpdateDenied;
 import requests.Update.UpdateRequest;
@@ -421,8 +423,6 @@ public class ClientReceiver implements Runnable {
             
                 List<String> subscribedList;
              
-               
-                
                 //Clear the list of fav subjects
                 while(db.getFavoriteSubjects(username).size()!=0){
                    oldFav=db.getFavoriteSubjects(username).get(0);
@@ -445,10 +445,10 @@ public class ClientReceiver implements Runnable {
 
                 }
               
-        
                 if(!notContained){
-                    
                    reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+updatedSubjects;
+                   SubjectsUpdated subjectUpdated = new SubjectsUpdated(request.getRid(), username, updatedSubjects);
+                   ClientSender.sendResponse(subjectUpdated, packetReceived, clientSocket);
                 }
                 else{
                     //  clear the list of fav subjects
@@ -458,10 +458,12 @@ public class ClientReceiver implements Runnable {
                 }
                     db.addFavoriteSubjects(username, oldFavSubjectList);
                     reply="\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subjectsRejected;
+                    SubjectsRejected subjectRejected = new SubjectsRejected(request.getRid(), username, subjectsRejected);
+                    ClientSender.sendResponse(subjectRejected, packetReceived, clientSocket);
                 }
 
                 subscribedList = db.getFavoriteSubjects(username);
-                ClientSender.sendResponse(reply, packetReceived, clientSocket);
+
                 System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
                 System.out.println(subscribedList.toString());
                 ServerSender.sendResponse(updatedSubjects,clientSocket);
@@ -470,7 +472,7 @@ public class ClientReceiver implements Runnable {
                 String denied = "The user does not exist";
                 ClientSender.sendResponse(denied, packetReceived, clientSocket);
             }
-           
+            db.close();
         } catch (IOException e) {
             e.printStackTrace();
              Tracker.stop(request.getRid(), packetReceived);
