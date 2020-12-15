@@ -118,7 +118,6 @@ public class Request implements Serializable {
         }
         else{
             ClientData.requestMap.remove(this.rid);
-            ClientData.requestMap.remove(this.rid);
         }
     }
 

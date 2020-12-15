@@ -20,7 +20,6 @@ import requests.Update.UpdateServer;
 import requests.server.ServeConfirmed;
 import requests.server.ServeRequest;
 import server.ServerData;
-import requests.ClientPingServer;
 import requests.server.ServerPingServer;
 import requests.Publish.MessageConfirmation;
 import requests.Publish.PublishDenied;
@@ -165,15 +164,6 @@ public class ClientReceiver implements Runnable {
             } else if (request instanceof PublishRequest) {
 
                 publish((PublishRequest) request);
-
-            } else if (request instanceof ClientPingServer) {
-                System.out.println("Client Pinging");
-                try {
-                    ((ClientPingServer) request).setActive(true);
-                    ClientSender.sendResponse(request, packetReceived, clientSocket);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
             } else {
                 System.out.println("No such request present to handle the case");

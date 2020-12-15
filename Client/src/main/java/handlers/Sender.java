@@ -48,7 +48,6 @@ public class Sender {
 
             Tracker.handleSentRequest(object);
 
-
             byte[] data = outputStream.toByteArray();
             InetAddress addr =InetAddress.getByName(address);
             DatagramPacket sendPacket = new DatagramPacket(data, data.length, addr, port);

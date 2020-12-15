@@ -11,11 +11,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import handlers.Common;
-import requests.ClientPingServer;
 
 public class ClientData {
+    /**
+     * IS client registered to a user
+     */
     public static AtomicBoolean isRegistered = new AtomicBoolean(false);
+    /**
+     * is client associated with a user
+     */
     public static AtomicBoolean isDisconnected= new AtomicBoolean(true);
+
     public static AtomicReference<String> username = new AtomicReference<String>("");
     public static AtomicInteger requestCounter = new AtomicInteger(0);
 
@@ -80,49 +86,6 @@ public class ClientData {
         ClientData.uiTakeOver.set(false);
         if(!ClientData.firstTime.get())
             Client.ui();
-    }
-
-    // Use this to return active server ip and port
-    public static InetSocketAddress checkActiveServer(Scanner scanner) {
-
-        while (true) {
-
-            // COMMENT to skip entering IP address
-            getServerAddress(scanner);// <---------------------------------------------------------TO
-            // SKIP ENTERING IP
-            try {
-                boolean server1Active = ClientPingServer.ping(SERVER_1_IP, SERVER_1_PORT);;
-                boolean server2Active =  ClientPingServer.ping(SERVER_2_IP, SERVER_2_PORT);
-
-                if (server1Active) {
-                    ACTIVE_PORT = SERVER_1_PORT;
-                    ACTIVE_IP = SERVER_1_IP;
-                    break;
-                } else if (server2Active) {
-                    ACTIVE_PORT = SERVER_2_PORT;
-                    ACTIVE_IP = SERVER_2_IP;
-                    break;
-                } else {
-                    System.out.println("Server 1 and Server 2 are unreachable. Please enter valid Server Address");
-                }
-
-            } catch (UnknownHostException e) {
-                // e1.printStackTrace();
-            } catch (IOException e) { 
-                // e1.printStackTrace();
-            }
-        }
-
-        try {
-            activeServerAddress = InetAddress.getByName(ACTIVE_IP.toString());
-            serverSocket = new InetSocketAddress(activeServerAddress, ACTIVE_PORT);
-            return serverSocket;
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-
     }
 
 }
