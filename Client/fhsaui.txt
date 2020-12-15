@@ -1,7 +1,0 @@
-----------------NEW MESSAGE--------------------
-REGISTERED 6 
-----------------SENDING-------------
-DE-REGISTER 7 fhsaui
-Sending to ->192.168.2.11:6667
-----------------NEW MESSAGE--------------------
-DE-REGISTER_CONFIRMED 0 

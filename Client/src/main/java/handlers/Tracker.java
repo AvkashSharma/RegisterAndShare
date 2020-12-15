@@ -212,7 +212,7 @@ public class Tracker {
       // if Rid exists in the map remove it
       if (ClientData.requestMap.containsKey(Rid)) {
         // REMOVE FROM THE LIST");
-        System.out.println(ClientData.requestMap.get(Rid));
+        // System.out.println(ClientData.requestMap.get(Rid));
 
         Request reqToStop = (Request) ClientData.requestMap.get(Rid);
         reqToStop.stopTimer();

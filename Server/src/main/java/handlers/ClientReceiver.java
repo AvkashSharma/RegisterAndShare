@@ -47,7 +47,6 @@ public class ClientReceiver implements Runnable {
     byte[] dataBuffer;
     Thread threadClientReceiver;
 
-
     public ClientReceiver(DatagramPacket packetReceived, DatagramSocket clientSocket) {
         this.packetReceived = packetReceived;
         this.clientSocket = clientSocket;
@@ -287,7 +286,7 @@ public class ClientReceiver implements Runnable {
             boolean dbResponse = false;
             Database db = new Database();
             if (db.userExist(username)) {
-               
+
                 if (!dbResponse) {
 
                     db.disconnectUser(request.getClientName(), 0);
@@ -400,76 +399,78 @@ public class ClientReceiver implements Runnable {
             e.printStackTrace();
         }
     }
-   
-    
 
     public void subscribeToSubjects(SubjectsRequest request) {
         String username = request.getClientName();
-        //subjects a user wants to subscribe to
+        // subjects a user wants to subscribe to
         List<String> subjects = request.getSubjectsToSubscribe();
         Database db = new Database();
-        List<String> oldFavSubjectList=db.getFavoriteSubjects(username);
-       
-       
+        List<String> oldFavSubjectList = db.getFavoriteSubjects(username);
+
         try {
             // check if user is registered
             if (db.userExist(username)) {
-                //check if the subject exist
+                // check if the subject exist
                 String subject = "";
-                String subjectsRejected="";
-                String oldFav="";
+                String subjectsRejected = "";
+                String oldFav = "";
                 boolean contained;
-                boolean notContained=false;
+                boolean notContained = false;
                 // boolean alreadyExist;
                 String updatedSubjects = "";
                 String reply = "";
-            
+
                 List<String> subscribedList;
-             
-                //Clear the list of fav subjects
-                while(db.getFavoriteSubjects(username).size()!=0){
-                   oldFav=db.getFavoriteSubjects(username).get(0);
-                   db.removeAFavSubject(username, oldFav);
+
+                // Clear the list of fav subjects
+                while (db.getFavoriteSubjects(username).size() != 0) {
+                    oldFav = db.getFavoriteSubjects(username).get(0);
+                    db.removeAFavSubject(username, oldFav);
                 }
-              
+
                 for (int i = 0; i < subjects.size(); i++) {
                     subject = subjects.get(i);
-                    subjectsRejected+=subject+" ";
+                    subjectsRejected += subject + " ";
                     contained = db.getSubjects().contains(subject);
-            
+
                     if (contained) {
-                            db.addFavoriteSubject(username, subject);
-                            updatedSubjects+=subject+" ";
-                    }
-                    else{
-                       
-                        notContained=true;
+                        db.addFavoriteSubject(username, subject);
+                        updatedSubjects += subject + " ";
+                    } else {
+
+                        notContained = true;
                     }
 
                 }
-              
-                if(!notContained){
-                   reply = "\n\t" + "SUBJECTS-UPDATED "+request.getRid()+" "+request.getClientName()+" "+updatedSubjects;
-                   SubjectsUpdated subjectUpdated = new SubjectsUpdated(request.getRid(), username, updatedSubjects);
-                   ClientSender.sendResponse(subjectUpdated, packetReceived, clientSocket);
-                }
-                else{
-                    //  clear the list of fav subjects
-                    while(db.getFavoriteSubjects(username).size()!=0){
-                   oldFav=db.getFavoriteSubjects(username).get(0);
-                   db.removeAFavSubject(username, oldFav);
-                }
+
+                if (!notContained) {
+                    reply = "\n\t" + "SUBJECTS-UPDATED " + request.getRid() + " " + request.getClientName() + " "
+                            + updatedSubjects;
+                    SubjectsUpdated subjectUpdated = new SubjectsUpdated(request.getRid(), username, updatedSubjects);
+                    ClientSender.sendResponse(subjectUpdated, packetReceived, clientSocket);
+
+                    System.out.print("ACTIVE TO IDLE: ");
+                    System.out.println(subjectUpdated.toString());
+                    ServerSender.sendResponse(subjectUpdated, clientSocket);
+                } else {
+                    // clear the list of fav subjects
+                    while (db.getFavoriteSubjects(username).size() != 0) {
+                        oldFav = db.getFavoriteSubjects(username).get(0);
+                        db.removeAFavSubject(username, oldFav);
+                    }
                     db.addFavoriteSubjects(username, oldFavSubjectList);
-                    reply="\n\t"+"SUBJECTS-REJECTED"+" "+ request.getRid()+" "+ request.getClientName()+" "+subjectsRejected;
-                    SubjectsRejected subjectRejected = new SubjectsRejected(request.getRid(), username, subjectsRejected);
+                    reply = "\n\t" + "SUBJECTS-REJECTED" + " " + request.getRid() + " " + request.getClientName() + " "
+                            + subjectsRejected;
+                    SubjectsRejected subjectRejected = new SubjectsRejected(request.getRid(), username,
+                            subjectsRejected);
                     ClientSender.sendResponse(subjectRejected, packetReceived, clientSocket);
                 }
 
                 subscribedList = db.getFavoriteSubjects(username);
 
-                System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
-                System.out.println(subscribedList.toString());
-                ServerSender.sendResponse(updatedSubjects,clientSocket);
+                // System.out.print("ACTIVE TO IDLE: Users Updating their subject of interest");
+                // System.out.println(subscribedList.toString());
+                // ServerSender.sendResponse(updatedSubjects,clientSocket);
 
             } else {
                 String denied = "The user does not exist";
@@ -478,8 +479,8 @@ public class ClientReceiver implements Runnable {
             db.close();
         } catch (IOException e) {
             e.printStackTrace();
-             Tracker.stop(request.getRid(), packetReceived);
-             db.close();
+            Tracker.stop(request.getRid(), packetReceived);
+            db.close();
         }
     }
 
