@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -26,7 +24,6 @@ public class Server implements Runnable {
 
     public final Scanner scanner = new Scanner(System.in);
     private final int bufferSize = 1024;
-    private static String display = "";
     private static volatile DatagramSocket socket;
     ClientReceiver clientReceiver;
     private static boolean closeSocket = true;
@@ -125,7 +122,7 @@ public class Server implements Runnable {
             // System.out.println("3-Stop Serving Clients (DEBUG)");
             // System.out.println("4-Serve Clients (DEBUG)");
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
-            System.out.print("\t\t\tChoice: ");
+            System.out.print("\t\tChoice: ");
             val = scanner.nextLine();
 
             if (val.isEmpty()) {

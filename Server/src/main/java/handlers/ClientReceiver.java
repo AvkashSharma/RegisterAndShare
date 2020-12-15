@@ -274,7 +274,7 @@ public class ClientReceiver implements Runnable {
 
                     // send de-register confirmation to IDLE server
                     DeRegisterServerToServer serverConfirmation = new DeRegisterServerToServer(username);
-                    // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation, clientSocket);
                 }
@@ -299,7 +299,7 @@ public class ClientReceiver implements Runnable {
 
                     // send disconnection confirmation to IDLE server
                     DisconnectClientServerToServer serverConfirmation = new DisconnectClientServerToServer(username);
-                    // System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
+                    System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation, clientSocket);
                 }
@@ -336,7 +336,7 @@ public class ClientReceiver implements Runnable {
                                 oldUserInfo.getUserSocket());
                     }
                     Tracker.stop(request.getRid(), packetReceived);
-                    // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(updateConfirmed.toString());
                     ServerSender.sendResponse(updateConfirmed, clientSocket);
                 }
