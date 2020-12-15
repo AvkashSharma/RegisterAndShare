@@ -41,12 +41,7 @@ public class Server implements Runnable {
     }
 
     public void run() {
-        // try {
-        //     socket = new DatagramSocket(ServerData.port.get());
-        // } catch (SocketException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
-        // }
+        // start timer to be active
         startActiveTimer();
         while (true) {
 
@@ -54,6 +49,7 @@ public class Server implements Runnable {
             DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
 
             try {
+                // socket to receive  requests
                 socket.receive(incoming);
 
                 if (closeSocket) {
@@ -192,6 +188,9 @@ public class Server implements Runnable {
         }, 1000, 1000);
     }
 
+    /**
+     * Inactive timer to detect if its been offline too long
+     */
     public static void startInactiveTimer() {
         resetTimers();
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;
