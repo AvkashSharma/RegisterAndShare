@@ -6,6 +6,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Contains information related to server configuration
+ */
 public class ServerData {
     /**
      * Server's Ip address
@@ -57,9 +60,24 @@ public class ServerData {
      */
     public static ConcurrentHashMap<String,Object> requestMap = new ConcurrentHashMap<>();
     
+    /**
+     * Timer for activeness of server
+     */
     public static Timer activeTimer = new Timer();
+    /**
+     * Timer for inactiveness of server
+     */
     public static Timer inactiveTimer = new Timer();
+    /**
+     * Interval of how long server should be active in seconds
+     */
     public static int activeInterval;
+    /**
+     * Interval of how long server should be inactive in seconds
+     */
     public static int inactiveInterval;
+    /**
+     * Buffer added to the inactive Timer
+     */
     public static int timeout = 10;
 }

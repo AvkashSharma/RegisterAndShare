@@ -7,7 +7,10 @@ import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+/**
+ * Parent class to most client request.
+ * <p> it containts a timer as well
+ */
 public class Request implements Serializable {
 
     /**
@@ -17,14 +20,10 @@ public class Request implements Serializable {
     protected RequestType requestType;
     protected int rid;
     private transient Timer timer;
-    
-    // public Request(){
-    //     timer = new Timer();
-    // }
+
 
     public Request(RequestType requestType) {
         this.requestType = requestType;  
-        // this.timer = new Timer();
     }
     
     public Request(RequestType requestType, int reqNumber) {

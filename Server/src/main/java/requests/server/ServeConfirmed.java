@@ -2,6 +2,9 @@ package requests.server;
 
 import java.io.Serializable;
 
+/**
+ * Confirming the active server thats its serving
+ */
 public class ServeConfirmed implements Serializable{
     /**
      *

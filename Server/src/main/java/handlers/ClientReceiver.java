@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import db.Database;
 import db.User;
@@ -13,7 +12,6 @@ import server.Server;
 import requests.Registration.RegisterRequest;
 import requests.Registration.ServerRegisterConfirmed;
 import requests.Registration.ServerRegisterDenied;
-import requests.Update.SubjectsRejected;
 import requests.Update.SubjectsRequest;
 import requests.Update.UpdateConfirmed;
 import requests.Update.UpdateDenied;
@@ -36,6 +34,9 @@ import requests.Registration.DisconnectClientServerToServer;
 import requests.Registration.DisconnectRequest;
 import requests.Registration.DisconnectionConfirmed;
 
+/**
+ * Handles all incoming request from clients and servers
+ */
 public class ClientReceiver implements Runnable {
 
     private DatagramPacket packetReceived;
@@ -44,6 +45,7 @@ public class ClientReceiver implements Runnable {
     private DatagramSocket clientSocket;
     byte[] dataBuffer;
     Thread threadClientReceiver;
+
 
     public ClientReceiver(DatagramPacket packetReceived, DatagramSocket clientSocket) {
         this.packetReceived = packetReceived;
@@ -57,7 +59,6 @@ public class ClientReceiver implements Runnable {
 
         try {
             this.dataBuffer = packetReceived.getData();
-            // System.out.println("Processing received data");
 
             ByteArrayInputStream byteStream = new ByteArrayInputStream(dataBuffer);
             ObjectInputStream is = new ObjectInputStream(byteStream);

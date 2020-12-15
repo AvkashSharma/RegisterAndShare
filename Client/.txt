@@ -1,35 +1,6 @@
 ----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63322
+REGISTER 1 karthi 192.168.2.11:65021
 Sending to ->192.168.2.11:1234
 ----------------SENDING-------------
-REGISTER 1 k1 192.168.2.11:63322
-Sending to ->192.168.2.11:987
-----------------SENDING-------------
-PUBLISH 17  Food ig
+REGISTER 1 karthi 192.168.2.11:65021
 Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-PUBLISH-DENIED 17 You are not registered. Please register
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------SENDING-------------
-REGISTER 1 k3 192.168.2.11:54111
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 1 k3 192.168.2.11:54111
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 1 k4 192.168.2.11:56276
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-REGISTER 1 k4 192.168.2.11:56276
-Sending to ->192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:6666
-----------------NEW MESSAGE--------------------
-MESSAGE k2 Sports Hello from k2
-----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234

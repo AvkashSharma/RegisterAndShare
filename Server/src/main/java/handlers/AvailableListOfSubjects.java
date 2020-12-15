@@ -5,6 +5,10 @@ import requests.RequestType;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Get available subjects Request to send to cleint
+ */
 public class AvailableListOfSubjects extends Request {
     
     /**

@@ -13,6 +13,9 @@ import java.net.UnknownHostException;
 
 import server.ServerData;
 
+/**
+ * Server pings the other server to know if it is up and running
+ */
 public class ServerPingServer implements Serializable {
 
     /**

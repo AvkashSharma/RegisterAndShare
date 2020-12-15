@@ -9,6 +9,9 @@ import java.net.InetAddress;
 
 import server.ServerData;
 
+/**
+ * Sends responses to the other server
+ */
 public class ServerSender {
 
   // need to change the datagram socket from client to other server socket

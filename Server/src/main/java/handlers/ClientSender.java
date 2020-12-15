@@ -7,8 +7,18 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+/**
+ * Handler to send responses to clients
+ */
 public class ClientSender {
 
+    /**
+     * Send response using the datagrampacket location
+     * @param toSend
+     * @param packet
+     * @param clientSocket
+     * @throws IOException
+     */
     public static void sendResponse(Object toSend, DatagramPacket packet, DatagramSocket clientSocket) throws IOException{
         try{
         // Obtain Client's IP address and the port
@@ -32,7 +42,14 @@ public class ClientSender {
         }
     }
 
-
+    /**
+     * Send reponse to client using the ip address and port
+     * @param toSend
+     * @param clientSocket
+     * @param address
+     * @param port
+     * @throws IOException
+     */
     public static void sendResponse(Object toSend, DatagramSocket clientSocket,  String address, int port) throws IOException{
         try{
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

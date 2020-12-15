@@ -50,7 +50,7 @@ public class Server implements Runnable {
                 socket.receive(incoming);
 
                 if (closeSocket) {
-                    // Need to pass received data
+                    // create a new thread for each request
                     clientReceiver = new ClientReceiver(incoming, socket);
                 }
 
@@ -196,6 +196,7 @@ public class Server implements Runnable {
                 // System.out.print("\r" + ServerData.activeInterval + "\t" + ServerData.inactiveInterval + "---- Online: "
                 //         + ServerData.isServing.get() + "\t" + display);
                 if (ServerData.inactiveInterval <= 0) {
+                    // should ping server before going online
                     serve();
                     changeServer();
                 }
@@ -278,6 +279,7 @@ public class Server implements Runnable {
                 // Sender.sendTo(serveRequest, socket, ServerData.addressB.get(),
                 // ServerData.portB.get());
                 ServerData.isServing.set(false);
+                //let know the clients
                 changeServer();
 
                 // reset inactive timer
@@ -289,6 +291,7 @@ public class Server implements Runnable {
             }
 
         } catch (IOException e) {
+            System.out.println("Server not Alive");
             bServingStatus = false;
         }
     }

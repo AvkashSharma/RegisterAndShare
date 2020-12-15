@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Database instance that connects to AWS MYSQL database
+ */
 public class Database {
 
     final String connectionUrl = "jdbc:mysql://rss-db.cn1qcrpwdo7e.us-east-2.rds.amazonaws.com:3306/rss-db";
@@ -54,11 +57,18 @@ public class Database {
         return false;
     }
 
+    /**
+     * Get user information
+     * 
+     * @param username
+     * @return
+     */
     public User getUser(String username) {
         try {
             User user;
 
-            PreparedStatement ps = conn.prepareStatement(String.format("SELECT * FROM users WHERE username ='%s'", username));
+            PreparedStatement ps = conn
+                    .prepareStatement(String.format("SELECT * FROM users WHERE username ='%s'", username));
             ResultSet rs = ps.executeQuery();
             if (rs != null) {
                 rs.first(); // moves cursor to the first row
@@ -70,10 +80,6 @@ public class Database {
             System.out.println("Connection error");
         }
         return null;
-    }
-
-    public void getUserByIp(String ip) {
-
     }
 
     // get List of all registered users
@@ -172,25 +178,30 @@ public class Database {
         return false;
     }
 
+    // Add a user's favorite list of subject
     public void addFavoriteSubjects(String username, List<String> favoriteSubjects) {
         for (String subject : favoriteSubjects) {
             addFavoriteSubject(username, subject);
         }
     }
-     public boolean removeAFavSubject(String username, String subject) {
+
+    /**
+     * Remove a user's subscribed subject
+     * 
+     * @param username
+     * @param subject
+     * @return
+     */
+    public boolean removeAFavSubject(String username, String subject) {
         try {
             PreparedStatement ps = conn.prepareStatement(
-                    String.format("DELETE FROM subscriptions WHERE username='%s' and subject='%s'", username,subject));
+                    String.format("DELETE FROM subscriptions WHERE username='%s' and subject='%s'", username, subject));
             ps.execute();
             return true;
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return false;
-    }
-
-    public void favoriteSubjectExist(String username, String subject) {
-
     }
 
     // get list of all subscriptions for specified users
@@ -244,11 +255,10 @@ public class Database {
         return false;
     }
 
-    public void changeServerAddress(String serverID) {
-
-    }
-    
-    public void close(){
+    /**
+     * Close Database connection to avoid many open connections
+     */
+    public void close() {
         try {
             conn.close();
         } catch (SQLException e) {

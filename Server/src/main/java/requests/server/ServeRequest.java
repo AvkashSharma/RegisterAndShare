@@ -2,6 +2,9 @@ package requests.server;
 
 import java.io.Serializable;
 
+/**
+ * Request idle server to go online
+ */
 public class ServeRequest implements Serializable {
     /**
      *
