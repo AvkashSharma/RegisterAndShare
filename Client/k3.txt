@@ -1,0 +1,14 @@
+----------------NEW MESSAGE--------------------
+REGISTERED 1 
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+SUBJECTS 2 k3 [Food]
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+
+	SUBJECTS-UPDATED 2 k3 Food
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234

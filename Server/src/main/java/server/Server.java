@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -26,7 +24,6 @@ public class Server implements Runnable {
 
     public final Scanner scanner = new Scanner(System.in);
     private final int bufferSize = 1024;
-    private static String display = "";
     private static volatile DatagramSocket socket;
     ClientReceiver clientReceiver;
     private static boolean closeSocket = true;
@@ -41,12 +38,7 @@ public class Server implements Runnable {
     }
 
     public void run() {
-        // try {
-        //     socket = new DatagramSocket(ServerData.port.get());
-        // } catch (SocketException e) {
-        //     // TODO Auto-generated catch block
-        //     e.printStackTrace();
-        // }
+        // start timer to be active
         startActiveTimer();
         while (true) {
 
@@ -54,6 +46,7 @@ public class Server implements Runnable {
             DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
 
             try {
+                // socket to receive  requests
                 socket.receive(incoming);
 
                 if (closeSocket) {
@@ -129,7 +122,7 @@ public class Server implements Runnable {
             // System.out.println("3-Stop Serving Clients (DEBUG)");
             // System.out.println("4-Serve Clients (DEBUG)");
             System.out.println("Enter 'crtl+C' to exit Server, Press 'ENTER' to refresh");
-            System.out.print("\t\t\tChoice: ");
+            System.out.print("\t\tChoice: ");
             val = scanner.nextLine();
 
             if (val.isEmpty()) {
@@ -192,6 +185,9 @@ public class Server implements Runnable {
         }, 1000, 1000);
     }
 
+    /**
+     * Inactive timer to detect if its been offline too long
+     */
     public static void startInactiveTimer() {
         resetTimers();
         ServerData.inactiveInterval = ServerData.sleepTime.get() + ServerData.timeout;

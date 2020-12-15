@@ -1,19 +1,20 @@
 ----------------NEW MESSAGE--------------------
-REGISTERED 3 
+REGISTERED 1 
 ----------------SENDING-------------
-DISCONNECT 4 ka8
+SUBJECTS 2 k4 [Sports, Food]
 Sending to ->192.168.2.11:1234
 ----------------NEW MESSAGE--------------------
-DISCONNECTION-CONFIRMED 0 
-----------------SENDING-------------
-UPDATE 5 ka8 192.168.2.11:55032
-Sending to ->192.168.2.11:1234
-----------------SENDING-------------
-UPDATE 5 ka8 192.168.2.11:55032
-Sending to ->1.1.1.1:15
+
+	SUBJECTS-UPDATED 2 k4 Sports
 ----------------NEW MESSAGE--------------------
-UPDATE-CONFIRMED 5 ka8 192.168.2.11:55032
+
+	SUBJECTS-UPDATED 2 k4 Food
 ----------------NEW MESSAGE--------------------
-CHANGE-SERVER 192.168.2.11:1234
+
+	The following are your subscribed subjects: Food and Sports
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+MESSAGE k2 Sports Hello from k2
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:1234

@@ -51,7 +51,7 @@ public class Request implements Serializable {
         in.defaultReadObject();  }
 
     public void startTimer(){ 
-        System.out.println("START TIMER:  "+this.rid);   
+        // System.out.println("START TIMER:  "+this.rid);   
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask(){
         int timePeriod = 5000;
@@ -69,12 +69,12 @@ public class Request implements Serializable {
     }
 
     public void done(){
-        System.out.println("REQUEST TIMEOUT: " + this.toString());
+        // System.out.println("REQUEST TIMEOUT: " + this.toString());
 
     }
 
     public void stopTimer(){
-        System.out.println("STOP TIMER CALLED:  "+ this.rid);
+        // System.out.println("STOP TIMER CALLED:  "+ this.rid);
         timer.cancel();
     }
 }

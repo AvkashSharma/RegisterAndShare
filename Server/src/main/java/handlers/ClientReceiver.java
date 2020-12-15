@@ -105,7 +105,7 @@ public class ClientReceiver implements Runnable {
                 int portB = packetReceived.getPort();
                 ServerData.addressB.set(addressb);
                 ServerData.portB.set(portB);
-                System.out.println("Server requested to go online");
+                // System.out.println("Server requested to go online");
                 // Server server and start the timer
                 Server.serve();
                 // let know the other server its online
@@ -120,7 +120,7 @@ public class ClientReceiver implements Runnable {
         // client requests
         else if (ServerData.isServing.get()) {
             // track the received request
-            System.out.println("ADDDEDING TO TRACCKER");
+            // System.out.println("ADDDEDING TO TRACCKER");
             Tracker.receivedRequest(request, packetReceived);
             if (request instanceof RegisterRequest) {
                 register((RegisterRequest) request);
@@ -276,7 +276,7 @@ public class ClientReceiver implements Runnable {
 
                     // send de-register confirmation to IDLE server
                     DeRegisterServerToServer serverConfirmation = new DeRegisterServerToServer(username);
-                    // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation, clientSocket);
                 }
@@ -301,7 +301,7 @@ public class ClientReceiver implements Runnable {
 
                     // send disconnection confirmation to IDLE server
                     DisconnectClientServerToServer serverConfirmation = new DisconnectClientServerToServer(username);
-                    // System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
+                    System.out.print("ACTIVE TO IDLE: DISCONNECT CLIENT");
                     System.out.println(serverConfirmation.toString());
                     ServerSender.sendResponse(serverConfirmation, clientSocket);
                 }
@@ -338,7 +338,7 @@ public class ClientReceiver implements Runnable {
                                 oldUserInfo.getUserSocket());
                     }
                     Tracker.stop(request.getRid(), packetReceived);
-                    // System.out.print("ACTIVE TO IDLE: DE-REGISTER");
+                    System.out.print("ACTIVE TO IDLE: DE-REGISTER");
                     System.out.println(updateConfirmed.toString());
                     ServerSender.sendResponse(updateConfirmed, clientSocket);
                 }
