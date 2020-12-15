@@ -224,3 +224,27 @@ UPDATE-CONFIRMED 1 karthi 192.168.2.11:61324
 SERVER PING true 192.168.2.11:6666
 ----------------NEW MESSAGE--------------------
 SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 karthi 192.168.2.11:63879
+----------------NEW MESSAGE--------------------
+SUBJECTS 2 karthi [Machine Learning, exit]
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 karthi 192.168.2.11:63694
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 karthi 192.168.2.11:63694
+----------------NEW MESSAGE--------------------
+Machine Learning 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+SUBJECTS 4 karthi [Machine Learning, OS, Networking, AI]
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving

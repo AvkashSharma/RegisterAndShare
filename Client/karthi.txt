@@ -458,3 +458,45 @@ Sending to ->192.168.2.11:6666
 SUBJECTS-REJECTED 2 karthi Learning exit 
 ----------------NEW MESSAGE--------------------
 CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 karthi 192.168.2.11:63879
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 karthi 192.168.2.11:63879
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 karthi 192.168.2.11:63879
+----------------SENDING-------------
+SUBJECTS 2 karthi [Machine Learning, exit]
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SUBJECTS-REJECTED 2 karthi Machine Learning exit 
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666
+----------------SENDING-------------
+UPDATE 1 karthi 192.168.2.11:63694
+Sending to ->192.168.2.11:1234
+----------------SENDING-------------
+UPDATE 1 karthi 192.168.2.11:63694
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 karthi 192.168.2.11:63694
+----------------SENDING-------------
+SUBJECTS 2 karthi [Machine Learning]
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+SUBJECTS-UPDATED 2 karthi Machine Learning 
+----------------SENDING-------------
+PUBLISH 3 karthi Machine Learning
+Sending to ->192.168.2.11:6666
+----------------NEW MESSAGE--------------------
+PUBLISH-DENIED 3 Subject does not exist
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:1234
+----------------SENDING-------------
+SUBJECTS 4 karthi [Machine Learning, OS, Networking, AI]
+Sending to ->192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SUBJECTS-UPDATED 4 karthi Machine Learning OS Networking AI 
+----------------NEW MESSAGE--------------------
+CHANGE-SERVER 192.168.2.11:6666

@@ -242,15 +242,14 @@ public class Client {
 
         // confirm the request or deny it
         // update the database
-        System.out.print("\tEnter the subject (enter exit when you're done): ");
         String subject = "";
-        subject = scanner.next();
         List<String> subjectsToSubscribe = new ArrayList<String>();
         while (!subject.equals("exit")) {
-            subjectsToSubscribe.add(subject);
             System.out.print("\tEnter the subject (enter exit when you're done): ");
             subject = scanner.next();
             subject += scanner.nextLine();
+            if(!subject.equals("exit"))
+                subjectsToSubscribe.add(subject);
         }
         SubjectsRequest sRequest = new SubjectsRequest(ClientData.requestCounter.incrementAndGet(),
                 ClientData.username.get(), subjectsToSubscribe);

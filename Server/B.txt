@@ -214,3 +214,29 @@ UPDATE 1 karthi 192.168.2.11:61324
 SUBJECTS 2 karthi [Learning, exit]
 ----------------NEW MESSAGE--------------------
 SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+UPDATE 1 karthi 192.168.2.11:63879
+----------------NEW MESSAGE--------------------
+UPDATE-CONFIRMED 1 karthi 192.168.2.11:63879
+----------------NEW MESSAGE--------------------
+Machine Learning 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
+----------------NEW MESSAGE--------------------
+UPDATE 1 karthi 192.168.2.11:63694
+----------------NEW MESSAGE--------------------
+SUBJECTS 2 karthi [Machine Learning]
+----------------NEW MESSAGE--------------------
+PUBLISH 3 karthi Machine Learning
+----------------NEW MESSAGE--------------------
+SERVE CONFIRMED - Serving
+----------------NEW MESSAGE--------------------
+Machine Learning OS Networking AI 
+----------------NEW MESSAGE--------------------
+SERVER PING true 192.168.2.11:1234
+----------------NEW MESSAGE--------------------
+SERVE REQUEST 
